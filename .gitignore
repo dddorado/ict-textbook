@@ -8,3 +8,5 @@
 *.log
 *.pid
 gh-auth.*
+
+**/*.quarto_ipynb
