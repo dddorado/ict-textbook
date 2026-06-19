@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Networking, Web Basics, and Library Websites – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-03-databases.html" rel="next">
+<link href="./introductory-ict-lis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-02-networking-web.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">2.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">2.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">2.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">2.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#networks-as-service-infrastructure" id="toc-networks-as-service-infrastructure" class="nav-link" data-scroll-target="#networks-as-service-infrastructure"><span class="header-section-number">2.4.1</span> Networks as service infrastructure</a></li>
+  <li><a href="#internet-and-web-are-not-synonyms" id="toc-internet-and-web-are-not-synonyms" class="nav-link" data-scroll-target="#internet-and-web-are-not-synonyms"><span class="header-section-number">2.4.2</span> Internet and web are not synonyms</a></li>
+  <li><a href="#protocols-and-layers" id="toc-protocols-and-layers" class="nav-link" data-scroll-target="#protocols-and-layers"><span class="header-section-number">2.4.3</span> Protocols and layers</a></li>
+  <li><a href="#from-a-url-to-a-page" id="toc-from-a-url-to-a-page" class="nav-link" data-scroll-target="#from-a-url-to-a-page"><span class="header-section-number">2.4.4</span> From a URL to a page</a></li>
+  <li><a href="#ip-addresses-domain-names-and-dns" id="toc-ip-addresses-domain-names-and-dns" class="nav-link" data-scroll-target="#ip-addresses-domain-names-and-dns"><span class="header-section-number">2.4.5</span> IP addresses, domain names, and DNS</a></li>
+  <li><a href="#reading-a-url" id="toc-reading-a-url" class="nav-link" data-scroll-target="#reading-a-url"><span class="header-section-number">2.4.6</span> Reading a URL</a></li>
+  <li><a href="#http-requests-and-responses" id="toc-http-requests-and-responses" class="nav-link" data-scroll-target="#http-requests-and-responses"><span class="header-section-number">2.4.7</span> HTTP requests and responses</a></li>
+  <li><a href="#https-certificates-and-trust" id="toc-https-certificates-and-trust" class="nav-link" data-scroll-target="#https-certificates-and-trust"><span class="header-section-number">2.4.8</span> HTTPS, certificates, and trust</a></li>
+  <li><a href="#html-css-and-javascript" id="toc-html-css-and-javascript" class="nav-link" data-scroll-target="#html-css-and-javascript"><span class="header-section-number">2.4.9</span> HTML, CSS, and JavaScript</a></li>
+  <li><a href="#a-minimal-semantic-library-page" id="toc-a-minimal-semantic-library-page" class="nav-link" data-scroll-target="#a-minimal-semantic-library-page"><span class="header-section-number">2.4.10</span> A minimal semantic library page</a></li>
+  <li><a href="#progressive-enhancement-and-resilience" id="toc-progressive-enhancement-and-resilience" class="nav-link" data-scroll-target="#progressive-enhancement-and-resilience"><span class="header-section-number">2.4.11</span> Progressive enhancement and resilience</a></li>
+  <li><a href="#library-websites-as-service-gateways" id="toc-library-websites-as-service-gateways" class="nav-link" data-scroll-target="#library-websites-as-service-gateways"><span class="header-section-number">2.4.12</span> Library websites as service gateways</a></li>
+  <li><a href="#content-management-and-hosting" id="toc-content-management-and-hosting" class="nav-link" data-scroll-target="#content-management-and-hosting"><span class="header-section-number">2.4.13</span> Content management and hosting</a></li>
+  <li><a href="#accessibility-mobile-use-and-performance" id="toc-accessibility-mobile-use-and-performance" class="nav-link" data-scroll-target="#accessibility-mobile-use-and-performance"><span class="header-section-number">2.4.14</span> Accessibility, mobile use, and performance</a></li>
+  <li><a href="#website-governance" id="toc-website-governance" class="nav-link" data-scroll-target="#website-governance"><span class="header-section-number">2.4.15</span> Website governance</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">2.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#state-university-library-the-remote-access-chain" id="toc-state-university-library-the-remote-access-chain" class="nav-link" data-scroll-target="#state-university-library-the-remote-access-chain"><span class="header-section-number">2.5.1</span> State university library: the remote-access chain</a></li>
+  <li><a href="#municipal-library-hours-during-a-typhoon" id="toc-municipal-library-hours-during-a-typhoon" class="nav-link" data-scroll-target="#municipal-library-hours-during-a-typhoon"><span class="header-section-number">2.5.2</span> Municipal library: hours during a typhoon</a></li>
+  <li><a href="#school-library-service-during-internet-outages" id="toc-school-library-service-during-internet-outages" class="nav-link" data-scroll-target="#school-library-service-during-internet-outages"><span class="header-section-number">2.5.3</span> School library: service during internet outages</a></li>
+  <li><a href="#regional-heritage-portal-multilingual-stable-links" id="toc-regional-heritage-portal-multilingual-stable-links" class="nav-link" data-scroll-target="#regional-heritage-portal-multilingual-stable-links"><span class="header-section-number">2.5.4</span> Regional heritage portal: multilingual stable links</a></li>
+  <li><a href="#public-information-service-external-maps-and-privacy" id="toc-public-information-service-external-maps-and-privacy" class="nav-link" data-scroll-target="#public-information-service-external-maps-and-privacy"><span class="header-section-number">2.5.5</span> Public information service: external maps and privacy</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-trace-and-build-a-library-web-page" id="toc-hands-on-activity-trace-and-build-a-library-web-page" class="nav-link" data-scroll-target="#hands-on-activity-trace-and-build-a-library-web-page"><span class="header-section-number">2.6</span> Hands-on activity: Trace and build a library web page</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">2.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">2.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">2.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">2.6.4</span> Expected output</a></li>
+  <li><a href="#activity-checklist" id="toc-activity-checklist" class="nav-link" data-scroll-target="#activity-checklist"><span class="header-section-number">2.6.5</span> Activity checklist</a></li>
+  <li><a href="#short-lab-rubric" id="toc-short-lab-rubric" class="nav-link" data-scroll-target="#short-lab-rubric"><span class="header-section-number">2.6.6</span> Short lab rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-access-surveillance-and-secure-delivery" id="toc-ethical-and-professional-issue-access-surveillance-and-secure-delivery" class="nav-link" data-scroll-target="#ethical-and-professional-issue-access-surveillance-and-secure-delivery"><span class="header-section-number">2.7</span> Ethical and professional issue: access, surveillance, and secure delivery</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">2.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-multicampus-library-website" id="toc-mini-case-the-multicampus-library-website" class="nav-link" data-scroll-target="#mini-case-the-multicampus-library-website"><span class="header-section-number">2.9</span> Mini case: The multicampus library website</a></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">2.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#standards-and-documentation" id="toc-standards-and-documentation" class="nav-link" data-scroll-target="#standards-and-documentation"><span class="header-section-number">2.10.1</span> Standards and documentation</a></li>
+  <li><a href="#lis-readings" id="toc-lis-readings" class="nav-link" data-scroll-target="#lis-readings"><span class="header-section-number">2.10.2</span> LIS readings</a></li>
+  <li><a href="#open-and-widely-accessible-tools" id="toc-open-and-widely-accessible-tools" class="nav-link" data-scroll-target="#open-and-widely-accessible-tools"><span class="header-section-number">2.10.3</span> Open and widely accessible tools</a></li>
+  <li><a href="#chapter-2-bridge" id="toc-chapter-2-bridge" class="nav-link" data-scroll-target="#chapter-2-bridge"><span class="header-section-number">2.10.4</span> Chapter 2 bridge</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">2.1</span> Chapter overview</h2>
+<p>A library website may be open twenty-four hours a day, but that does not mean every user can reach or use it. A student taps a database link on a phone. The page takes too long to load, redirects to an unfamiliar login screen, and reports that the session has expired. A parent searches a public-library site for today’s opening hours but finds an outdated poster. A researcher follows a repository link from a search engine and receives a “404 Not Found” response. These are not merely website inconveniences. They are failures in the delivery of information services.</p>
+<p>The central problem of this chapter is <strong>how to make a library service reliably reachable and understandable across networks, browsers, devices, and user contexts</strong>. Solving that problem requires more than visual design. It requires a working model of networks, internet addressing, the Domain Name System (DNS), URLs, HTTP and HTTPS, servers, browsers, HTML, CSS, content management, accessibility, performance, and website governance.</p>
+<p>Chapter 1 described an information service as a layered sociotechnical system. This chapter opens two of those layers: network infrastructure and the web interface. You will trace a request from a browser to a library server and back, then create a small semantic web page. The aim is not to train you as a network engineer or professional web developer. It is to give you enough technical understanding to diagnose service problems, communicate requirements, maintain trustworthy content, and collaborate effectively with IT staff, vendors, designers, and users.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Distinguish</strong> the internet, the World Wide Web, local networks, and web-based library services.</li>
+<li><strong>Diagram</strong> a client-server exchange involving a device, network, DNS, server, HTTP request, and response.</li>
+<li><strong>Interpret</strong> the principal parts of a URL and common HTTP status codes.</li>
+<li><strong>Explain</strong> how HTML, CSS, and JavaScript contribute different functions to a web page.</li>
+<li><strong>Create</strong> a small semantic HTML page with headings, links, lists, contact information, and basic accessibility features.</li>
+<li><strong>Evaluate</strong> a library website for findability, security, accessibility, mobile use, low-bandwidth performance, and governance.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">2.3</span> Key concepts</h2>
+<p><a href="#tbl-networking-key-concepts" class="quarto-xref">Table&nbsp;<span>2.1</span></a> introduces the vocabulary used throughout the chapter. Several concepts operate at different layers. DNS helps a client locate a server, while HTML gives structure and meaning to the document returned by that server.</p>
+<div id="tbl-networking-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-networking-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Key concepts for networking and library websites
+</figcaption>
+<div aria-describedby="tbl-networking-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-networking-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Network</td>
+<td style="text-align: left;">Connected devices that exchange data and share resources.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LAN</td>
+<td style="text-align: left;">A local area network covering a limited site such as a building or campus.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">WAN</td>
+<td style="text-align: left;">A wide area network connecting sites across larger geographic areas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Internet</td>
+<td style="text-align: left;">The global system of interconnected networks using the Internet Protocol suite.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">World Wide Web</td>
+<td style="text-align: left;">Interlinked resources identified by URLs and transferred mainly through HTTP or HTTPS.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Protocol</td>
+<td style="text-align: left;">An agreed set of rules for communication between systems.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Packet</td>
+<td style="text-align: left;">A formatted unit into which data is divided for network transmission.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bandwidth</td>
+<td style="text-align: left;">The amount of data a connection can carry during a period of time.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Latency</td>
+<td style="text-align: left;">The delay between sending a request and receiving a response.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Client</td>
+<td style="text-align: left;">A device or program that requests a service or resource.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Server</td>
+<td style="text-align: left;">A device or program that responds to requests and provides resources.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IP address</td>
+<td style="text-align: left;">A numerical address used to identify and route traffic to a network interface.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Domain name</td>
+<td style="text-align: left;">A human-readable name associated with internet resources.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DNS</td>
+<td style="text-align: left;">The distributed system that translates domain names into network information.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">URL</td>
+<td style="text-align: left;">A structured address identifying a resource and how to access it.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HTTP</td>
+<td style="text-align: left;">The application protocol used to request and transfer web representations.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HTTPS</td>
+<td style="text-align: left;">HTTP protected by Transport Layer Security.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Browser</td>
+<td style="text-align: left;">Software that requests, interprets, and presents web resources.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HTML</td>
+<td style="text-align: left;">The markup language representing the structure and meaning of web content.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CSS</td>
+<td style="text-align: left;">A style language controlling presentation and responsive layout.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">JavaScript</td>
+<td style="text-align: left;">A programming language adding browser behavior and dynamic interaction.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hosting</td>
+<td style="text-align: left;">Server, storage, network, and related resources that make a site available.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CMS</td>
+<td style="text-align: left;">A content management system for creating, organizing, and publishing content.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Responsive design</td>
+<td style="text-align: left;">Layouts and content that adapt to different screens and devices.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Semantic HTML</td>
+<td style="text-align: left;">HTML elements used according to meaning and purpose rather than appearance alone.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">2.4</span> Core discussion</h2>
+<section id="networks-as-service-infrastructure" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="networks-as-service-infrastructure"><span class="header-section-number">2.4.1</span> Networks as service infrastructure</h3>
+<p>A <strong>network</strong> exists when devices exchange data according to agreed rules. In a small library, a local area network may connect staff computers, printers, self-check stations, wireless access points, an on-site server, and a router. A university may connect several campus libraries through a larger institutional network. Remote branches, cloud systems, and vendor platforms depend on wide area and internet connections.</p>
+<p>Networks allow information organizations to share catalogues, storage, authentication, printers, internet access, and applications. They also create dependencies. If the local network fails, a cloud-hosted circulation system may be unreachable even though the vendor server operates normally. If the internet connection works but DNS fails, a service may be reachable by numerical address while its familiar name appears unavailable. Diagnosis begins by locating the layer at which communication stopped.</p>
+<p>Network data are divided into <strong>packets</strong>, transmitted through links and routing devices, and reassembled at the destination. Two measures help explain user experience:</p>
+<ul>
+<li><strong>Bandwidth</strong> concerns how much data a connection can carry. Large images and video load slowly on a low-bandwidth link.</li>
+<li><strong>Latency</strong> concerns delay. Even a small page can feel slow when it requires many round trips over a high-latency connection.</li>
+</ul>
+<p>Bandwidth and latency are not interchangeable. Website teams should measure whether users can complete real tasks rather than treating one advertised connection speed as a full description of service quality.</p>
+</section>
+<section id="internet-and-web-are-not-synonyms" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="internet-and-web-are-not-synonyms"><span class="header-section-number">2.4.2</span> Internet and web are not synonyms</h3>
+<p>The <strong>internet</strong> is the global network infrastructure. The <strong>World Wide Web</strong> is one service that uses it. Email, file transfer, voice communication, time synchronization, and many APIs also use the internet but are not identical to the web.</p>
+<p>The distinction matters. A library can have a working internet connection while its website is unavailable. A catalogue hosted inside a building may work on the LAN during an internet outage but be unreachable from home. An offline exhibit installed on a kiosk can use web technologies without being published on the internet. Accurate language helps teams identify the actual service boundary.</p>
+</section>
+<section id="protocols-and-layers" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="protocols-and-layers"><span class="header-section-number">2.4.3</span> Protocols and layers</h3>
+<p>A <strong>protocol</strong> is an agreed set of communication rules. At a simplified level, IP supports addressing and routing; TCP supports a reliable ordered connection for many applications; DNS associates human-readable names with network information; HTTP defines web requests and responses; and TLS protects data in transit for HTTPS.</p>
+<p>Students do not need to memorize the full protocol stack. The useful habit is to ask which protocol is responsible for which task. A DNS problem, an expired TLS certificate, and an HTTP “Not Found” response can all block access, but they require different remedies and responsible staff.</p>
+</section>
+<section id="from-a-url-to-a-page" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="from-a-url-to-a-page"><span class="header-section-number">2.4.4</span> From a URL to a page</h3>
+<p><a href="#fig-web-request" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> traces a simplified request for a library-hours page. The browser interprets the URL, asks DNS for an address, connects through network infrastructure, establishes a protected session for HTTPS, sends an HTTP request, receives a response, and interprets the returned HTML and related resources.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-web-request" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-web-request-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-web-request">sequenceDiagram
+    participant U as User
+    participant B as Browser client
+    participant D as DNS resolver
+    participant N as Networks
+    participant S as Library web server
+    U-&gt;&gt;B: Enter or follow an HTTPS URL
+    B-&gt;&gt;D: Request address for the domain
+    D--&gt;&gt;B: Return network address
+    B-&gt;&gt;N: Connect and establish protected session
+    N-&gt;&gt;S: Deliver HTTP request
+    S--&gt;&gt;N: Return status, headers, and representation
+    N--&gt;&gt;B: Deliver HTTP response
+    B-&gt;&gt;B: Interpret HTML, CSS, and other resources
+    B--&gt;&gt;U: Present the page and actions
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-web-request-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: A simplified request path from a library user to a web service
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-web-request" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> reveals that the browser is an active client. It sends headers, manages cache entries and cookies, validates secure connections, constructs a document model, applies styles, and may run scripts. Browser differences, extensions, privacy settings, and older devices can therefore affect service behavior.</p>
+</section>
+<section id="ip-addresses-domain-names-and-dns" class="level3" data-number="2.4.5">
+<h3 data-number="2.4.5" class="anchored" data-anchor-id="ip-addresses-domain-names-and-dns"><span class="header-section-number">2.4.5</span> IP addresses, domain names, and DNS</h3>
+<p>An <strong>IP address</strong> identifies a network interface for communication and routing. People remember names more easily than numerical addresses, so services use names such as library.example.edu.</p>
+<p>DNS is a distributed hierarchical naming system rather than one universal address book. Its foundational design separates the name space from the many servers that answer queries about portions of it <span class="citation" data-cites="mockapetris1987dns">(<a href="references.html#ref-mockapetris1987dns" role="doc-biblioref">Mockapetris 1987</a>)</span>. DNS information is cached for a defined period, so changes may not appear everywhere immediately.</p>
+<p>Domain governance is an LIS concern because names support continuity, trust, and citation. An institution should know who controls registration, who manages DNS records, when registrations and certificates expire, how changes are authorized, and which services depend on each name. A public service should not depend permanently on a domain registered under one employee’s private account.</p>
+</section>
+<section id="reading-a-url" class="level3" data-number="2.4.6">
+<h3 data-number="2.4.6" class="anchored" data-anchor-id="reading-a-url"><span class="header-section-number">2.4.6</span> Reading a URL</h3>
+<p>Consider:</p>
+<pre class="text"><code>https://library.example.edu/research/guides.html?subject=history#databases</code></pre>
+<p>Its scheme is https; its host is library.example.edu; its path is /research/guides.html; its query is subject=history; and its fragment is databases. URLs appear in catalogues, citations, QR codes, syllabi, and archival records. A stable URL policy therefore supports discovery and continuity.</p>
+<p>Changing a URL without a redirect breaks inbound links. A migration should inventory important URLs, map old addresses to new ones, configure permanent redirects, and monitor “Not Found” reports. Human-readable paths help users judge purpose, but appearance alone is not proof of safety. Users should inspect the complete host name before entering credentials.</p>
+</section>
+<section id="http-requests-and-responses" class="level3" data-number="2.4.7">
+<h3 data-number="2.4.7" class="anchored" data-anchor-id="http-requests-and-responses"><span class="header-section-number">2.4.7</span> HTTP requests and responses</h3>
+<p>HTTP is a request-response protocol. RFC 9110 defines current HTTP semantics for methods, status codes, fields, and representations <span class="citation" data-cites="fielding2022http">(<a href="references.html#ref-fielding2022http" role="doc-biblioref">Fielding et al. 2022</a>)</span>. A request includes a method, target, headers, and sometimes a body. A response includes a status code, headers, and often HTML, JSON, an image, or a PDF.</p>
+<p>Common methods include GET for retrieving a representation, HEAD for retrieving response metadata, POST for submitting data, and PUT or PATCH for creating or modifying resources in systems that support them.</p>
+<p><a href="#tbl-http-status" class="quarto-xref">Table&nbsp;<span>2.2</span></a> lists status codes that LIS staff may encounter. A status is evidence, not a complete diagnosis. A 404 response says that the server found no current resource at that path; it does not explain whether the resource was removed, renamed, mistyped, or migrated without a redirect.</p>
+<div id="tbl-http-status" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-http-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: Common HTTP status codes in information services
+</figcaption>
+<div aria-describedby="tbl-http-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-http-status" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Meaning</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">LIS interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">The requested representation was returned.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">301</td>
+<td style="text-align: left;">Moved Permanently</td>
+<td style="text-align: left;">Use the new stable location; old links should normally redirect.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">302</td>
+<td style="text-align: left;">Temporary redirect</td>
+<td style="text-align: left;">The client is being sent temporarily elsewhere.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">400</td>
+<td style="text-align: left;">Bad Request</td>
+<td style="text-align: left;">Inspect the URL, form, or submitted data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">401</td>
+<td style="text-align: left;">Authentication required</td>
+<td style="text-align: left;">The user must authenticate or supplied credentials failed.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">403</td>
+<td style="text-align: left;">Forbidden</td>
+<td style="text-align: left;">The server understood the request but refuses access.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">404</td>
+<td style="text-align: left;">Not Found</td>
+<td style="text-align: left;">Check deletion, migration, spelling, and link maintenance.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">429</td>
+<td style="text-align: left;">Too Many Requests</td>
+<td style="text-align: left;">Relevant to APIs, crawlers, and automated harvesting.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">500</td>
+<td style="text-align: left;">Internal Server Error</td>
+<td style="text-align: left;">The application failed while processing the request.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">503</td>
+<td style="text-align: left;">Service Unavailable</td>
+<td style="text-align: left;">The service is temporarily unavailable because of maintenance or overload.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="https-certificates-and-trust" class="level3" data-number="2.4.8">
+<h3 data-number="2.4.8" class="anchored" data-anchor-id="https-certificates-and-trust"><span class="header-section-number">2.4.8</span> HTTPS, certificates, and trust</h3>
+<p>HTTPS protects HTTP traffic with TLS. Correct configuration supports confidentiality, integrity in transit, and server authentication. It does not prove that content is accurate or ethical, and it does not protect data after they reach an insecure server. It secures an important channel, not the entire service.</p>
+<p>Certificate warnings may indicate expiration, a host-name mismatch, incomplete configuration, or interception. Libraries should monitor certificates and renew them before expiration. Staff should never make bypassing a warning the routine solution.</p>
+</section>
+<section id="html-css-and-javascript" class="level3" data-number="2.4.9">
+<h3 data-number="2.4.9" class="anchored" data-anchor-id="html-css-and-javascript"><span class="header-section-number">2.4.9</span> HTML, CSS, and JavaScript</h3>
+<p>The browser commonly receives HTML, then requests style sheets, scripts, images, and fonts. <a href="#fig-web-page-layers" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> separates three technologies that beginners often confuse.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-web-page-layers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-web-page-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-web-page-layers">flowchart LR
+    H["HTML&lt;br/&gt;structure and meaning"] --&gt; P["Usable web page"]
+    C["CSS&lt;br/&gt;presentation and responsive layout"] --&gt; P
+    J["JavaScript&lt;br/&gt;behavior and interaction"] --&gt; P
+    S["Content, metadata, links, and policy"] --&gt; H
+    A["Accessibility and progressive enhancement"] --- H
+    A --- C
+    A --- J
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-web-page-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: The complementary roles of HTML, CSS, and JavaScript
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>HTML identifies headings, paragraphs, navigation, lists, forms, tables, and images. CSS controls presentation and responsive layout. JavaScript adds behavior such as menu expansion, form validation, and asynchronous updates. The WHATWG standard defines HTML as a language for structuring web documents and applications <span class="citation" data-cites="whatwg2026html">(<a href="references.html#ref-whatwg2026html" role="doc-biblioref">WHATWG 2026</a>)</span>.</p>
+<p>As <a href="#fig-web-page-layers" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows, technology does not replace content governance. A large bold paragraph may look like a heading but is not programmatically identified as one. A clickable generic container styled like a button lacks the native semantics and behavior of a real button. Semantic HTML helps browsers, screen readers, search engines, and maintenance tools interpret meaning.</p>
+</section>
+<section id="a-minimal-semantic-library-page" class="level3" data-number="2.4.10">
+<h3 data-number="2.4.10" class="anchored" data-anchor-id="a-minimal-semantic-library-page"><span class="header-section-number">2.4.10</span> A minimal semantic library page</h3>
+<p>This example publishes an essential service with meaningful structure:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!doctype</span> html<span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"utf-8"</span><span class="dt">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1"</span><span class="dt">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Library Hours | Mabini Community Library<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">header</span><span class="dt">&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Mabini Community Library<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">nav</span><span class="ot"> aria-label</span><span class="op">=</span><span class="st">"Primary"</span><span class="dt">&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"index.html"</span><span class="dt">&gt;</span>Home<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"catalogue.html"</span><span class="dt">&gt;</span>Catalogue<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"contact.html"</span><span class="dt">&gt;</span>Contact<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">nav</span><span class="dt">&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">header</span><span class="dt">&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">main</span><span class="dt">&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Library hours<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Monday-Friday: 8:00 a.m.-5:00 p.m.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Saturday: 9:00 a.m.-12:00 noon<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>Before you visit<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Bring an ID for registration.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Contact us before requesting archival materials.<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">main</span><span class="dt">&gt;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">address</span><span class="dt">&gt;</span>Email: <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"mailto:library@example.org"</span><span class="dt">&gt;</span>library@example.org<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">address</span><span class="dt">&gt;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Last reviewed: 18 June 2026<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">footer</span><span class="dt">&gt;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The language attribute supports language-aware tools. The character encoding supports consistent display. The viewport instruction supports mobile layouts. The title distinguishes the page in browser tabs and search results. Headings communicate organization, link text names destinations, and the review date supports content governance.</p>
+</section>
+<section id="progressive-enhancement-and-resilience" class="level3" data-number="2.4.11">
+<h3 data-number="2.4.11" class="anchored" data-anchor-id="progressive-enhancement-and-resilience"><span class="header-section-number">2.4.11</span> Progressive enhancement and resilience</h3>
+<p><strong>Progressive enhancement</strong> begins with meaningful content and basic functions that work under varied conditions, then adds richer presentation and behavior. Opening hours should remain readable if a script fails. A catalogue destination should be a real link. A form should retain understandable labels when visual styling is unavailable.</p>
+<p>This approach does not prohibit modern applications. It asks teams to identify the essential service and protect it from avoidable dependencies. Resilience matters for older devices, assistive technologies, intermittent signals, data-saving settings, and restricted institutional computers.</p>
+</section>
+<section id="library-websites-as-service-gateways" class="level3" data-number="2.4.12">
+<h3 data-number="2.4.12" class="anchored" data-anchor-id="library-websites-as-service-gateways"><span class="header-section-number">2.4.12</span> Library websites as service gateways</h3>
+<p>A library website is not an online brochure. It connects users to catalogues, databases, repositories, guides, reference help, policies, events, spaces, accounts, and staff expertise. Its information architecture should reflect user tasks rather than the institution’s internal chart.</p>
+<p>Common tasks include checking hours, finding a known item, searching a topic, accessing electronic resources, renewing materials, asking for help, learning access rules, and verifying whether information is current and official.</p>
+<p>Library usability research demonstrates the value of observing users rather than assuming professional terms are self-explanatory <span class="citation" data-cites="emde2009usability">(<a href="references.html#ref-emde2009usability" role="doc-biblioref">Emde et al. 2009</a>)</span>. Accessibility research similarly shows that meaningful access requires continuing attention rather than a one-time launch check <span class="citation" data-cites="billingham2014accessibility">(<a href="references.html#ref-billingham2014accessibility" role="doc-biblioref">Billingham 2014</a>)</span>. Recent homepage work still connects structural and visual decisions with usability and accessibility <span class="citation" data-cites="vargas2026homepage">(<a href="references.html#ref-vargas2026homepage" role="doc-biblioref">Vargas 2026</a>)</span>.</p>
+</section>
+<section id="content-management-and-hosting" class="level3" data-number="2.4.13">
+<h3 data-number="2.4.13" class="anchored" data-anchor-id="content-management-and-hosting"><span class="header-section-number">2.4.13</span> Content management and hosting</h3>
+<p>A <strong>content management system</strong> may provide templates, navigation, revision histories, user roles, scheduled publication, and approval workflows. It can improve distributed publishing, but it creates governance and security work. Plugins require updates, accounts require review, themes may introduce accessibility problems, and old pages may remain searchable. The institution still needs content owners, review schedules, backup procedures, and an exit plan.</p>
+<p>Hosting may use institutional servers, a managed provider, cloud infrastructure, or a hosted software service. The choice affects control, expertise, security updates, cost, performance, jurisdiction, backup, export, and vendor dependence. “In the cloud” does not remove institutional responsibility.</p>
+<p>Remote access may involve a proxy, VPN, or federated identity service. Each transition should tell users where they are going and why authentication is required. Repeated redirects and unclear domains can make legitimate access resemble phishing. Libraries should document operators, data exchange, support responsibility, and what happens when a subscription ends.</p>
+</section>
+<section id="accessibility-mobile-use-and-performance" class="level3" data-number="2.4.14">
+<h3 data-number="2.4.14" class="anchored" data-anchor-id="accessibility-mobile-use-and-performance"><span class="header-section-number">2.4.14</span> Accessibility, mobile use, and performance</h3>
+<p>WCAG 2.2 requires web content to be perceivable, operable, understandable, and robust <span class="citation" data-cites="w3cwcag22">(<a href="references.html#ref-w3cwcag22" role="doc-biblioref">World Wide Web Consortium 2023</a>)</span>. Mobile accessibility is not separate: small screens, touch input, orientation, magnification, and device constraints interact with the same principles <span class="citation" data-cites="w3c2015mobile">(<a href="references.html#ref-w3c2015mobile" role="doc-biblioref">World Wide Web Consortium 2015</a>)</span>.</p>
+<p>Beginner checks include meaningful titles, logical headings, text alternatives, form labels, keyboard operation, adequate contrast, text reflow, clear link purpose, and understandable errors. Accessibility benefits many users, but that broad benefit should not erase the specific rights and expertise of persons with disabilities.</p>
+<p>Performance is also an access issue. Large posters, multiple fonts, trackers, and third-party widgets consume data and add failure points. Regional digital plans recognize that meaningful participation depends on both infrastructure and capability <span class="citation" data-cites="asean2021digital">(<a href="references.html#ref-asean2021digital" role="doc-biblioref">Association of Southeast Asian Nations 2021</a>)</span>. Practical measures include compressing images, avoiding autoplay, limiting external scripts, offering text alternatives, making essential information available without accounts, and testing on a low-cost phone and constrained connection.</p>
+</section>
+<section id="website-governance" class="level3" data-number="2.4.15">
+<h3 data-number="2.4.15" class="anchored" data-anchor-id="website-governance"><span class="header-section-number">2.4.15</span> Website governance</h3>
+<p>Library websites are published information resources and organizational records. <a href="#tbl-web-governance" class="quarto-xref">Table&nbsp;<span>2.3</span></a> connects components to accountable questions. No component is purely technical: each has a service owner, policy implication, and maintenance need.</p>
+<div id="tbl-web-governance" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-web-governance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.3: Website governance responsibilities and evidence
+</figcaption>
+<div aria-describedby="tbl-web-governance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-web-governance" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Component</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Accountable question</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Domain and DNS</td>
+<td style="text-align: left;">Who controls registration, records, renewal, and emergency changes?</td>
+<td style="text-align: left;">Domain inventory and renewal record</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hosting and platform</td>
+<td style="text-align: left;">Who patches, monitors, backs up, and supports the service?</td>
+<td style="text-align: left;">Agreement and maintenance log</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Page content</td>
+<td style="text-align: left;">Who owns accuracy, accessibility, approval, and review dates?</td>
+<td style="text-align: left;">Content register and review history</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Links and redirects</td>
+<td style="text-align: left;">Who tests destinations and preserves high-value old URLs?</td>
+<td style="text-align: left;">Link report and redirect map</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accounts and permissions</td>
+<td style="text-align: left;">Who receives privileges, and when are they reviewed or removed?</td>
+<td style="text-align: left;">Role list and access review</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Analytics and logs</td>
+<td style="text-align: left;">What is collected, why, for how long, and with whose access?</td>
+<td style="text-align: left;">Data inventory and retention rule</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Backups and archives</td>
+<td style="text-align: left;">What can be restored or preserved, and has recovery been tested?</td>
+<td style="text-align: left;">Backup log, archive policy, and recovery test</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-web-governance" class="quarto-xref">Table&nbsp;<span>2.3</span></a> suggests, publishing is a lifecycle. A page needs a purpose, audience, owner, approval status, review date, and eventual disposition. Event notices expire quickly; policy pages need revision histories; research guides require subject review; and significant exhibits may warrant preservation.</p>
+<blockquote class="blockquote">
+<p><strong>Reflective prompt.</strong> Recall a website that prevented you from completing a task. Which layer failed: connection, naming, security, response, page structure, content, accessibility, or governance? What evidence supports your diagnosis?</p>
+</blockquote>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">2.5</span> Philippine and Southeast Asian examples</h2>
+<section id="state-university-library-the-remote-access-chain" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="state-university-library-the-remote-access-chain"><span class="header-section-number">2.5.1</span> State university library: the remote-access chain</h3>
+<p>A Philippine state university links subscribed databases from its library website. On campus, access is recognized by network address. Off campus, students authenticate through a proxy. Success depends on current vendor links, DNS, proxy configuration, identity records, HTTPS certificates, license rules, and help documentation. When a vendor changes its domain, old proxy links fail. The library responds with a link inventory, off-campus testing, clear escalation information, and coordinated updates.</p>
+</section>
+<section id="municipal-library-hours-during-a-typhoon" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="municipal-library-hours-during-a-typhoon"><span class="header-section-number">2.5.2</span> Municipal library: hours during a typhoon</h3>
+<p>A municipal library normally posts hours as a colorful image. During a typhoon, staff update social media but forget the website image and PDF. Residents see three schedules. The library redesigns the page so current status appears as lightweight HTML with an update time. One role approves emergency updates, and expired notices are removed through a documented workflow.</p>
+</section>
+<section id="school-library-service-during-internet-outages" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="school-library-service-during-internet-outages"><span class="header-section-number">2.5.3</span> School library: service during internet outages</h3>
+<p>A rural school library uses a local server to provide reading materials over campus Wi-Fi. The collection remains available inside the school when the external connection fails. Staff distinguish the local web from the internet, maintain offline backups, and use a text-first interface suitable for older phones.</p>
+</section>
+<section id="regional-heritage-portal-multilingual-stable-links" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="regional-heritage-portal-multilingual-stable-links"><span class="header-section-number">2.5.4</span> Regional heritage portal: multilingual stable links</h3>
+<p>A Southeast Asian heritage consortium aggregates collections from several museums. Partners use different scripts, languages, domains, and systems. They adopt Unicode, language metadata, institutional identifiers, persistent item URLs, and redirects. The interface presents multilingual values and provenance rather than replacing local description with one regional label.</p>
+</section>
+<section id="public-information-service-external-maps-and-privacy" class="level3" data-number="2.5.5">
+<h3 data-number="2.5.5" class="anchored" data-anchor-id="public-information-service-external-maps-and-privacy"><span class="header-section-number">2.5.5</span> Public information service: external maps and privacy</h3>
+<p>A public library embeds a commercial map and analytics on every page. The map helps some visitors but adds tracking and a failure dependency. The library provides its address, landmarks, transport directions, and telephone number as HTML before the map. It then evaluates whether analytics can collect less data.</p>
+</section>
+</section>
+<section id="hands-on-activity-trace-and-build-a-library-web-page" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="hands-on-activity-trace-and-build-a-library-web-page"><span class="header-section-number">2.6</span> Hands-on activity: Trace and build a library web page</h2>
+<section id="purpose" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">2.6.1</span> Purpose</h3>
+<p>Trace a real web request, then create a semantic HTML page that communicates an essential library service under mobile and low-bandwidth conditions.</p>
+</section>
+<section id="tools" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">2.6.2</span> Tools</h3>
+<ul>
+<li>A browser with developer tools, such as Firefox, Chrome, or Edge</li>
+<li>A text editor such as Notepad, Visual Studio Code, or Positron</li>
+<li>The W3C Nu HTML Checker at <a href="https://validator.w3.org/nu/" class="uri">https://validator.w3.org/nu/</a></li>
+<li>A folder named <strong>chapter2-lab</strong></li>
+</ul>
+</section>
+<section id="steps" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">2.6.3</span> Steps</h3>
+<ol type="1">
+<li>Open a library, archive, museum, or repository page that requires no personal information.</li>
+<li>Record its URL and label the scheme, host, path, query, and fragment where present.</li>
+<li>Open the browser Network panel, reload, and select the main document request.</li>
+<li>Record the method, status, content type, transferred size, and domain.</li>
+<li>Count contacted domains and distinguish institutional from external services.</li>
+<li>Use a narrow mobile viewport to find hours, the catalogue, or contact help.</li>
+<li>Create <strong>hours.html</strong> with a document type, language, encoding, viewport metadata, and unique title.</li>
+<li>Add header, navigation, main, and footer landmarks with one h1 and logical h2 headings.</li>
+<li>Add fictional hours, a status message, visit requirements, contacts, and a review date.</li>
+<li>Add three meaningful links. If using an image, resize it and supply useful alternative text.</li>
+<li>Test two viewport widths, validate the HTML, and correct errors you understand.</li>
+<li>Ask a peer to locate Saturday hours and a contact method without explanation.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">2.6.4</span> Expected output</h3>
+<p>Submit the annotated request record, three network and mobile observations, <strong>hours.html</strong>, validation evidence, the peer-task result, and a 150-word reflection.</p>
+<blockquote class="blockquote">
+<p><strong>Reflection question.</strong> Which improvement came from understanding the network, which came from HTML structure, and which came from observing a user?</p>
+</blockquote>
+</section>
+<section id="activity-checklist" class="level3" data-number="2.6.5">
+<h3 data-number="2.6.5" class="anchored" data-anchor-id="activity-checklist"><span class="header-section-number">2.6.5</span> Activity checklist</h3>
+<p><a href="#tbl-ch2-lab-checklist" class="quarto-xref">Table&nbsp;<span>2.4</span></a> moves from technical validity to service validity. The page must load and be structured correctly, but it must also communicate current, usable information.</p>
+<div id="tbl-ch2-lab-checklist" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ch2-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.4: Chapter 2 web lab submission checklist
+</figcaption>
+<div aria-describedby="tbl-ch2-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ch2-lab-checklist" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Check</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">URL parts, method, status, type, size, and domain are recorded</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">External domains and one dependency risk are identified</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Document includes language, encoding, viewport, and unique title</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Semantic landmarks and logical headings are used</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Essential hours and contact information are HTML text</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Links have meaningful text and work locally</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Page works at narrow width and without its optional image</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Validation and peer-task results are documented</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">No real personal or confidential information is included</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="short-lab-rubric" class="level3" data-number="2.6.6">
+<h3 data-number="2.6.6" class="anchored" data-anchor-id="short-lab-rubric"><span class="header-section-number">2.6.6</span> Short lab rubric</h3>
+<p><a href="#tbl-ch2-lab-rubric" class="quarto-xref">Table&nbsp;<span>2.5</span></a> allocates 20 points. Visual sophistication is not a scoring category; clarity, semantics, resilience, and evidence matter more.</p>
+<div id="tbl-ch2-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ch2-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.5: Rubric for the Chapter 2 web lab
+</figcaption>
+<div aria-describedby="tbl-ch2-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ch2-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Points</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Full credit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Request trace</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Records request evidence accurately and identifies a dependency</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Semantic HTML</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Uses valid metadata, landmarks, headings, lists, links, and contact structure</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Access and resilience</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Essential content works at narrow width without images or complex scripts</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Testing and correction</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Reports validation and peer testing and makes evidence-based corrections</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reflection and presentation</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Explains learning across network, document, and user layers</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-access-surveillance-and-secure-delivery" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="ethical-and-professional-issue-access-surveillance-and-secure-delivery"><span class="header-section-number">2.7</span> Ethical and professional issue: access, surveillance, and secure delivery</h2>
+<p>Library websites can broaden access while excluding, observing, or endangering users. An online-only form may disadvantage people without stable connectivity, compatible devices, data allowance, accessible design, or required identification. The IFLA-UNESCO Public Library Manifesto connects digital access with inclusion and equitable service <span class="citation" data-cites="ifla2022manifesto">(<a href="references.html#ref-ifla2022manifesto" role="doc-biblioref">International Federation of Library Associations and Institutions and UNESCO 2022</a>)</span>. Digital channels should expand options rather than silently eliminate necessary alternatives.</p>
+<p>Web requests can disclose IP addresses, device information, referring pages, cookies, and behavioral patterns. Third-party fonts, maps, videos, chat widgets, and social-media embeds may transmit data before intentional interaction. Before adding one, ask what is sent, to whom, for what purpose, for how long, and whether the essential service works without it.</p>
+<p>The Philippine Data Privacy Act’s principles of transparency, legitimate purpose, and proportionality apply to forms, logs, analytics, and vendor integrations <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>. A notice cannot by itself legitimize unnecessary collection.</p>
+<p>HTTPS should be standard, especially for authentication, forms, and accounts. Interface choices also influence security. A database link that silently opens an unfamiliar domain and asks for credentials may train users to ignore phishing indicators. The page should name the provider or authentication step, use consistent domains where possible, and offer a trusted help route.</p>
+<p>Security messages should support rather than shame users. “Your session expired. Sign in again through the library portal” is more useful than “Invalid error.” Good error design helps distinguish a normal interruption from a suspicious request.</p>
+<blockquote class="blockquote">
+<p><strong>Ethical checkpoint.</strong> A free chat widget permits evening reference service, but its vendor stores transcripts and device identifiers in another jurisdiction. What benefit, data flow, contract term, alternative, and user notice should be examined?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">2.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> What is the difference between the internet and the World Wide Web?</li>
+<li><strong>Identification:</strong> Define bandwidth and latency. How can each affect a library website?</li>
+<li><strong>Short answer:</strong> What role does DNS play after a user enters a domain name?</li>
+<li><strong>Short answer:</strong> Identify the URL parts in https://archive.example.ph/items/42?view=full#description.</li>
+<li><strong>Short answer:</strong> Distinguish the roles of HTML, CSS, and JavaScript.</li>
+<li><strong>Applied analysis:</strong> A catalogue works on staff computers but not from homes. Give three plausible causes from different layers and one test for each.</li>
+<li><strong>Applied analysis:</strong> After a repository migration, search results lead to 404 responses. What should the team have prepared, and what should it do now?</li>
+<li><strong>Scenario:</strong> A homepage loads 12 MB of poster images before showing hours. Evaluate access, performance, metadata, and maintenance.</li>
+<li><strong>Scenario:</strong> A browser reports an invalid certificate. Why should staff not tell users to bypass the warning?</li>
+<li><strong>Synthesis:</strong> Choose one component from <a href="#tbl-web-governance" class="quarto-xref">Table&nbsp;<span>2.3</span></a> and explain how its maintenance connects to an LIS responsibility.</li>
+</ol>
+</section>
+<section id="mini-case-the-multicampus-library-website" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="mini-case-the-multicampus-library-website"><span class="header-section-number">2.9</span> Mini case: The multicampus library website</h2>
+<p>Eastern Bay University has three campuses and a growing distance-learning program. Each library maintains separate CMS pages. Labels differ: one says “OPAC,” another “Books,” and the third “Library Search.” Hours are poster images, two from last semester. Database links work on the main campus but fail for many remote students. The website loads six tracking and social-media domains. A screen-reader user reports repeated unlabeled links. Communications controls templates, IT controls authentication and DNS, vendors control database platforms, and no office believes it owns the complete journey.</p>
+<p><strong>Guide questions</strong></p>
+<ol type="1">
+<li>Map the technical and organizational components from homepage to authenticated database article. Where should evidence be collected?</li>
+<li>Prioritize five improvements using impact, urgency, effort, accessibility, privacy, and institutional control.</li>
+<li>Propose governance naming content owners, technical owners, review intervals, escalation paths, and two success measures.</li>
+</ol>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">2.10</span> Further reading and tools</h2>
+<section id="standards-and-documentation" class="level3" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="standards-and-documentation"><span class="header-section-number">2.10.1</span> Standards and documentation</h3>
+<ul>
+<li><strong>RFC 1034, <em>Domain Names—Concepts and Facilities</em>.</strong> Foundational DNS concepts <span class="citation" data-cites="mockapetris1987dns">(<a href="references.html#ref-mockapetris1987dns" role="doc-biblioref">Mockapetris 1987</a>)</span>.</li>
+<li><strong>RFC 9110, <em>HTTP Semantics</em>.</strong> HTTP methods, status codes, fields, and representations <span class="citation" data-cites="fielding2022http">(<a href="references.html#ref-fielding2022http" role="doc-biblioref">Fielding et al. 2022</a>)</span>.</li>
+<li><strong>WHATWG HTML Living Standard.</strong> The normative reference for HTML semantics <span class="citation" data-cites="whatwg2026html">(<a href="references.html#ref-whatwg2026html" role="doc-biblioref">WHATWG 2026</a>)</span>.</li>
+<li><strong>WCAG 2.2.</strong> Testable web accessibility requirements <span class="citation" data-cites="w3cwcag22">(<a href="references.html#ref-w3cwcag22" role="doc-biblioref">World Wide Web Consortium 2023</a>)</span>.</li>
+<li><strong>W3C mobile accessibility guidance.</strong> Application of accessibility guidance to mobile contexts <span class="citation" data-cites="w3c2015mobile">(<a href="references.html#ref-w3c2015mobile" role="doc-biblioref">World Wide Web Consortium 2015</a>)</span>.</li>
+</ul>
+</section>
+<section id="lis-readings" class="level3" data-number="2.10.2">
+<h3 data-number="2.10.2" class="anchored" data-anchor-id="lis-readings"><span class="header-section-number">2.10.2</span> LIS readings</h3>
+<ul>
+<li><span class="citation" data-cites="emde2009usability">Emde et al. (<a href="references.html#ref-emde2009usability" role="doc-biblioref">2009</a>)</span> demonstrates task-based testing with academic-library users.</li>
+<li><span class="citation" data-cites="billingham2014accessibility">Billingham (<a href="references.html#ref-billingham2014accessibility" role="doc-biblioref">2014</a>)</span> discusses improving academic-library access for people with disabilities.</li>
+<li><span class="citation" data-cites="vargas2026homepage">Vargas (<a href="references.html#ref-vargas2026homepage" role="doc-biblioref">2026</a>)</span> connects homepage structure and aesthetics with usability and accessibility.</li>
+</ul>
+</section>
+<section id="open-and-widely-accessible-tools" class="level3" data-number="2.10.3">
+<h3 data-number="2.10.3" class="anchored" data-anchor-id="open-and-widely-accessible-tools"><span class="header-section-number">2.10.3</span> Open and widely accessible tools</h3>
+<ul>
+<li><strong>Browser developer tools:</strong> inspect requests, status codes, structure, responsive layouts, and accessibility.</li>
+<li><strong>W3C Nu HTML Checker:</strong> identify HTML conformance errors and warnings.</li>
+<li><strong>WAVE:</strong> support human accessibility review by marking potential issues.</li>
+<li><strong>Lighthouse:</strong> generate performance and accessibility diagnostics.</li>
+<li><strong>WebPageTest:</strong> examine loading under varied devices and connections.</li>
+<li><strong>diagrams.net:</strong> draw request paths and responsibility maps.</li>
+<li><strong>Visual Studio Code or Positron:</strong> edit HTML with syntax support.</li>
+</ul>
+</section>
+<section id="chapter-2-bridge" class="level3" data-number="2.10.4">
+<h3 data-number="2.10.4" class="anchored" data-anchor-id="chapter-2-bridge"><span class="header-section-number">2.10.4</span> Chapter 2 bridge</h3>
+<p>Web pages and network requests produce and consume structured information. The next chapter moves below the interface to databases, where records, fields, identifiers, relationships, validation rules, and queries organize library data. Keep your URL analysis and request trace: both already contain structured components that can be modeled as data.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-asean2021digital" class="csl-entry" role="listitem">
+Association of Southeast Asian Nations. 2021. <em>ASEAN Digital Masterplan 2025</em>. <a href="https://asean.org/book/asean-digital-masterplan-2025/">https://asean.org/book/asean-digital-masterplan-2025/</a>.
+</div>
+<div id="ref-billingham2014accessibility" class="csl-entry" role="listitem">
+Billingham, Lisa. 2014. <span>“Improving Academic Library Website Accessibility for People with Disabilities.”</span> <em>Library Management</em> 35 (8/9): 565–81. <a href="https://doi.org/10.1108/LM-11-2013-0107">https://doi.org/10.1108/LM-11-2013-0107</a>.
+</div>
+<div id="ref-emde2009usability" class="csl-entry" role="listitem">
+Emde, Judith Z., Sara E. Morris, and Monica Claassen-Wilson. 2009. <span>“Testing an Academic Library Website for Usability with Faculty and Graduate Students.”</span> <em>Evidence Based Library and Information Practice</em> 4 (3): 24–36. <a href="https://doi.org/10.18438/B8TK7Q">https://doi.org/10.18438/B8TK7Q</a>.
+</div>
+<div id="ref-fielding2022http" class="csl-entry" role="listitem">
+Fielding, Roy T., Mark Nottingham, and Julian Reschke. 2022. <em>HTTP Semantics</em>. RFC No. 9110. Internet Engineering Task Force. <a href="https://doi.org/10.17487/RFC9110">https://doi.org/10.17487/RFC9110</a>.
+</div>
+<div id="ref-ifla2022manifesto" class="csl-entry" role="listitem">
+International Federation of Library Associations and Institutions, and UNESCO. 2022. <em>IFLA-UNESCO Public Library Manifesto 2022</em>. IFLA. <a href="https://repository.ifla.org/handle/123456789/2006">https://repository.ifla.org/handle/123456789/2006</a>.
+</div>
+<div id="ref-mockapetris1987dns" class="csl-entry" role="listitem">
+Mockapetris, Paul. 1987. <em>Domain Names—Concepts and Facilities</em>. RFC No. 1034. Internet Engineering Task Force. <a href="https://doi.org/10.17487/RFC1034">https://doi.org/10.17487/RFC1034</a>.
+</div>
+<div id="ref-npc2023dpa" class="csl-entry" role="listitem">
+National Privacy Commission. 2023. <em>Data Privacy Act of 2012</em>. <a href="https://privacy.gov.ph/data-privacy-act/">https://privacy.gov.ph/data-privacy-act/</a>.
+</div>
+<div id="ref-philippines2012dpa" class="csl-entry" role="listitem">
+Republic of the Philippines. 2012. <em>Republic Act No. 10173: Data Privacy Act of 2012</em>. <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html">https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html</a>.
+</div>
+<div id="ref-vargas2026homepage" class="csl-entry" role="listitem">
+Vargas, Isabel. 2026. <span>“Elements, Structure, and Aesthetics: Improving Usability and Accessibility on a Library Website Homepage.”</span> <em>Weave: Journal of Library User Experience</em>, ahead of print. <a href="https://doi.org/10.3998/weaveux.7583">https://doi.org/10.3998/weaveux.7583</a>.
+</div>
+<div id="ref-whatwg2026html" class="csl-entry" role="listitem">
+WHATWG. 2026. <em>HTML Living Standard</em>. <a href="https://html.spec.whatwg.org/">https://html.spec.whatwg.org/</a>.
+</div>
+<div id="ref-w3c2015mobile" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2015. <em>Mobile Accessibility: How WCAG 2.0 and Other W3C/WAI Guidelines Apply to Mobile</em>. W3C. <a href="https://www.w3.org/TR/mobile-accessibility-mapping/">https://www.w3.org/TR/mobile-accessibility-mapping/</a>.
+</div>
+<div id="ref-w3cwcag22" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2023. <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./introductory-ict-lis.html" class="pagination-link" aria-label="ICT in LIS as Service Infrastructure">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-03-databases.html" class="pagination-link" aria-label="Databases for Library Data">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

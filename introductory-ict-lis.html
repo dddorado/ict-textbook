@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; ICT in LIS as Service Infrastructure – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-02-networking-web.html" rel="next">
+<link href="./outline.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./introductory-ict-lis.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">1.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">1.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">1.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#from-tools-to-infrastructure" id="toc-from-tools-to-infrastructure" class="nav-link" data-scroll-target="#from-tools-to-infrastructure"><span class="header-section-number">1.4.1</span> From tools to infrastructure</a></li>
+  <li><a href="#ict-is-a-sociotechnical-system" id="toc-ict-is-a-sociotechnical-system" class="nav-link" data-scroll-target="#ict-is-a-sociotechnical-system"><span class="header-section-number">1.4.2</span> ICT is a sociotechnical system</a></li>
+  <li><a href="#the-layers-of-an-information-service" id="toc-the-layers-of-an-information-service" class="nav-link" data-scroll-target="#the-layers-of-an-information-service"><span class="header-section-number">1.4.3</span> The layers of an information service</a></li>
+  <li><a href="#data-metadata-and-knowledge-organization" id="toc-data-metadata-and-knowledge-organization" class="nav-link" data-scroll-target="#data-metadata-and-knowledge-organization"><span class="header-section-number">1.4.4</span> Data, metadata, and knowledge organization</a></li>
+  <li><a href="#standards-platforms-and-local-judgment" id="toc-standards-platforms-and-local-judgment" class="nav-link" data-scroll-target="#standards-platforms-and-local-judgment"><span class="header-section-number">1.4.5</span> Standards, platforms, and local judgment</a></li>
+  <li><a href="#digitization-digitalization-automation-and-transformation" id="toc-digitization-digitalization-automation-and-transformation" class="nav-link" data-scroll-target="#digitization-digitalization-automation-and-transformation"><span class="header-section-number">1.4.6</span> Digitization, digitalization, automation, and transformation</a></li>
+  <li><a href="#reliability-maintenance-and-graceful-failure" id="toc-reliability-maintenance-and-graceful-failure" class="nav-link" data-scroll-target="#reliability-maintenance-and-graceful-failure"><span class="header-section-number">1.4.7</span> Reliability, maintenance, and graceful failure</a></li>
+  <li><a href="#a-service-centered-decision-framework" id="toc-a-service-centered-decision-framework" class="nav-link" data-scroll-target="#a-service-centered-decision-framework"><span class="header-section-number">1.4.8</span> A service-centered decision framework</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">1.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#academic-library-remote-access-is-more-than-a-subscription" id="toc-academic-library-remote-access-is-more-than-a-subscription" class="nav-link" data-scroll-target="#academic-library-remote-access-is-more-than-a-subscription"><span class="header-section-number">1.5.1</span> Academic library: remote access is more than a subscription</a></li>
+  <li><a href="#public-library-a-low-bandwidth-local-information-portal" id="toc-public-library-a-low-bandwidth-local-information-portal" class="nav-link" data-scroll-target="#public-library-a-low-bandwidth-local-information-portal"><span class="header-section-number">1.5.2</span> Public library: a low-bandwidth local information portal</a></li>
+  <li><a href="#school-library-accountable-circulation-automation" id="toc-school-library-accountable-circulation-automation" class="nav-link" data-scroll-target="#school-library-accountable-circulation-automation"><span class="header-section-number">1.5.3</span> School library: accountable circulation automation</a></li>
+  <li><a href="#cultural-heritage-institution-description-with-communities" id="toc-cultural-heritage-institution-description-with-communities" class="nav-link" data-scroll-target="#cultural-heritage-institution-description-with-communities"><span class="header-section-number">1.5.4</span> Cultural heritage institution: description with communities</a></li>
+  <li><a href="#national-and-regional-discovery" id="toc-national-and-regional-discovery" class="nav-link" data-scroll-target="#national-and-regional-discovery"><span class="header-section-number">1.5.5</span> National and regional discovery</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-service-infrastructure-audit" id="toc-hands-on-activity-service-infrastructure-audit" class="nav-link" data-scroll-target="#hands-on-activity-service-infrastructure-audit"><span class="header-section-number">1.6</span> Hands-on activity: Service infrastructure audit</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">1.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">1.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">1.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">1.6.4</span> Expected output</a></li>
+  <li><a href="#activity-checklist" id="toc-activity-checklist" class="nav-link" data-scroll-target="#activity-checklist"><span class="header-section-number">1.6.5</span> Activity checklist</a></li>
+  <li><a href="#short-lab-rubric" id="toc-short-lab-rubric" class="nav-link" data-scroll-target="#short-lab-rubric"><span class="header-section-number">1.6.6</span> Short lab rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-convenience-privacy-and-unequal-access" id="toc-ethical-and-professional-issue-convenience-privacy-and-unequal-access" class="nav-link" data-scroll-target="#ethical-and-professional-issue-convenience-privacy-and-unequal-access"><span class="header-section-number">1.7</span> Ethical and professional issue: convenience, privacy, and unequal access</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">1.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-provincial-heritage-portal" id="toc-mini-case-the-provincial-heritage-portal" class="nav-link" data-scroll-target="#mini-case-the-provincial-heritage-portal"><span class="header-section-number">1.9</span> Mini case: The provincial heritage portal</a></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">1.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#readings-and-standards" id="toc-readings-and-standards" class="nav-link" data-scroll-target="#readings-and-standards"><span class="header-section-number">1.10.1</span> Readings and standards</a></li>
+  <li><a href="#open-and-widely-accessible-tools" id="toc-open-and-widely-accessible-tools" class="nav-link" data-scroll-target="#open-and-widely-accessible-tools"><span class="header-section-number">1.10.2</span> Open and widely accessible tools</a></li>
+  <li><a href="#chapter-1-bridge" id="toc-chapter-1-bridge" class="nav-link" data-scroll-target="#chapter-1-bridge"><span class="header-section-number">1.10.3</span> Chapter 1 bridge</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">1.1</span> Chapter overview</h2>
+<p>A student searches an online public access catalogue for a Filipino-language edition of a novel. The screen reports no results. What failed? The library may not own the edition. The record may use a different title, language code, or name form. The search index may be stale. The server may be unavailable. A network link may be slow. The mobile interface may hide useful filters. The student may not know the catalogue’s vocabulary. Each explanation points to a different part of the service, yet the user experiences only one outcome: “the library does not have it.”</p>
+<p>The central problem of this chapter is therefore <strong>how to see an information service as a whole system</strong>. ICT work in LIS is not confined to repairing computers or teaching software. It involves designing and governing the connected arrangements through which people encounter collections and records. Infrastructure is often least visible when it works and most visible when it breaks. <span class="citation" data-cites="star1996steps">Star and Ruhleder (<a href="references.html#ref-star1996steps" role="doc-biblioref">1996</a>)</span> argues that infrastructure is relational and embedded in practice: the same network, identifier, or standard can be enabling for one community and obstructive for another.</p>
+<p>This systems view matters across LIS careers. A cataloguer’s authorized access point affects discovery. An archivist’s file-naming and preservation decisions affect future authenticity. A reference librarian’s chat platform affects privacy and reach. A records manager’s retention rule affects both accountability and exposure. A systems librarian’s authentication configuration affects who can use licensed resources from home. Technical and professional decisions are already intertwined.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Define</strong> ICT, information infrastructure, information system, platform, interoperability, and sociotechnical system in LIS terms.</li>
+<li><strong>Identify</strong> the people, data, metadata, technology, policy, and workflow components of a library or information service.</li>
+<li><strong>Trace</strong> a user request through interface, application, metadata, data, and physical infrastructure layers.</li>
+<li><strong>Distinguish</strong> digitization, digitalization, automation, and digital transformation using concrete examples.</li>
+<li><strong>Diagnose</strong> likely points of service failure and connect them to affected stakeholders.</li>
+<li><strong>Evaluate</strong> an ICT choice using access, privacy, inclusion, reliability, sustainability, and accountability criteria.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">1.3</span> Key concepts</h2>
+<p><a href="#tbl-key-concepts" class="quarto-xref">Table&nbsp;<span>1.1</span></a> provides the working vocabulary for the chapter. Notice that several terms describe relationships rather than objects. For instance, interoperability is not a feature of one database in isolation; it describes whether systems can exchange and meaningfully use information.</p>
+<div id="tbl-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.1: Key concepts for understanding ICT as service infrastructure
+</figcaption>
+<div aria-describedby="tbl-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ICT</td>
+<td style="text-align: left;">Technologies and practices used to create, process, store, communicate, secure, and use information.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Information infrastructure</td>
+<td style="text-align: left;">The embedded people, institutions, standards, data, technologies, and routines that sustain information activity.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sociotechnical system</td>
+<td style="text-align: left;">An arrangement in which social and technical components shape one another.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Information system</td>
+<td style="text-align: left;">An organized combination of people, processes, data, and technology that supports defined activities or decisions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Data</td>
+<td style="text-align: left;">Recorded representations of observations, entities, events, or transactions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metadata</td>
+<td style="text-align: left;">Structured information that describes, manages, explains, locates, or preserves other information resources.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hardware</td>
+<td style="text-align: left;">Physical equipment such as servers, scanners, routers, storage devices, and user devices.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Software</td>
+<td style="text-align: left;">Programs and instructions that direct computing activity.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Network</td>
+<td style="text-align: left;">Connected devices and protocols that permit communication and resource sharing.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Platform</td>
+<td style="text-align: left;">A technical and organizational base on which services, content, or interactions are built.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Workflow</td>
+<td style="text-align: left;">A defined sequence of tasks, decisions, roles, and handoffs that produces an outcome.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Standard</td>
+<td style="text-align: left;">An agreed specification or rule that promotes consistency and coordination.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interoperability</td>
+<td style="text-align: left;">The capacity of systems or organizations to exchange information and use it meaningfully.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Automation</td>
+<td style="text-align: left;">The execution of a repeatable task or decision by a machine according to defined rules.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Digitization</td>
+<td style="text-align: left;">Conversion of analog material into digital form.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digitalization</td>
+<td style="text-align: left;">Use of digital tools to improve an existing process or service.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Digital transformation</td>
+<td style="text-align: left;">Substantial redesign of services, roles, or organizational models around digital possibilities and needs.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Availability</td>
+<td style="text-align: left;">The degree to which an authorized user can obtain a service or resource when needed.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stakeholder</td>
+<td style="text-align: left;">A person, group, or institution that affects, uses, governs, or is affected by a service.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digital divide</td>
+<td style="text-align: left;">Unequal ability to obtain devices, connectivity, skills, support, and meaningful benefits from digital participation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">1.4</span> Core discussion</h2>
+<section id="from-tools-to-infrastructure" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="from-tools-to-infrastructure"><span class="header-section-number">1.4.1</span> From tools to infrastructure</h3>
+<p>It is useful to know how to operate a spreadsheet, content management system, or scanner. Yet tool competence alone does not answer the questions LIS professionals face: What information should be collected? How should it be described? Who should have access? What happens when a vendor closes? How will a community correct harmful description? Can a user complete a task on an old phone over a slow connection? Who is accountable after a breach?</p>
+<p>An <strong>infrastructure</strong> perspective widens the unit of analysis. Infrastructure includes visible components, such as computers and interfaces, and less visible components, such as classification practices, identifiers, procurement rules, staff expertise, maintenance schedules, electrical supply, and agreements with vendors. <span class="citation" data-cites="borgman2007scholarship">Borgman (<a href="references.html#ref-borgman2007scholarship" role="doc-biblioref">2007</a>)</span> shows that information infrastructures support knowledge work through relationships among content, tools, communities, and institutions. They are built over time, inherit earlier decisions, and require continuing labor.</p>
+<p>Consider an institutional repository. Its website is only the public surface. Behind it are submission policies, file-format rules, author names, department identifiers, metadata templates, copyright permissions, review workflows, storage systems, backups, domain registration, authentication, staff training, and preservation commitments. Changing one component may affect many others. A new login system can improve account security yet exclude alumni contributors. A cheaper cloud tier can reduce current expense yet increase retrieval fees or complicate exit. A metadata shortcut can accelerate ingest yet weaken later discovery.</p>
+</section>
+<section id="ict-is-a-sociotechnical-system" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="ict-is-a-sociotechnical-system"><span class="header-section-number">1.4.2</span> ICT is a sociotechnical system</h3>
+<p>A <strong>sociotechnical system</strong> contains technical components and social components that mutually shape outcomes. People do not simply “use” a neutral technology after it has been designed. Their workarounds, skills, authority, incentives, languages, and values influence what the system becomes. Conversely, software defaults and data structures shape what staff can record and what users can find.</p>
+<p>Suppose a school library adopts a barcode circulation system. The technical components include barcodes, scanners, computers, software, a database, and perhaps a network. The social components include borrowing rules, student identities, staff roles, training, consent and notice, exception handling, discipline practices, and expectations about confidentiality. If the software requires a permanent address but some learners do not have one, a database field becomes a social barrier. If staff share one administrator account because individual accounts are inconvenient, a workflow workaround becomes a security and accountability problem.</p>
+<p>No single professional needs to master every layer. LIS competence includes knowing enough to ask precise questions, document requirements, recognize consequences, collaborate with IT staff and vendors, and protect professional values. “The system requires it” is rarely the end of an inquiry; requirements are produced by design choices, contracts, policies, and institutional priorities.</p>
+</section>
+<section id="the-layers-of-an-information-service" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="the-layers-of-an-information-service"><span class="header-section-number">1.4.3</span> The layers of an information service</h3>
+<p><a href="#fig-service-layers" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> presents a simplified route through a discovery service. A user’s task enters through an interface. An application interprets the request. An index and metadata make matching possible. Data stores hold descriptions, content, accounts, or transactions. Networks, compute, storage, power, and facilities support every layer. People, policies, standards, and governance cross all layers rather than sitting at the bottom.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-service-layers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-service-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-service-layers">flowchart TB
+    U["User need and context"] --&gt; I["Interface: catalogue, app, website, kiosk"]
+    I --&gt; A["Application: search, circulation, repository workflow"]
+    A --&gt; M["Metadata and indexes: fields, terms, identifiers, rankings"]
+    M --&gt; D["Data and content: records, files, accounts, transactions"]
+    D --&gt; P["Physical and network infrastructure: devices, servers, storage, connectivity, power"]
+    G["People, policy, standards, governance, and maintenance"] --- I
+    G --- A
+    G --- M
+    G --- D
+    G --- P
+    P --&gt; D
+    D --&gt; M
+    M --&gt; A
+    A --&gt; I
+    I --&gt; R["Service outcome"]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-service-layers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: A layered model of an LIS information service
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The arrows in <a href="#fig-service-layers" class="quarto-xref">Figure&nbsp;<span>1.1</span></a> run both ways because services are interactive. A search response returns from lower layers to the interface, while logs, corrections, and transactions may travel back into the system. The figure is deliberately not a vendor architecture. It is a thinking tool: when a service fails, ask what each layer contributed and which cross-cutting rule or responsibility governs the response.</p>
+<section id="interface-layer" class="level4" data-number="1.4.3.1">
+<h4 data-number="1.4.3.1" class="anchored" data-anchor-id="interface-layer"><span class="header-section-number">1.4.3.1</span> Interface layer</h4>
+<p>The <strong>interface</strong> is the point of interaction: catalogue screen, website, mobile app, self-check machine, digital exhibit, or staff dashboard. It determines which actions are visible, what language is used, how errors are explained, and whether people using keyboards, screen readers, small screens, or slow networks can participate. Accessibility is therefore a system requirement, not a decorative feature added after launch. WCAG 2.2 provides testable guidance for perceivable, operable, understandable, and robust web content <span class="citation" data-cites="w3cwcag22">(<a href="references.html#ref-w3cwcag22" role="doc-biblioref">World Wide Web Consortium 2023</a>)</span>.</p>
+</section>
+<section id="application-and-workflow-layer" class="level4" data-number="1.4.3.2">
+<h4 data-number="1.4.3.2" class="anchored" data-anchor-id="application-and-workflow-layer"><span class="header-section-number">1.4.3.2</span> Application and workflow layer</h4>
+<p>The <strong>application</strong> performs service logic. A circulation module checks whether an item can be borrowed, calculates a due date, and records a transaction. A repository may route a submission from depositor to reviewer to publication. These rules encode policy. Staff should know which rules are configurable, who approved them, and how exceptions are handled.</p>
+</section>
+<section id="metadata-and-index-layer" class="level4" data-number="1.4.3.3">
+<h4 data-number="1.4.3.3" class="anchored" data-anchor-id="metadata-and-index-layer"><span class="header-section-number">1.4.3.3</span> Metadata and index layer</h4>
+<p><strong>Metadata</strong> enables systems and people to identify, manage, retrieve, interpret, and preserve resources. NISO’s broad account includes descriptive, structural, and administrative functions <span class="citation" data-cites="niso2004understanding">(<a href="references.html#ref-niso2004understanding" role="doc-biblioref">Understanding Metadata 2004</a>)</span>. A title, creator identifier, subject term, rights statement, file checksum, and relationship between pages are all metadata, though they serve different purposes.</p>
+<p>Metadata is central because retrieval cannot operate directly on meaning. Systems match representations: characters, fields, identifiers, terms, embeddings, links, and rules. If names are inconsistent or local-language terms are absent, an apparently sophisticated discovery system may still fail. MARC 21, for example, provides a structured format for communicating bibliographic data, but meaningful use also depends on cataloguing rules, controlled vocabularies, local policy, and system configuration <span class="citation" data-cites="locmarc21">(<a href="references.html#ref-locmarc21" role="doc-biblioref">Library of Congress 2024</a>)</span>. Chapter 4 examines these distinctions in depth.</p>
+</section>
+<section id="data-and-content-layer" class="level4" data-number="1.4.3.4">
+<h4 data-number="1.4.3.4" class="anchored" data-anchor-id="data-and-content-layer"><span class="header-section-number">1.4.3.4</span> Data and content layer</h4>
+<p>This layer includes bibliographic records, authority files, digital objects, finding aids, membership records, use logs, preservation metadata, and research datasets. Data have a lifecycle: they are collected or created, validated, stored, used, shared, retained, archived, or disposed of. Each step should have a purpose and an accountable role. “Keep everything” is not neutral; it increases security, privacy, discovery, storage, and governance burdens.</p>
+</section>
+<section id="physical-and-network-layer" class="level4" data-number="1.4.3.5">
+<h4 data-number="1.4.3.5" class="anchored" data-anchor-id="physical-and-network-layer"><span class="header-section-number">1.4.3.5</span> Physical and network layer</h4>
+<p>Digital services rely on material conditions: electricity, cables, radio links, routers, servers, storage media, cooling, devices, and repair capacity. A cloud service still runs on physical infrastructure owned and governed somewhere. In an archipelagic region, bandwidth, latency, weather, power stability, and last-mile connectivity can materially shape service design. ASEAN’s regional digital agenda recognizes both the economic role of digital infrastructure and persistent gaps in access and capability <span class="citation" data-cites="asean2021digital">(<a href="references.html#ref-asean2021digital" role="doc-biblioref">Association of Southeast Asian Nations 2021</a>)</span>.</p>
+</section>
+</section>
+<section id="data-metadata-and-knowledge-organization" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="data-metadata-and-knowledge-organization"><span class="header-section-number">1.4.4</span> Data, metadata, and knowledge organization</h3>
+<p>The boundary between data and metadata depends on context. In a catalogue, “Quezon City” may be metadata describing place of publication. In a geographic authority file, Quezon City may be the entity being described. The practical question is not “Is this always metadata?” but “What does this element describe, under which rules, for which function?”</p>
+<p>Knowledge organization supplies intellectual and technical structures for bringing related resources together and distinguishing unlike resources. Classification, subject headings, taxonomies, thesauri, authority files, ontologies, and entity relationships all support navigation and retrieval. Their values are never merely mechanical. Terms may reflect the history and assumptions of the institutions that created them. Local description can repair gaps, but uncontrolled local changes can also weaken interoperability. LIS work therefore balances consistency, context, community language, and exchange.</p>
+<p>Interoperability has several dimensions:</p>
+<ul>
+<li><strong>Technical interoperability</strong> means systems can connect and exchange bits through compatible protocols and formats.</li>
+<li><strong>Syntactic interoperability</strong> means exchanged data follow a shared structure, such as agreed JSON properties or MARC fields.</li>
+<li><strong>Semantic interoperability</strong> means participants interpret the data with sufficiently shared meaning.</li>
+<li><strong>Organizational interoperability</strong> means policies, responsibilities, permissions, and workflows allow the exchange to be used in practice.</li>
+</ul>
+<p>A successful file transfer proves only the first two dimensions. If one repository uses “date” for creation date and another uses it for upload date, the same syntax can carry incompatible meaning. If two agencies agree on meaning but lack a lawful data-sharing basis, semantic agreement does not create organizational permission.</p>
+</section>
+<section id="standards-platforms-and-local-judgment" class="level3" data-number="1.4.5">
+<h3 data-number="1.4.5" class="anchored" data-anchor-id="standards-platforms-and-local-judgment"><span class="header-section-number">1.4.5</span> Standards, platforms, and local judgment</h3>
+<p>A <strong>standard</strong> coordinates practice by providing agreed specifications. Standards can support predictable exchange, reduce duplicated work, and help collections travel across systems. WorldCat, for example, depends on large-scale contribution and reuse of structured bibliographic records across institutions <span class="citation" data-cites="oclc2025worldcat">(<a href="references.html#ref-oclc2025worldcat" role="doc-biblioref">OCLC 2025</a>)</span>. Yet standards require interpretation and local policy. Adopting a field list without deciding who supplies values, which vocabulary is used, and how quality is checked does not create interoperable metadata.</p>
+<p>A <strong>platform</strong> provides a base for multiple activities or services. An integrated library system may support acquisitions, cataloguing, circulation, serials, and reporting. A repository platform may support submission, review, publication, search, and statistics. Platforms are attractive because they integrate work, but they also concentrate dependencies. Institutions should consider data export, documentation, accessibility, security updates, local skills, cost over time, and an exit path before adoption.</p>
+<p>Open-source software can offer inspectability and community control, but it is not cost-free. Hosting, configuration, upgrades, backups, training, and support require labor. Proprietary software can provide contracted support, but a contract does not eliminate risks related to lock-in, inaccessible design, weak export, price changes, or business closure. A professional evaluation asks how the choice fits the institution’s mission and capacity.</p>
+</section>
+<section id="digitization-digitalization-automation-and-transformation" class="level3" data-number="1.4.6">
+<h3 data-number="1.4.6" class="anchored" data-anchor-id="digitization-digitalization-automation-and-transformation"><span class="header-section-number">1.4.6</span> Digitization, digitalization, automation, and transformation</h3>
+<p>These four terms are related but not interchangeable. <a href="#tbl-digital-change" class="quarto-xref">Table&nbsp;<span>1.2</span></a> compares them. The distinctions prevent organizations from calling every scan or subscription “transformation” and help teams set appropriate outcomes.</p>
+<div id="tbl-digital-change" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-digital-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.2: Forms of digital change in information organizations
+</figcaption>
+<div aria-describedby="tbl-digital-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-digital-change" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central change</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">LIS example</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Success question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Digitization</td>
+<td style="text-align: left;">Analog representation becomes digital data</td>
+<td style="text-align: left;">Scanning a local newspaper and creating master image files</td>
+<td style="text-align: left;">Is the digital surrogate accurate and documented?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digitalization</td>
+<td style="text-align: left;">An existing process uses digital tools</td>
+<td style="text-align: left;">Replacing a paper room-booking log with an online form and calendar</td>
+<td style="text-align: left;">Is the process more usable, reliable, and accountable?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Automation</td>
+<td style="text-align: left;">A repeatable action is performed by programmed rules</td>
+<td style="text-align: left;">Sending due-date reminders from circulation transactions</td>
+<td style="text-align: left;">Are rules correct, exceptions visible, and results checked?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digital transformation</td>
+<td style="text-align: left;">Services, roles, governance, or models are substantially redesigned</td>
+<td style="text-align: left;">Building a community-controlled digital heritage program with new consent, description, access, and preservation workflows</td>
+<td style="text-align: left;">Does the redesign create lasting public value without transferring unacceptable risk?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-digital-change" class="quarto-xref">Table&nbsp;<span>1.2</span></a> shows, scale alone does not determine the category. Scanning one page and scanning one million pages are both digitization. Transformation concerns changes in relationships, responsibilities, and value creation. Automation is especially suitable for consistent, high-volume, low-ambiguity tasks, such as flagging blank required fields. Human review remains important where context, consequence, or contested meaning is high, such as deciding culturally appropriate access to sensitive community materials.</p>
+</section>
+<section id="reliability-maintenance-and-graceful-failure" class="level3" data-number="1.4.7">
+<h3 data-number="1.4.7" class="anchored" data-anchor-id="reliability-maintenance-and-graceful-failure"><span class="header-section-number">1.4.7</span> Reliability, maintenance, and graceful failure</h3>
+<p>Information services need more than a successful launch. They require maintenance: software updates, metadata correction, documentation, staff development, storage monitoring, accessibility testing, vendor management, and incident response. Maintenance is professional work even when it produces no dramatic new feature.</p>
+<p><strong>Availability</strong> is the ability of authorized users to obtain a service when needed. High availability may require redundant network links, monitored servers, backups, documented recovery procedures, and staff coverage. The appropriate level depends on the service. A public safety information portal and an internal exhibit-planning tool do not carry the same consequences of downtime.</p>
+<p>Services should also fail <strong>gracefully</strong>. An unavailable catalogue can display a clear status message, alternative contact method, and realistic restoration estimate. A form can preserve a draft when connectivity drops. A digital exhibit can provide smaller images for low-bandwidth users. A circulation desk can maintain a documented offline procedure. Graceful failure treats disruption as a predictable condition rather than a personal failure by the user.</p>
+</section>
+<section id="a-service-centered-decision-framework" class="level3" data-number="1.4.8">
+<h3 data-number="1.4.8" class="anchored" data-anchor-id="a-service-centered-decision-framework"><span class="header-section-number">1.4.8</span> A service-centered decision framework</h3>
+<p>Before selecting or changing technology, ask:</p>
+<ol type="1">
+<li><strong>Purpose:</strong> What service problem is being addressed, and what evidence shows it matters?</li>
+<li><strong>People:</strong> Who uses, operates, maintains, governs, and is affected by the service?</li>
+<li><strong>Information:</strong> What data, metadata, content, and records are needed? What should not be collected?</li>
+<li><strong>Workflow:</strong> What tasks, decisions, handoffs, exceptions, and approvals occur?</li>
+<li><strong>Technology:</strong> What devices, software, networks, integrations, and skills are required?</li>
+<li><strong>Values and obligations:</strong> How will the design protect access, privacy, intellectual freedom, accessibility, cultural rights, and accountability?</li>
+<li><strong>Continuity:</strong> How will the institution fund, document, maintain, preserve, evaluate, and eventually replace or retire the service?</li>
+</ol>
+<p>This framework keeps procurement from becoming the first step. A product demonstration shows what a platform can do under selected conditions; requirements analysis identifies what the institution and its communities actually need.</p>
+<blockquote class="blockquote">
+<p><strong>Reflective prompt.</strong> Recall a digital service that made you feel competent and one that made you feel at fault. Which interface, metadata, policy, or support choices produced those feelings?</p>
+</blockquote>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">1.5</span> Philippine and Southeast Asian examples</h2>
+<section id="academic-library-remote-access-is-more-than-a-subscription" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="academic-library-remote-access-is-more-than-a-subscription"><span class="header-section-number">1.5.1</span> Academic library: remote access is more than a subscription</h3>
+<p>A Philippine state university licenses journals for students across several campuses. Buying access is only one component. Students need current accounts, understandable authentication, a working discovery route, device-compatible pages, sufficient bandwidth, and reference support. Librarians need usage evidence, privacy-conscious logs, license knowledge, and escalation contacts. When students share screenshots of articles because login repeatedly fails, the workaround signals an infrastructure problem rather than simply “user error.”</p>
+</section>
+<section id="public-library-a-low-bandwidth-local-information-portal" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="public-library-a-low-bandwidth-local-information-portal"><span class="header-section-number">1.5.2</span> Public library: a low-bandwidth local information portal</h3>
+<p>A city public library develops a portal for disaster contacts, scholarship notices, livelihood resources, and local ordinances. A video-heavy homepage may look modern in the office yet perform poorly for residents using prepaid mobile data. The service team chooses compressed images, text-first pages, downloadable low-size PDFs, Filipino and local-language labels, clear update dates, and a telephone alternative. This is not a lesser website. It is a better fit between infrastructure and public purpose.</p>
+</section>
+<section id="school-library-accountable-circulation-automation" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="school-library-accountable-circulation-automation"><span class="header-section-number">1.5.3</span> School library: accountable circulation automation</h3>
+<p>A school library replaces handwritten loans with a small integrated library system. Barcodes shorten transactions and reports reveal heavily used materials. At the same time, the library decides not to display students’ borrowing histories to teachers by default. It assigns individual staff accounts, documents corrections, sets a retention period for transaction histories, and keeps an offline procedure for power interruptions. Under the Philippine Data Privacy Act, personal information processing should have a lawful purpose and follow principles including transparency, legitimate purpose, and proportionality <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>.</p>
+</section>
+<section id="cultural-heritage-institution-description-with-communities" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="cultural-heritage-institution-description-with-communities"><span class="header-section-number">1.5.4</span> Cultural heritage institution: description with communities</h3>
+<p>A regional museum digitizes photographs of an Indigenous community. Staff can scan the photographs and enter legacy captions, but technical completion does not settle questions of authority, sensitivity, or access. The institution consults community representatives about names, context, culturally restricted knowledge, acceptable online resolution, correction processes, and takedown requests. It records provenance and access decisions as metadata. Here, infrastructure includes relationships of trust and procedures for continued governance.</p>
+</section>
+<section id="national-and-regional-discovery" class="level3" data-number="1.5.5">
+<h3 data-number="1.5.5" class="anchored" data-anchor-id="national-and-regional-discovery"><span class="header-section-number">1.5.5</span> National and regional discovery</h3>
+<p>National libraries and archives increasingly provide digital collection access alongside on-site services; the National Library of the Philippines, for example, maintains web-based routes to collections and services <span class="citation" data-cites="nlp2024elibrary">(<a href="references.html#ref-nlp2024elibrary" role="doc-biblioref">National Library of the Philippines 2024</a>)</span>. Across Southeast Asia, institutions work in multilingual settings and under unequal connectivity, staffing, and funding conditions. Shared standards can improve exchange, but local scripts, names, colonial description, community protocols, and jurisdiction-specific law require informed adaptation rather than mechanical import.</p>
+</section>
+</section>
+<section id="hands-on-activity-service-infrastructure-audit" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="hands-on-activity-service-infrastructure-audit"><span class="header-section-number">1.6</span> Hands-on activity: Service infrastructure audit</h2>
+<section id="purpose" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">1.6.1</span> Purpose</h3>
+<p>Map a familiar information service as a sociotechnical system and identify one improvement that is useful, ethical, and feasible.</p>
+</section>
+<section id="tools" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">1.6.2</span> Tools</h3>
+<ul>
+<li>A web browser and any familiar library or information service: catalogue, repository, library website, digital exhibit, circulation desk, online reference channel, or records-request portal</li>
+<li>Paper and pen, a slide tool, or a diagram tool such as diagrams.net</li>
+<li>A word processor or Quarto document for the final one-page report</li>
+<li>Optional: browser developer tools for viewing network or mobile behavior</li>
+</ul>
+</section>
+<section id="steps" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">1.6.3</span> Steps</h3>
+<ol type="1">
+<li><strong>Choose one task.</strong> State it from the user’s perspective, such as “Find whether the library has an online copy of a thesis” or “Ask a reference question outside opening hours.” Keep the task narrow.</li>
+<li><strong>Perform and record.</strong> Complete the task once. Record the starting point, major actions, messages, result, time, and any uncertainty. Do not enter real sensitive data for this exercise.</li>
+<li><strong>Map the components.</strong> Identify the interface, application or workflow, metadata and indexes, stored data or content, physical/network dependencies, people and roles, policies or standards, and external services.</li>
+<li><strong>Trace the information.</strong> Show what the user supplies, what the system returns, and what data or logs may remain afterward.</li>
+<li><strong>Test one disruption.</strong> Without damaging the service, simulate or inspect one constraint: narrow the browser window, use a browser’s offline mode after loading, disable images, search a spelling variant, or try keyboard-only navigation.</li>
+<li><strong>Identify failures and impacts.</strong> List at least three possible failure points, the people affected, the visible symptom, and one preventive or recovery measure.</li>
+<li><strong>Recommend one improvement.</strong> Use the service-centered decision framework. Explain the benefit, required work, possible risk, responsible role, and simple success measure.</li>
+<li><strong>Reflect.</strong> Answer the question below in about 150 words.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="1.6.4">
+<h3 data-number="1.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">1.6.4</span> Expected output</h3>
+<p>Submit one PDF, DOCX, HTML page, or <code>.qmd</code> containing:</p>
+<ul>
+<li>a task statement and brief observation log;</li>
+<li>a labeled service map with at least eight components;</li>
+<li>a failure-and-impact table with at least three rows;</li>
+<li>one prioritized recommendation; and</li>
+<li>a 150-word reflection.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Reflection question.</strong> Which part of the service was least visible before the audit, and how did recognizing it change your judgment about who is responsible for service quality?</p>
+</blockquote>
+</section>
+<section id="activity-checklist" class="level3" data-number="1.6.5">
+<h3 data-number="1.6.5" class="anchored" data-anchor-id="activity-checklist"><span class="header-section-number">1.6.5</span> Activity checklist</h3>
+<p>Use the checklist in <a href="#tbl-lab-checklist" class="quarto-xref">Table&nbsp;<span>1.3</span></a> before submission. The checklist emphasizes traceable reasoning rather than graphic polish.</p>
+<div id="tbl-lab-checklist" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.3: Service infrastructure audit submission checklist
+</figcaption>
+<div aria-describedby="tbl-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-lab-checklist" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Check</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Task is specific and user centered</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Map includes social and technical components</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Information inputs, outputs, and traces are shown</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">At least three failures connect cause to user impact</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Recommendation names owner, risk, and measure</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No real personal or confidential data appear</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reflection explains a changed understanding</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="short-lab-rubric" class="level3" data-number="1.6.6">
+<h3 data-number="1.6.6" class="anchored" data-anchor-id="short-lab-rubric"><span class="header-section-number">1.6.6</span> Short lab rubric</h3>
+<p><a href="#tbl-lab-rubric" class="quarto-xref">Table&nbsp;<span>1.4</span></a> allocates 20 points. A map can be simple and still earn full credit if its relationships are accurate and clearly explained.</p>
+<div id="tbl-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.4: Rubric for the service infrastructure audit
+</figcaption>
+<div aria-describedby="tbl-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Points</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Full credit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Task and observation</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Task is bounded; observations separate evidence from assumption</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Systems map</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">At least eight relevant components and meaningful relationships are labeled</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Failure analysis</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Three plausible failures connect causes, symptoms, stakeholders, and responses</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Recommendation</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Improvement is feasible and addresses benefit, risk, owner, and measure</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reflection and presentation</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Reflection is specific; output is readable, accessible, and privacy conscious</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-convenience-privacy-and-unequal-access" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="ethical-and-professional-issue-convenience-privacy-and-unequal-access"><span class="header-section-number">1.7</span> Ethical and professional issue: convenience, privacy, and unequal access</h2>
+<p>Digital services often promise convenience through personalization, analytics, and persistent accounts. A discovery system may remember searches; a chat service may keep transcripts; a building-entry system may record visits; an e-book platform may observe reading behavior. Each feature can support service improvement, but each also creates information about people.</p>
+<p>LIS ethics gives special weight to privacy because inquiry can reveal political belief, health concern, religious interest, legal difficulty, identity, or personal vulnerability. The IFLA code connects privacy, confidentiality, equitable service, access to information, and professional responsibility <span class="citation" data-cites="ifla2012ethics">(<a href="references.html#ref-ifla2012ethics" role="doc-biblioref">International Federation of Library Associations and Institutions 2012</a>)</span>. Privacy is not the same as secrecy. It concerns a person’s ability to understand and influence how information about them is collected, used, shared, retained, and secured.</p>
+<p>The Philippine Data Privacy Act applies principles of transparency, legitimate purpose, and proportionality to personal information processing <span class="citation" data-cites="philippines2012dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>)</span>. For an ICT project, these principles lead to practical questions:</p>
+<ul>
+<li>Is each collected field necessary for a stated service purpose?</li>
+<li>Is the notice understandable at the moment of collection?</li>
+<li>Can the task be completed with less identification or shorter retention?</li>
+<li>Who can view the data, and are privileges reviewed?</li>
+<li>Does a vendor reuse or transfer the information?</li>
+<li>What happens when a person seeks access, correction, or deletion where applicable?</li>
+<li>How will a breach be detected, contained, documented, and communicated?</li>
+</ul>
+<p>Privacy can also conflict with accessibility and inclusion if handled simplistically. Requiring an app-based one-time password may strengthen authentication while excluding users without compatible phones or stable signals. Removing all service data may protect privacy but prevent the library from detecting systematic exclusion. Good governance seeks proportionate, documented solutions: collect the minimum useful data, restrict access, aggregate where possible, retain only as justified, offer accessible alternatives, and evaluate outcomes.</p>
+<p>Digital exclusion is broader than whether a connection exists. Meaningful access also depends on affordability, device quality, language, accessibility, skills, time, confidence, and support. The 2022 IFLA-UNESCO Public Library Manifesto explicitly includes access through digital technologies and the development of information and digital literacy within contemporary public library missions <span class="citation" data-cites="ifla2022manifesto">(<a href="references.html#ref-ifla2022manifesto" role="doc-biblioref">International Federation of Library Associations and Institutions and UNESCO 2022</a>)</span>. An online-only service can therefore expand reach for some people while withdrawing it from others.</p>
+<blockquote class="blockquote">
+<p><strong>Ethical checkpoint.</strong> A vendor offers a free discovery interface in exchange for using search logs to improve commercial products. What information would you need before recommending acceptance? Who should take part in the decision?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">1.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> What is a sociotechnical system?</li>
+<li><strong>Identification:</strong> Define metadata and give one descriptive and one administrative example.</li>
+<li><strong>Short answer:</strong> Why is a library website an interface rather than the entire information service?</li>
+<li><strong>Short answer:</strong> Distinguish technical, syntactic, semantic, and organizational interoperability.</li>
+<li><strong>Short answer:</strong> Explain why cloud services still depend on physical infrastructure.</li>
+<li><strong>Applied analysis:</strong> A repository accepts PDF files but records all dates in one field without defining what the date means. Which dimensions of interoperability may succeed, and which may fail?</li>
+<li><strong>Applied analysis:</strong> A public library scans rare local newspapers but does not create titles, dates, page order, rights information, or backups. What has it accomplished, and what service and stewardship work remains?</li>
+<li><strong>Scenario:</strong> Students repeatedly share one staff account to operate a circulation system. Identify two risks and two improvements that consider both workflow and security.</li>
+<li><strong>Scenario:</strong> A library replaces all in-person renewals with a mobile app. Evaluate the change using access, privacy, reliability, and accountability criteria.</li>
+<li><strong>Synthesis:</strong> Choose one LIS role and explain how a technical choice in that role can affect discovery, preservation, or user rights elsewhere in the system.</li>
+</ol>
+</section>
+<section id="mini-case-the-provincial-heritage-portal" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="mini-case-the-provincial-heritage-portal"><span class="header-section-number">1.9</span> Mini case: The provincial heritage portal</h2>
+<p>The Provincial Library and Archives receives a grant to build an online heritage portal before the province’s founding anniversary. The collection includes Spanish-period documents, postwar photographs, oral-history recordings, and recent community festival videos. The grant budget covers scanning equipment and one year of commercial hosting. A supplier promises to launch within three months using automatically generated descriptions. The archives has two staff members, neither assigned full-time to the project. Some photographs name children; several oral histories discuss land disputes; community representatives have not yet been consulted. Internet service is intermittent in upland municipalities, and the contract does not state how data can be exported when hosting ends.</p>
+<p><strong>Guide questions</strong></p>
+<ol type="1">
+<li>Map at least eight social and technical components that must be included in the project beyond scanning equipment and a website.</li>
+<li>Identify the three most serious risks. For each, name the affected stakeholders and one immediate mitigation.</li>
+<li>Recommend a realistic first phase that could produce public value while protecting rights and improving long-term continuity.</li>
+</ol>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">1.10</span> Further reading and tools</h2>
+<section id="readings-and-standards" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="readings-and-standards"><span class="header-section-number">1.10.1</span> Readings and standards</h3>
+<ul>
+<li><strong>IFLA-UNESCO Public Library Manifesto 2022.</strong> A concise statement of public-library missions in access, culture, education, inclusion, and digital participation <span class="citation" data-cites="ifla2022manifesto">(<a href="references.html#ref-ifla2022manifesto" role="doc-biblioref">International Federation of Library Associations and Institutions and UNESCO 2022</a>)</span>.</li>
+<li><strong>NISO, <em>Understanding Metadata</em>.</strong> An accessible introduction to metadata functions and concepts <span class="citation" data-cites="niso2004understanding">(<a href="references.html#ref-niso2004understanding" role="doc-biblioref">Understanding Metadata 2004</a>)</span>.</li>
+<li><strong>Library of Congress MARC 21 documentation.</strong> A primary reference for the structure and communication of bibliographic records <span class="citation" data-cites="locmarc21">(<a href="references.html#ref-locmarc21" role="doc-biblioref">Library of Congress 2024</a>)</span>.</li>
+<li><strong>WCAG 2.2.</strong> The W3C standard used to evaluate web accessibility <span class="citation" data-cites="w3cwcag22">(<a href="references.html#ref-w3cwcag22" role="doc-biblioref">World Wide Web Consortium 2023</a>)</span>.</li>
+<li><strong>Republic Act No.&nbsp;10173 and National Privacy Commission guidance.</strong> Primary Philippine references for personal data protection <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>.</li>
+<li><strong>Star and Ruhleder’s infrastructure framework.</strong> A foundational scholarly account of infrastructure as relational, embedded, learned, and visible upon breakdown <span class="citation" data-cites="star1996steps">(<a href="references.html#ref-star1996steps" role="doc-biblioref">Star and Ruhleder 1996</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-and-widely-accessible-tools" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="open-and-widely-accessible-tools"><span class="header-section-number">1.10.2</span> Open and widely accessible tools</h3>
+<ul>
+<li><strong>diagrams.net:</strong> browser-based system and workflow diagramming.</li>
+<li><strong>LibreOffice:</strong> open-source word processing, spreadsheets, presentations, and database tools.</li>
+<li><strong>Zotero:</strong> open-source reference collection and citation management.</li>
+<li><strong>OpenRefine:</strong> interactive cleaning and reconciliation of messy structured data.</li>
+<li><strong>DB Browser for SQLite:</strong> graphical introduction to relational databases and SQL.</li>
+<li><strong>R and RStudio or Positron:</strong> reproducible data analysis and automation <span class="citation" data-cites="r2026">(<a href="references.html#ref-r2026" role="doc-biblioref">R Core Team 2026</a>)</span>.</li>
+<li><strong>Quarto:</strong> open-source publishing from Markdown and executable code to HTML, DOCX, PDF, and other formats <span class="citation" data-cites="quarto2026docs">(<a href="references.html#ref-quarto2026docs" role="doc-biblioref">Posit 2026</a>)</span>.</li>
+</ul>
+</section>
+<section id="chapter-1-bridge" class="level3" data-number="1.10.3">
+<h3 data-number="1.10.3" class="anchored" data-anchor-id="chapter-1-bridge"><span class="header-section-number">1.10.3</span> Chapter 1 bridge</h3>
+<p>The next chapter opens the network and web layers shown in <a href="#fig-service-layers" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>. You will trace how a browser locates a server, requests a resource, receives HTML, and presents a library page. Keep the systems map from this chapter: in Chapter 2, you will revise it with protocols, addresses, security, hosting, and web accessibility.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-asean2021digital" class="csl-entry" role="listitem">
+Association of Southeast Asian Nations. 2021. <em>ASEAN Digital Masterplan 2025</em>. <a href="https://asean.org/book/asean-digital-masterplan-2025/">https://asean.org/book/asean-digital-masterplan-2025/</a>.
+</div>
+<div id="ref-borgman2007scholarship" class="csl-entry" role="listitem">
+Borgman, Christine L. 2007. <em>Scholarship in the Digital Age: Information, Infrastructure, and the Internet</em>. MIT Press. <a href="https://doi.org/10.7551/mitpress/7434.001.0001">https://doi.org/10.7551/mitpress/7434.001.0001</a>.
+</div>
+<div id="ref-ifla2012ethics" class="csl-entry" role="listitem">
+International Federation of Library Associations and Institutions. 2012. <em>IFLA Code of Ethics for Librarians and Other Information Workers</em>. IFLA. <a href="https://www.ifla.org/g/faife/professional-codes-of-ethics-for-librarians/">https://www.ifla.org/g/faife/professional-codes-of-ethics-for-librarians/</a>.
+</div>
+<div id="ref-ifla2022manifesto" class="csl-entry" role="listitem">
+International Federation of Library Associations and Institutions, and UNESCO. 2022. <em>IFLA-UNESCO Public Library Manifesto 2022</em>. IFLA. <a href="https://repository.ifla.org/handle/123456789/2006">https://repository.ifla.org/handle/123456789/2006</a>.
+</div>
+<div id="ref-locmarc21" class="csl-entry" role="listitem">
+Library of Congress. 2024. <em>MARC 21 Format for Bibliographic Data</em>. <a href="https://www.loc.gov/marc/bibliographic/">https://www.loc.gov/marc/bibliographic/</a>.
+</div>
+<div id="ref-nlp2024elibrary" class="csl-entry" role="listitem">
+National Library of the Philippines. 2024. <em>NLP Digital Collections</em>. <a href="https://web.nlp.gov.ph/">https://web.nlp.gov.ph/</a>.
+</div>
+<div id="ref-npc2023dpa" class="csl-entry" role="listitem">
+National Privacy Commission. 2023. <em>Data Privacy Act of 2012</em>. <a href="https://privacy.gov.ph/data-privacy-act/">https://privacy.gov.ph/data-privacy-act/</a>.
+</div>
+<div id="ref-oclc2025worldcat" class="csl-entry" role="listitem">
+OCLC. 2025. <em>Inside WorldCat</em>. <a href="https://www.oclc.org/en/worldcat/inside-worldcat.html">https://www.oclc.org/en/worldcat/inside-worldcat.html</a>.
+</div>
+<div id="ref-quarto2026docs" class="csl-entry" role="listitem">
+Posit. 2026. <em>Quarto Documentation</em>. <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>.
+</div>
+<div id="ref-r2026" class="csl-entry" role="listitem">
+R Core Team. 2026. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-philippines2012dpa" class="csl-entry" role="listitem">
+Republic of the Philippines. 2012. <em>Republic Act No. 10173: Data Privacy Act of 2012</em>. <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html">https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html</a>.
+</div>
+<div id="ref-star1996steps" class="csl-entry" role="listitem">
+Star, Susan Leigh, and Karen Ruhleder. 1996. <span>“Steps Toward an Ecology of Infrastructure: Design and Access for Large Information Spaces.”</span> <em>Information Systems Research</em> 7 (1): 111–34. <a href="https://doi.org/10.1287/isre.7.1.111">https://doi.org/10.1287/isre.7.1.111</a>.
+</div>
+<div id="ref-niso2004understanding" class="csl-entry" role="listitem">
+Understanding Metadata (2004). <a href="https://www.niso.org/publications/understanding-metadata-2017">https://www.niso.org/publications/understanding-metadata-2017</a>.
+</div>
+<div id="ref-w3cwcag22" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2023. <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./outline.html" class="pagination-link" aria-label="Detailed Textbook Outline">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Detailed Textbook Outline</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-02-networking-web.html" class="pagination-link" aria-label="Networking, Web Basics, and Library Websites">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

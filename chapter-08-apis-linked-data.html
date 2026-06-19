@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; APIs, Linked Data, and the Semantic Web – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-09-ux-accessibility-mobile.html" rel="next">
+<link href="./chapter-07-programming-automation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-08-apis-linked-data.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">8.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">8.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">8.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">8.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#interfaces-as-service-contracts" id="toc-interfaces-as-service-contracts" class="nav-link" data-scroll-target="#interfaces-as-service-contracts"><span class="header-section-number">8.4.1</span> Interfaces as service contracts</a></li>
+  <li><a href="#anatomy-of-a-request" id="toc-anatomy-of-a-request" class="nav-link" data-scroll-target="#anatomy-of-a-request"><span class="header-section-number">8.4.2</span> Anatomy of a request</a></li>
+  <li><a href="#authentication-authorization-and-secrets" id="toc-authentication-authorization-and-secrets" class="nav-link" data-scroll-target="#authentication-authorization-and-secrets"><span class="header-section-number">8.4.3</span> Authentication, authorization, and secrets</a></li>
+  <li><a href="#json-nested-objects-and-arrays" id="toc-json-nested-objects-and-arrays" class="nav-link" data-scroll-target="#json-nested-objects-and-arrays"><span class="header-section-number">8.4.4</span> JSON: nested objects and arrays</a></li>
+  <li><a href="#xml-and-namespaces" id="toc-xml-and-namespaces" class="nav-link" data-scroll-target="#xml-and-namespaces"><span class="header-section-number">8.4.5</span> XML and namespaces</a></li>
+  <li><a href="#calling-a-read-only-api-in-r" id="toc-calling-a-read-only-api-in-r" class="nav-link" data-scroll-target="#calling-a-read-only-api-in-r"><span class="header-section-number">8.4.6</span> Calling a read-only API in R</a></li>
+  <li><a href="#pagination-rate-limits-caching-and-change" id="toc-pagination-rate-limits-caching-and-change" class="nav-link" data-scroll-target="#pagination-rate-limits-caching-and-change"><span class="header-section-number">8.4.7</span> Pagination, rate limits, caching, and change</a></li>
+  <li><a href="#from-identifiers-to-linked-data" id="toc-from-identifiers-to-linked-data" class="nav-link" data-scroll-target="#from-identifiers-to-linked-data"><span class="header-section-number">8.4.8</span> From identifiers to linked data</a></li>
+  <li><a href="#rdf-triples-statements-as-a-graph" id="toc-rdf-triples-statements-as-a-graph" class="nav-link" data-scroll-target="#rdf-triples-statements-as-a-graph"><span class="header-section-number">8.4.9</span> RDF triples: statements as a graph</a></li>
+  <li><a href="#vocabularies-ontologies-and-application-profiles" id="toc-vocabularies-ontologies-and-application-profiles" class="nav-link" data-scroll-target="#vocabularies-ontologies-and-application-profiles"><span class="header-section-number">8.4.10</span> Vocabularies, ontologies, and application profiles</a></li>
+  <li><a href="#json-ld-linked-data-in-json" id="toc-json-ld-linked-data-in-json" class="nav-link" data-scroll-target="#json-ld-linked-data-in-json"><span class="header-section-number">8.4.11</span> JSON-LD: linked data in JSON</a></li>
+  <li><a href="#sparql-asking-graph-shaped-questions" id="toc-sparql-asking-graph-shaped-questions" class="nav-link" data-scroll-target="#sparql-asking-graph-shaped-questions"><span class="header-section-number">8.4.12</span> SPARQL: asking graph-shaped questions</a></li>
+  <li><a href="#apis-harvesting-and-linked-data-are-different-tools" id="toc-apis-harvesting-and-linked-data-are-different-tools" class="nav-link" data-scroll-target="#apis-harvesting-and-linked-data-are-different-tools"><span class="header-section-number">8.4.13</span> APIs, harvesting, and linked data are different tools</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">8.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#academic-library-an-api-powered-subject-guide" id="toc-academic-library-an-api-powered-subject-guide" class="nav-link" data-scroll-target="#academic-library-an-api-powered-subject-guide"><span class="header-section-number">8.5.1</span> Academic library: an API-powered subject guide</a></li>
+  <li><a href="#national-and-local-authority-work" id="toc-national-and-local-authority-work" class="nav-link" data-scroll-target="#national-and-local-authority-work"><span class="header-section-number">8.5.2</span> National and local authority work</a></li>
+  <li><a href="#cultural-heritage-and-community-identifiers" id="toc-cultural-heritage-and-community-identifiers" class="nav-link" data-scroll-target="#cultural-heritage-and-community-identifiers"><span class="header-section-number">8.5.3</span> Cultural heritage and community identifiers</a></li>
+  <li><a href="#public-library-mobile-service" id="toc-public-library-mobile-service" class="nav-link" data-scroll-target="#public-library-mobile-service"><span class="header-section-number">8.5.4</span> Public library mobile service</a></li>
+  <li><a href="#government-open-data-integration" id="toc-government-open-data-integration" class="nav-link" data-scroll-target="#government-open-data-integration"><span class="header-section-number">8.5.5</span> Government open-data integration</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-build-an-api-powered-subject-guide-dataset" id="toc-hands-on-activity-build-an-api-powered-subject-guide-dataset" class="nav-link" data-scroll-target="#hands-on-activity-build-an-api-powered-subject-guide-dataset"><span class="header-section-number">8.6</span> Hands-on activity: Build an API-powered subject-guide dataset</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">8.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">8.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">8.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">8.6.4</span> Expected output</a></li>
+  <li><a href="#lab-checklist" id="toc-lab-checklist" class="nav-link" data-scroll-target="#lab-checklist"><span class="header-section-number">8.6.5</span> Lab checklist</a></li>
+  <li><a href="#assessment-rubric" id="toc-assessment-rubric" class="nav-link" data-scroll-target="#assessment-rubric"><span class="header-section-number">8.6.6</span> Assessment rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-linkage-consent-and-contextual-integrity" id="toc-ethical-and-professional-issue-linkage-consent-and-contextual-integrity" class="nav-link" data-scroll-target="#ethical-and-professional-issue-linkage-consent-and-contextual-integrity"><span class="header-section-number">8.7</span> Ethical and professional issue: linkage, consent, and contextual integrity</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">8.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-regional-heritage-graph" id="toc-mini-case-the-regional-heritage-graph" class="nav-link" data-scroll-target="#mini-case-the-regional-heritage-graph"><span class="header-section-number">8.9</span> Mini case: The regional heritage graph</a>
+  <ul class="collapse">
+  <li><a href="#guide-questions" id="toc-guide-questions" class="nav-link" data-scroll-target="#guide-questions"><span class="header-section-number">8.9.1</span> Guide questions</a></li>
+  </ul></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">8.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#readings-and-standards" id="toc-readings-and-standards" class="nav-link" data-scroll-target="#readings-and-standards"><span class="header-section-number">8.10.1</span> Readings and standards</a></li>
+  <li><a href="#open-or-widely-accessible-tools" id="toc-open-or-widely-accessible-tools" class="nav-link" data-scroll-target="#open-or-widely-accessible-tools"><span class="header-section-number">8.10.2</span> Open or widely accessible tools</a></li>
+  <li><a href="#closing-synthesis" id="toc-closing-synthesis" class="nav-link" data-scroll-target="#closing-synthesis"><span class="header-section-number">8.10.3</span> Closing synthesis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">8.1</span> Chapter overview</h2>
+<p>A reference librarian maintains a subject guide on Philippine children’s literature. Every month, the librarian searches several catalogues, copies titles and authors into a table, checks cover links, and updates availability notes. The guide is useful, but the process is slow and quickly becomes outdated. A public books API could supply structured records, yet its creator names, subjects, editions, and cover images do not always match local cataloguing practice. A linked-data service could connect authors and subjects to stable identifiers, but those links may also import errors or externally imposed descriptions.</p>
+<p>The central problem of this chapter is <strong>how information systems exchange structured data and meaningful relationships without losing provenance, context, governance, or professional judgment</strong>. An application programming interface (API) lets one software system request functions or data from another under a documented contract. Linked data uses web identifiers and explicit statements to connect entities across datasets. The semantic web is the broader vision of web data whose meanings and relationships can be processed across organizational boundaries.</p>
+<p>These technologies matter throughout LIS. A catalogue retrieves cover images and availability. A repository exposes metadata for harvesting. A digital exhibit embeds manifests. A reference guide draws from an authority service. A records dashboard combines data from agencies. A discovery layer queries indexes and link resolvers. An archives portal connects people, places, organizations, collections, and events. The technical exchange is only one layer: terms of use, privacy, attribution, rate limits, data quality, sustainability, and community authority determine whether reuse is responsible.</p>
+<p>This chapter introduces API requests and responses, endpoints, parameters, authentication, HTTP methods and status codes, JSON and XML, pagination, rate limiting, error handling, identifiers, RDF triples, vocabularies, ontologies, knowledge graphs, JSON-LD, and SPARQL. R examples use <code>httr2</code> and <code>jsonlite</code>, but the concepts apply across programming languages and platforms <span class="citation" data-cites="httr22026 jsonlite2026">(<a href="references.html#ref-httr22026" role="doc-biblioref">Wickham 2026</a>; <a href="references.html#ref-jsonlite2026" role="doc-biblioref">Ooms 2026</a>)</span>.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">8.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Describe</strong> an API exchange using client, endpoint, method, parameters, headers, status, and response body.</li>
+<li><strong>Interpret</strong> nested JSON and XML structures and select fields needed for an LIS service.</li>
+<li><strong>Construct and document</strong> a read-only API request in R with error, pagination, rate-limit, and provenance handling.</li>
+<li><strong>Express</strong> bibliographic or cultural-heritage relationships as RDF subject-predicate-object triples using stable identifiers.</li>
+<li><strong>Read and modify</strong> a simple SPARQL <code>SELECT</code> query.</li>
+<li><strong>Evaluate</strong> data reuse for licensing, privacy, bias, provenance, accessibility, reliability, and sustainability.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">8.3</span> Key concepts</h2>
+<p><a href="#tbl-api-linked-key-concepts" class="quarto-xref">Table&nbsp;<span>8.1</span></a> defines the chapter vocabulary. Several concepts belong to different layers: JSON is a syntax, an API is an interface contract, and RDF is a data model.</p>
+<div id="tbl-api-linked-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-api-linked-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.1: Key concepts for APIs and linked data
+</figcaption>
+<div aria-describedby="tbl-api-linked-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-api-linked-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">API</td>
+<td style="text-align: left;">A documented interface through which software requests data or operations from other software.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Client</td>
+<td style="text-align: left;">The application that sends a request.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Server</td>
+<td style="text-align: left;">The system that receives a request and returns a response.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Endpoint</td>
+<td style="text-align: left;">A network address representing an API function or resource collection.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Resource</td>
+<td style="text-align: left;">An entity or data object exposed through an interface.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Request</td>
+<td style="text-align: left;">A message asking a service to perform an operation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Response</td>
+<td style="text-align: left;">A message reporting the outcome and often carrying returned data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HTTP method</td>
+<td style="text-align: left;">A verb such as GET or POST expressing the requested kind of action.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Parameter</td>
+<td style="text-align: left;">A value that modifies a request, such as query, field, page, or limit.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Header</td>
+<td style="text-align: left;">Metadata accompanying a request or response, such as content type or authorization.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Status code</td>
+<td style="text-align: left;">A three-digit HTTP code summarizing the outcome of a request.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Authentication</td>
+<td style="text-align: left;">The process of establishing the identity of a client or user.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Authorization</td>
+<td style="text-align: left;">The process of deciding what an authenticated identity may do.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">API key</td>
+<td style="text-align: left;">A credential identifying or controlling an application that calls an API.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rate limit</td>
+<td style="text-align: left;">A rule limiting requests within a time period.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pagination</td>
+<td style="text-align: left;">A method for returning a large result set in smaller parts.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">JSON</td>
+<td style="text-align: left;">A text format representing objects, arrays, names, values, numbers, booleans, and nulls.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">XML</td>
+<td style="text-align: left;">A markup language representing nested elements, attributes, and text.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Serialization</td>
+<td style="text-align: left;">A concrete syntax used to encode a data model for storage or exchange.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Schema</td>
+<td style="text-align: left;">A formal or documented description of expected structure and constraints.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">URI</td>
+<td style="text-align: left;">A uniform resource identifier used to identify a resource.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IRI</td>
+<td style="text-align: left;">An internationalized resource identifier that extends URI characters beyond ASCII.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Persistent identifier</td>
+<td style="text-align: left;">A managed identifier intended to remain stable even when locations or systems change.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RDF</td>
+<td style="text-align: left;">The Resource Description Framework model for statements about resources.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Triple</td>
+<td style="text-align: left;">An RDF statement consisting of subject, predicate, and object.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Literal</td>
+<td style="text-align: left;">A value such as a string, date, number, or language-tagged text rather than another identified resource.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vocabulary</td>
+<td style="text-align: left;">A managed set of terms used to describe classes, properties, or values.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ontology</td>
+<td style="text-align: left;">A formal representation of concepts, properties, constraints, and relationships in a domain.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Linked data</td>
+<td style="text-align: left;">Data published with web identifiers and explicit links to related data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Knowledge graph</td>
+<td style="text-align: left;">A graph of identified entities and typed relationships assembled from one or more sources.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">JSON-LD</td>
+<td style="text-align: left;">A JSON serialization designed to express linked data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SPARQL</td>
+<td style="text-align: left;">A query language and protocol for RDF data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Information about the origin, custody, derivation, and transformations of data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">8.4</span> Core discussion</h2>
+<section id="interfaces-as-service-contracts" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="interfaces-as-service-contracts"><span class="header-section-number">8.4.1</span> Interfaces as service contracts</h3>
+<p>An API is not simply “a URL that returns data.” It is a contract describing what may be requested, how requests are expressed, how responses are structured, what errors mean, which uses are authorized, and how service changes are communicated. Documentation may specify endpoints, parameters, examples, schemas, authentication, rate limits, versions, licensing, and support.</p>
+<p>In a graphical interface, a person selects a search field and clicks a button. With an API, software expresses the action directly. This enables repeatable integration, but it removes many visual warnings. A programmer must read the documentation and make limits explicit.</p>
+<p><a href="#fig-api-exchange" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> shows a simplified read-only request. The server may consult an index or database before producing a response.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-api-exchange" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-api-exchange-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-api-exchange">sequenceDiagram
+    participant C as LIS client script
+    participant A as API endpoint
+    participant D as Data service
+    C-&gt;&gt;A: GET /search?q=children&amp;limit=20
+    A-&gt;&gt;A: Authenticate, validate, and apply limits
+    A-&gt;&gt;D: Run approved query
+    D--&gt;&gt;A: Matching records
+    A--&gt;&gt;C: 200 + JSON body + response headers
+    C-&gt;&gt;C: Validate, transform, log, and attribute
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-api-exchange-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: A basic API request-response exchange
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-api-exchange" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> indicates, a successful status does not guarantee trustworthy data. The client must validate structure, preserve provenance, and check whether the response is complete.</p>
+</section>
+<section id="anatomy-of-a-request" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="anatomy-of-a-request"><span class="header-section-number">8.4.2</span> Anatomy of a request</h3>
+<p>Consider this illustrative URL:</p>
+<pre class="text"><code>https://openlibrary.org/search.json?q=philippine+folktales&amp;fields=key,title,author_name,first_publish_year&amp;limit=20</code></pre>
+<p>It contains:</p>
+<ul>
+<li>the scheme <code>https</code>;</li>
+<li>the host <code>openlibrary.org</code>;</li>
+<li>the endpoint path <code>/search.json</code>;</li>
+<li>query parameters after <code>?</code>;</li>
+<li>parameter-value pairs separated by <code>&amp;</code>.</li>
+</ul>
+<p>The query value must be URL-encoded. Libraries should use an HTTP client rather than construct complex URLs through manual concatenation. An HTTP client manages encoding, headers, timeouts, and errors more reliably.</p>
+<p>HTTP methods have conventional meanings. <code>GET</code> retrieves a representation and should not alter data. <code>POST</code> commonly creates a resource or submits processing. <code>PUT</code> replaces or creates at a known identifier, <code>PATCH</code> applies a partial change, and <code>DELETE</code> requests removal. Actual behavior depends on the API contract. A method that modifies a production catalogue is a consequential action requiring authorization, validation, logging, and usually confirmation.</p>
+<p><a href="#tbl-http-api-status" class="quarto-xref">Table&nbsp;<span>8.2</span></a> lists common status families and reasonable client responses. HTTP semantics are standardized, while each API defines additional error details <span class="citation" data-cites="fielding2022http">(<a href="references.html#ref-fielding2022http" role="doc-biblioref">Fielding et al. 2022</a>)</span>.</p>
+<div id="tbl-http-api-status" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-http-api-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.2: Common HTTP status codes in API work
+</figcaption>
+<div aria-describedby="tbl-http-api-status-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-http-api-status" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Code</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Meaning</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Client action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">Request succeeded</td>
+<td style="text-align: left;">Validate body and completeness</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">201</td>
+<td style="text-align: left;">Resource created</td>
+<td style="text-align: left;">Verify location and created representation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">204</td>
+<td style="text-align: left;">Succeeded with no response body</td>
+<td style="text-align: left;">Do not attempt to parse a body</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">400</td>
+<td style="text-align: left;">Invalid request</td>
+<td style="text-align: left;">Correct syntax, parameter, or data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">401</td>
+<td style="text-align: left;">Authentication required or failed</td>
+<td style="text-align: left;">Refresh or correct credentials without exposing them</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">403</td>
+<td style="text-align: left;">Identity lacks permission</td>
+<td style="text-align: left;">Stop; review authorization and policy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">404</td>
+<td style="text-align: left;">Resource or endpoint not found</td>
+<td style="text-align: left;">Check identifier, version, or deletion</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">409</td>
+<td style="text-align: left;">Request conflicts with current state</td>
+<td style="text-align: left;">Retrieve current state and resolve safely</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">429</td>
+<td style="text-align: left;">Too many requests</td>
+<td style="text-align: left;">Honor retry guidance and reduce rate</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">500/503</td>
+<td style="text-align: left;">Server or service failure</td>
+<td style="text-align: left;">Retry cautiously later; log and avoid duplicate writes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-http-api-status" class="quarto-xref">Table&nbsp;<span>8.2</span></a> shows, retrying every failure is unsafe. Repeating a malformed request wastes capacity; repeating a write may create duplicates unless the operation is idempotent.</p>
+</section>
+<section id="authentication-authorization-and-secrets" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="authentication-authorization-and-secrets"><span class="header-section-number">8.4.3</span> Authentication, authorization, and secrets</h3>
+<p>Some public APIs allow anonymous reading. Others require an API key, OAuth token, institutional identity, or user authorization. <strong>Authentication</strong> establishes identity; <strong>authorization</strong> determines allowed actions. An API key should not be embedded in a published <code>.qmd</code>, committed to Git, printed in logs, or pasted into a public issue.</p>
+<p>Credentials can be stored in environment variables and read at runtime:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"BOOKS_API_KEY"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (api_key <span class="sc">==</span> <span class="st">""</span>) <span class="fu">stop</span>(<span class="st">"BOOKS_API_KEY is not configured"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Environment variables reduce accidental disclosure but do not replace secure secret storage, rotation, restricted permissions, and incident response. A client should request only the scopes it needs. A guide that reads public book data does not need permission to modify records.</p>
+</section>
+<section id="json-nested-objects-and-arrays" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="json-nested-objects-and-arrays"><span class="header-section-number">8.4.4</span> JSON: nested objects and arrays</h3>
+<p>JSON is a text interchange format built from objects, arrays, strings, numbers, booleans, and <code>null</code> <span class="citation" data-cites="bray2017json">(<a href="references.html#ref-bray2017json" role="doc-biblioref">Bray 2017</a>)</span>. Objects use name-value pairs; arrays contain ordered values.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"/works/OL123W"</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Mga Kuwentong Bayan"</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"authors"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"A. Dela Cruz"</span><span class="fu">,</span> <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"/authors/OL45A"</span><span class="fu">}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"first_publish_year"</span><span class="fu">:</span> <span class="dv">1998</span><span class="fu">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"languages"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"fil"</span><span class="ot">,</span> <span class="st">"eng"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"open_access"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="kw">null</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The top level is an object. <code>authors</code> is an array of objects; <code>languages</code> is an array of strings; <code>open_access</code> is logical; <code>description</code> is explicitly null. A rectangular table cannot represent every nested relationship without transformation. Flattening authors into one string is convenient but may discard identifiers and roles.</p>
+<p>In R, <code>jsonlite::fromJSON()</code> parses JSON into R objects <span class="citation" data-cites="jsonlite2026">(<a href="references.html#ref-jsonlite2026" role="doc-biblioref">Ooms 2026</a>)</span>:</p>
+<p>Before flattening, inspect names, types, nesting, optional fields, and nulls. An API may return no <code>author_name</code>, several authors, or different structures across record types.</p>
+</section>
+<section id="xml-and-namespaces" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="xml-and-namespaces"><span class="header-section-number">8.4.5</span> XML and namespaces</h3>
+<p>XML represents nested elements, attributes, and text <span class="citation" data-cites="w3c2008xml">(<a href="references.html#ref-w3c2008xml" role="doc-biblioref">World Wide Web Consortium 2008</a>)</span>. Library standards frequently use XML, including MARCXML, Dublin Core exchanges, OAI-PMH responses, and some authority services.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode xml code-with-copy"><code class="sourceCode xml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">record</span> <span class="ot">xmlns:dc=</span><span class="st">"http://purl.org/dc/elements/1.1/"</span>&gt;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">dc:identifier</span>&gt;local:123&lt;/<span class="kw">dc:identifier</span>&gt;</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">dc:title</span> <span class="ot">xml:lang=</span><span class="st">"fil"</span>&gt;Mga Kuwentong Bayan&lt;/<span class="kw">dc:title</span>&gt;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">dc:creator</span>&gt;A. Dela Cruz&lt;/<span class="kw">dc:creator</span>&gt;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">dc:language</span>&gt;fil&lt;/<span class="kw">dc:language</span>&gt;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">record</span>&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>dc</code> prefix is bound to a namespace URI. The prefix itself can change while the namespace identity remains. Parsing XML by searching strings such as <code>&lt;dc:title&gt;</code> is fragile because whitespace, prefixes, attributes, and nesting can vary. Use an XML parser that understands namespaces.</p>
+<p>JSON and XML are serializations, not guarantees of semantics. A JSON property named <code>author</code> and an XML element named <code>creator</code> may or may not express the same rule. Interoperability requires documentation, schema mapping, and shared or reconciled vocabularies.</p>
+<p><a href="#tbl-json-xml" class="quarto-xref">Table&nbsp;<span>8.3</span></a> compares common characteristics without declaring a universal winner.</p>
+<div id="tbl-json-xml" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-json-xml-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.3: Selected characteristics of JSON and XML
+</figcaption>
+<div aria-describedby="tbl-json-xml-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-json-xml" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dimension</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">JSON</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">XML</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Basic structure</td>
+<td style="text-align: left;">Objects, arrays, names, and scalar values</td>
+<td style="text-align: left;">Elements, attributes, text, and ordered nesting</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metadata features</td>
+<td style="text-align: left;">No native namespaces; conventions or JSON-LD contexts add meaning</td>
+<td style="text-align: left;">Namespaces, schemas, mixed content, and attributes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Typical API use</td>
+<td style="text-align: left;">Common in contemporary web APIs</td>
+<td style="text-align: left;">Common in established standards and enterprise exchange</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LIS examples</td>
+<td style="text-align: left;">Search results, IIIF manifests, JSON-LD records</td>
+<td style="text-align: left;">MARCXML, OAI-PMH, METS, EAD</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Main caution</td>
+<td style="text-align: left;">Nested and optional data can be flattened incorrectly</td>
+<td style="text-align: left;">Namespace-unaware parsing and string manipulation are error-prone</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-json-xml" class="quarto-xref">Table&nbsp;<span>8.3</span></a> demonstrates, format selection follows service requirements, standards, tooling, and partner capacity.</p>
+</section>
+<section id="calling-a-read-only-api-in-r" class="level3" data-number="8.4.6">
+<h3 data-number="8.4.6" class="anchored" data-anchor-id="calling-a-read-only-api-in-r"><span class="header-section-number">8.4.6</span> Calling a read-only API in R</h3>
+<p>The <code>httr2</code> package provides a structured way to build HTTP requests and process responses <span class="citation" data-cites="httr22026">(<a href="references.html#ref-httr22026" role="doc-biblioref">Wickham 2026</a>)</span>. The following example is not executed during book rendering because external services can be unavailable or change.</p>
+<p>Open Library documents public APIs for searching and retrieving book-related data <span class="citation" data-cites="openlibrary2026api">(<a href="references.html#ref-openlibrary2026api" role="doc-biblioref">Internet Archive 2026</a>)</span>. Even when authentication is not required, a client should identify itself appropriately, limit traffic, cache responses when permitted, and follow published terms.</p>
+<p>The script should check more than status:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">resp_status</span>(response) <span class="sc">==</span> <span class="dv">200</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">is.list</span>(payload<span class="sc">$</span>docs))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(payload<span class="sc">$</span>docs) <span class="sc">&lt;=</span> <span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Do not assume every record contains every field. A safe extraction provides explicit missing values and preserves the source key:</p>
+<p>This extraction selects only fields needed for the guide. It does not claim to create a complete bibliographic record. Source identifiers and retrieval dates allow later verification.</p>
+</section>
+<section id="pagination-rate-limits-caching-and-change" class="level3" data-number="8.4.7">
+<h3 data-number="8.4.7" class="anchored" data-anchor-id="pagination-rate-limits-caching-and-change"><span class="header-section-number">8.4.7</span> Pagination, rate limits, caching, and change</h3>
+<p>APIs rarely return every matching record in one response. <strong>Pagination</strong> may use page numbers, offsets, cursors, or continuation tokens. The response may include <code>next</code>, <code>total</code>, or limit information. A client should stop deliberately and detect repeated tokens to avoid an infinite loop.</p>
+<p>Rate limits protect shared services. A <code>429</code> response often indicates that the client should wait, reduce its request frequency, or consult a response header. Adding many parallel requests can worsen the problem. Caching a permitted response reduces network use and supports reproducibility, but cached data need a retrieval date and refresh policy.</p>
+<p>APIs evolve. Fields can be added, renamed, restructured, or deprecated. Versioned endpoints help but do not eliminate change. A sustainable integration requires:</p>
+<ul>
+<li>schema and sample-response tests;</li>
+<li>timeouts and bounded retries;</li>
+<li>logs without secrets or unnecessary personal data;</li>
+<li>a cached or saved raw response when licensing permits;</li>
+<li>clear failure display rather than stale data presented as current;</li>
+<li>an owner who monitors documentation and service notices;</li>
+<li>a fallback or exit plan.</li>
+</ul>
+</section>
+<section id="from-identifiers-to-linked-data" class="level3" data-number="8.4.8">
+<h3 data-number="8.4.8" class="anchored" data-anchor-id="from-identifiers-to-linked-data"><span class="header-section-number">8.4.8</span> From identifiers to linked data</h3>
+<p>Traditional records often store labels: <code>Manila</code>, <code>Jose Rizal</code>, or <code>Children's literature</code>. Labels are ambiguous and vary by language and time. Linked data uses identifiers for things and properties, while retaining labels for people.</p>
+<p>The foundational linked-data guidance recommends using HTTP identifiers, providing useful information when identifiers are looked up, and linking to other identifiers <span class="citation" data-cites="bernerslee2006linkeddata">(<a href="references.html#ref-bernerslee2006linkeddata" role="doc-biblioref">Berners-Lee 2006</a>)</span>. An identifier is not automatically correct or permanent, but it provides a reference that systems can distinguish from a text label.</p>
+<p>Persistent identifier systems include DOI for digital objects, ORCID for researchers, and locally governed archival or authority identifiers. Persistence is an organizational promise supported by governance and redirection, not a visual property of a URL <span class="citation" data-cites="doi2026handbook">(<a href="references.html#ref-doi2026handbook" role="doc-biblioref">International DOI Foundation 2026</a>)</span>.</p>
+</section>
+<section id="rdf-triples-statements-as-a-graph" class="level3" data-number="8.4.9">
+<h3 data-number="8.4.9" class="anchored" data-anchor-id="rdf-triples-statements-as-a-graph"><span class="header-section-number">8.4.9</span> RDF triples: statements as a graph</h3>
+<p>RDF represents statements as <strong>triples</strong>: subject, predicate, object <span class="citation" data-cites="w3c2014rdf">(<a href="references.html#ref-w3c2014rdf" role="doc-biblioref">World Wide Web Consortium 2014</a>)</span>. The subject is an identified resource. The predicate identifies a property or relationship. The object is another resource or a literal.</p>
+<pre class="text"><code>&lt;https://example.edu/work/123&gt;
+    &lt;http://purl.org/dc/terms/title&gt;
+    "Mga Kuwentong Bayan"@fil .
+
+&lt;https://example.edu/work/123&gt;
+    &lt;http://purl.org/dc/terms/creator&gt;
+    &lt;https://example.edu/person/45&gt; .</code></pre>
+<p>The first object is a Filipino-language literal. The second is another identified resource. Using a creator URI allows further statements about the person without repeating all details in every work record.</p>
+<p><a href="#fig-rdf-graph" class="quarto-xref">Figure&nbsp;<span>8.2</span></a> visualizes a small graph. Arrows are predicates, not unlabeled lines.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-rdf-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rdf-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-rdf-graph">flowchart LR
+    W["Work URI: /work/123"] --&gt;|"dcterms:title"| T["Mga Kuwentong Bayan @fil"]
+    W --&gt;|"dcterms:creator"| P["Person URI: /person/45"]
+    W --&gt;|"dcterms:subject"| S["Concept URI: /concept/folktales"]
+    W --&gt;|"bf:instanceOf"| I["Instance URI: /instance/789"]
+    P --&gt;|"rdfs:label"| N["A. Dela Cruz"]
+    S --&gt;|"skos:prefLabel"| L["Folk literature"]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rdf-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: A small bibliographic RDF graph
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-rdf-graph" class="quarto-xref">Figure&nbsp;<span>8.2</span></a> shows, a graph can connect work, instance, person, and concept while keeping labels and relationships distinct. BIBFRAME applies linked-data principles to bibliographic description and distinguishes conceptual and material aspects such as Work, Instance, and Item <span class="citation" data-cites="loc2024bibframe">(<a href="references.html#ref-loc2024bibframe" role="doc-biblioref">Library of Congress 2024</a>)</span>.</p>
+</section>
+<section id="vocabularies-ontologies-and-application-profiles" class="level3" data-number="8.4.10">
+<h3 data-number="8.4.10" class="anchored" data-anchor-id="vocabularies-ontologies-and-application-profiles"><span class="header-section-number">8.4.10</span> Vocabularies, ontologies, and application profiles</h3>
+<p>A vocabulary supplies identified terms; an ontology adds formal expression of classes, properties, relationships, and sometimes constraints. The difference is not always sharp in practice. DCMI Metadata Terms provides properties and classes useful across domains <span class="citation" data-cites="dcmi2020terms">(<a href="references.html#ref-dcmi2020terms" role="doc-biblioref">Dublin Core Metadata Initiative 2020</a>)</span>. BIBFRAME and RDA vocabularies express bibliographic entities and relationships <span class="citation" data-cites="loc2024bibframe rdaregistry2026">(<a href="references.html#ref-loc2024bibframe" role="doc-biblioref">Library of Congress 2024</a>; <a href="references.html#ref-rdaregistry2026" role="doc-biblioref">RDA Steering Committee 2026</a>)</span>.</p>
+<p>Reusing a vocabulary does not mean using every term. An <strong>application profile</strong> identifies which terms a service uses, whether they are required or repeatable, their expected value types, and local constraints. Chapter 4’s distinction among element sets, value vocabularies, content rules, and encodings remains essential.</p>
+<p>The Library of Congress Linked Data Service publishes authorities and vocabularies as dereferenceable identifiers <span class="citation" data-cites="loc2026id">(<a href="references.html#ref-loc2026id" role="doc-biblioref">Library of Congress 2026</a>)</span>. Linking a local subject to an external authority can improve reconciliation, but the local institution remains responsible for whether that concept represents the community appropriately.</p>
+</section>
+<section id="json-ld-linked-data-in-json" class="level3" data-number="8.4.11">
+<h3 data-number="8.4.11" class="anchored" data-anchor-id="json-ld-linked-data-in-json"><span class="header-section-number">8.4.11</span> JSON-LD: linked data in JSON</h3>
+<p>JSON-LD expresses RDF-compatible linked data using JSON syntax and a context that maps short terms to identifiers <span class="citation" data-cites="w3c2020jsonld">(<a href="references.html#ref-w3c2020jsonld" role="doc-biblioref">World Wide Web Consortium 2020</a>)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"dcterms"</span><span class="fu">:</span> <span class="st">"http://purl.org/dc/terms/"</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"dcterms:title"</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"dcterms:creator"</span><span class="fu">,</span> <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"@id"</span><span class="fu">}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"@id"</span><span class="fu">:</span> <span class="st">"https://example.edu/work/123"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"title"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"@value"</span><span class="fu">:</span> <span class="st">"Mga Kuwentong Bayan"</span><span class="fu">,</span> <span class="dt">"@language"</span><span class="fu">:</span> <span class="st">"fil"</span><span class="fu">},</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"creator"</span><span class="fu">:</span> <span class="st">"https://example.edu/person/45"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Without the context, <code>title</code> and <code>creator</code> are merely local JSON property names. The context connects them to DCMI properties and declares that the creator value is an identifier rather than ordinary text. Contexts must be governed and preserved; changing a mapping can change meaning without changing the visible short property name.</p>
+</section>
+<section id="sparql-asking-graph-shaped-questions" class="level3" data-number="8.4.12">
+<h3 data-number="8.4.12" class="anchored" data-anchor-id="sparql-asking-graph-shaped-questions"><span class="header-section-number">8.4.12</span> SPARQL: asking graph-shaped questions</h3>
+<p>SPARQL queries RDF graphs by matching triple patterns <span class="citation" data-cites="w3c2013sparql">(<a href="references.html#ref-w3c2013sparql" role="doc-biblioref">World Wide Web Consortium 2013</a>)</span>. A basic query uses prefixes, selects variables, and specifies patterns in a <code>WHERE</code> block:</p>
+<pre class="sparql"><code>PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;
+
+SELECT ?work ?title
+WHERE {
+  ?work dcterms:subject &lt;https://example.edu/concept/folktales&gt; ;
+        dcterms:title ?title .
+  FILTER(LANG(?title) = "fil")
+}
+LIMIT 20</code></pre>
+<p>The semicolon reuses the same subject. The query asks for works associated with one concept and Filipino-language titles. SPARQL can join across relationships without flattening everything into one table. Public endpoints such as the Wikidata Query Service provide environments for learning, subject to service limits and data quality <span class="citation" data-cites="wikidata2026query">(<a href="references.html#ref-wikidata2026query" role="doc-biblioref">Wikimedia Foundation 2026</a>)</span>.</p>
+<p>SPARQL results are not inherently authoritative. They reflect what is present in the graph, which identifiers were linked, and which modeling decisions were made.</p>
+</section>
+<section id="apis-harvesting-and-linked-data-are-different-tools" class="level3" data-number="8.4.13">
+<h3 data-number="8.4.13" class="anchored" data-anchor-id="apis-harvesting-and-linked-data-are-different-tools"><span class="header-section-number">8.4.13</span> APIs, harvesting, and linked data are different tools</h3>
+<p><a href="#tbl-exchange-approaches" class="quarto-xref">Table&nbsp;<span>8.4</span></a> distinguishes several mechanisms encountered in LIS.</p>
+<div id="tbl-exchange-approaches" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exchange-approaches-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.4: Selected approaches to data exchange and query
+</figcaption>
+<div aria-describedby="tbl-exchange-approaches-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-exchange-approaches" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Approach</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Primary use</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strength</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Main caution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">REST-style API</td>
+<td style="text-align: left;">Request resources or operations through HTTP</td>
+<td style="text-align: left;">Flexible application integration</td>
+<td style="text-align: left;">Version, limits, authentication, and vendor dependence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OAI-PMH</td>
+<td style="text-align: left;">Harvest repository metadata incrementally</td>
+<td style="text-align: left;">Established repository harvesting protocol</td>
+<td style="text-align: left;">Metadata-only exchange and variable source quality</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IIIF Presentation API</td>
+<td style="text-align: left;">Describe and present digital objects and their structure</td>
+<td style="text-align: left;">Interoperable image and audiovisual presentation</td>
+<td style="text-align: left;">Manifest interpretation, rights, and media-service dependencies</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SPARQL endpoint</td>
+<td style="text-align: left;">Query RDF graphs by relationship patterns</td>
+<td style="text-align: left;">Graph traversal and semantic joins</td>
+<td style="text-align: left;">Endpoint load, modeling complexity, and uneven links</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bulk data export</td>
+<td style="text-align: left;">Transfer a complete or scheduled dataset snapshot</td>
+<td style="text-align: left;">Efficient reproducible processing at scale</td>
+<td style="text-align: left;">Freshness, secure transfer, storage, and schema drift</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-exchange-approaches" class="quarto-xref">Table&nbsp;<span>8.4</span></a> shows, an API is not automatically more modern or appropriate than harvesting or bulk export. Repositories may expose OAI-PMH for aggregation <span class="citation" data-cites="oai2008pmh">(<a href="references.html#ref-oai2008pmh" role="doc-biblioref">Open Archives Initiative 2008</a>)</span>. Digital collections may publish IIIF manifests for interoperable presentation <span class="citation" data-cites="iiif2024presentation">(<a href="references.html#ref-iiif2024presentation" role="doc-biblioref">IIIF Consortium 2024</a>)</span>. Large research datasets may be more responsibly distributed as versioned bulk files than through millions of API calls.</p>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">8.5</span> Philippine and Southeast Asian examples</h2>
+<section id="academic-library-an-api-powered-subject-guide" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="academic-library-an-api-powered-subject-guide"><span class="header-section-number">8.5.1</span> Academic library: an API-powered subject guide</h3>
+<p>A Philippine university library builds a guide to disaster-risk-reduction publications. A script queries an open bibliographic API for candidate titles, stores the raw response and retrieval date, and produces a review table. Librarians verify local relevance, editions, creator names, rights, and links before publication. The guide labels external data sources and includes locally catalogued government reports that the API does not cover.</p>
+</section>
+<section id="national-and-local-authority-work" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="national-and-local-authority-work"><span class="header-section-number">8.5.2</span> National and local authority work</h3>
+<p>Libraries and archives may reconcile names of Philippine agencies across reorganizations. A knowledge graph can represent that one agency succeeded another, used an earlier name during a period, and issued particular records. The model should preserve dates, source evidence, and uncertainty. It should not merge organizations only because acronyms match.</p>
+</section>
+<section id="cultural-heritage-and-community-identifiers" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="cultural-heritage-and-community-identifiers"><span class="header-section-number">8.5.3</span> Cultural heritage and community identifiers</h3>
+<p>A regional museum portal links objects to place and community identifiers. External global datasets improve cross-institution discovery but may contain colonial names, disputed boundaries, or categories rejected by communities. The portal preserves local preferred labels, records external matches with provenance and confidence, and allows contributing institutions to reject or revise links.</p>
+</section>
+<section id="public-library-mobile-service" class="level3" data-number="8.5.4">
+<h3 data-number="8.5.4" class="anchored" data-anchor-id="public-library-mobile-service"><span class="header-section-number">8.5.4</span> Public library mobile service</h3>
+<p>A city library’s mobile page calls an API for branch hours and service alerts. The interface caches the last successful response for low-bandwidth use but clearly displays when it was updated. If the API fails, the page shows a telephone and text-message contact rather than an empty schedule. Operational data are separated from patron account data.</p>
+</section>
+<section id="government-open-data-integration" class="level3" data-number="8.5.5">
+<h3 data-number="8.5.5" class="anchored" data-anchor-id="government-open-data-integration"><span class="header-section-number">8.5.5</span> Government open-data integration</h3>
+<p>A civic information service combines agency datasets. Similar field names such as <code>location</code>, <code>region</code>, and <code>office</code> do not necessarily have the same meaning. The team publishes a data dictionary and transformation log, retains source identifiers, checks licenses, and avoids joining personal records merely because technical identifiers make linkage possible.</p>
+<blockquote class="blockquote">
+<p><strong>Reflect:</strong> Name two datasets that could improve a local information service if linked. What identifier would connect them, and what harm could result from an incorrect or excessive link?</p>
+</blockquote>
+</section>
+</section>
+<section id="hands-on-activity-build-an-api-powered-subject-guide-dataset" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="hands-on-activity-build-an-api-powered-subject-guide-dataset"><span class="header-section-number">8.6</span> Hands-on activity: Build an API-powered subject-guide dataset</h2>
+<section id="purpose" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">8.6.1</span> Purpose</h3>
+<p>Retrieve a small public API response, preserve the raw data, extract selected fields, document provenance and limitations, and produce a review-ready subject-guide table. This lab can complete the database or API mini-project.</p>
+</section>
+<section id="tools" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">8.6.2</span> Tools</h3>
+<ul>
+<li>R and Quarto;</li>
+<li>packages <code>httr2</code>, <code>jsonlite</code>, <code>dplyr</code>, <code>readr</code>, and <code>knitr</code>;</li>
+<li>the official Open Library API documentation <span class="citation" data-cites="openlibrary2026api">(<a href="references.html#ref-openlibrary2026api" role="doc-biblioref">Internet Archive 2026</a>)</span>;</li>
+<li>a topic connected to an LIS service, such as local history, children’s literature, archives, preservation, media literacy, or disaster information.</li>
+</ul>
+</section>
+<section id="steps" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">8.6.3</span> Steps</h3>
+<ol type="1">
+<li>Write a one-sentence audience and information need. Define inclusion and exclusion criteria before requesting data.</li>
+<li>Read the API documentation. Record endpoint, parameters, fields, authentication, rate limits, pagination, terms, and attribution requirements.</li>
+<li>Design a request for no more than 20 results and only necessary fields. Use <code>GET</code>, a descriptive user agent, HTTPS, and a timeout.</li>
+<li>Run the request once. Record retrieval time, final URL without secrets, HTTP status, relevant headers, and the source’s documentation URL.</li>
+<li>Save the raw JSON response unchanged as <code>data/raw_response_YYYY-MM-DD.json</code> if the terms permit.</li>
+<li>Inspect structure before flattening. Note missing fields, arrays, nested objects, identifiers, and nulls.</li>
+<li>Extract source key, title, first creator, first publication year, language values, and one source link. Preserve multiple values or document how they were reduced.</li>
+<li>Add local fields: <code>selection_status</code>, <code>selection_reason</code>, <code>verified_by</code>, <code>verified_date</code>, and <code>local_note</code>. Do not present API results as endorsed resources before review.</li>
+<li>Validate row count, unique source keys, required titles, plausible years, and valid source URLs. Send anomalies to an exception table.</li>
+<li>Produce a review table and a separate five-item publishable table. Include source attribution and retrieval date.</li>
+<li>Express one selected book, creator, and topic as at least five RDF-like triples. Distinguish URI objects from literals and add a language tag where appropriate.</li>
+<li>Render a Quarto report containing method, request documentation, data dictionary, tables, limitations, ethics, and maintenance plan.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="8.6.4">
+<h3 data-number="8.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">8.6.4</span> Expected output</h3>
+<p>Submit:</p>
+<ul>
+<li>a reproducible <code>.qmd</code> report and rendered HTML or DOCX;</li>
+<li>saved raw response, subject to source terms;</li>
+<li>cleaned CSV and exception CSV;</li>
+<li>request and response metadata without credentials;</li>
+<li>data dictionary and attribution statement;</li>
+<li>five RDF-like triples with namespace notes;</li>
+<li>five reviewed subject-guide entries; and</li>
+<li>a 200-word reflection: <strong>What meaning was lost or added when the API response became a local guide?</strong></li>
+</ul>
+</section>
+<section id="lab-checklist" class="level3" data-number="8.6.5">
+<h3 data-number="8.6.5" class="anchored" data-anchor-id="lab-checklist"><span class="header-section-number">8.6.5</span> Lab checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">The information need and selection criteria precede the request.</label></li>
+<li><label><input type="checkbox">Official API documentation and terms were consulted.</label></li>
+<li><label><input type="checkbox">The request is bounded, read-only, identified, and reproducible.</label></li>
+<li><label><input type="checkbox">Raw data and retrieval metadata are preserved when permitted.</label></li>
+<li><label><input type="checkbox">Nested and repeated values are handled explicitly.</label></li>
+<li><label><input type="checkbox">External identifiers remain attached to transformed records.</label></li>
+<li><label><input type="checkbox">Errors, missing fields, and exceptions are visible.</label></li>
+<li><label><input type="checkbox">Results receive human selection and verification.</label></li>
+<li><label><input type="checkbox">Attribution and limitations appear in the output.</label></li>
+<li><label><input type="checkbox">Credentials and unnecessary personal data are absent.</label></li>
+</ul>
+</section>
+<section id="assessment-rubric" class="level3" data-number="8.6.6">
+<h3 data-number="8.6.6" class="anchored" data-anchor-id="assessment-rubric"><span class="header-section-number">8.6.6</span> Assessment rubric</h3>
+<p><a href="#tbl-api-lab-rubric" class="quarto-xref">Table&nbsp;<span>8.5</span></a> emphasizes service reasoning and responsible data handling alongside technical execution.</p>
+<div id="tbl-api-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-api-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.5: Rubric for the API-powered subject-guide mini-project
+</figcaption>
+<div aria-describedby="tbl-api-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-api-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strong performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Service question and source</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Audience, criteria, API fitness, scope, and terms are justified</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Request and error handling</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Request is bounded and reproducible; status, limits, timeouts, and failures are handled</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Transformation and validation</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">Raw data and identifiers are preserved; nesting, missingness, and exceptions are explicit</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Linked-data modeling</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Triples distinguish resources and literals and reuse terms with documented meaning</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Documentation, ethics, and sustainability</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Attribution, provenance, privacy, bias, accessibility, maintenance, and fallback are addressed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-linkage-consent-and-contextual-integrity" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="ethical-and-professional-issue-linkage-consent-and-contextual-integrity"><span class="header-section-number">8.7</span> Ethical and professional issue: linkage, consent, and contextual integrity</h2>
+<p>Linked data can make relationships visible, but visibility is not always harmless. Connecting an archival name to a current identity, a historical address to a household, or a community object to a sacred place can expose people or knowledge beyond the context in which information was provided. Public availability in one database does not automatically justify aggregation, enrichment, or republication in another.</p>
+<p>APIs also make extraction scalable. A website intended for individual lookup may expose an API that enables bulk profiling. Technical access is not the same as ethical permission. Professionals must examine law, license, consent, expectations, community protocols, and the consequences of combination.</p>
+<p>Responsible API and linked-data practice includes:</p>
+<ul>
+<li>collect only fields necessary for the stated service;</li>
+<li>distinguish identifiers, assertions, labels, and inferred links;</li>
+<li>record source, retrieval time, transformation, license, and confidence;</li>
+<li>retain local or community-preferred description when external links are added;</li>
+<li>avoid publishing precise sensitive locations or personal relationships without authority;</li>
+<li>provide correction, unlinking, and takedown routes;</li>
+<li>test for language, geographic, historical, and collection bias;</li>
+<li>do not expose API keys, tokens, patron identifiers, or query histories;</li>
+<li>review vendor reuse, analytics, retention, and cross-border processing;</li>
+<li>design a fallback when an external API changes or disappears.</li>
+</ul>
+<p>The Philippine Data Privacy Act applies when linked datasets contain personal information, including when separate fields become identifying through combination <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>. Data minimization and purpose limitation should guide both requests and published outputs.</p>
+<p>Machine-generated links require particular care. Entity reconciliation may assign a confidence score, but a high score is not evidence of consent or community acceptance. Namesakes, transliteration, changing boundaries, and organizational succession create plausible false matches. Use automated matching to produce candidates, preserve alternatives, and require appropriate review for consequential links.</p>
+<blockquote class="blockquote">
+<p><strong>Professional judgment prompt:</strong> A genealogy API can connect digitized school registers to living family trees. What lawful purpose, consent, time limits, access restrictions, accuracy controls, and community consultation would be required before a library enabled the connection?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">8.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> Distinguish endpoint, parameter, header, status code, and response body.</li>
+<li><strong>Identification:</strong> What is the difference between authentication and authorization?</li>
+<li><strong>Short answer:</strong> Why should a client preserve a raw response and retrieval metadata when source terms permit?</li>
+<li><strong>Short answer:</strong> Explain why JSON, an API, and RDF are not interchangeable terms.</li>
+<li><strong>Code reading:</strong> In a JSON record, <code>authors</code> is an array of objects. What information might be lost by keeping only the first author name?</li>
+<li><strong>Applied analysis:</strong> A service returns <code>429</code> with a retry header. What should the client do, and what should it avoid doing?</li>
+<li><strong>Applied modeling:</strong> Write three RDF-like triples connecting a digitized photograph, its photographer, and a depicted place. Identify resources and literals.</li>
+<li><strong>Scenario:</strong> A public API changes <code>author_name</code> from a string to an array. How should schema tests, error handling, and maintenance respond?</li>
+<li><strong>Scenario:</strong> A knowledge graph links two people because their romanized names and birth years match. What additional evidence and review are needed?</li>
+<li><strong>Critical analysis:</strong> When would bulk export be more appropriate than an API or SPARQL endpoint for an LIS project?</li>
+</ol>
+</section>
+<section id="mini-case-the-regional-heritage-graph" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="mini-case-the-regional-heritage-graph"><span class="header-section-number">8.9</span> Mini case: The regional heritage graph</h2>
+<p>Five Southeast Asian museums create a shared portal linking objects, makers, places, communities, and historical events. A contractor reconciles names against a global knowledge graph and automatically accepts matches above 90% confidence. The portal gains multilingual labels and external links, but it also merges two artists with similar romanized names, assigns present-day nationalities to people who lived before current borders, exposes the location of a sacred site, and replaces a community-preferred object name with a colonial term. Source institutions cannot see which statements came from them, the contractor, or the external graph.</p>
+<section id="guide-questions" class="level3" data-number="8.9.1">
+<h3 data-number="8.9.1" class="anchored" data-anchor-id="guide-questions"><span class="header-section-number">8.9.1</span> Guide questions</h3>
+<ol type="1">
+<li>Which failures involve identity, modeling, provenance, privacy, community authority, and workflow governance?</li>
+<li>How should the graph represent competing labels, historical jurisdictions, uncertain matches, and statement-level sources?</li>
+<li>Design a correction and approval workflow that preserves useful links without treating automated reconciliation as authoritative.</li>
+</ol>
+</section>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">8.10</span> Further reading and tools</h2>
+<section id="readings-and-standards" class="level3" data-number="8.10.1">
+<h3 data-number="8.10.1" class="anchored" data-anchor-id="readings-and-standards"><span class="header-section-number">8.10.1</span> Readings and standards</h3>
+<ul>
+<li><strong>HTTP Semantics.</strong> The authoritative specification for methods, statuses, headers, and HTTP behavior <span class="citation" data-cites="fielding2022http">(<a href="references.html#ref-fielding2022http" role="doc-biblioref">Fielding et al. 2022</a>)</span>.</li>
+<li><strong>RFC 8259.</strong> The JSON data interchange specification <span class="citation" data-cites="bray2017json">(<a href="references.html#ref-bray2017json" role="doc-biblioref">Bray 2017</a>)</span>.</li>
+<li><strong>XML 1.0.</strong> The W3C recommendation for XML syntax <span class="citation" data-cites="w3c2008xml">(<a href="references.html#ref-w3c2008xml" role="doc-biblioref">World Wide Web Consortium 2008</a>)</span>.</li>
+<li><strong>RDF 1.1 Concepts and Abstract Syntax.</strong> The core RDF data model <span class="citation" data-cites="w3c2014rdf">(<a href="references.html#ref-w3c2014rdf" role="doc-biblioref">World Wide Web Consortium 2014</a>)</span>.</li>
+<li><strong>SPARQL 1.1 Query Language.</strong> The W3C recommendation for querying RDF <span class="citation" data-cites="w3c2013sparql">(<a href="references.html#ref-w3c2013sparql" role="doc-biblioref">World Wide Web Consortium 2013</a>)</span>.</li>
+<li><strong>JSON-LD 1.1.</strong> A JSON-based serialization for linked data <span class="citation" data-cites="w3c2020jsonld">(<a href="references.html#ref-w3c2020jsonld" role="doc-biblioref">World Wide Web Consortium 2020</a>)</span>.</li>
+<li><strong>BIBFRAME 2.0 Model.</strong> Library of Congress documentation for a bibliographic linked-data model <span class="citation" data-cites="loc2024bibframe">(<a href="references.html#ref-loc2024bibframe" role="doc-biblioref">Library of Congress 2024</a>)</span>.</li>
+<li><strong>DCMI Metadata Terms.</strong> Reusable properties and classes for resource description <span class="citation" data-cites="dcmi2020terms">(<a href="references.html#ref-dcmi2020terms" role="doc-biblioref">Dublin Core Metadata Initiative 2020</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-or-widely-accessible-tools" class="level3" data-number="8.10.2">
+<h3 data-number="8.10.2" class="anchored" data-anchor-id="open-or-widely-accessible-tools"><span class="header-section-number">8.10.2</span> Open or widely accessible tools</h3>
+<ul>
+<li><strong>Open Library APIs:</strong> public book and catalogue-related interfaces for bounded learning projects <span class="citation" data-cites="openlibrary2026api">(<a href="references.html#ref-openlibrary2026api" role="doc-biblioref">Internet Archive 2026</a>)</span>.</li>
+<li><strong>Library of Congress Linked Data Service:</strong> browsable and machine-readable authority and vocabulary data <span class="citation" data-cites="loc2026id">(<a href="references.html#ref-loc2026id" role="doc-biblioref">Library of Congress 2026</a>)</span>.</li>
+<li><strong>Wikidata Query Service:</strong> a public SPARQL learning and exploration environment <span class="citation" data-cites="wikidata2026query">(<a href="references.html#ref-wikidata2026query" role="doc-biblioref">Wikimedia Foundation 2026</a>)</span>.</li>
+<li><strong>httr2 and jsonlite:</strong> R packages for HTTP requests and JSON processing <span class="citation" data-cites="httr22026 jsonlite2026">(<a href="references.html#ref-httr22026" role="doc-biblioref">Wickham 2026</a>; <a href="references.html#ref-jsonlite2026" role="doc-biblioref">Ooms 2026</a>)</span>.</li>
+<li><strong>Postman, Insomnia, or Bruno:</strong> graphical clients for inspecting API requests and responses; do not save secrets in shared workspaces.</li>
+<li><strong>RDF playgrounds and validators:</strong> useful for checking syntax, but sensitive institutional data should not be pasted into external services.</li>
+</ul>
+</section>
+<section id="closing-synthesis" class="level3" data-number="8.10.3">
+<h3 data-number="8.10.3" class="anchored" data-anchor-id="closing-synthesis"><span class="header-section-number">8.10.3</span> Closing synthesis</h3>
+<p>APIs make functions and data addressable across systems. JSON and XML encode responses. Identifiers distinguish resources from labels. RDF expresses statements as graph relationships. Vocabularies contribute shared meaning, JSON-LD carries that meaning in JSON, and SPARQL asks questions across graphs. Each layer solves a different problem.</p>
+<p>For LIS professionals, successful integration is not simply receiving a <code>200</code> status or producing a dense network visualization. The relevant question is: <strong>Can users and maintainers understand where the data came from, what each relationship means, which values were transformed, what the source permits, which people or communities could be harmed, and what happens when the external service changes?</strong> Chapter 9 turns from data exchange to the experience of people using these services, emphasizing usability, accessibility, responsive design, and mobile contexts.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-bernerslee2006linkeddata" class="csl-entry" role="listitem">
+Berners-Lee, Tim. 2006. <em>Linked Data—Design Issues</em>. <a href="https://www.w3.org/DesignIssues/LinkedData.html">https://www.w3.org/DesignIssues/LinkedData.html</a>.
+</div>
+<div id="ref-bray2017json" class="csl-entry" role="listitem">
+Bray, Tim. 2017. <em>The JavaScript Object Notation (JSON) Data Interchange Format</em>. RFC No. 8259. Internet Engineering Task Force. <a href="https://doi.org/10.17487/RFC8259">https://doi.org/10.17487/RFC8259</a>.
+</div>
+<div id="ref-dcmi2020terms" class="csl-entry" role="listitem">
+Dublin Core Metadata Initiative. 2020. <em>DCMI Metadata Terms</em>. <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/">https://www.dublincore.org/specifications/dublin-core/dcmi-terms/</a>.
+</div>
+<div id="ref-fielding2022http" class="csl-entry" role="listitem">
+Fielding, Roy T., Mark Nottingham, and Julian Reschke. 2022. <em>HTTP Semantics</em>. RFC No. 9110. Internet Engineering Task Force. <a href="https://doi.org/10.17487/RFC9110">https://doi.org/10.17487/RFC9110</a>.
+</div>
+<div id="ref-iiif2024presentation" class="csl-entry" role="listitem">
+IIIF Consortium. 2024. <em>IIIF Presentation API 3.0</em>. <a href="https://iiif.io/api/presentation/3.0/">https://iiif.io/api/presentation/3.0/</a>.
+</div>
+<div id="ref-doi2026handbook" class="csl-entry" role="listitem">
+International DOI Foundation. 2026. <em>DOI Handbook</em>. <a href="https://www.doi.org/the-identifier/resources/handbook">https://www.doi.org/the-identifier/resources/handbook</a>.
+</div>
+<div id="ref-openlibrary2026api" class="csl-entry" role="listitem">
+Internet Archive. 2026. <em>Open Library APIs</em>. <a href="https://openlibrary.org/developers/api">https://openlibrary.org/developers/api</a>.
+</div>
+<div id="ref-loc2024bibframe" class="csl-entry" role="listitem">
+Library of Congress. 2024. <em>BIBFRAME 2.0 Model</em>. <a href="https://www.loc.gov/bibframe/docs/bibframe2-model.html">https://www.loc.gov/bibframe/docs/bibframe2-model.html</a>.
+</div>
+<div id="ref-loc2026id" class="csl-entry" role="listitem">
+Library of Congress. 2026. <em>Linked Data Service: Authorities and Vocabularies</em>. <a href="https://id.loc.gov/">https://id.loc.gov/</a>.
+</div>
+<div id="ref-npc2023dpa" class="csl-entry" role="listitem">
+National Privacy Commission. 2023. <em>Data Privacy Act of 2012</em>. <a href="https://privacy.gov.ph/data-privacy-act/">https://privacy.gov.ph/data-privacy-act/</a>.
+</div>
+<div id="ref-jsonlite2026" class="csl-entry" role="listitem">
+Ooms, Jeroen. 2026. <em>Jsonlite: A Simple and Robust JSON Parser and Generator for r</em>. <a href="https://jeroen.r-universe.dev/jsonlite/">https://jeroen.r-universe.dev/jsonlite/</a>.
+</div>
+<div id="ref-oai2008pmh" class="csl-entry" role="listitem">
+Open Archives Initiative. 2008. <em>The Open Archives Initiative Protocol for Metadata Harvesting, Version 2.0</em>. <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">https://www.openarchives.org/OAI/openarchivesprotocol.html</a>.
+</div>
+<div id="ref-rdaregistry2026" class="csl-entry" role="listitem">
+RDA Steering Committee. 2026. <em>RDA Registry</em>. <a href="https://www.rdaregistry.info/">https://www.rdaregistry.info/</a>.
+</div>
+<div id="ref-philippines2012dpa" class="csl-entry" role="listitem">
+Republic of the Philippines. 2012. <em>Republic Act No. 10173: Data Privacy Act of 2012</em>. <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html">https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html</a>.
+</div>
+<div id="ref-httr22026" class="csl-entry" role="listitem">
+Wickham, Hadley. 2026. <em>Httr2: Perform HTTP Requests and Process the Responses</em>. <a href="https://httr2.r-lib.org/">https://httr2.r-lib.org/</a>.
+</div>
+<div id="ref-wikidata2026query" class="csl-entry" role="listitem">
+Wikimedia Foundation. 2026. <em>Wikidata Query Service User Manual</em>. <a href="https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual">https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual</a>.
+</div>
+<div id="ref-w3c2008xml" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2008. <em>Extensible Markup Language (XML) 1.0, Fifth Edition</em>. <a href="https://www.w3.org/TR/xml/">https://www.w3.org/TR/xml/</a>.
+</div>
+<div id="ref-w3c2013sparql" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2013. <em>SPARQL 1.1 Query Language</em>. <a href="https://www.w3.org/TR/sparql11-query/">https://www.w3.org/TR/sparql11-query/</a>.
+</div>
+<div id="ref-w3c2014rdf" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2014. <em>RDF 1.1 Concepts and Abstract Syntax</em>. <a href="https://www.w3.org/TR/rdf11-concepts/">https://www.w3.org/TR/rdf11-concepts/</a>.
+</div>
+<div id="ref-w3c2020jsonld" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2020. <em>JSON-LD 1.1: A JSON-Based Serialization for Linked Data</em>. <a href="https://www.w3.org/TR/json-ld11/">https://www.w3.org/TR/json-ld11/</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-07-programming-automation.html" class="pagination-link" aria-label="Programming for LIS and Automation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-09-ux-accessibility-mobile.html" class="pagination-link" aria-label="UX, Accessibility, and Mobile Library Services">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

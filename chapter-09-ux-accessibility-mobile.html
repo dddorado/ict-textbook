@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; UX, Accessibility, and Mobile Library Services – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-10-digital-preservation-cloud.html" rel="next">
+<link href="./chapter-08-apis-linked-data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-09-ux-accessibility-mobile.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">9.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">9.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">9.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">9.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#ux-is-the-service-not-only-the-screen" id="toc-ux-is-the-service-not-only-the-screen" class="nav-link" data-scroll-target="#ux-is-the-service-not-only-the-screen"><span class="header-section-number">9.4.1</span> UX is the service, not only the screen</a></li>
+  <li><a href="#the-evidence-based-design-cycle" id="toc-the-evidence-based-design-cycle" class="nav-link" data-scroll-target="#the-evidence-based-design-cycle"><span class="header-section-number">9.4.2</span> The evidence-based design cycle</a></li>
+  <li><a href="#researching-people-without-inventing-a-typical-user" id="toc-researching-people-without-inventing-a-typical-user" class="nav-link" data-scroll-target="#researching-people-without-inventing-a-typical-user"><span class="header-section-number">9.4.3</span> Researching people without inventing a typical user</a></li>
+  <li><a href="#tasks-and-scenarios" id="toc-tasks-and-scenarios" class="nav-link" data-scroll-target="#tasks-and-scenarios"><span class="header-section-number">9.4.4</span> Tasks and scenarios</a></li>
+  <li><a href="#information-architecture-and-metadata-language" id="toc-information-architecture-and-metadata-language" class="nav-link" data-scroll-target="#information-architecture-and-metadata-language"><span class="header-section-number">9.4.5</span> Information architecture and metadata language</a></li>
+  <li><a href="#plain-language-and-multilingual-content" id="toc-plain-language-and-multilingual-content" class="nav-link" data-scroll-target="#plain-language-and-multilingual-content"><span class="header-section-number">9.4.6</span> Plain language and multilingual content</a></li>
+  <li><a href="#accessibility-and-disability" id="toc-accessibility-and-disability" class="nav-link" data-scroll-target="#accessibility-and-disability"><span class="header-section-number">9.4.7</span> Accessibility and disability</a></li>
+  <li><a href="#wcag-2.2-and-pour" id="toc-wcag-2.2-and-pour" class="nav-link" data-scroll-target="#wcag-2.2-and-pour"><span class="header-section-number">9.4.8</span> WCAG 2.2 and POUR</a></li>
+  <li><a href="#alternative-text-and-complex-cultural-objects" id="toc-alternative-text-and-complex-cultural-objects" class="nav-link" data-scroll-target="#alternative-text-and-complex-cultural-objects"><span class="header-section-number">9.4.9</span> Alternative text and complex cultural objects</a></li>
+  <li><a href="#keyboard-access-and-focus" id="toc-keyboard-access-and-focus" class="nav-link" data-scroll-target="#keyboard-access-and-focus"><span class="header-section-number">9.4.10</span> Keyboard access and focus</a></li>
+  <li><a href="#accessible-forms-and-authentication" id="toc-accessible-forms-and-authentication" class="nav-link" data-scroll-target="#accessible-forms-and-authentication"><span class="header-section-number">9.4.11</span> Accessible forms and authentication</a></li>
+  <li><a href="#responsive-and-mobile-first-services" id="toc-responsive-and-mobile-first-services" class="nav-link" data-scroll-target="#responsive-and-mobile-first-services"><span class="header-section-number">9.4.12</span> Responsive and mobile-first services</a></li>
+  <li><a href="#performance-is-an-access-issue" id="toc-performance-is-an-access-issue" class="nav-link" data-scroll-target="#performance-is-an-access-issue"><span class="header-section-number">9.4.13</span> Performance is an access issue</a></li>
+  <li><a href="#testing-methods-no-single-tool-is-enough" id="toc-testing-methods-no-single-tool-is-enough" class="nav-link" data-scroll-target="#testing-methods-no-single-tool-is-enough"><span class="header-section-number">9.4.14</span> Testing methods: no single tool is enough</a></li>
+  <li><a href="#prioritizing-findings" id="toc-prioritizing-findings" class="nav-link" data-scroll-target="#prioritizing-findings"><span class="header-section-number">9.4.15</span> Prioritizing findings</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">9.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#academic-library-off-campus-article-access" id="toc-academic-library-off-campus-article-access" class="nav-link" data-scroll-target="#academic-library-off-campus-article-access"><span class="header-section-number">9.5.1</span> Academic library: off-campus article access</a></li>
+  <li><a href="#public-library-multilingual-branch-information" id="toc-public-library-multilingual-branch-information" class="nav-link" data-scroll-target="#public-library-multilingual-branch-information"><span class="header-section-number">9.5.2</span> Public library: multilingual branch information</a></li>
+  <li><a href="#school-library-shared-devices-and-privacy" id="toc-school-library-shared-devices-and-privacy" class="nav-link" data-scroll-target="#school-library-shared-devices-and-privacy"><span class="header-section-number">9.5.3</span> School library: shared devices and privacy</a></li>
+  <li><a href="#government-information-service-accessible-forms" id="toc-government-information-service-accessible-forms" class="nav-link" data-scroll-target="#government-information-service-accessible-forms"><span class="header-section-number">9.5.4</span> Government information service: accessible forms</a></li>
+  <li><a href="#regional-cultural-heritage-exhibit" id="toc-regional-cultural-heritage-exhibit" class="nav-link" data-scroll-target="#regional-cultural-heritage-exhibit"><span class="header-section-number">9.5.5</span> Regional cultural heritage exhibit</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-conduct-a-mobile-ux-and-accessibility-critique" id="toc-hands-on-activity-conduct-a-mobile-ux-and-accessibility-critique" class="nav-link" data-scroll-target="#hands-on-activity-conduct-a-mobile-ux-and-accessibility-critique"><span class="header-section-number">9.6</span> Hands-on activity: Conduct a mobile UX and accessibility critique</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">9.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">9.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">9.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">9.6.4</span> Expected output</a></li>
+  <li><a href="#lab-checklist" id="toc-lab-checklist" class="nav-link" data-scroll-target="#lab-checklist"><span class="header-section-number">9.6.5</span> Lab checklist</a></li>
+  <li><a href="#assessment-rubric" id="toc-assessment-rubric" class="nav-link" data-scroll-target="#assessment-rubric"><span class="header-section-number">9.6.6</span> Assessment rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-surveillance-dark-patterns-and-digital-exclusion" id="toc-ethical-and-professional-issue-surveillance-dark-patterns-and-digital-exclusion" class="nav-link" data-scroll-target="#ethical-and-professional-issue-surveillance-dark-patterns-and-digital-exclusion"><span class="header-section-number">9.7</span> Ethical and professional issue: surveillance, dark patterns, and digital exclusion</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">9.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-one-box-redesign" id="toc-mini-case-the-one-box-redesign" class="nav-link" data-scroll-target="#mini-case-the-one-box-redesign"><span class="header-section-number">9.9</span> Mini case: The one-box redesign</a>
+  <ul class="collapse">
+  <li><a href="#guide-questions" id="toc-guide-questions" class="nav-link" data-scroll-target="#guide-questions"><span class="header-section-number">9.9.1</span> Guide questions</a></li>
+  </ul></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">9.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#readings-and-standards" id="toc-readings-and-standards" class="nav-link" data-scroll-target="#readings-and-standards"><span class="header-section-number">9.10.1</span> Readings and standards</a></li>
+  <li><a href="#open-or-widely-accessible-tools" id="toc-open-or-widely-accessible-tools" class="nav-link" data-scroll-target="#open-or-widely-accessible-tools"><span class="header-section-number">9.10.2</span> Open or widely accessible tools</a></li>
+  <li><a href="#closing-synthesis" id="toc-closing-synthesis" class="nav-link" data-scroll-target="#closing-synthesis"><span class="header-section-number">9.10.3</span> Closing synthesis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">9.1</span> Chapter overview</h2>
+<p>A student opens the university library discovery service on a low-cost phone while riding home. The search box fits the screen, but a cookie notice covers the search button. The results page loads several megabytes of images. Filters are hidden behind an unlabeled icon. The student finds an article, yet the sign-in form loses entered text when the connection drops. Another student using a keyboard cannot reach the date filter, while a screen-reader user hears five links all announced as “Read more.” The site is technically online, but the service is not equally usable.</p>
+<p>The central problem of this chapter is <strong>how to design and evaluate information services so that people with varied goals, abilities, devices, languages, connections, and circumstances can complete meaningful tasks with dignity and control</strong>. User experience (UX) is not decoration. It includes the complete encounter with a service: discovering that it exists, understanding its scope, navigating it, interpreting metadata, authenticating, obtaining content, recovering from errors, asking for help, and deciding whether to trust the institution.</p>
+<p>Accessibility is also not a checklist added after design. It is the requirement that people with disabilities can perceive, operate, understand, and use a service, including through assistive technologies. Mobile design is more than shrinking desktop pages. It requires prioritizing tasks, supporting touch and keyboard interaction, minimizing data and battery costs, tolerating interruption, and making status and recovery visible.</p>
+<p>LIS professionals shape UX through metadata labels, search defaults, navigation, content, forms, policies, procurement, support, and assessment. A vendor may write the interface code, but the library remains responsible for the service it offers. This chapter introduces user research, task analysis, information architecture, usability testing, responsive and mobile-first design, plain language, assistive technology, WCAG 2.2, accessibility evaluation, and ethical UX research.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">9.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Distinguish</strong> user experience, usability, accessibility, inclusive design, and responsive design.</li>
+<li><strong>Construct</strong> a realistic task scenario, usability-test protocol, and observation guide for an LIS service.</li>
+<li><strong>Evaluate</strong> selected pages and workflows against relevant WCAG 2.2 success criteria using manual and automated checks.</li>
+<li><strong>Identify</strong> barriers involving navigation, metadata labels, content, forms, keyboard use, assistive technology, mobile layout, bandwidth, and error recovery.</li>
+<li><strong>Prioritize</strong> findings by user impact, frequency, task criticality, reach, and implementation effort.</li>
+<li><strong>Recommend</strong> a redesign that addresses evidence without collecting unnecessary personal data or excluding affected users.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">9.3</span> Key concepts</h2>
+<p><a href="#tbl-ux-key-concepts" class="quarto-xref">Table&nbsp;<span>9.1</span></a> establishes the working vocabulary. The terms overlap, but they answer different questions.</p>
+<div id="tbl-ux-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ux-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.1: Key concepts in UX, accessibility, and mobile design
+</figcaption>
+<div aria-describedby="tbl-ux-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ux-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">User experience</td>
+<td style="text-align: left;">A person's complete experience before, during, and after interacting with a product or service.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Usability</td>
+<td style="text-align: left;">The extent to which specified users achieve specified goals effectively, efficiently, and satisfactorily in context.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accessibility</td>
+<td style="text-align: left;">The quality of enabling people with disabilities to perceive, operate, understand, and robustly use a service.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inclusive design</td>
+<td style="text-align: left;">A process that includes varied people and edge conditions in design rather than assuming one typical user.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Universal design</td>
+<td style="text-align: left;">Design intended to be usable by the widest practical range of people without separate versions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">User research</td>
+<td style="text-align: left;">Systematic study of users, tasks, contexts, barriers, expectations, and outcomes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Stakeholder</td>
+<td style="text-align: left;">A person or group affected by or able to affect a service.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Persona</td>
+<td style="text-align: left;">A research-based representation of a user group used to focus design decisions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task</td>
+<td style="text-align: left;">A goal-directed activity a person attempts to complete.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scenario</td>
+<td style="text-align: left;">A concise context and goal given to a participant without prescribing steps.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Journey map</td>
+<td style="text-align: left;">A representation of stages, touchpoints, decisions, emotions, evidence, and failures in a service experience.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Information architecture</td>
+<td style="text-align: left;">The organization, naming, relationships, and navigation of information spaces.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Navigation</td>
+<td style="text-align: left;">Mechanisms that help people know where they are and move to desired content or actions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Prototype</td>
+<td style="text-align: left;">A representation built to explore or test a design before full implementation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Usability test</td>
+<td style="text-align: left;">Observation of representative participants attempting realistic tasks with a service or prototype.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Think-aloud</td>
+<td style="text-align: left;">A method in which participants verbalize what they notice, expect, and decide while attempting a task.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Assistive technology</td>
+<td style="text-align: left;">Hardware or software supporting interaction for people with disabilities.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Screen reader</td>
+<td style="text-align: left;">Software that presents interface content through speech, braille, or both.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Keyboard access</td>
+<td style="text-align: left;">The ability to reach and use interactive functions without a pointing device.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Focus indicator</td>
+<td style="text-align: left;">A visible indication of which element currently receives keyboard input.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Semantic HTML</td>
+<td style="text-align: left;">HTML elements used according to their meaning so structure and controls are programmatically available.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alternative text</td>
+<td style="text-align: left;">A text equivalent communicating the purpose or information of a meaningful image.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Caption</td>
+<td style="text-align: left;">Synchronized text representing speech and important sound in time-based media.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Contrast</td>
+<td style="text-align: left;">A measurable difference in luminance or color that supports perceiving text and interface components.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Plain language</td>
+<td style="text-align: left;">Clear, audience-appropriate communication organized so readers can find and use what they need.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Responsive design</td>
+<td style="text-align: left;">An approach in which layout and components adapt to viewport and device conditions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mobile first</td>
+<td style="text-align: left;">A design approach beginning with essential tasks and constrained screens before enhancing larger contexts.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Breakpoint</td>
+<td style="text-align: left;">A condition at which responsive presentation rules change.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Progressive enhancement</td>
+<td style="text-align: left;">Providing a reliable core experience first, then adding supported enhancements.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">WCAG</td>
+<td style="text-align: left;">The Web Content Accessibility Guidelines published by W3C.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Success criterion</td>
+<td style="text-align: left;">A testable WCAG requirement at Level A, AA, or AAA.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Conformance</td>
+<td style="text-align: left;">A claim that identified content meets defined requirements at a stated WCAG level and version.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Severity</td>
+<td style="text-align: left;">A reasoned rating of a problem's impact on users and tasks.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">9.4</span> Core discussion</h2>
+<section id="ux-is-the-service-not-only-the-screen" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="ux-is-the-service-not-only-the-screen"><span class="header-section-number">9.4.1</span> UX is the service, not only the screen</h3>
+<p>The user interface is the visible and interactive part of a service. UX includes much more. A catalogue search may be easy, but the overall experience fails if holdings are stale, call-number labels are unclear, an elevator is inaccessible, or staff cannot explain an authentication error. A repository may meet technical standards while deposit instructions frighten authors with legal language. A digital exhibit may be visually elegant but omit transcription and provenance.</p>
+<p>Usability commonly examines whether intended users can complete tasks effectively, efficiently, and satisfactorily in context. Accessibility examines whether people with disabilities can participate and whether the technology works with varied ways of perceiving and operating it. Inclusive design attends to human diversity and exclusion throughout the design process. These qualities reinforce one another, but one cannot substitute for another. A quick task completion rate does not prove screen-reader access; passing an automated accessibility scan does not prove understandable navigation.</p>
+<p><a href="#tbl-ux-questions" class="quarto-xref">Table&nbsp;<span>9.2</span></a> distinguishes the evidence sought by related practices.</p>
+<div id="tbl-ux-questions" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ux-questions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.2: Questions and evidence in UX-related evaluation
+</figcaption>
+<div aria-describedby="tbl-ux-questions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ux-questions" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Practice</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central question</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Evidence</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UX research</td>
+<td style="text-align: left;">Who is trying to accomplish what, in which context, and why?</td>
+<td style="text-align: left;">Interviews, observation, diaries, contextual inquiry, support records</td>
+<td style="text-align: left;">Small samples require careful interpretation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Usability evaluation</td>
+<td style="text-align: left;">Can representative users complete defined tasks with acceptable effort and confidence?</td>
+<td style="text-align: left;">Task success, paths, errors, time, comments, observation</td>
+<td style="text-align: left;">A task and participant set cannot represent everyone</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accessibility evaluation</td>
+<td style="text-align: left;">Can people with disabilities perceive, operate, understand, and robustly use the service?</td>
+<td style="text-align: left;">Standards review, keyboard test, assistive-technology test, disabled-user testing</td>
+<td style="text-align: left;">Automated tools and standards checks cannot replace lived experience</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Analytics</td>
+<td style="text-align: left;">What aggregate patterns of use and failure appear in instrumented events?</td>
+<td style="text-align: left;">Privacy-protected counts, funnels, search patterns, performance measures</td>
+<td style="text-align: left;">Observed events do not explain motivation and may exclude nonusers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Service assessment</td>
+<td style="text-align: left;">Does the service produce equitable, mission-aligned outcomes worth sustaining?</td>
+<td style="text-align: left;">Mixed methods, outcomes, costs, reach, equity, policy evidence</td>
+<td style="text-align: left;">Broad outcomes can be difficult to attribute to one interface</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-ux-questions" class="quarto-xref">Table&nbsp;<span>9.2</span></a> shows, methods answer different questions. Combining them produces a stronger account than declaring that one score represents “the user.” Library usability studies demonstrate the value of observing actual users rather than relying only on professional expectations <span class="citation" data-cites="emde2009usability vargas2026homepage">(<a href="references.html#ref-emde2009usability" role="doc-biblioref">Emde et al. 2009</a>; <a href="references.html#ref-vargas2026homepage" role="doc-biblioref">Vargas 2026</a>)</span>.</p>
+</section>
+<section id="the-evidence-based-design-cycle" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="the-evidence-based-design-cycle"><span class="header-section-number">9.4.2</span> The evidence-based design cycle</h3>
+<p>UX work is iterative. Teams frame a service problem, study contexts, model tasks, prototype, evaluate, prioritize, implement, and monitor. Results often reveal that the original problem was incomplete.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-ux-cycle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ux-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-ux-cycle">flowchart LR
+    F["Frame service problem and equity goal"] --&gt; R["Research users, contexts, tasks, and barriers"]
+    R --&gt; M["Model journeys and information architecture"]
+    M --&gt; P["Prototype content and interaction"]
+    P --&gt; E["Evaluate usability and accessibility"]
+    E --&gt; Q["Prioritize by impact, reach, evidence, and effort"]
+    Q --&gt; I["Implement and document"]
+    I --&gt; O["Monitor outcomes and new exclusion"]
+    O --&gt; F
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ux-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: An iterative, evidence-based UX and accessibility cycle
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-ux-cycle" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> indicates, accessibility begins during framing and research. If disabled users are invited only after procurement, the team may discover barriers it cannot contractually or technically correct.</p>
+</section>
+<section id="researching-people-without-inventing-a-typical-user" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="researching-people-without-inventing-a-typical-user"><span class="header-section-number">9.4.3</span> Researching people without inventing a typical user</h3>
+<p>User research begins with a question, not a favored method. If students cannot find reserve readings, observation and task testing may reveal navigation barriers. If rural users rarely access the repository, interviews may reveal data cost, device sharing, language, or trust issues invisible in analytics.</p>
+<p>Useful methods include:</p>
+<ul>
+<li><strong>interviews</strong> for goals, expectations, language, workarounds, and meaning;</li>
+<li><strong>contextual inquiry</strong> for observing tasks in their actual setting;</li>
+<li><strong>diary studies</strong> for experiences distributed over time;</li>
+<li><strong>surveys</strong> for structured self-report across a larger group;</li>
+<li><strong>analytics</strong> for aggregate paths and events, with privacy controls;</li>
+<li><strong>support-log review</strong> for recurrent questions and failures;</li>
+<li><strong>participatory design</strong> for developing ideas with affected people;</li>
+<li><strong>usability testing</strong> for observing task performance.</li>
+</ul>
+<p>A persona is useful only when based on evidence and used to focus decisions. A fictional “Maria, age 19, digital native” can hide more than it reveals. Relevant dimensions might include first-language reading, assistive-technology use, research experience, device access, prepaid data, shared-device privacy, and time pressure. Do not turn demographic stereotypes into design requirements.</p>
+<p>Recruitment should include people affected by likely barriers. Offering only an inaccessible online sign-up form contradicts inclusive research. Compensation, transport, remote access, language choice, assistive technology, breaks, and consent format may be necessary participation supports.</p>
+</section>
+<section id="tasks-and-scenarios" class="level3" data-number="9.4.4">
+<h3 data-number="9.4.4" class="anchored" data-anchor-id="tasks-and-scenarios"><span class="header-section-number">9.4.4</span> Tasks and scenarios</h3>
+<p>A task is a goal, not a series of interface instructions. Compare:</p>
+<ul>
+<li>weak: “Click Databases, choose A-Z, and search Academic Search.”</li>
+<li>stronger: “You need two recent peer-reviewed articles about coastal community archives for a paper due tomorrow. Find one article you can access and show how you would save its citation.”</li>
+</ul>
+<p>The stronger scenario supplies context and success evidence without teaching the interface. A test protocol should define starting state, task, success criteria, maximum time if relevant, permitted assistance, observation fields, and closing questions.</p>
+<p>Tasks should represent critical and risky journeys, not only the homepage. Examples include:</p>
+<ul>
+<li>find today’s branch hours and confirm an unexpected closure;</li>
+<li>locate a known book and determine where and when it is available;</li>
+<li>discover an article and obtain accessible full text;</li>
+<li>request an archival appointment without exposing sensitive research interests;</li>
+<li>deposit a thesis and understand license and embargo choices;</li>
+<li>recover from a failed login or interrupted form.</li>
+</ul>
+</section>
+<section id="information-architecture-and-metadata-language" class="level3" data-number="9.4.5">
+<h3 data-number="9.4.5" class="anchored" data-anchor-id="information-architecture-and-metadata-language"><span class="header-section-number">9.4.5</span> Information architecture and metadata language</h3>
+<p><strong>Information architecture</strong> concerns how content and functions are grouped, labelled, related, and navigated. Library interfaces inherit professional structures that may not match public language. <code>OPAC</code>, <code>e-resources</code>, <code>serials</code>, <code>vertical file</code>, <code>finding aid</code>, and <code>institutional repository</code> can be accurate terms but require context or alternatives for novice users.</p>
+<p>Metadata choices become interface choices. Facet names, format labels, availability states, and relationship displays determine what users can understand. A facet labelled <code>Electronic resource</code> may combine e-books, streamed video, datasets, and web pages. A record labelled <code>Available</code> may still require campus authentication. UX work therefore extends into cataloguing, knowledge-base maintenance, and systems configuration.</p>
+<p>Card sorting can investigate how users group content. Tree testing can examine whether a proposed hierarchy supports finding. Neither method determines institutional policy by majority vote. Professional, legal, archival, or cultural requirements may justify structures that need explanation rather than removal.</p>
+</section>
+<section id="plain-language-and-multilingual-content" class="level3" data-number="9.4.6">
+<h3 data-number="9.4.6" class="anchored" data-anchor-id="plain-language-and-multilingual-content"><span class="header-section-number">9.4.6</span> Plain language and multilingual content</h3>
+<p>Plain language helps readers find, understand, and use information <span class="citation" data-cites="plainlanguage2026">(<a href="references.html#ref-plainlanguage2026" role="doc-biblioref">Plain Language Action and Information Network 2026</a>)</span>. It involves organization, headings, familiar words, short focused sentences, explicit actions, and useful error messages. It does not mean deleting necessary technical precision.</p>
+<p>Compare:</p>
+<blockquote class="blockquote">
+<p>Authentication unsuccessful.</p>
+</blockquote>
+<p>with:</p>
+<blockquote class="blockquote">
+<p>We could not sign you in. If you are off campus, start from the library’s database page and choose your institution. Your search terms have been kept. Contact the library if the problem continues.</p>
+</blockquote>
+<p>The second message states what happened, suggests recovery, and reassures the user about lost work. It should also expose a technical reference code for support without requiring users to interpret it.</p>
+<p>Translation requires more than replacing strings. Navigation labels may expand, date and address formats differ, and professional terms may lack direct equivalents. Interfaces should identify language changes, preserve page language metadata, and avoid mixing untranslated controls into translated content. Local language testing is necessary because an English layout cannot predict every result.</p>
+</section>
+<section id="accessibility-and-disability" class="level3" data-number="9.4.7">
+<h3 data-number="9.4.7" class="anchored" data-anchor-id="accessibility-and-disability"><span class="header-section-number">9.4.7</span> Accessibility and disability</h3>
+<p>Web accessibility supports people with visual, auditory, physical, speech, cognitive, language, learning, and neurological disabilities <span class="citation" data-cites="w3c2026waiintro">(<a href="references.html#ref-w3c2026waiintro" role="doc-biblioref">World Wide Web Consortium 2026c</a>)</span>. Disability may be permanent, temporary, or situational. Captions help Deaf users and also people in noisy spaces. Large touch targets help users with limited dexterity and people standing in a moving vehicle. Clear instructions help cognitive access and novice users.</p>
+<p>Assistive technologies include screen readers, magnifiers, refreshable braille displays, switch devices, speech input, alternative keyboards, and system-level settings. People also use browser zoom, reader modes, increased text size, high contrast, reduced motion, captions, and keyboard navigation.</p>
+<p>Semantic HTML provides structure and behavior to browsers and assistive technologies. Native headings, links, buttons, lists, tables, labels, and landmarks should be used before custom components. ARIA can add accessibility semantics when needed, but incorrect ARIA can make an interface less usable. The WAI-ARIA Authoring Practices Guide documents patterns and keyboard behavior for complex widgets <span class="citation" data-cites="w3c2026ariaapg">(<a href="references.html#ref-w3c2026ariaapg" role="doc-biblioref">World Wide Web Consortium 2026a</a>)</span>.</p>
+</section>
+<section id="wcag-2.2-and-pour" class="level3" data-number="9.4.8">
+<h3 data-number="9.4.8" class="anchored" data-anchor-id="wcag-2.2-and-pour"><span class="header-section-number">9.4.8</span> WCAG 2.2 and POUR</h3>
+<p>WCAG 2.2 organizes guidance under four principles: <strong>perceivable, operable, understandable, and robust</strong> <span class="citation" data-cites="w3cwcag22">(<a href="references.html#ref-w3cwcag22" role="doc-biblioref">World Wide Web Consortium 2023</a>)</span>. Success criteria have conformance levels A, AA, and AAA. Many policies target Level AA, but legal and institutional requirements must be verified locally.</p>
+<p><a href="#tbl-pour-library" class="quarto-xref">Table&nbsp;<span>9.3</span></a> connects selected concerns to LIS services. It is an introduction, not a conformance checklist.</p>
+<div id="tbl-pour-library" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pour-library-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.3: WCAG principles applied to library services
+</figcaption>
+<div aria-describedby="tbl-pour-library-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-pour-library" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Principle</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Question</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">LIS example</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Common failure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Perceivable</td>
+<td style="text-align: left;">Can users perceive content through different senses or alternatives?</td>
+<td style="text-align: left;">Alt text for exhibit images; captions and transcripts; sufficient contrast; reflowed text</td>
+<td style="text-align: left;">Scanned PDF has no text layer or reading order</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Operable</td>
+<td style="text-align: left;">Can users operate controls with varied input methods and enough time?</td>
+<td style="text-align: left;">Keyboard-accessible facets; visible focus; skip links; adequate targets; no keyboard trap</td>
+<td style="text-align: left;">Date picker or modal cannot be completed by keyboard</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Understandable</td>
+<td style="text-align: left;">Can users understand content, navigation, status, and errors?</td>
+<td style="text-align: left;">Clear availability labels; consistent navigation; identified language; useful form errors</td>
+<td style="text-align: left;">Session expires without warning and deletes a request</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Robust</td>
+<td style="text-align: left;">Can current and future user agents and assistive technologies interpret the service?</td>
+<td style="text-align: left;">Valid semantic elements; programmatic labels, names, roles, values, and status messages</td>
+<td style="text-align: left;">Custom control looks like a button but exposes no button role</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-pour-library" class="quarto-xref">Table&nbsp;<span>9.3</span></a> shows, accessibility spans content, code, and workflow. A perfectly labelled download link still fails if the linked PDF is inaccessible.</p>
+<p>Selected checks for an introductory review include:</p>
+<ul>
+<li>meaningful page title and one clear top-level heading;</li>
+<li>logical heading hierarchy;</li>
+<li>meaningful images with appropriate alt text and decorative images ignored;</li>
+<li>text and interface contrast;</li>
+<li>page usable at 200% zoom and narrow reflow without loss;</li>
+<li>every interactive element reachable and operable by keyboard;</li>
+<li>visible focus and logical focus order;</li>
+<li>descriptive link names rather than repeated <code>click here</code>;</li>
+<li>explicit form labels, instructions, required states, and error recovery;</li>
+<li>captions and transcripts for media;</li>
+<li>page language identified;</li>
+<li>status messages exposed without unexpectedly moving focus.</li>
+</ul>
+<p>W3C provides preliminary “easy checks” and tutorials, while warning that a quick review cannot determine full conformance <span class="citation" data-cites="w3c2026easychecks w3c2026tutorials">(<a href="references.html#ref-w3c2026easychecks" role="doc-biblioref">World Wide Web Consortium 2026b</a>, <a href="references.html#ref-w3c2026tutorials" role="doc-biblioref">2026d</a>)</span>.</p>
+</section>
+<section id="alternative-text-and-complex-cultural-objects" class="level3" data-number="9.4.9">
+<h3 data-number="9.4.9" class="anchored" data-anchor-id="alternative-text-and-complex-cultural-objects"><span class="header-section-number">9.4.9</span> Alternative text and complex cultural objects</h3>
+<p>Alt text communicates an image’s purpose in context. The same image may need different treatment in a search result, decorative banner, exhibit, or scholarly analysis. <code>image.jpg</code> and “picture of an image” are not useful. A decorative flourish may use empty alt text. A photograph central to an exhibit needs concise identifying information, while a complex map may need a short alternative plus a longer description or accessible data.</p>
+<p>Alt text does not replace cataloguing metadata, captions, transcriptions, or scholarly description. A caption identifies and contextualizes an object for all users. Alt text supports the image’s function and information when it is not seen. Cultural sensitivity also matters: description should not expose restricted knowledge or treat people as scenery.</p>
+</section>
+<section id="keyboard-access-and-focus" class="level3" data-number="9.4.10">
+<h3 data-number="9.4.10" class="anchored" data-anchor-id="keyboard-access-and-focus"><span class="header-section-number">9.4.10</span> Keyboard access and focus</h3>
+<p>Keyboard testing is one of the most productive manual checks. Starting at the address bar, use <code>Tab</code>, <code>Shift+Tab</code>, <code>Enter</code>, <code>Space</code>, arrow keys where a documented widget pattern requires them, and <code>Escape</code> for dismissible overlays. Observe:</p>
+<ul>
+<li>Can every interactive item be reached?</li>
+<li>Is the focus indicator visible?</li>
+<li>Does focus order follow meaning?</li>
+<li>Can menus, filters, modals, and date pickers be operated?</li>
+<li>Does focus become trapped or disappear?</li>
+<li>When a modal closes, does focus return logically?</li>
+</ul>
+<p>Do not remove browser focus outlines without providing an accessible replacement. Visual order created with CSS should not contradict keyboard or reading order.</p>
+</section>
+<section id="accessible-forms-and-authentication" class="level3" data-number="9.4.11">
+<h3 data-number="9.4.11" class="anchored" data-anchor-id="accessible-forms-and-authentication"><span class="header-section-number">9.4.11</span> Accessible forms and authentication</h3>
+<p>Library forms collect searches, requests, deposits, appointments, and personal data. A placeholder is not a durable label; it disappears when users type and may have low contrast. Native HTML labels and controls provide strong defaults <span class="citation" data-cites="whatwg2026forms">(<a href="references.html#ref-whatwg2026forms" role="doc-biblioref">Web Hypertext Application Technology Working Group 2026</a>)</span>.</p>
+<p>Good forms:</p>
+<ul>
+<li>ask only necessary information;</li>
+<li>group related fields with meaningful legends;</li>
+<li>explain why sensitive information is needed;</li>
+<li>identify required fields in text and programmatically;</li>
+<li>provide input purpose and appropriate autocomplete where safe;</li>
+<li>preserve valid input after errors;</li>
+<li>place error summaries and field errors where users can find them;</li>
+<li>avoid short timeouts or warn and allow extension;</li>
+<li>provide confirmation and correction for consequential submissions.</li>
+</ul>
+<p>Authentication deserves end-to-end testing. A library homepage may be accessible while a vendor sign-in, CAPTCHA, multifactor prompt, or proxy error blocks access. Procurement and incident reporting must cover third-party components.</p>
+</section>
+<section id="responsive-and-mobile-first-services" class="level3" data-number="9.4.12">
+<h3 data-number="9.4.12" class="anchored" data-anchor-id="responsive-and-mobile-first-services"><span class="header-section-number">9.4.12</span> Responsive and mobile-first services</h3>
+<p>Responsive design adapts layout and presentation to available space. Mobile-first design begins with the core content and tasks under constraint, then progressively enhances larger screens. It should not mean removing essential services from mobile users.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-responsive-service" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-responsive-service-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-responsive-service">flowchart TB
+    U["User goal: find and access one resource"] --&gt; D["Device and input"]
+    U --&gt; C["Connection, data cost, and interruption"]
+    U --&gt; A["Ability, assistive technology, and settings"]
+    U --&gt; L["Language, literacy, and domain knowledge"]
+    U --&gt; P["Privacy and shared-device context"]
+    D --&gt; X["Responsive, resilient service"]
+    C --&gt; X
+    A --&gt; X
+    L --&gt; X
+    P --&gt; X
+    X --&gt; O["Search, understand, access, recover, and get help"]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-responsive-service-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: A mobile library task depends on more than viewport width
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-responsive-service" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> emphasizes that mobile context is not a screen-size category. A desktop user may have slow connectivity; a phone user may connect a keyboard; a shared device changes privacy needs.</p>
+<p>Mobile service design should consider:</p>
+<ul>
+<li>prioritize core tasks and content before institutional promotion;</li>
+<li>use responsive images and avoid autoplay media;</li>
+<li>minimize scripts, fonts, trackers, and unnecessary network requests;</li>
+<li>make touch targets adequately sized and spaced;</li>
+<li>support portrait and landscape orientation unless essential;</li>
+<li>avoid horizontal scrolling for ordinary content;</li>
+<li>allow browser zoom and text resizing;</li>
+<li>keep labels visible and controls close to their purpose;</li>
+<li>preserve entered data across brief interruptions;</li>
+<li>show loading, offline, stale, and retry states clearly;</li>
+<li>provide low-bandwidth alternatives and contact channels.</li>
+</ul>
+<p>W3C mobile guidance connects small screens, limited input, bandwidth, and device diversity to web design <span class="citation" data-cites="w3c2008mobile">(<a href="references.html#ref-w3c2008mobile" role="doc-biblioref">World Wide Web Consortium 2008</a>)</span>. Mobile accessibility guidance further explains that accessibility requirements apply across mobile web and application contexts <span class="citation" data-cites="w3c2015mobile">(<a href="references.html#ref-w3c2015mobile" role="doc-biblioref">World Wide Web Consortium 2015</a>)</span>.</p>
+</section>
+<section id="performance-is-an-access-issue" class="level3" data-number="9.4.13">
+<h3 data-number="9.4.13" class="anchored" data-anchor-id="performance-is-an-access-issue"><span class="header-section-number">9.4.13</span> Performance is an access issue</h3>
+<p>A large page consumes time, data, battery, and attention. Performance barriers disproportionately affect users with older devices, prepaid data, intermittent networks, and assistive technologies processing complex pages. Measure actual transferred bytes, request counts, and loading behavior on throttled connections rather than assuming institutional Wi-Fi.</p>
+<p>The fastest component is one not sent. Compress images, use appropriate dimensions, lazy-load noncritical media, limit third-party scripts, cache stable assets, and avoid forcing users to download large PDFs before learning their size and format. Performance optimization should not remove text alternatives, labels, or error messages.</p>
+</section>
+<section id="testing-methods-no-single-tool-is-enough" class="level3" data-number="9.4.14">
+<h3 data-number="9.4.14" class="anchored" data-anchor-id="testing-methods-no-single-tool-is-enough"><span class="header-section-number">9.4.14</span> Testing methods: no single tool is enough</h3>
+<p>Automated accessibility tools can detect missing labels, some contrast failures, duplicate IDs, and structural issues. They cannot decide whether alt text communicates purpose, heading structure makes sense, an error is understandable, or a workflow is dignified. Manual keyboard, zoom, reflow, content, and assistive-technology testing remain necessary. Disabled users’ evaluation adds evidence that standards checks cannot supply.</p>
+<p><a href="#tbl-evaluation-methods" class="quarto-xref">Table&nbsp;<span>9.4</span></a> maps methods to strengths and limits.</p>
+<div id="tbl-evaluation-methods" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-evaluation-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.4: Complementary UX and accessibility evaluation methods
+</figcaption>
+<div aria-describedby="tbl-evaluation-methods-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-evaluation-methods" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Method</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Best at</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Cannot alone establish</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Automated accessibility scan</td>
+<td style="text-align: left;">Rapidly detecting machine-testable patterns</td>
+<td style="text-align: left;">Full WCAG conformance or usable experience</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manual standards review</td>
+<td style="text-align: left;">Interpreting selected success criteria in context</td>
+<td style="text-align: left;">Representative user success</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Keyboard and zoom test</td>
+<td style="text-align: left;">Finding focus, order, reflow, and operation barriers</td>
+<td style="text-align: left;">All assistive-technology behavior</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Screen-reader test</td>
+<td style="text-align: left;">Experiencing programmatic structure, names, roles, and announcements</td>
+<td style="text-align: left;">Experience of every screen-reader user or disability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task-based usability test</td>
+<td style="text-align: left;">Observing expectations, paths, errors, recovery, and confidence</td>
+<td style="text-align: left;">Standards conformance or population prevalence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Performance and network test</td>
+<td style="text-align: left;">Measuring load, transfer, and behavior under constraints</td>
+<td style="text-align: left;">Content clarity or task relevance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Analytics and support review</td>
+<td style="text-align: left;">Finding aggregate patterns and recurrent service incidents</td>
+<td style="text-align: left;">Motivation, nonuser exclusion, or causation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-evaluation-methods" class="quarto-xref">Table&nbsp;<span>9.4</span></a> demonstrates, triangulation matters. A finding becomes more actionable when observation, standards evidence, and service data point to the same barrier.</p>
+</section>
+<section id="prioritizing-findings" class="level3" data-number="9.4.15">
+<h3 data-number="9.4.15" class="anchored" data-anchor-id="prioritizing-findings"><span class="header-section-number">9.4.15</span> Prioritizing findings</h3>
+<p>Teams cannot fix everything at once, but prioritization must not reduce accessibility to popularity. A barrier affecting fewer users may completely block a legally or professionally essential service.</p>
+<p>Consider:</p>
+<ul>
+<li><strong>impact:</strong> inconvenience, delay, serious error, or complete block;</li>
+<li><strong>task criticality:</strong> optional exploration versus required access or submission;</li>
+<li><strong>reach:</strong> how many people or workflows encounter it;</li>
+<li><strong>frequency:</strong> how often it occurs;</li>
+<li><strong>equity:</strong> whether it disproportionately excludes a group;</li>
+<li><strong>evidence confidence:</strong> strength and sources of evidence;</li>
+<li><strong>effort and dependency:</strong> complexity, vendor control, and time;</li>
+<li><strong>risk:</strong> privacy, legal, security, rights, or reputational consequence.</li>
+</ul>
+<p><a href="#tbl-severity-scale" class="quarto-xref">Table&nbsp;<span>9.5</span></a> offers a simple scale. Severity describes user impact, not developer difficulty.</p>
+<div id="tbl-severity-scale" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-severity-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.5: A user-impact severity scale for findings
+</figcaption>
+<div aria-describedby="tbl-severity-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-severity-scale" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Severity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">User effect</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Example</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Response</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Critical</td>
+<td style="text-align: left;">Blocks an essential task with no reasonable accessible alternative</td>
+<td style="text-align: left;">Keyboard user cannot submit an archival appointment request</td>
+<td style="text-align: left;">Stop or provide immediate accessible path; escalate</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Major</td>
+<td style="text-align: left;">Causes likely failure, serious error, exclusion, or dependence on assistance</td>
+<td style="text-align: left;">Screen reader receives unlabeled search fields and cannot distinguish them</td>
+<td style="text-align: left;">Prioritize in current improvement cycle</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Moderate</td>
+<td style="text-align: left;">Creates delay, confusion, repeated effort, or avoidable uncertainty</td>
+<td style="text-align: left;">Mobile filter resets after rotating or returning from a record</td>
+<td style="text-align: left;">Schedule with evidence and owner</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Minor</td>
+<td style="text-align: left;">Creates friction but task remains understandable and achievable</td>
+<td style="text-align: left;">Link wording is vague but surrounding context identifies the destination</td>
+<td style="text-align: left;">Repair when adjacent work occurs; monitor</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-severity-scale" class="quarto-xref">Table&nbsp;<span>9.5</span></a> indicates, an accessibility block is not downgraded because only one participant encountered it. Document the affected task, evidence, relevant criterion, recommended outcome, owner, and verification method.</p>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">9.5</span> Philippine and Southeast Asian examples</h2>
+<section id="academic-library-off-campus-article-access" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="academic-library-off-campus-article-access"><span class="header-section-number">9.5.1</span> Academic library: off-campus article access</h3>
+<p>A Philippine university tests article access with students using prepaid mobile data. The discovery page performs adequately, but three vendor redirects, institutional sign-in, and a large PDF create failure. The redesign explains the path, retains citation details, offers an HTML or smaller-file option when available, displays file size, and provides a request link when access fails. The library includes vendor accessibility and performance in renewal review.</p>
+</section>
+<section id="public-library-multilingual-branch-information" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="public-library-multilingual-branch-information"><span class="header-section-number">9.5.2</span> Public library: multilingual branch information</h3>
+<p>A city public library publishes branch hours, closures, events, and contact details in Filipino, English, and a locally used language. Residents help test labels and directions. Essential information appears as text rather than posters alone. Each poster has an accessible text equivalent, while emergency closures can be reached through a low-bandwidth page and SMS-compatible contact route.</p>
+</section>
+<section id="school-library-shared-devices-and-privacy" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="school-library-shared-devices-and-privacy"><span class="header-section-number">9.5.3</span> School library: shared devices and privacy</h3>
+<p>Students use shared tablets. The catalogue avoids displaying borrowing history on the landing page, provides a clear sign-out action, and does not save searches by default. Text can be resized, controls work with a connected keyboard, and reading-list pages avoid motion and distracting autoplay. Teachers and students with disabilities participate in testing.</p>
+</section>
+<section id="government-information-service-accessible-forms" class="level3" data-number="9.5.4">
+<h3 data-number="9.5.4" class="anchored" data-anchor-id="government-information-service-accessible-forms"><span class="header-section-number">9.5.4</span> Government information service: accessible forms</h3>
+<p>A government records request form uses visible labels, clear purpose statements, appropriate input types, an error summary, preserved entries, and a confirmation page. Required identity information is explained and minimized. A downloadable form is not offered only as an inaccessible scanned PDF; an assisted offline channel remains available.</p>
+</section>
+<section id="regional-cultural-heritage-exhibit" class="level3" data-number="9.5.5">
+<h3 data-number="9.5.5" class="anchored" data-anchor-id="regional-cultural-heritage-exhibit"><span class="header-section-number">9.5.5</span> Regional cultural heritage exhibit</h3>
+<p>A Southeast Asian digital exhibit contains multilingual object labels, transcripts for oral histories, captions for video, alt text for meaningful images, and long descriptions for maps. Community advisors determine whether certain images or knowledge should have restricted access. Responsive image sizes reduce data cost without reducing descriptive access.</p>
+<blockquote class="blockquote">
+<p><strong>Reflect:</strong> Think of the last library or government service you used on a phone. Which barrier came from interface design, which from organizational policy, and which from an external provider?</p>
+</blockquote>
+</section>
+</section>
+<section id="hands-on-activity-conduct-a-mobile-ux-and-accessibility-critique" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="hands-on-activity-conduct-a-mobile-ux-and-accessibility-critique"><span class="header-section-number">9.6</span> Hands-on activity: Conduct a mobile UX and accessibility critique</h2>
+<section id="purpose" class="level3" data-number="9.6.1">
+<h3 data-number="9.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">9.6.1</span> Purpose</h3>
+<p>Evaluate one meaningful library task on desktop and mobile using task observation, manual accessibility checks, and a limited automated scan. Produce prioritized findings and a redesign sketch. This activity is the UX or discovery critique worth 10% of the course assessment.</p>
+</section>
+<section id="tools" class="level3" data-number="9.6.2">
+<h3 data-number="9.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">9.6.2</span> Tools</h3>
+<ul>
+<li>one public library, academic library, school library, repository, archive, museum, or government information website;</li>
+<li>desktop and mobile-sized browser views or two devices;</li>
+<li>keyboard only for one test pass;</li>
+<li>browser zoom and text-resize controls;</li>
+<li>one automated accessibility checker approved by the instructor;</li>
+<li>performance information from browser developer tools when available;</li>
+<li>observation sheet based on <a href="#tbl-test-log" class="quarto-xref">Table&nbsp;<span>9.6</span></a>.</li>
+</ul>
+<div id="tbl-test-log" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-test-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.6: Fields for the mobile UX and accessibility observation log
+</figcaption>
+<div aria-describedby="tbl-test-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-test-log" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Field</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Record</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Task and success evidence</td>
+<td style="text-align: left;">Goal, starting point, completion evidence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Participant and context</td>
+<td style="text-align: left;">Relevant experience only; avoid unnecessary identity data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Device and viewport</td>
+<td style="text-align: left;">Device class, input, orientation, zoom</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Connection context</td>
+<td style="text-align: left;">Normal or throttled; do not collect network identifiers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Observed step</td>
+<td style="text-align: left;">Action and interface response</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Expectation or comment</td>
+<td style="text-align: left;">Quote or concise paraphrase with consent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Barrier and recovery</td>
+<td style="text-align: left;">What prevented progress and whether recovery succeeded</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Accessibility evidence</td>
+<td style="text-align: left;">Criterion, keyboard behavior, semantics, contrast, or tool evidence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Severity</td>
+<td style="text-align: left;">Critical, major, moderate, or minor with rationale</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Recommendation</td>
+<td style="text-align: left;">Desired outcome, not merely a preferred visual style</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Owner and verification</td>
+<td style="text-align: left;">Responsible team and retest method</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-test-log" class="quarto-xref">Table&nbsp;<span>9.6</span></a> keeps observations separate from interpretations and recommendations.</p>
+</section>
+<section id="steps" class="level3" data-number="9.6.3">
+<h3 data-number="9.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">9.6.3</span> Steps</h3>
+<ol type="1">
+<li>Select a service and one critical task, such as finding an available item, accessing an article, requesting archival material, or locating branch information.</li>
+<li>Write a realistic scenario and observable success criteria. Do not include click-by-click instructions.</li>
+<li>Define the test scope, participant consent, recording method, data retention, and stopping rule. Do not test a sensitive personal topic.</li>
+<li>Conduct a pilot yourself. Correct unclear instructions before involving a peer.</li>
+<li>Ask one peer participant to attempt the task on a mobile viewport while thinking aloud. Remind the participant that the service is being tested, not the person.</li>
+<li>Observe without teaching. If help is requested, record when and what was provided.</li>
+<li>Repeat the task independently on a desktop viewport and compare content, order, labels, and functionality.</li>
+<li>Test the essential path by keyboard. Record reachability, visible focus, focus order, overlays, menus, filters, forms, and recovery.</li>
+<li>Review at 200% zoom and at a narrow viewport. Check reflow, text size, orientation, horizontal scrolling, and hidden content.</li>
+<li>Inspect page title, headings, link names, form labels, meaningful images, media alternatives, language, errors, and status messages.</li>
+<li>Run one automated checker. Verify each reported issue manually and state what the tool did not test.</li>
+<li>Inspect page transfer size or loading behavior on a throttled connection when tools permit. Record large blockers and failure states.</li>
+<li>Group observations into findings. Assign severity using user effect, task criticality, reach, equity, and evidence.</li>
+<li>Create one annotated redesign sketch for the highest-priority finding. Include keyboard, screen-reader, mobile, error, and low-bandwidth behavior as relevant.</li>
+<li>Write a concise recommendation identifying owner, dependency, expected outcome, and verification method.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="9.6.4">
+<h3 data-number="9.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">9.6.4</span> Expected output</h3>
+<p>Submit:</p>
+<ul>
+<li>test protocol and consent script;</li>
+<li>participant and evaluator observation notes with unnecessary personal data removed;</li>
+<li>annotated desktop and mobile screens;</li>
+<li>keyboard, zoom, reflow, content, and automated-check results;</li>
+<li>five to eight findings ranked by severity;</li>
+<li>one redesigned task flow or wireframe;</li>
+<li>an 800-word evidence-based critique; and</li>
+<li>a 150-word reflection: <strong>Which barrier would professional staff have missed without observing a user or testing a different mode of access?</strong></li>
+</ul>
+</section>
+<section id="lab-checklist" class="level3" data-number="9.6.5">
+<h3 data-number="9.6.5" class="anchored" data-anchor-id="lab-checklist"><span class="header-section-number">9.6.5</span> Lab checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">The task represents a meaningful service goal.</label></li>
+<li><label><input type="checkbox">Success criteria are observable and not tied to one path.</label></li>
+<li><label><input type="checkbox">Consent and data minimization are documented.</label></li>
+<li><label><input type="checkbox">Mobile and desktop experiences are compared.</label></li>
+<li><label><input type="checkbox">Keyboard, zoom, reflow, and content checks are manual.</label></li>
+<li><label><input type="checkbox">Automated results are verified and not treated as full conformance.</label></li>
+<li><label><input type="checkbox">Findings distinguish evidence, interpretation, and recommendation.</label></li>
+<li><label><input type="checkbox">Severity is based on user and task impact.</label></li>
+<li><label><input type="checkbox">Redesign notes include accessible behavior, not only appearance.</label></li>
+<li><label><input type="checkbox">Each priority finding has an owner and retest method.</label></li>
+</ul>
+</section>
+<section id="assessment-rubric" class="level3" data-number="9.6.6">
+<h3 data-number="9.6.6" class="anchored" data-anchor-id="assessment-rubric"><span class="header-section-number">9.6.6</span> Assessment rubric</h3>
+<p><a href="#tbl-ux-lab-rubric" class="quarto-xref">Table&nbsp;<span>9.7</span></a> rewards evidence, inclusion, and actionable analysis.</p>
+<div id="tbl-ux-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ux-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.7: Rubric for the mobile UX and accessibility critique
+</figcaption>
+<div aria-describedby="tbl-ux-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ux-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strong performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Task and protocol</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Scenario, success criteria, scope, and method align with a real service need</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Observation and evidence</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">Notes separate observed behavior from interpretation and triangulate evidence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accessibility and mobile analysis</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">Manual and automated methods address POUR, keyboard, reflow, content, forms, and connection constraints</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Prioritization and redesign</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Severity reflects impact; redesign addresses cause and includes a verification plan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ethics and communication</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Consent, privacy, respectful facilitation, limitations, and accessible reporting are clear</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-surveillance-dark-patterns-and-digital-exclusion" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="ethical-and-professional-issue-surveillance-dark-patterns-and-digital-exclusion"><span class="header-section-number">9.7</span> Ethical and professional issue: surveillance, dark patterns, and digital exclusion</h2>
+<p>UX research and analytics can improve services, but they can also become surveillance. Search queries, click paths, account events, device details, locations, recordings, and session replays may reveal health, political, religious, legal, academic, or identity-related interests. Collecting data because a tool offers it is not a legitimate research purpose.</p>
+<p>Ethical UX research requires a specific question, informed consent where appropriate, minimum necessary data, secure storage, limited access, a retention schedule, and reporting that avoids re-identification. Participants must know they may stop. Researchers should not record passwords, patron records, or unrelated screen content. The Philippine Data Privacy Act’s principles of transparency, legitimate purpose, and proportionality apply to research and analytics <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>.</p>
+<p><strong>Dark patterns</strong> are interface choices that manipulate people toward actions that benefit the service provider rather than the user. Examples include making privacy-protective options difficult to find, using confusing consent language, preselecting broad data sharing, disguising advertising as search results, or making account deletion harder than account creation. Libraries should not reproduce these practices through vendor defaults.</p>
+<p>Digital exclusion also occurs when a service assumes current smartphones, stable broadband, individual email accounts, English fluency, credit cards, or comfort with identity verification. Offering an “accessible alternative” through a slower, stigmatizing, or staff-dependent route may preserve formal access while denying equal independence.</p>
+<p>Professional safeguards include:</p>
+<ul>
+<li>include disabled and marginalized users throughout planning and evaluation;</li>
+<li>provide accessible participation and fair compensation;</li>
+<li>minimize analytics and disable invasive replay by default;</li>
+<li>separate service improvement data from patron profiling;</li>
+<li>retain raw recordings only as long as necessary;</li>
+<li>explain personalization and allow nonpersonalized use;</li>
+<li>require accessibility, privacy, performance, and exit clauses in procurement;</li>
+<li>publish accessible contact, correction, and complaint channels;</li>
+<li>maintain offline or assisted routes without making them inferior;</li>
+<li>report limitations and populations not represented in a study.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Professional judgment prompt:</strong> A vendor offers session recordings showing every tap, keystroke, and form entry. What research question could justify any part of this collection, which fields must be masked or excluded, who may view recordings, and when must they be deleted?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="9.8">
+<h2 data-number="9.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">9.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> Distinguish UX, usability, accessibility, inclusive design, and responsive design.</li>
+<li><strong>Identification:</strong> What are WCAG’s four POUR principles?</li>
+<li><strong>Short answer:</strong> Why can neither an automated scan nor one usability test establish that a service is accessible?</li>
+<li><strong>Short answer:</strong> Explain how metadata labels and availability statements affect UX.</li>
+<li><strong>Applied design:</strong> Rewrite “Click Advanced Search and select Format: Serial” as a realistic task scenario.</li>
+<li><strong>Applied accessibility:</strong> A filter opens with a mouse but cannot receive keyboard focus. Identify the user effect, likely WCAG principle, severity, and retest.</li>
+<li><strong>Scenario:</strong> A mobile form clears all entries after a brief connection loss. Recommend content, technical, and recovery changes.</li>
+<li><strong>Scenario:</strong> A library’s translated site retains English error messages and unlabeled icons. Why is translation alone insufficient?</li>
+<li><strong>Scenario:</strong> Analytics show few screen-reader users. Explain why this is not evidence that accessibility work has low priority.</li>
+<li><strong>Critical analysis:</strong> When might simplifying a service for mobile become harmful removal rather than useful prioritization?</li>
+</ol>
+</section>
+<section id="mini-case-the-one-box-redesign" class="level2" data-number="9.9">
+<h2 data-number="9.9" class="anchored" data-anchor-id="mini-case-the-one-box-redesign"><span class="header-section-number">9.9</span> Mini case: The one-box redesign</h2>
+<p>Sampaguita University launches a new discovery homepage built around one large search box. Senior managers praise its clean appearance. Mobile analytics show fewer searches ending in full-text access, but the vendor dashboard records only page views and clicks. Student testing reveals that filters are hidden after zoom, the sign-in prompt appears only after users select an article, and failed authentication deletes the query. A blind student reports repeated unlabeled “View” links. A student using prepaid data abandons pages with large promotional images. Librarians suggest adding instructions everywhere; the vendor proposes collecting session recordings to learn more.</p>
+<section id="guide-questions" class="level3" data-number="9.9.1">
+<h3 data-number="9.9.1" class="anchored" data-anchor-id="guide-questions"><span class="header-section-number">9.9.1</span> Guide questions</h3>
+<ol type="1">
+<li>Which usability, accessibility, mobile, metadata, authentication, performance, analytics, and privacy problems are present?</li>
+<li>What mixed-method evaluation would produce useful evidence without collecting passwords, queries, or unnecessary personal data?</li>
+<li>Prioritize three interventions, identify responsible owners, and specify how each would be verified with affected users.</li>
+</ol>
+</section>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="9.10">
+<h2 data-number="9.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">9.10</span> Further reading and tools</h2>
+<section id="readings-and-standards" class="level3" data-number="9.10.1">
+<h3 data-number="9.10.1" class="anchored" data-anchor-id="readings-and-standards"><span class="header-section-number">9.10.1</span> Readings and standards</h3>
+<ul>
+<li><strong>Web Content Accessibility Guidelines 2.2.</strong> The central W3C accessibility recommendation used in this chapter <span class="citation" data-cites="w3cwcag22">(<a href="references.html#ref-w3cwcag22" role="doc-biblioref">World Wide Web Consortium 2023</a>)</span>.</li>
+<li><strong>Introduction to Web Accessibility.</strong> A concise W3C overview of disability, barriers, and benefits <span class="citation" data-cites="w3c2026waiintro">(<a href="references.html#ref-w3c2026waiintro" role="doc-biblioref">World Wide Web Consortium 2026c</a>)</span>.</li>
+<li><strong>Easy Checks.</strong> A guided preliminary review that explicitly does not establish full conformance <span class="citation" data-cites="w3c2026easychecks">(<a href="references.html#ref-w3c2026easychecks" role="doc-biblioref">World Wide Web Consortium 2026b</a>)</span>.</li>
+<li><strong>WAI Tutorials.</strong> Practical guidance on page structure, menus, images, tables, forms, and carousels <span class="citation" data-cites="w3c2026tutorials">(<a href="references.html#ref-w3c2026tutorials" role="doc-biblioref">World Wide Web Consortium 2026d</a>)</span>.</li>
+<li><strong>ARIA Authoring Practices Guide.</strong> Patterns and keyboard interaction for complex web widgets <span class="citation" data-cites="w3c2026ariaapg">(<a href="references.html#ref-w3c2026ariaapg" role="doc-biblioref">World Wide Web Consortium 2026a</a>)</span>.</li>
+<li><strong>Mobile accessibility guidance.</strong> W3C discussion connecting accessibility guidelines to mobile contexts <span class="citation" data-cites="w3c2015mobile">(<a href="references.html#ref-w3c2015mobile" role="doc-biblioref">World Wide Web Consortium 2015</a>)</span>.</li>
+<li><strong>Library usability studies.</strong> Examples of applying usability and accessibility inquiry in academic library websites <span class="citation" data-cites="billingham2014accessibility emde2009usability vargas2026homepage">(<a href="references.html#ref-billingham2014accessibility" role="doc-biblioref">Billingham 2014</a>; <a href="references.html#ref-emde2009usability" role="doc-biblioref">Emde et al. 2009</a>; <a href="references.html#ref-vargas2026homepage" role="doc-biblioref">Vargas 2026</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-or-widely-accessible-tools" class="level3" data-number="9.10.2">
+<h3 data-number="9.10.2" class="anchored" data-anchor-id="open-or-widely-accessible-tools"><span class="header-section-number">9.10.2</span> Open or widely accessible tools</h3>
+<ul>
+<li><strong>Browser keyboard, zoom, responsive view, and developer tools:</strong> essential manual testing capabilities.</li>
+<li><strong>WAVE, axe DevTools, Accessibility Insights, or Lighthouse:</strong> automated support for finding selected issues; none proves conformance.</li>
+<li><strong>NVDA:</strong> free Windows screen reader. Testing requires learning expected screen-reader interaction rather than treating speech output as a simple scanner.</li>
+<li><strong>Colour Contrast Analyser:</strong> desktop tool for testing text and graphical contrast.</li>
+<li><strong>WebPageTest or browser network throttling:</strong> tools for examining performance under constrained connections; do not submit private URLs or data to public services.</li>
+<li><strong>Penpot, diagrams.net, paper, or HTML prototypes:</strong> accessible ways to communicate redesigns when accompanied by behavior notes and text alternatives.</li>
+</ul>
+</section>
+<section id="closing-synthesis" class="level3" data-number="9.10.3">
+<h3 data-number="9.10.3" class="anchored" data-anchor-id="closing-synthesis"><span class="header-section-number">9.10.3</span> Closing synthesis</h3>
+<p>UX connects institutional systems to lived experience. Accessibility asks whether people with disabilities can participate independently and effectively. Mobile design exposes assumptions about devices, bandwidth, privacy, interruption, and attention. These are not separate finishing tasks: they shape metadata labels, content, authentication, vendor selection, help, assessment, and policy.</p>
+<p>An attractive interface can still exclude. A standards-conformant page can still confuse. A fast mobile page can still manipulate consent. LIS professionals therefore need multiple forms of evidence and sustained participation by affected users. The governing question is: <strong>Who can complete which information task, under what conditions, with what effort and dignity, and who is missing from the evidence?</strong> Chapter 10 extends this lifecycle responsibility from immediate access to long-term digital continuity, preservation, storage, and cloud services.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-billingham2014accessibility" class="csl-entry" role="listitem">
+Billingham, Lisa. 2014. <span>“Improving Academic Library Website Accessibility for People with Disabilities.”</span> <em>Library Management</em> 35 (8/9): 565–81. <a href="https://doi.org/10.1108/LM-11-2013-0107">https://doi.org/10.1108/LM-11-2013-0107</a>.
+</div>
+<div id="ref-emde2009usability" class="csl-entry" role="listitem">
+Emde, Judith Z., Sara E. Morris, and Monica Claassen-Wilson. 2009. <span>“Testing an Academic Library Website for Usability with Faculty and Graduate Students.”</span> <em>Evidence Based Library and Information Practice</em> 4 (3): 24–36. <a href="https://doi.org/10.18438/B8TK7Q">https://doi.org/10.18438/B8TK7Q</a>.
+</div>
+<div id="ref-npc2023dpa" class="csl-entry" role="listitem">
+National Privacy Commission. 2023. <em>Data Privacy Act of 2012</em>. <a href="https://privacy.gov.ph/data-privacy-act/">https://privacy.gov.ph/data-privacy-act/</a>.
+</div>
+<div id="ref-plainlanguage2026" class="csl-entry" role="listitem">
+Plain Language Action and Information Network. 2026. <em>Federal Plain Language Guidelines</em>. <a href="https://www.plainlanguage.gov/guidelines/">https://www.plainlanguage.gov/guidelines/</a>.
+</div>
+<div id="ref-philippines2012dpa" class="csl-entry" role="listitem">
+Republic of the Philippines. 2012. <em>Republic Act No. 10173: Data Privacy Act of 2012</em>. <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html">https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html</a>.
+</div>
+<div id="ref-vargas2026homepage" class="csl-entry" role="listitem">
+Vargas, Isabel. 2026. <span>“Elements, Structure, and Aesthetics: Improving Usability and Accessibility on a Library Website Homepage.”</span> <em>Weave: Journal of Library User Experience</em>, ahead of print. <a href="https://doi.org/10.3998/weaveux.7583">https://doi.org/10.3998/weaveux.7583</a>.
+</div>
+<div id="ref-whatwg2026forms" class="csl-entry" role="listitem">
+Web Hypertext Application Technology Working Group. 2026. <em>HTML Living Standard: Forms</em>. <a href="https://html.spec.whatwg.org/multipage/forms.html">https://html.spec.whatwg.org/multipage/forms.html</a>.
+</div>
+<div id="ref-w3c2008mobile" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2008. <em>Mobile Web Best Practices 1.0</em>. <a href="https://www.w3.org/TR/mobile-bp/">https://www.w3.org/TR/mobile-bp/</a>.
+</div>
+<div id="ref-w3c2015mobile" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2015. <em>Mobile Accessibility: How WCAG 2.0 and Other W3C/WAI Guidelines Apply to Mobile</em>. W3C. <a href="https://www.w3.org/TR/mobile-accessibility-mapping/">https://www.w3.org/TR/mobile-accessibility-mapping/</a>.
+</div>
+<div id="ref-w3cwcag22" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2023. <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a>.
+</div>
+<div id="ref-w3c2026ariaapg" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2026a. <em>ARIA Authoring Practices Guide</em>. <a href="https://www.w3.org/WAI/ARIA/apg/">https://www.w3.org/WAI/ARIA/apg/</a>.
+</div>
+<div id="ref-w3c2026easychecks" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2026b. <em>Easy Checks—a First Review of Web Accessibility</em>. <a href="https://www.w3.org/WAI/test-evaluate/preliminary/">https://www.w3.org/WAI/test-evaluate/preliminary/</a>.
+</div>
+<div id="ref-w3c2026waiintro" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2026c. <em>Introduction to Web Accessibility</em>. <a href="https://www.w3.org/WAI/fundamentals/accessibility-intro/">https://www.w3.org/WAI/fundamentals/accessibility-intro/</a>.
+</div>
+<div id="ref-w3c2026tutorials" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2026d. <em>Web Accessibility Tutorials</em>. <a href="https://www.w3.org/WAI/tutorials/">https://www.w3.org/WAI/tutorials/</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-08-apis-linked-data.html" class="pagination-link" aria-label="APIs, Linked Data, and the Semantic Web">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-10-digital-preservation-cloud.html" class="pagination-link" aria-label="Digital Preservation and Cloud Services">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

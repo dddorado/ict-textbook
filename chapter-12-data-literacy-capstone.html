@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Data Literacy and Capstone Integration – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./chapter-11-cybersecurity-law-project.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-12-data-literacy-capstone.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">12.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">12.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">12.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">12.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#data-are-made-not-found-untouched" id="toc-data-are-made-not-found-untouched" class="nav-link" data-scroll-target="#data-are-made-not-found-untouched"><span class="header-section-number">12.4.1</span> Data are made, not found untouched</a></li>
+  <li><a href="#from-a-broad-concern-to-an-answerable-question" id="toc-from-a-broad-concern-to-an-answerable-question" class="nav-link" data-scroll-target="#from-a-broad-concern-to-an-answerable-question"><span class="header-section-number">12.4.2</span> From a broad concern to an answerable question</a></li>
+  <li><a href="#a-data-to-decision-workflow" id="toc-a-data-to-decision-workflow" class="nav-link" data-scroll-target="#a-data-to-decision-workflow"><span class="header-section-number">12.4.3</span> A data-to-decision workflow</a></li>
+  <li><a href="#provenance-and-fitness-for-use" id="toc-provenance-and-fitness-for-use" class="nav-link" data-scroll-target="#provenance-and-fitness-for-use"><span class="header-section-number">12.4.4</span> Provenance and fitness for use</a></li>
+  <li><a href="#data-quality-as-dimensions" id="toc-data-quality-as-dimensions" class="nav-link" data-scroll-target="#data-quality-as-dimensions"><span class="header-section-number">12.4.5</span> Data quality as dimensions</a></li>
+  <li><a href="#missingness-carries-meaning" id="toc-missingness-carries-meaning" class="nav-link" data-scroll-target="#missingness-carries-meaning"><span class="header-section-number">12.4.6</span> Missingness carries meaning</a></li>
+  <li><a href="#tidy-structure-and-reproducible-transformations" id="toc-tidy-structure-and-reproducible-transformations" class="nav-link" data-scroll-target="#tidy-structure-and-reproducible-transformations"><span class="header-section-number">12.4.7</span> Tidy structure and reproducible transformations</a></li>
+  <li><a href="#a-synthetic-service-dataset" id="toc-a-synthetic-service-dataset" class="nav-link" data-scroll-target="#a-synthetic-service-dataset"><span class="header-section-number">12.4.8</span> A synthetic service dataset</a></li>
+  <li><a href="#counts-denominators-and-rates" id="toc-counts-denominators-and-rates" class="nav-link" data-scroll-target="#counts-denominators-and-rates"><span class="header-section-number">12.4.9</span> Counts, denominators, and rates</a></li>
+  <li><a href="#mean-median-and-distributions" id="toc-mean-median-and-distributions" class="nav-link" data-scroll-target="#mean-median-and-distributions"><span class="header-section-number">12.4.10</span> Mean, median, and distributions</a></li>
+  <li><a href="#aggregation-and-disaggregation" id="toc-aggregation-and-disaggregation" class="nav-link" data-scroll-target="#aggregation-and-disaggregation"><span class="header-section-number">12.4.11</span> Aggregation and disaggregation</a></li>
+  <li><a href="#association-is-not-causation" id="toc-association-is-not-causation" class="nav-link" data-scroll-target="#association-is-not-causation"><span class="header-section-number">12.4.12</span> Association is not causation</a></li>
+  <li><a href="#accessible-and-honest-visualization" id="toc-accessible-and-honest-visualization" class="nav-link" data-scroll-target="#accessible-and-honest-visualization"><span class="header-section-number">12.4.13</span> Accessible and honest visualization</a></li>
+  <li><a href="#dashboards-and-metric-governance" id="toc-dashboards-and-metric-governance" class="nav-link" data-scroll-target="#dashboards-and-metric-governance"><span class="header-section-number">12.4.14</span> Dashboards and metric governance</a></li>
+  <li><a href="#theory-of-change-and-evaluation" id="toc-theory-of-change-and-evaluation" class="nav-link" data-scroll-target="#theory-of-change-and-evaluation"><span class="header-section-number">12.4.15</span> Theory of change and evaluation</a></li>
+  <li><a href="#communicating-uncertainty-and-limitations" id="toc-communicating-uncertainty-and-limitations" class="nav-link" data-scroll-target="#communicating-uncertainty-and-limitations"><span class="header-section-number">12.4.16</span> Communicating uncertainty and limitations</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">12.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#academic-library-database-use-and-course-cycles" id="toc-academic-library-database-use-and-course-cycles" class="nav-link" data-scroll-target="#academic-library-database-use-and-course-cycles"><span class="header-section-number">12.5.1</span> Academic library: database use and course cycles</a></li>
+  <li><a href="#public-library-program-attendance-and-reach" id="toc-public-library-program-attendance-and-reach" class="nav-link" data-scroll-target="#public-library-program-attendance-and-reach"><span class="header-section-number">12.5.2</span> Public library: program attendance and reach</a></li>
+  <li><a href="#school-library-reading-program-outcomes" id="toc-school-library-reading-program-outcomes" class="nav-link" data-scroll-target="#school-library-reading-program-outcomes"><span class="header-section-number">12.5.3</span> School library: reading program outcomes</a></li>
+  <li><a href="#government-information-portal-denominators-and-outages" id="toc-government-information-portal-denominators-and-outages" class="nav-link" data-scroll-target="#government-information-portal-denominators-and-outages"><span class="header-section-number">12.5.4</span> Government information portal: denominators and outages</a></li>
+  <li><a href="#regional-cultural-heritage-dataset" id="toc-regional-cultural-heritage-dataset" class="nav-link" data-scroll-target="#regional-cultural-heritage-dataset"><span class="header-section-number">12.5.5</span> Regional cultural heritage dataset</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-analyze-service-data-and-refine-a-capstone" id="toc-hands-on-activity-analyze-service-data-and-refine-a-capstone" class="nav-link" data-scroll-target="#hands-on-activity-analyze-service-data-and-refine-a-capstone"><span class="header-section-number">12.6</span> Hands-on activity: Analyze service data and refine a capstone</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">12.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">12.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">12.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">12.6.4</span> Expected output</a></li>
+  <li><a href="#activity-checklist" id="toc-activity-checklist" class="nav-link" data-scroll-target="#activity-checklist"><span class="header-section-number">12.6.5</span> Activity checklist</a></li>
+  <li><a href="#assessment-rubric" id="toc-assessment-rubric" class="nav-link" data-scroll-target="#assessment-rubric"><span class="header-section-number">12.6.6</span> Assessment rubric</a></li>
+  </ul></li>
+  <li><a href="#capstone-integration" id="toc-capstone-integration" class="nav-link" data-scroll-target="#capstone-integration"><span class="header-section-number">12.7</span> Capstone integration</a>
+  <ul class="collapse">
+  <li><a href="#shared-capstone-requirements" id="toc-shared-capstone-requirements" class="nav-link" data-scroll-target="#shared-capstone-requirements"><span class="header-section-number">12.7.1</span> Shared capstone requirements</a></li>
+  <li><a href="#capstone-options" id="toc-capstone-options" class="nav-link" data-scroll-target="#capstone-options"><span class="header-section-number">12.7.2</span> Capstone options</a></li>
+  <li><a href="#capstone-pathway-1-campus-digital-exhibit" id="toc-capstone-pathway-1-campus-digital-exhibit" class="nav-link" data-scroll-target="#capstone-pathway-1-campus-digital-exhibit"><span class="header-section-number">12.7.3</span> Capstone pathway 1: Campus digital exhibit</a></li>
+  <li><a href="#capstone-pathway-2-api-powered-subject-guide" id="toc-capstone-pathway-2-api-powered-subject-guide" class="nav-link" data-scroll-target="#capstone-pathway-2-api-powered-subject-guide"><span class="header-section-number">12.7.4</span> Capstone pathway 2: API-powered subject guide</a></li>
+  <li><a href="#capstone-pathway-3-discovery-improvement-study" id="toc-capstone-pathway-3-discovery-improvement-study" class="nav-link" data-scroll-target="#capstone-pathway-3-discovery-improvement-study"><span class="header-section-number">12.7.5</span> Capstone pathway 3: Discovery improvement study</a></li>
+  <li><a href="#capstone-pathway-4-small-repository-policy-pack" id="toc-capstone-pathway-4-small-repository-policy-pack" class="nav-link" data-scroll-target="#capstone-pathway-4-small-repository-policy-pack"><span class="header-section-number">12.7.6</span> Capstone pathway 4: Small repository policy pack</a></li>
+  <li><a href="#capstone-pathway-5-metadata-cleanup-and-enrichment" id="toc-capstone-pathway-5-metadata-cleanup-and-enrichment" class="nav-link" data-scroll-target="#capstone-pathway-5-metadata-cleanup-and-enrichment"><span class="header-section-number">12.7.7</span> Capstone pathway 5: Metadata cleanup and enrichment</a></li>
+  <li><a href="#capstone-pathway-6-mobile-service-redesign" id="toc-capstone-pathway-6-mobile-service-redesign" class="nav-link" data-scroll-target="#capstone-pathway-6-mobile-service-redesign"><span class="header-section-number">12.7.8</span> Capstone pathway 6: Mobile service redesign</a></li>
+  <li><a href="#common-capstone-rubric" id="toc-common-capstone-rubric" class="nav-link" data-scroll-target="#common-capstone-rubric"><span class="header-section-number">12.7.9</span> Common capstone rubric</a></li>
+  <li><a href="#milestones-and-review-gates" id="toc-milestones-and-review-gates" class="nav-link" data-scroll-target="#milestones-and-review-gates"><span class="header-section-number">12.7.10</span> Milestones and review gates</a></li>
+  <li><a href="#capstone-presentation" id="toc-capstone-presentation" class="nav-link" data-scroll-target="#capstone-presentation"><span class="header-section-number">12.7.11</span> Capstone presentation</a></li>
+  <li><a href="#individual-reflection" id="toc-individual-reflection" class="nav-link" data-scroll-target="#individual-reflection"><span class="header-section-number">12.7.12</span> Individual reflection</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-datafication-small-groups-and-the-authority-of-metrics" id="toc-ethical-and-professional-issue-datafication-small-groups-and-the-authority-of-metrics" class="nav-link" data-scroll-target="#ethical-and-professional-issue-datafication-small-groups-and-the-authority-of-metrics"><span class="header-section-number">12.8</span> Ethical and professional issue: datafication, small groups, and the authority of metrics</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">12.9</span> Review questions</a></li>
+  <li><a href="#mini-case-the-dashboard-that-proved-success" id="toc-mini-case-the-dashboard-that-proved-success" class="nav-link" data-scroll-target="#mini-case-the-dashboard-that-proved-success"><span class="header-section-number">12.10</span> Mini case: The dashboard that proved success</a>
+  <ul class="collapse">
+  <li><a href="#guide-questions" id="toc-guide-questions" class="nav-link" data-scroll-target="#guide-questions"><span class="header-section-number">12.10.1</span> Guide questions</a></li>
+  </ul></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">12.11</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#readings-and-standards" id="toc-readings-and-standards" class="nav-link" data-scroll-target="#readings-and-standards"><span class="header-section-number">12.11.1</span> Readings and standards</a></li>
+  <li><a href="#open-or-widely-accessible-tools" id="toc-open-or-widely-accessible-tools" class="nav-link" data-scroll-target="#open-or-widely-accessible-tools"><span class="header-section-number">12.11.2</span> Open or widely accessible tools</a></li>
+  <li><a href="#closing-synthesis" id="toc-closing-synthesis" class="nav-link" data-scroll-target="#closing-synthesis"><span class="header-section-number">12.11.3</span> Closing synthesis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">12.1</span> Chapter overview</h2>
+<p>A library director asks whether extending evening hours improved student access. The dashboard shows a 35% increase in door counts after the change. The result sounds decisive, but comparison weeks included examinations, the counter recorded staff and repeat entries, one entrance was closed during the earlier period, and no data describe students who could not travel safely at night. The number is real; the conclusion remains uncertain.</p>
+<p>The central problem of this chapter is <strong>how to turn data into responsible evidence for information-service decisions without mistaking measurement for reality or correlation for explanation</strong>. Data literacy involves more than calculating averages or producing charts. It includes framing questions, understanding provenance, examining structure and quality, protecting people, choosing methods, interpreting uncertainty, communicating limitations, and deciding what evidence can and cannot support.</p>
+<p>For LIS professionals, data are also objects of stewardship. Libraries help communities find, understand, evaluate, document, preserve, and reuse research, government, cultural, bibliographic, and operational data. Metadata determines whether a dataset can be interpreted. Infrastructure determines whether it can be accessed. Ethics and law shape collection and reuse. Preservation maintains continuity. UX determines whether evidence is intelligible and accessible.</p>
+<p>This final chapter integrates the course. Students use R and Quarto to inspect a synthetic service dataset, calculate transparent descriptive measures, create an accessible visualization, and use evidence to refine a capstone. The capstone is not a technology demonstration. It is a defensible LIS intervention connecting users, metadata, data structures, technical implementation, access, ethics, security, preservation, evaluation, sustainability, and communication.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">12.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Formulate</strong> an answerable service question with defined population, unit, measure, comparison, context, and decision.</li>
+<li><strong>Assess</strong> a dataset for provenance, scope, completeness, validity, consistency, timeliness, uniqueness, bias, and fitness for use.</li>
+<li><strong>Produce</strong> a reproducible descriptive analysis and accessible table and visualization in R and Quarto.</li>
+<li><strong>Interpret</strong> counts, percentages, rates, central tendency, variation, missingness, and associations without overstating causation or generalizability.</li>
+<li><strong>Integrate</strong> technical, metadata, UX, legal, ethical, security, preservation, evaluation, and sustainability requirements in a capstone.</li>
+<li><strong>Present and defend</strong> evidence, design choices, limitations, and next actions to technical and nontechnical stakeholders.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">12.3</span> Key concepts</h2>
+<p><a href="#tbl-data-capstone-key-concepts" class="quarto-xref">Table&nbsp;<span>12.1</span></a> defines the chapter vocabulary. Many terms describe judgments rather than properties that data possess automatically.</p>
+<div id="tbl-data-capstone-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-capstone-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.1: Key concepts in data literacy and capstone integration
+</figcaption>
+<div aria-describedby="tbl-data-capstone-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-data-capstone-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Data literacy</td>
+<td style="text-align: left;">The ability to find, understand, evaluate, manage, analyze, communicate, and ethically use data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dataset</td>
+<td style="text-align: left;">An organized collection of related data and documentation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Observation</td>
+<td style="text-align: left;">One recorded case, event, entity, period, or measurement.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Variable</td>
+<td style="text-align: left;">A characteristic recorded or derived for observations.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Unit of analysis</td>
+<td style="text-align: left;">The entity or event about which analysis makes statements.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Population</td>
+<td style="text-align: left;">The complete group or set relevant to a question.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sample</td>
+<td style="text-align: left;">A subset observed or selected from a population.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Evidence about data origin, custody, methods, transformations, ownership, and history.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Data dictionary</td>
+<td style="text-align: left;">Documentation of fields, meanings, types, allowed values, units, sources, and missing codes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Data quality</td>
+<td style="text-align: left;">The degree to which data characteristics are fit for a stated use.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Completeness</td>
+<td style="text-align: left;">The extent to which required observations and values are present.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Validity</td>
+<td style="text-align: left;">The extent to which values conform to defined rules and acceptable domains.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;">The closeness of a value to the relevant real-world state or authoritative source.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consistency</td>
+<td style="text-align: left;">The absence of unjustified contradictions within and across records or systems.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Uniqueness</td>
+<td style="text-align: left;">The extent to which each entity or event is represented without unintended duplication.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Timeliness</td>
+<td style="text-align: left;">The extent to which data are current enough for the stated decision.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Missingness</td>
+<td style="text-align: left;">The pattern and meaning of absent, withheld, unknown, inapplicable, or unrecorded values.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bias</td>
+<td style="text-align: left;">Systematic distortion introduced through collection, representation, selection, measurement, or interpretation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Denominator</td>
+<td style="text-align: left;">The quantity against which a count is compared when forming a fraction, rate, or percentage.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Count</td>
+<td style="text-align: left;">The number of observed items or events satisfying a definition.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rate</td>
+<td style="text-align: left;">A count relative to population, opportunity, exposure, or time.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">A fraction expressed per hundred.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: left;">The arithmetic average, sensitive to extreme values.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Median</td>
+<td style="text-align: left;">The middle ordered value, often more resistant to extremes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Distribution</td>
+<td style="text-align: left;">The pattern of values, including center, spread, shape, and unusual observations.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outlier</td>
+<td style="text-align: left;">An observation unusually distant or different under stated criteria; not automatically an error.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Aggregation</td>
+<td style="text-align: left;">Combining observations into summaries, which can protect privacy but hide variation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Disaggregation</td>
+<td style="text-align: left;">Separating summaries by relevant groups or contexts to reveal differences, subject to privacy and sample size.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Correlation</td>
+<td style="text-align: left;">A statistical or observed association between variables.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Causation</td>
+<td style="text-align: left;">A relationship in which change in one factor produces change in another under defensible assumptions and evidence.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Inference</td>
+<td style="text-align: left;">Reasoning from observed data to broader conclusions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Uncertainty</td>
+<td style="text-align: left;">Limits on knowledge arising from sampling, measurement, missingness, assumptions, variation, and change.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Visualization</td>
+<td style="text-align: left;">A purposeful visual representation of data supporting comparison, pattern recognition, or explanation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dashboard</td>
+<td style="text-align: left;">A monitored display of selected indicators; not a substitute for interpretation or governance.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reproducibility</td>
+<td style="text-align: left;">The ability to obtain consistent results from documented data, code, software, and procedures.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FAIR principles</td>
+<td style="text-align: left;">Principles that data should be findable, accessible under stated conditions, interoperable, and reusable.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Metric</td>
+<td style="text-align: left;">A defined quantitative measure.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Indicator</td>
+<td style="text-align: left;">A measure interpreted as evidence about progress or condition.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baseline</td>
+<td style="text-align: left;">A documented starting measurement used for comparison.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Target</td>
+<td style="text-align: left;">A desired level or condition tied to a time and rationale.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Theory of change</td>
+<td style="text-align: left;">An explicit account connecting activities, outputs, outcomes, assumptions, and context.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Evaluation</td>
+<td style="text-align: left;">Systematic assessment of design, implementation, outcomes, value, or impact.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Triangulation</td>
+<td style="text-align: left;">Use of multiple methods, sources, or perspectives to examine a claim.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Capstone</td>
+<td style="text-align: left;">A culminating project demonstrating integrated knowledge through an evidence-based LIS artifact.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Acceptance criterion</td>
+<td style="text-align: left;">A testable condition that a deliverable must meet before approval.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">12.4</span> Core discussion</h2>
+<section id="data-are-made-not-found-untouched" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="data-are-made-not-found-untouched"><span class="header-section-number">12.4.1</span> Data are made, not found untouched</h3>
+<p>Data do not simply mirror the world. People and systems decide what to count, which categories to use, when observation begins and ends, how missing values are represented, and which records are retained. A door counter records crossings, not unique visitors or learning. A download log records requests, not reading or understanding. A satisfaction survey records responses from people who encountered and chose to answer it, not everyone affected by the service.</p>
+<p>Data literacy therefore begins with provenance and production. Ask:</p>
+<ul>
+<li>Who created the data and for which purpose?</li>
+<li>What is the unit of analysis?</li>
+<li>Which population is represented, and who is absent?</li>
+<li>How were variables defined and measured?</li>
+<li>Which systems, versions, settings, and workflows produced values?</li>
+<li>Which cleaning, matching, aggregation, or suppression occurred?</li>
+<li>Which rights, licenses, privacy rules, and community protocols apply?</li>
+<li>What changed during the period?</li>
+</ul>
+<p>Metadata is central. A CSV without field definitions, units, missing codes, dates, and provenance may be technically readable but analytically unsafe.</p>
+</section>
+<section id="from-a-broad-concern-to-an-answerable-question" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="from-a-broad-concern-to-an-answerable-question"><span class="header-section-number">12.4.2</span> From a broad concern to an answerable question</h3>
+<p>“Are students using the library?” is too broad. An answerable question specifies:</p>
+<ul>
+<li><strong>population:</strong> which students or service users;</li>
+<li><strong>unit:</strong> visit, person, transaction, request, session, or item;</li>
+<li><strong>measure:</strong> count, rate, completion, wait time, relevance, or experience;</li>
+<li><strong>comparison:</strong> before/after, branch, channel, or target;</li>
+<li><strong>period:</strong> dates and relevant cycles;</li>
+<li><strong>context:</strong> examinations, closures, policy, staffing, or platform change;</li>
+<li><strong>decision:</strong> what action the evidence will inform.</li>
+</ul>
+<p>A stronger question is: “During four comparable non-examination weeks, did extending weekday closing from 18:00 to 20:00 increase completed in-person reference consultations among enrolled evening-program students, without increasing average wait time above ten minutes?”</p>
+<p>The question still needs ethical review and feasible measurement. It should not lead the library to track individual movements unnecessarily.</p>
+</section>
+<section id="a-data-to-decision-workflow" class="level3" data-number="12.4.3">
+<h3 data-number="12.4.3" class="anchored" data-anchor-id="a-data-to-decision-workflow"><span class="header-section-number">12.4.3</span> A data-to-decision workflow</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-data-decision-cycle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-decision-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-data-decision-cycle">flowchart LR
+    Q["Frame question, users, decision, and harms"] --&gt; S["Assess sources, provenance, authority, and consent"]
+    S --&gt; P["Profile structure, quality, missingness, and bias"]
+    P --&gt; T["Transform reproducibly while preserving source"]
+    T --&gt; A["Analyze with appropriate denominators and uncertainty"]
+    A --&gt; C["Communicate accessible evidence and limitations"]
+    C --&gt; D["Decide, document, and implement proportionately"]
+    D --&gt; E["Evaluate outcomes and unintended effects"]
+    E --&gt; Q
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-decision-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: A responsible data-to-decision cycle for LIS services
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-data-decision-cycle" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> shows, analysis is one stage. A precise calculation cannot repair an ill-defined question or biased source.</p>
+</section>
+<section id="provenance-and-fitness-for-use" class="level3" data-number="12.4.4">
+<h3 data-number="12.4.4" class="anchored" data-anchor-id="provenance-and-fitness-for-use"><span class="header-section-number">12.4.4</span> Provenance and fitness for use</h3>
+<p>Provenance connects data to origin and transformations. For a circulation export, record system, query, filters, date, operator, software version, timezone, exclusions, identifiers, and de-identification. For survey data, record instrument, recruitment, consent, response period, translations, skip logic, and cleaning.</p>
+<p>Fitness for use is contextual. A dataset can be accurate for billing and unsuitable for evaluating equitable access. Door counts may support facilities planning and not unique-user demographics. Discovery logs may support broken-link detection and be disproportionate for tracking individual research interests.</p>
+<p>FAIR principles encourage data to be findable, accessible under clear conditions, interoperable, and reusable <span class="citation" data-cites="wilkinson2016fair">(<a href="references.html#ref-wilkinson2016fair" role="doc-biblioref"><span class="nocase">Wilkinson et al.</span> 2016</a>)</span>. FAIR does not mean open without restriction. Sensitive or culturally governed data can be well documented and responsibly accessible under controls.</p>
+</section>
+<section id="data-quality-as-dimensions" class="level3" data-number="12.4.5">
+<h3 data-number="12.4.5" class="anchored" data-anchor-id="data-quality-as-dimensions"><span class="header-section-number">12.4.5</span> Data quality as dimensions</h3>
+<p><a href="#tbl-data-quality-dimensions" class="quarto-xref">Table&nbsp;<span>12.2</span></a> connects quality dimensions to library examples.</p>
+<div id="tbl-data-quality-dimensions" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-quality-dimensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.2: Data quality dimensions in LIS practice
+</figcaption>
+<div aria-describedby="tbl-data-quality-dimensions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-data-quality-dimensions" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dimension</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Question</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">LIS example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Completeness</td>
+<td style="text-align: left;">Are required observations and values present?</td>
+<td style="text-align: left;">Language and rights missing from repository records</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Validity</td>
+<td style="text-align: left;">Do values follow declared rules?</td>
+<td style="text-align: left;">Impossible date or unrecognized status code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;">Do values correspond to an authoritative or observed state?</td>
+<td style="text-align: left;">Catalogue says available while item is missing</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consistency</td>
+<td style="text-align: left;">Do equivalent facts agree across records and systems?</td>
+<td style="text-align: left;">One branch uses Filipino labels and another unexplained abbreviations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Uniqueness</td>
+<td style="text-align: left;">Are entities or events duplicated unintentionally?</td>
+<td style="text-align: left;">Same request counted twice after system retry</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Timeliness</td>
+<td style="text-align: left;">Are values current enough for this decision?</td>
+<td style="text-align: left;">Old hours remain in a mobile app cache</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Can origin and transformations be reconstructed?</td>
+<td style="text-align: left;">Cleaned CSV lacks source export date and rule log</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Representativeness</td>
+<td style="text-align: left;">Whose experiences and contexts are captured or absent?</td>
+<td style="text-align: left;">Online survey excludes users with limited connectivity</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-data-quality-dimensions" class="quarto-xref">Table&nbsp;<span>12.2</span></a> shows, quality is more than blank-cell counts. Metadata quality research similarly treats completeness, accuracy, consistency, and conformance as distinct concerns <span class="citation" data-cites="park2009quality">(<a href="references.html#ref-park2009quality" role="doc-biblioref">Park 2009</a>)</span>.</p>
+</section>
+<section id="missingness-carries-meaning" class="level3" data-number="12.4.6">
+<h3 data-number="12.4.6" class="anchored" data-anchor-id="missingness-carries-meaning"><span class="header-section-number">12.4.6</span> Missingness carries meaning</h3>
+<p>Missing values may mean not recorded, unknown, not applicable, withheld, refused, system error, or suppressed for privacy. Replacing every missing value with zero changes meaning. Dropping incomplete rows can systematically remove people who face the greatest barriers.</p>
+<p>Profile missingness by variable, period, channel, and relevant group while protecting privacy. Ask whether missingness is connected to the outcome. A mobile form that fails on slow connections may produce missing satisfaction responses precisely among users with poor experiences.</p>
+<p>Document decisions:</p>
+<ul>
+<li>retain as missing and report it;</li>
+<li>recover from an authoritative source;</li>
+<li>correct a known system error;</li>
+<li>create an explicit category such as <code>not_applicable</code> when justified;</li>
+<li>suppress small groups to protect people;</li>
+<li>exclude observations with a reason and sensitivity check.</li>
+</ul>
+</section>
+<section id="tidy-structure-and-reproducible-transformations" class="level3" data-number="12.4.7">
+<h3 data-number="12.4.7" class="anchored" data-anchor-id="tidy-structure-and-reproducible-transformations"><span class="header-section-number">12.4.7</span> Tidy structure and reproducible transformations</h3>
+<p>Tidy data generally place variables in columns and observations in rows, supporting transparent transformation <span class="citation" data-cites="wickham2014tidy">(<a href="references.html#ref-wickham2014tidy" role="doc-biblioref">Wickham 2014</a>)</span>. This does not replace relational or graph models, but it helps analysis.</p>
+<p>A reproducible workflow preserves raw input, creates cleaned output, records rules, and generates tables and charts from code. Quarto combines code, narrative, results, citations, and limitations <span class="citation" data-cites="quarto2026docs">(<a href="references.html#ref-quarto2026docs" role="doc-biblioref">Posit 2026</a>)</span>. Reproducibility requires data and environment documentation, not merely sharing code <span class="citation" data-cites="sandve2013reproducible nap2019reproducibility">(<a href="references.html#ref-sandve2013reproducible" role="doc-biblioref">Sandve et al. 2013</a>; <a href="references.html#ref-nap2019reproducibility" role="doc-biblioref">National Academies of Sciences, Engineering, and Medicine 2019</a>)</span>.</p>
+</section>
+<section id="a-synthetic-service-dataset" class="level3" data-number="12.4.8">
+<h3 data-number="12.4.8" class="anchored" data-anchor-id="a-synthetic-service-dataset"><span class="header-section-number">12.4.8</span> A synthetic service dataset</h3>
+<p>The following synthetic dataset contains monthly reference requests. It represents no real people and is created inside the chapter.</p>
+<p>The data include counts, completion, median waits, and chat outages. They do not include patron identities, question topics, satisfaction, answer quality, staffing, repeat users, or reasons for incomplete requests. These limitations constrain interpretation.</p>
+</section>
+<section id="counts-denominators-and-rates" class="level3" data-number="12.4.9">
+<h3 data-number="12.4.9" class="anchored" data-anchor-id="counts-denominators-and-rates"><span class="header-section-number">12.4.9</span> Counts, denominators, and rates</h3>
+<p>A count answers “how many recorded events?” A rate compares a count with opportunity, population, exposure, or time. A completion percentage needs a denominator:</p>
+<p><span class="math display">\[
+\text{Completion rate} = \frac{\text{completed requests}}{\text{recorded requests}} \times 100
+\]</span></p>
+<p>If “completed” means staff closed a ticket rather than the user obtained useful information, the rate measures workflow closure, not success. Definitions matter as much as formulas.</p>
+<p>Aggregating the synthetic data by channel:</p>
+<div id="tbl-service-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-service-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.3: Synthetic reference requests and completion by channel, January-June
+</figcaption>
+<div aria-describedby="tbl-service-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-service-summary" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Channel</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Requests</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Completed</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Completion rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Chat</td>
+<td style="text-align: right;">621</td>
+<td style="text-align: right;">556</td>
+<td style="text-align: left;">89.5%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Email</td>
+<td style="text-align: right;">370</td>
+<td style="text-align: right;">331</td>
+<td style="text-align: left;">89.5%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">In person</td>
+<td style="text-align: right;">771</td>
+<td style="text-align: right;">710</td>
+<td style="text-align: left;">92.1%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-service-summary" class="quarto-xref">Table&nbsp;<span>12.3</span></a> shows recorded volume and completion. Email’s long wait time is not visible in this table, so it should not support a claim about overall service quality.</p>
+</section>
+<section id="mean-median-and-distributions" class="level3" data-number="12.4.10">
+<h3 data-number="12.4.10" class="anchored" data-anchor-id="mean-median-and-distributions"><span class="header-section-number">12.4.10</span> Mean, median, and distributions</h3>
+<p>The mean uses every value and is sensitive to extremes. The median is the middle ordered value and often describes skewed wait times more robustly. Neither tells the whole distribution.</p>
+<p>If five waits are 2, 3, 4, 5, and 60 minutes, the mean is 14.8 and median is 4. Both are correct; each answers a different descriptive question. Report sample size, spread or ranges when useful, and the unit. Avoid selecting the statistic that makes performance appear best.</p>
+<p>An outlier may be an error, rare event, or important case. Investigate before removing it. A 300-minute wait may reveal an outage or an unserved accessibility request.</p>
+</section>
+<section id="aggregation-and-disaggregation" class="level3" data-number="12.4.11">
+<h3 data-number="12.4.11" class="anchored" data-anchor-id="aggregation-and-disaggregation"><span class="header-section-number">12.4.11</span> Aggregation and disaggregation</h3>
+<p>Aggregates help summarize and protect privacy, but they can hide unequal outcomes. Overall completion may rise while one channel or language declines. Disaggregation can reveal barriers but can expose people when groups are small.</p>
+<p>Before publishing subgroup data, assess purpose, consent or authority, sample size, re-identification, stigmatization, and whether communities can interpret and respond. Suppression and category combination reduce risk but may erase small populations. There is no purely technical solution; involve affected groups and privacy expertise.</p>
+</section>
+<section id="association-is-not-causation" class="level3" data-number="12.4.12">
+<h3 data-number="12.4.12" class="anchored" data-anchor-id="association-is-not-causation"><span class="header-section-number">12.4.12</span> Association is not causation</h3>
+<p>If chat requests rise after mobile redesign, the redesign may have contributed. Other explanations include examinations, promotion, staffing, outage recovery, or changing user populations. A before-after comparison without a credible counterfactual cannot isolate cause.</p>
+<p>Use careful language:</p>
+<ul>
+<li>evidence supports: “Recorded chat requests increased after launch.”</li>
+<li>requires stronger design: “The redesign caused more students to obtain help.”</li>
+</ul>
+<p>Triangulate analytics with usability tests, interviews, accessibility review, support logs, and operational changes. Quantitative patterns show where to ask; qualitative evidence helps explain how and why.</p>
+</section>
+<section id="accessible-and-honest-visualization" class="level3" data-number="12.4.13">
+<h3 data-number="12.4.13" class="anchored" data-anchor-id="accessible-and-honest-visualization"><span class="header-section-number">12.4.13</span> Accessible and honest visualization</h3>
+<p>A visualization should support a specific comparison. Bar charts compare categories; line charts show ordered change over time; scatterplots show relationships; tables support exact lookup. Avoid three-dimensional effects, decorative clutter, truncated axes that exaggerate small differences, and color-only encoding.</p>
+<p>The line chart in <a href="#fig-channel-requests" class="quarto-xref">Figure&nbsp;<span>12.2</span></a> uses labels, distinguishable line types and points, a descriptive caption, and an accompanying table in the source data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-channel-requests" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Line chart of monthly reference requests. In-person requests fluctuate between 118 and 142. Chat requests rise from 80 in January to 134 in June, with a larger increase after March. Email requests rise gradually from 55 to 70.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-channel-requests-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="chapter-12-data-literacy-capstone_files/figure-html/fig-channel-requests-1.png" class="img-fluid figure-img" alt="Line chart of monthly reference requests. In-person requests fluctuate between 118 and 142. Chat requests rise from 80 in January to 134 in June, with a larger increase after March. Email requests rise gradually from 55 to 70." width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-channel-requests-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: Synthetic monthly reference requests by channel, January-June. Chat requests rise over the period, but the data alone do not establish why.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-channel-requests" class="quarto-xref">Figure&nbsp;<span>12.2</span></a> shows, chat volume rises while in-person volume fluctuates. The caption explicitly limits the claim. Complex charts need text alternatives and often a data table or longer description <span class="citation" data-cites="w3c2026charts">(<a href="references.html#ref-w3c2026charts" role="doc-biblioref">World Wide Web Consortium 2026</a>)</span>. Government visualization guidance likewise emphasizes chart selection, labeling, scales, and accessibility <span class="citation" data-cites="govuk2026charts">(<a href="references.html#ref-govuk2026charts" role="doc-biblioref">UK Government Analysis Function 2026</a>)</span>.</p>
+</section>
+<section id="dashboards-and-metric-governance" class="level3" data-number="12.4.14">
+<h3 data-number="12.4.14" class="anchored" data-anchor-id="dashboards-and-metric-governance"><span class="header-section-number">12.4.14</span> Dashboards and metric governance</h3>
+<p>A dashboard selects what receives attention. Metrics should have owners, definitions, sources, refresh schedules, thresholds, privacy rules, and review dates. A green indicator can conceal harm if the target is poorly chosen.</p>
+<p>Avoid vanity metrics such as total page views without a decision. A useful metric connects to service value and can prompt action. Even then, monitor balancing measures. Faster reference closure may reduce answer quality; more repository deposits may increase inaccessible files; higher discovery clicks may increase broken-link frustration.</p>
+<p><a href="#tbl-metric-specification" class="quarto-xref">Table&nbsp;<span>12.4</span></a> defines a compact metric record.</p>
+<div id="tbl-metric-specification" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metric-specification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.4: Fields for governing an LIS service metric
+</figcaption>
+<div aria-describedby="tbl-metric-specification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-metric-specification" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Field</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Example question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Decision</td>
+<td style="text-align: left;">Which decision will this evidence inform?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Construct</td>
+<td style="text-align: left;">What concept is the metric intended to represent?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Operational definition</td>
+<td style="text-align: left;">Exactly which events and exclusions count?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Numerator</td>
+<td style="text-align: left;">What observed successes or events are counted?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Denominator</td>
+<td style="text-align: left;">Relative to which population, opportunity, exposure, or time?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Source and provenance</td>
+<td style="text-align: left;">Which system, query, dates, and transformations produce it?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frequency</td>
+<td style="text-align: left;">How often is a decision genuinely needed?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Disaggregation</td>
+<td style="text-align: left;">Which groups or contexts matter, and when are counts too small?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quality checks</td>
+<td style="text-align: left;">Which validity, duplicate, missingness, and drift checks apply?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Privacy controls</td>
+<td style="text-align: left;">Which fields are removed, aggregated, restricted, or deleted?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Balancing measure</td>
+<td style="text-align: left;">Which measure detects harmful optimization?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Owner and action threshold</td>
+<td style="text-align: left;">Who reviews it, and what evidence triggers action?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Retirement rule</td>
+<td style="text-align: left;">When will the metric stop because it no longer serves the question?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-metric-specification" class="quarto-xref">Table&nbsp;<span>12.4</span></a> indicates, a metric is a governed information product, not a number that appears automatically.</p>
+</section>
+<section id="theory-of-change-and-evaluation" class="level3" data-number="12.4.15">
+<h3 data-number="12.4.15" class="anchored" data-anchor-id="theory-of-change-and-evaluation"><span class="header-section-number">12.4.15</span> Theory of change and evaluation</h3>
+<p>A theory of change connects resources and activities to outputs, outcomes, assumptions, and context.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-theory-change" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-theory-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-theory-change">flowchart LR
+    N["Need: mobile users abandon help"] --&gt; A["Activities: simplify form, improve accessibility, preserve interrupted input"]
+    A --&gt; O["Outputs: tested mobile workflow, staff guide, monitoring"]
+    O --&gt; S["Short outcome: more users complete requests with less effort"]
+    S --&gt; L["Long outcome: more equitable access to credible assistance"]
+    X["Assumptions: staffing, connectivity, awareness, trust"] --&gt; S
+    C["Context: exams, outages, policy, language"] --&gt; S
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-theory-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.3: A simplified theory of change for a mobile reference redesign
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-theory-change" class="quarto-xref">Figure&nbsp;<span>12.3</span></a> shows, activities do not guarantee outcomes. Evaluation should test assumptions and unintended effects.</p>
+<p>Evaluation questions can examine:</p>
+<ul>
+<li><strong>design:</strong> Is the intervention grounded in evidence and values?</li>
+<li><strong>implementation:</strong> Was it delivered as intended, to whom, and with what adaptations?</li>
+<li><strong>outcome:</strong> What changed for users, services, and equity?</li>
+<li><strong>efficiency:</strong> What resources produced which outputs or outcomes?</li>
+<li><strong>sustainability:</strong> Can benefits and controls continue?</li>
+<li><strong>unintended effects:</strong> Who was burdened, excluded, surveilled, or displaced?</li>
+</ul>
+</section>
+<section id="communicating-uncertainty-and-limitations" class="level3" data-number="12.4.16">
+<h3 data-number="12.4.16" class="anchored" data-anchor-id="communicating-uncertainty-and-limitations"><span class="header-section-number">12.4.16</span> Communicating uncertainty and limitations</h3>
+<p>Every analysis should state:</p>
+<ul>
+<li>data source, period, and unit;</li>
+<li>inclusion and exclusion rules;</li>
+<li>missingness and quality issues;</li>
+<li>transformations and assumptions;</li>
+<li>whether data are a sample or full recorded set;</li>
+<li>relevant external changes;</li>
+<li>which claims are descriptive, associative, or causal;</li>
+<li>privacy suppression and its effects;</li>
+<li>populations and experiences not represented;</li>
+<li>what further evidence is needed.</li>
+</ul>
+<p>Limitations do not invalidate responsible analysis. They define its boundary. Hiding limitations produces brittle decisions and weak trust.</p>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">12.5</span> Philippine and Southeast Asian examples</h2>
+<section id="academic-library-database-use-and-course-cycles" class="level3" data-number="12.5.1">
+<h3 data-number="12.5.1" class="anchored" data-anchor-id="academic-library-database-use-and-course-cycles"><span class="header-section-number">12.5.1</span> Academic library: database use and course cycles</h3>
+<p>A university library compares database sessions across colleges. Raw counts favor large colleges, so analysts calculate sessions relative to enrolled students and course periods. They do not equate sessions with learning. Interviews reveal that some programs rely on open resources and shared devices, while off-campus authentication failures suppress recorded use.</p>
+</section>
+<section id="public-library-program-attendance-and-reach" class="level3" data-number="12.5.2">
+<h3 data-number="12.5.2" class="anchored" data-anchor-id="public-library-program-attendance-and-reach"><span class="header-section-number">12.5.2</span> Public library: program attendance and reach</h3>
+<p>A city library reports event attendance, but repeat attendees and walk-ins make unique reach uncertain. Registration data are minimized, and small barangay counts are not publicly disaggregated when individuals could be inferred. Staff combine counts with participant feedback and community-partner observations.</p>
+</section>
+<section id="school-library-reading-program-outcomes" class="level3" data-number="12.5.3">
+<h3 data-number="12.5.3" class="anchored" data-anchor-id="school-library-reading-program-outcomes"><span class="header-section-number">12.5.3</span> School library: reading program outcomes</h3>
+<p>A school sees higher circulation after a reading campaign. It avoids claiming that circulation caused literacy improvement. Teachers, learners, and librarians examine reading choice, accessibility, language, comprehension, and availability. The library monitors whether competition discourages slower readers or encourages superficial borrowing.</p>
+</section>
+<section id="government-information-portal-denominators-and-outages" class="level3" data-number="12.5.4">
+<h3 data-number="12.5.4" class="anchored" data-anchor-id="government-information-portal-denominators-and-outages"><span class="header-section-number">12.5.4</span> Government information portal: denominators and outages</h3>
+<p>A government portal reports rising downloads. Analysts compare page availability, internet disruptions, document publication volume, device type, and population served. An outage can reduce both numerator and denominator opportunities. Accessible offline and assisted channels remain part of service assessment.</p>
+</section>
+<section id="regional-cultural-heritage-dataset" class="level3" data-number="12.5.5">
+<h3 data-number="12.5.5" class="anchored" data-anchor-id="regional-cultural-heritage-dataset"><span class="header-section-number">12.5.5</span> Regional cultural heritage dataset</h3>
+<p>A Southeast Asian aggregator maps collection coverage by country and object type. Large digitization grants create visible clusters, while community collections with limited infrastructure appear absent. The visualization labels this as portal coverage, not regional cultural production. Source institutions retain provenance, and missingness becomes a funding question rather than a claim that heritage does not exist.</p>
+<blockquote class="blockquote">
+<p><strong>Reflect:</strong> Identify one number your institution regularly reports. What is its unit, denominator, production process, missing population, and likely misuse?</p>
+</blockquote>
+</section>
+</section>
+<section id="hands-on-activity-analyze-service-data-and-refine-a-capstone" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="hands-on-activity-analyze-service-data-and-refine-a-capstone"><span class="header-section-number">12.6</span> Hands-on activity: Analyze service data and refine a capstone</h2>
+<section id="purpose" class="level3" data-number="12.6.1">
+<h3 data-number="12.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">12.6.1</span> Purpose</h3>
+<p>Use R and Quarto to profile a small synthetic or properly anonymized service dataset, create one output-aware table and accessible visualization, write a bounded interpretation, and use the findings to improve a capstone proposal.</p>
+</section>
+<section id="tools" class="level3" data-number="12.6.2">
+<h3 data-number="12.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">12.6.2</span> Tools</h3>
+<ul>
+<li>R and Quarto;</li>
+<li>base R or <code>readr</code>, <code>dplyr</code>, and <code>ggplot2</code> if approved;</li>
+<li>an instructor-provided synthetic dataset with data dictionary;</li>
+<li>the analysis-plan fields in <a href="#tbl-analysis-plan" class="quarto-xref">Table&nbsp;<span>12.5</span></a>.</li>
+</ul>
+<div id="tbl-analysis-plan" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-analysis-plan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.5: Required elements of the Chapter 12 analysis plan
+</figcaption>
+<div aria-describedby="tbl-analysis-plan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-analysis-plan" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Field</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Required statement</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Service question</td>
+<td style="text-align: left;">One answerable question rather than a broad topic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Decision and audience</td>
+<td style="text-align: left;">Who will decide what based on the evidence?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Unit and population</td>
+<td style="text-align: left;">What is one row, and to which population might the claim apply?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Period and context</td>
+<td style="text-align: left;">Which dates and external events matter?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Variables and definitions</td>
+<td style="text-align: left;">What does each field mean, including missing codes?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Who produced the data, how, and through which transformations?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quality checks</td>
+<td style="text-align: left;">Which completeness, validity, duplicates, consistency, and timeliness checks apply?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Privacy and ethics</td>
+<td style="text-align: left;">Which data are necessary, restricted, aggregated, or excluded?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Measures and denominators</td>
+<td style="text-align: left;">Which calculations answer the question and why?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Visualization</td>
+<td style="text-align: left;">Which visual comparison is needed, with text alternative and data access?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Limitations</td>
+<td style="text-align: left;">What can the evidence not establish?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Reproducibility</td>
+<td style="text-align: left;">Which files, code, software, and steps allow rerunning?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Capstone implication</td>
+<td style="text-align: left;">Which requirement, risk, design, or evaluation decision changes?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-analysis-plan" class="quarto-xref">Table&nbsp;<span>12.5</span></a> turns analysis into a documented professional decision process.</p>
+</section>
+<section id="steps" class="level3" data-number="12.6.3">
+<h3 data-number="12.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">12.6.3</span> Steps</h3>
+<ol type="1">
+<li>Write the service question, decision, audience, unit, population, period, comparison, and likely harms from misuse.</li>
+<li>Read the data dictionary and provenance note before opening the values. Record collection purpose and limitations.</li>
+<li>Preserve the source file. Import explicit types and keep a run record.</li>
+<li>Inspect dimensions, names, types, ranges, categories, duplicates, missingness, and impossible values.</li>
+<li>Produce a quality report with counts and examples. Do not silently correct uncertain values.</li>
+<li>Create a cleaned analytical dataset and log every transformation and exclusion.</li>
+<li>Calculate no more than five measures directly tied to the question. Show numerator and denominator for every percentage or rate.</li>
+<li>Create one output-aware table and one accessible chart. Use a descriptive title or caption, direct labels where feasible, non-color cues, sensible scales, and alternative text.</li>
+<li>Write three evidence statements, each followed by a limitation or alternative explanation.</li>
+<li>Add one qualitative or operational evidence source that would strengthen interpretation.</li>
+<li>State a proportionate service recommendation, an evaluation measure, a balancing measure, and a stop or review condition.</li>
+<li>Revise the capstone proposal using the findings. Identify one requirement added, removed, or changed.</li>
+<li>Render the <code>.qmd</code> and ask a peer to reproduce one result from the source data and code.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="12.6.4">
+<h3 data-number="12.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">12.6.4</span> Expected output</h3>
+<p>Submit:</p>
+<ul>
+<li>analysis plan and data dictionary;</li>
+<li>source-preservation and transformation log;</li>
+<li>quality and missingness report;</li>
+<li>cleaned analytical data;</li>
+<li>executable <code>.qmd</code> and rendered HTML or DOCX;</li>
+<li>one referenced table and one accessible visualization;</li>
+<li>limitations and ethical-use statement;</li>
+<li>service recommendation with evaluation and balancing measures;</li>
+<li>revised capstone proposal; and</li>
+<li>a 200-word reflection: <strong>Which conclusion became less certain, and more useful, after examining how the data were produced?</strong></li>
+</ul>
+</section>
+<section id="activity-checklist" class="level3" data-number="12.6.5">
+<h3 data-number="12.6.5" class="anchored" data-anchor-id="activity-checklist"><span class="header-section-number">12.6.5</span> Activity checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">The question identifies a decision, not only a topic.</label></li>
+<li><label><input type="checkbox">Unit, population, period, and comparison are explicit.</label></li>
+<li><label><input type="checkbox">Provenance and data dictionary are reviewed.</label></li>
+<li><label><input type="checkbox">Missingness, duplicates, validity, and bias are profiled.</label></li>
+<li><label><input type="checkbox">Source data remain unchanged.</label></li>
+<li><label><input type="checkbox">Denominators and exclusions are visible.</label></li>
+<li><label><input type="checkbox">Chart and table are referenced and discussed in prose.</label></li>
+<li><label><input type="checkbox">Visualization has caption, alt text, and non-color cues.</label></li>
+<li><label><input type="checkbox">Claims remain within descriptive evidence.</label></li>
+<li><label><input type="checkbox">Capstone revision follows from evidence rather than decoration.</label></li>
+</ul>
+</section>
+<section id="assessment-rubric" class="level3" data-number="12.6.6">
+<h3 data-number="12.6.6" class="anchored" data-anchor-id="assessment-rubric"><span class="header-section-number">12.6.6</span> Assessment rubric</h3>
+<p><a href="#tbl-data-lab-rubric" class="quarto-xref">Table&nbsp;<span>12.6</span></a> rewards question quality and interpretation as much as calculation.</p>
+<div id="tbl-data-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.6: Rubric for the data-literacy analysis activity
+</figcaption>
+<div aria-describedby="tbl-data-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-data-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strong performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Question and provenance</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Question, decision, unit, population, scope, source, and production context are precise</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quality and reproducibility</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Source is protected; checks, transformations, code, and environment are documented</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Analysis and visualization</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">Measures answer the question; denominators, table, chart, accessibility, and labels are correct</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interpretation and ethics</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Claims, uncertainty, missingness, bias, privacy, alternatives, and limitations are candid</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Capstone integration</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Evidence produces a defensible change to requirements, evaluation, risk, or sustainability</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="capstone-integration" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="capstone-integration"><span class="header-section-number">12.7</span> Capstone integration</h2>
+<p>The capstone accounts for 25% of the course grade. It demonstrates that ICT in LIS is service infrastructure rather than isolated software operation. Every capstone must identify a real information problem, produce a bounded artifact, test it, document decisions, and plan for responsible maintenance or closure.</p>
+<section id="shared-capstone-requirements" class="level3" data-number="12.7.1">
+<h3 data-number="12.7.1" class="anchored" data-anchor-id="shared-capstone-requirements"><span class="header-section-number">12.7.1</span> Shared capstone requirements</h3>
+<p>Every option must include:</p>
+<ol type="1">
+<li><strong>Service case:</strong> users, need, evidence, institutional fit, scope, exclusions, and success.</li>
+<li><strong>Metadata and data:</strong> entities, fields, identifiers, vocabularies, quality rules, provenance, and exchange.</li>
+<li><strong>Technical artifact:</strong> working prototype, reproducible analysis, tested workflow, or implementable policy set.</li>
+<li><strong>UX and accessibility:</strong> task, user evidence, WCAG-aware design, mobile or constrained context, and help.</li>
+<li><strong>Ethics and law:</strong> privacy, rights, intellectual freedom, community authority, bias, security, and accountability.</li>
+<li><strong>Stewardship:</strong> preservation, backups, formats, documentation, ownership, maintenance, budget, and exit.</li>
+<li><strong>Evaluation:</strong> acceptance criteria, baseline or comparison, evidence, balancing measure, limitations, and next test.</li>
+<li><strong>Communication:</strong> accessible demonstration, concise executive summary, technical documentation, and individual reflection.</li>
+</ol>
+</section>
+<section id="capstone-options" class="level3" data-number="12.7.2">
+<h3 data-number="12.7.2" class="anchored" data-anchor-id="capstone-options"><span class="header-section-number">12.7.2</span> Capstone options</h3>
+<p><a href="#tbl-capstone-options" class="quarto-xref">Table&nbsp;<span>12.7</span></a> describes six pathways. Teams should choose the smallest scope that permits complete integration.</p>
+<div id="tbl-capstone-options" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-capstone-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.7: Capstone options, integration requirements, and scope boundaries
+</figcaption>
+<div aria-describedby="tbl-capstone-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-capstone-options" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Option</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Core artifact</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Required integration</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Boundary example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Campus digital exhibit</td>
+<td style="text-align: left;">Three-to-five item interpretive exhibit</td>
+<td style="text-align: left;">Selection, description, provenance, rights, accessibility, preservation</td>
+<td style="text-align: left;">Prototype, not an institution-wide portal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">API-powered subject guide</td>
+<td style="text-align: left;">Reviewed guide generated from a bounded API workflow</td>
+<td style="text-align: left;">API terms, identifiers, transformation, attribution, review, fallback</td>
+<td style="text-align: left;">Twenty candidates and five published entries</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Discovery improvement study</td>
+<td style="text-align: left;">Task evidence, retrieval analysis, and prioritized redesign</td>
+<td style="text-align: left;">Corpus, metadata, ranking, UX, access resolution, privacy</td>
+<td style="text-align: left;">One task and one bounded system scope</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Small repository policy pack</td>
+<td style="text-align: left;">Coherent policies, roles, workflows, and templates</td>
+<td style="text-align: left;">Deposit, metadata, rights, security, preservation, governance, exit</td>
+<td style="text-align: left;">One small collection type and institutional context</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Metadata cleanup and enrichment</td>
+<td style="text-align: left;">Source-preserving cleanup script, records, exceptions, and audit</td>
+<td style="text-align: left;">Quality rules, authority work, automation, tests, rollback, identity ethics</td>
+<td style="text-align: left;">No more than 100 synthetic or approved records</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mobile service redesign</td>
+<td style="text-align: left;">Tested mobile flow or accessible prototype</td>
+<td style="text-align: left;">User research, information architecture, WCAG, privacy, low bandwidth, evaluation</td>
+<td style="text-align: left;">One critical journey, not a complete app</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-capstone-options" class="quarto-xref">Table&nbsp;<span>12.7</span></a> shows, each option is intentionally small. Depth, evidence, and maintainability matter more than feature count.</p>
+</section>
+<section id="capstone-pathway-1-campus-digital-exhibit" class="level3" data-number="12.7.3">
+<h3 data-number="12.7.3" class="anchored" data-anchor-id="capstone-pathway-1-campus-digital-exhibit"><span class="header-section-number">12.7.3</span> Capstone pathway 1: Campus digital exhibit</h3>
+<p>Select a coherent topic and three to five objects. Produce collection and interpretive statements, structured item metadata, provenance, rights and sensitivity review, alt text or transcripts, responsive exhibit pages, preservation package, and evaluation with representative tasks. Do not treat exhibit captions as substitutes for durable object records.</p>
+</section>
+<section id="capstone-pathway-2-api-powered-subject-guide" class="level3" data-number="12.7.4">
+<h3 data-number="12.7.4" class="anchored" data-anchor-id="capstone-pathway-2-api-powered-subject-guide"><span class="header-section-number">12.7.4</span> Capstone pathway 2: API-powered subject guide</h3>
+<p>Define audience and selection criteria, document API terms, save permitted raw responses, transform and validate data reproducibly, retain identifiers and attribution, review every published entry, design accessible output, handle outages, and define refresh and exit. The guide must add professional selection and context rather than republish results automatically.</p>
+</section>
+<section id="capstone-pathway-3-discovery-improvement-study" class="level3" data-number="12.7.5">
+<h3 data-number="12.7.5" class="anchored" data-anchor-id="capstone-pathway-3-discovery-improvement-study"><span class="header-section-number">12.7.5</span> Capstone pathway 3: Discovery improvement study</h3>
+<p>Select one information need and system boundary. Analyze corpus claims, metadata, search behavior, ranking, facets, access resolution, mobile UX, and accessibility. Use relevance judgments and task evidence to recommend changes with owners and verification. Do not claim system-wide findings from one query.</p>
+</section>
+<section id="capstone-pathway-4-small-repository-policy-pack" class="level3" data-number="12.7.6">
+<h3 data-number="12.7.6" class="anchored" data-anchor-id="capstone-pathway-4-small-repository-policy-pack"><span class="header-section-number">12.7.6</span> Capstone pathway 4: Small repository policy pack</h3>
+<p>Define one collection type and institutional context. Produce collection scope, deposit agreement, metadata profile, roles, access and embargo policy, rights and takedown workflow, privacy and security controls, preservation plan, incident procedure, service levels, review schedule, and exit plan. Policies must form one coherent operating model.</p>
+</section>
+<section id="capstone-pathway-5-metadata-cleanup-and-enrichment" class="level3" data-number="12.7.7">
+<h3 data-number="12.7.7" class="anchored" data-anchor-id="capstone-pathway-5-metadata-cleanup-and-enrichment"><span class="header-section-number">12.7.7</span> Capstone pathway 5: Metadata cleanup and enrichment</h3>
+<p>Use synthetic or approved data. Preserve source values, define quality and authority rules, write reproducible transformations, produce exception reports, test multilingual and missing cases, document enrichment provenance, assess identity harm, and prepare rollback. Avoid automatically merging people or replacing community labels without authority.</p>
+</section>
+<section id="capstone-pathway-6-mobile-service-redesign" class="level3" data-number="12.7.8">
+<h3 data-number="12.7.8" class="anchored" data-anchor-id="capstone-pathway-6-mobile-service-redesign"><span class="header-section-number">12.7.8</span> Capstone pathway 6: Mobile service redesign</h3>
+<p>Choose one critical task. Conduct ethical user and accessibility research, map the journey and information architecture, prototype responsive behavior, test keyboard and assistive-technology essentials, address low bandwidth and interruption, minimize personal data, and define performance and success measures. The deliverable includes behavior notes, not only screens.</p>
+</section>
+<section id="common-capstone-rubric" class="level3" data-number="12.7.9">
+<h3 data-number="12.7.9" class="anchored" data-anchor-id="common-capstone-rubric"><span class="header-section-number">12.7.9</span> Common capstone rubric</h3>
+<p><a href="#tbl-common-capstone-rubric" class="quarto-xref">Table&nbsp;<span>12.8</span></a> makes integration visible. A technically impressive artifact cannot compensate for harmful data practices or unusable design.</p>
+<div id="tbl-common-capstone-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-common-capstone-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.8: Common rubric for all capstone pathways
+</figcaption>
+<div aria-describedby="tbl-common-capstone-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-common-capstone-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strong performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Service problem and users</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Need, stakeholders, scope, exclusions, and outcomes are specific and evidence based</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metadata and data quality</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Entities, identifiers, structures, values, provenance, and quality controls are coherent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Technical implementation</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Artifact works reliably within scope; dependencies, tests, failures, and limitations are documented</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ethics, rights, privacy, security, and accessibility</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Concrete design and governance choices address risk, access, law, bias, and accountability</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Evaluation and evidence</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Acceptance criteria, methods, findings, balancing measures, and claims support defensible judgment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Documentation, stewardship, sustainability, and communication</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Another team could understand, operate, maintain, preserve, evaluate, and retire the work</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="milestones-and-review-gates" class="level3" data-number="12.7.10">
+<h3 data-number="12.7.10" class="anchored" data-anchor-id="milestones-and-review-gates"><span class="header-section-number">12.7.10</span> Milestones and review gates</h3>
+<p>Capstone development should use gates rather than wait for a final demonstration:</p>
+<ul>
+<li><strong>Gate 1, proposal:</strong> service problem, users, evidence, scope, exclusions, option, roles, and risks approved.</li>
+<li><strong>Gate 2, design:</strong> data and metadata model, UX task, rights/privacy/security/preservation plan, and acceptance criteria approved.</li>
+<li><strong>Gate 3, working draft:</strong> artifact functions with sample data; tests, exceptions, accessibility, and documentation reviewed.</li>
+<li><strong>Gate 4, evaluation:</strong> user or expert evidence collected ethically; findings and revisions documented.</li>
+<li><strong>Gate 5, final acceptance:</strong> artifact, source, report, preservation package, presentation, and individual reflections complete.</li>
+</ul>
+<p>At each gate, the team may proceed, proceed with conditions, revise, reduce scope, or stop. Scope reduction is often evidence of good judgment.</p>
+</section>
+<section id="capstone-presentation" class="level3" data-number="12.7.11">
+<h3 data-number="12.7.11" class="anchored" data-anchor-id="capstone-presentation"><span class="header-section-number">12.7.11</span> Capstone presentation</h3>
+<p>A ten-minute presentation should answer:</p>
+<ol type="1">
+<li>What service problem and users did you address?</li>
+<li>What did you build, test, or govern?</li>
+<li>How do metadata and data structures support it?</li>
+<li>What evidence changed your design?</li>
+<li>Which ethical, legal, accessibility, security, or preservation risk mattered most?</li>
+<li>What works now, what remains uncertain, and what should happen next?</li>
+</ol>
+<p>The demonstration must have an offline fallback, accessible slides or page, readable labels, and no live personal data or credentials. A failed live API should not erase the evidence of the project.</p>
+</section>
+<section id="individual-reflection" class="level3" data-number="12.7.12">
+<h3 data-number="12.7.12" class="anchored" data-anchor-id="individual-reflection"><span class="header-section-number">12.7.12</span> Individual reflection</h3>
+<p>Each student submits a reflection identifying contribution, one decision they influenced, one error or assumption revised, evidence of learning across at least three course areas, and a future professional-development need. The reflection should distinguish team achievement from individual work without blaming peers.</p>
+</section>
+</section>
+<section id="ethical-and-professional-issue-datafication-small-groups-and-the-authority-of-metrics" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="ethical-and-professional-issue-datafication-small-groups-and-the-authority-of-metrics"><span class="header-section-number">12.8</span> Ethical and professional issue: datafication, small groups, and the authority of metrics</h2>
+<p><strong>Datafication</strong> is the transformation of activities and relationships into data for monitoring, prediction, or control. Libraries can improve services through data, but not everything valuable should be measured at the individual level. Privacy, intellectual freedom, dignity, care, cultural meaning, and trust can be damaged by excessive measurement.</p>
+<p>Metrics gain authority when presented in dashboards, rankings, or AI summaries. A target can redirect work toward what is counted. If staff are judged by ticket closure, complex questions may be rushed. If collections are judged by downloads, locally important but smaller-language materials may lose support. If an algorithm predicts “low engagement,” people facing access barriers may receive fewer services.</p>
+<p>Small-group analysis is especially sensitive. Disaggregation may reveal inequity, yet publishing a table with two users can expose identity. Suppression can protect privacy but erase evidence of marginalization. The response requires purpose, community consultation, minimum necessary detail, controlled access, uncertainty, and complementary qualitative evidence.</p>
+<p>AI does not remove these duties. Automated summaries can fabricate explanations, hide missingness, infer sensitive traits, and present correlations as causes. Treat AI-generated analysis as untrusted draft work. Preserve source data, inspect code and transformations, verify every claim, disclose material use, and never upload restricted data without authorization.</p>
+<p>Responsible evidence practice includes:</p>
+<ul>
+<li>collect only what a stated decision requires;</li>
+<li>preserve provenance and definitions;</li>
+<li>let communities contest categories and interpretations;</li>
+<li>use aggregation and access controls proportionately;</li>
+<li>report denominators, missingness, uncertainty, and limitations;</li>
+<li>pair performance measures with equity and quality measures;</li>
+<li>avoid individual ranking when service improvement can use aggregate evidence;</li>
+<li>set retention and metric-retirement rules;</li>
+<li>document when evidence does not justify action;</li>
+<li>evaluate unintended effects after implementation.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Professional judgment prompt:</strong> A university proposes a “student success score” combining library visits, database use, borrowing, and help requests. What assumptions, privacy and intellectual-freedom harms, missing contexts, false inferences, and less intrusive alternatives must be examined?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">12.9</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> Distinguish observation, variable, unit of analysis, population, and sample.</li>
+<li><strong>Identification:</strong> What is a denominator, and why must it be visible when reporting a rate?</li>
+<li><strong>Short answer:</strong> Explain why missing data should not automatically be replaced with zero or removed.</li>
+<li><strong>Short answer:</strong> How do provenance and a data dictionary support reproducibility and interpretation?</li>
+<li><strong>Applied statistics:</strong> Five reference waits are 2, 3, 4, 5, and 60 minutes. Calculate mean and median and explain which claims each supports.</li>
+<li><strong>Applied visualization:</strong> A chart begins its vertical axis at 98% to compare completion rates of 99% and 100%. What impression might it create, and how would you redesign it?</li>
+<li><strong>Scenario:</strong> Repository downloads doubled after a publicity campaign and platform migration. Why can the library not attribute the change to publicity alone?</li>
+<li><strong>Scenario:</strong> Disaggregated results show only two respondents in a sensitive category. What privacy, interpretation, and reporting options should be considered?</li>
+<li><strong>Scenario:</strong> A capstone prototype works but has no metadata profile, accessibility test, maintenance owner, or exit plan. Apply the common rubric.</li>
+<li><strong>Critical analysis:</strong> When should an institution decide not to create a metric or dashboard?</li>
+</ol>
+</section>
+<section id="mini-case-the-dashboard-that-proved-success" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="mini-case-the-dashboard-that-proved-success"><span class="header-section-number">12.10</span> Mini case: The dashboard that proved success</h2>
+<p>Silangan University Library launches a dashboard claiming that its digital transformation improved equitable access. It shows increased repository deposits, website visits, database sessions, and chat requests. The dashboard does not show that one college mandated repository deposit, bots inflated visits, authentication changes split sessions, chat outages created repeat requests, and accessibility complaints rose. No denominator accounts for enrollment, and students without reliable connectivity are absent. An AI-generated summary states that the redesign “caused a 42% improvement in student engagement.” The dashboard is scheduled for presentation to the governing board.</p>
+<section id="guide-questions" class="level3" data-number="12.10.1">
+<h3 data-number="12.10.1" class="anchored" data-anchor-id="guide-questions"><span class="header-section-number">12.10.1</span> Guide questions</h3>
+<ol type="1">
+<li>Which provenance, definition, quality, denominator, bias, accessibility, and causal-inference problems undermine the claim?</li>
+<li>Redesign the evidence package using transparent metrics, balancing measures, qualitative evidence, limitations, and privacy safeguards.</li>
+<li>What should the presenters say now, which decisions can reasonably proceed, and which claims require retraction or further study?</li>
+</ol>
+</section>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="12.11">
+<h2 data-number="12.11" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">12.11</span> Further reading and tools</h2>
+<section id="readings-and-standards" class="level3" data-number="12.11.1">
+<h3 data-number="12.11.1" class="anchored" data-anchor-id="readings-and-standards"><span class="header-section-number">12.11.1</span> Readings and standards</h3>
+<ul>
+<li><strong>R for Data Science.</strong> Open guidance on importing, transforming, visualizing, and communicating data <span class="citation" data-cites="wickham2023r4ds">(<a href="references.html#ref-wickham2023r4ds" role="doc-biblioref">Wickham et al. 2023</a>)</span>.</li>
+<li><strong>Tidy Data.</strong> A foundational article on consistent analytical structure <span class="citation" data-cites="wickham2014tidy">(<a href="references.html#ref-wickham2014tidy" role="doc-biblioref">Wickham 2014</a>)</span>.</li>
+<li><strong>FAIR Guiding Principles.</strong> Principles for findable, accessible, interoperable, and reusable research data <span class="citation" data-cites="wilkinson2016fair">(<a href="references.html#ref-wilkinson2016fair" role="doc-biblioref"><span class="nocase">Wilkinson et al.</span> 2016</a>)</span>.</li>
+<li><strong>Data information literacy research.</strong> Evidence that data management and interpretation require integrated competencies <span class="citation" data-cites="carlson2011data">(<a href="references.html#ref-carlson2011data" role="doc-biblioref">Carlson et al. 2011</a>)</span>.</li>
+<li><strong>Reproducibility guidance.</strong> Practices connecting claims to data, code, environments, and documented methods <span class="citation" data-cites="sandve2013reproducible nap2019reproducibility">(<a href="references.html#ref-sandve2013reproducible" role="doc-biblioref">Sandve et al. 2013</a>; <a href="references.html#ref-nap2019reproducibility" role="doc-biblioref">National Academies of Sciences, Engineering, and Medicine 2019</a>)</span>.</li>
+<li><strong>Accessible chart guidance.</strong> W3C guidance for complex-image alternatives and public-sector chart design <span class="citation" data-cites="w3c2026charts govuk2026charts">(<a href="references.html#ref-w3c2026charts" role="doc-biblioref">World Wide Web Consortium 2026</a>; <a href="references.html#ref-govuk2026charts" role="doc-biblioref">UK Government Analysis Function 2026</a>)</span>.</li>
+<li><strong>Philippine data-protection sources.</strong> Primary principles for lawful, proportionate, and secure personal-data use <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-or-widely-accessible-tools" class="level3" data-number="12.11.2">
+<h3 data-number="12.11.2" class="anchored" data-anchor-id="open-or-widely-accessible-tools"><span class="header-section-number">12.11.2</span> Open or widely accessible tools</h3>
+<ul>
+<li><strong>R and Quarto:</strong> reproducible analysis, tables, charts, narrative, and multi-format publication <span class="citation" data-cites="r2026 quarto2026docs">(<a href="references.html#ref-r2026" role="doc-biblioref">R Core Team 2026</a>; <a href="references.html#ref-quarto2026docs" role="doc-biblioref">Posit 2026</a>)</span>.</li>
+<li><strong>readr and dplyr:</strong> explicit import and transformation workflows <span class="citation" data-cites="readr2026 dplyr2026">(<a href="references.html#ref-readr2026" role="doc-biblioref">Tidyverse Team 2026b</a>, <a href="references.html#ref-dplyr2026" role="doc-biblioref">2026a</a>)</span>.</li>
+<li><strong>OpenRefine:</strong> visual profiling and cleaning with transformation history.</li>
+<li><strong>Data dictionaries and README files:</strong> simple, essential documentation for meaning and provenance.</li>
+<li><strong>Git:</strong> version control for code and documentation; do not commit restricted data or secrets.</li>
+<li><strong>Privacy-preserving synthetic data:</strong> useful for teaching and interface tests when real records are unnecessary.</li>
+</ul>
+</section>
+<section id="closing-synthesis" class="level3" data-number="12.11.3">
+<h3 data-number="12.11.3" class="anchored" data-anchor-id="closing-synthesis"><span class="header-section-number">12.11.3</span> Closing synthesis</h3>
+<p>Data literacy is the capacity to make responsible claims, not merely to calculate. It requires good questions, provenance, metadata, quality assessment, reproducible transformation, appropriate measures, accessible communication, uncertainty, privacy, and professional judgment. Evidence becomes useful when its limits are visible.</p>
+<p>The capstone brings the book’s central argument into practice: ICT is the infrastructure through which information organizations describe, retrieve, deliver, preserve, protect, govern, and improve services. A successful LIS technology project is therefore not the artifact with the most features. It is the one that can answer: <strong>Whose information need is served, how is meaning structured, what evidence supports the design, which risks and exclusions remain, who is accountable, and how can the service be maintained, evaluated, corrected, or ended responsibly?</strong></p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-carlson2011data" class="csl-entry" role="listitem">
+Carlson, Jake, Michael Fosmire, C. C. Miller, and Megan Sapp Nelson. 2011. <span>“Determining Data Information Literacy Needs: A Study of Students and Research Faculty.”</span> <em>Portal: Libraries and the Academy</em> 11 (2): 629–57. <a href="https://doi.org/10.1353/pla.2011.0022">https://doi.org/10.1353/pla.2011.0022</a>.
+</div>
+<div id="ref-nap2019reproducibility" class="csl-entry" role="listitem">
+National Academies of Sciences, Engineering, and Medicine. 2019. <em>Reproducibility and Replicability in Science</em>. The National Academies Press. <a href="https://doi.org/10.17226/25303">https://doi.org/10.17226/25303</a>.
+</div>
+<div id="ref-npc2023dpa" class="csl-entry" role="listitem">
+National Privacy Commission. 2023. <em>Data Privacy Act of 2012</em>. <a href="https://privacy.gov.ph/data-privacy-act/">https://privacy.gov.ph/data-privacy-act/</a>.
+</div>
+<div id="ref-park2009quality" class="csl-entry" role="listitem">
+Park, Jung-Ran. 2009. <span>“Metadata Quality in Digital Repositories: A Survey of the Current State of the Art.”</span> <em>Cataloging and Classification Quarterly</em> 47 (3–4): 213–28. <a href="https://doi.org/10.1080/01639370902737240">https://doi.org/10.1080/01639370902737240</a>.
+</div>
+<div id="ref-quarto2026docs" class="csl-entry" role="listitem">
+Posit. 2026. <em>Quarto Documentation</em>. <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>.
+</div>
+<div id="ref-r2026" class="csl-entry" role="listitem">
+R Core Team. 2026. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-philippines2012dpa" class="csl-entry" role="listitem">
+Republic of the Philippines. 2012. <em>Republic Act No. 10173: Data Privacy Act of 2012</em>. <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html">https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html</a>.
+</div>
+<div id="ref-sandve2013reproducible" class="csl-entry" role="listitem">
+Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, and Eivind Hovig. 2013. <span>“Ten Simple Rules for Reproducible Computational Research.”</span> <em>PLoS Computational Biology</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.
+</div>
+<div id="ref-dplyr2026" class="csl-entry" role="listitem">
+Tidyverse Team. 2026a. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>.
+</div>
+<div id="ref-readr2026" class="csl-entry" role="listitem">
+Tidyverse Team. 2026b. <em>Readr: Read Rectangular Text Data</em>. <a href="https://readr.tidyverse.org/">https://readr.tidyverse.org/</a>.
+</div>
+<div id="ref-govuk2026charts" class="csl-entry" role="listitem">
+UK Government Analysis Function. 2026. <em>Charts: Data Visualisation Guidance</em>. <a href="https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/">https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-charts/</a>.
+</div>
+<div id="ref-wickham2014tidy" class="csl-entry" role="listitem">
+Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
+</div>
+<div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Cetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed. O’Reilly Media. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+<div id="ref-wilkinson2016fair" class="csl-entry" role="listitem">
+<span class="nocase">Wilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, et al.</span> 2016. <span>“The FAIR Guiding Principles for Scientific Data Management and Stewardship.”</span> <em>Scientific Data</em> 3: 160018. <a href="https://doi.org/10.1038/sdata.2016.18">https://doi.org/10.1038/sdata.2016.18</a>.
+</div>
+<div id="ref-w3c2026charts" class="csl-entry" role="listitem">
+World Wide Web Consortium. 2026. <em>Complex Images Tutorial: Graphs and Charts</em>. <a href="https://www.w3.org/WAI/tutorials/images/complex/">https://www.w3.org/WAI/tutorials/images/complex/</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-11-cybersecurity-law-project.html" class="pagination-link" aria-label="Cybersecurity, Law, Ethics, and Project Planning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Digital Libraries, Repositories, and Content Platforms – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-06-information-retrieval-discovery.html" rel="next">
+<link href="./chapter-04-metadata-cataloguing.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-05-digital-libraries-repositories.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">5.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">5.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">5.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">5.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#different-systems-different-promises" id="toc-different-systems-different-promises" class="nav-link" data-scroll-target="#different-systems-different-promises"><span class="header-section-number">5.4.1</span> Different systems, different promises</a></li>
+  <li><a href="#a-digital-object-is-more-than-one-file" id="toc-a-digital-object-is-more-than-one-file" class="nav-link" data-scroll-target="#a-digital-object-is-more-than-one-file"><span class="header-section-number">5.4.2</span> A digital object is more than one file</a></li>
+  <li><a href="#selection-and-collection-policy" id="toc-selection-and-collection-policy" class="nav-link" data-scroll-target="#selection-and-collection-policy"><span class="header-section-number">5.4.3</span> Selection and collection policy</a></li>
+  <li><a href="#digitization-and-born-digital-content" id="toc-digitization-and-born-digital-content" class="nav-link" data-scroll-target="#digitization-and-born-digital-content"><span class="header-section-number">5.4.4</span> Digitization and born-digital content</a></li>
+  <li><a href="#ingest-as-a-controlled-workflow" id="toc-ingest-as-a-controlled-workflow" class="nav-link" data-scroll-target="#ingest-as-a-controlled-workflow"><span class="header-section-number">5.4.5</span> Ingest as a controlled workflow</a></li>
+  <li><a href="#content-models-and-metadata" id="toc-content-models-and-metadata" class="nav-link" data-scroll-target="#content-models-and-metadata"><span class="header-section-number">5.4.6</span> Content models and metadata</a></li>
+  <li><a href="#identifiers-and-stable-access" id="toc-identifiers-and-stable-access" class="nav-link" data-scroll-target="#identifiers-and-stable-access"><span class="header-section-number">5.4.7</span> Identifiers and stable access</a></li>
+  <li><a href="#discovery-harvesting-and-interoperability" id="toc-discovery-harvesting-and-interoperability" class="nav-link" data-scroll-target="#discovery-harvesting-and-interoperability"><span class="header-section-number">5.4.8</span> Discovery, harvesting, and interoperability</a></li>
+  <li><a href="#access-copies-restrictions-and-embargoes" id="toc-access-copies-restrictions-and-embargoes" class="nav-link" data-scroll-target="#access-copies-restrictions-and-embargoes"><span class="header-section-number">5.4.9</span> Access copies, restrictions, and embargoes</a></li>
+  <li><a href="#rights-and-licenses" id="toc-rights-and-licenses" class="nav-link" data-scroll-target="#rights-and-licenses"><span class="header-section-number">5.4.10</span> Rights and licenses</a></li>
+  <li><a href="#platform-selection" id="toc-platform-selection" class="nav-link" data-scroll-target="#platform-selection"><span class="header-section-number">5.4.11</span> Platform selection</a></li>
+  <li><a href="#governance-sustainability-and-community-practice" id="toc-governance-sustainability-and-community-practice" class="nav-link" data-scroll-target="#governance-sustainability-and-community-practice"><span class="header-section-number">5.4.12</span> Governance, sustainability, and community practice</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">5.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#state-university-repository-theses-and-embargoes" id="toc-state-university-repository-theses-and-embargoes" class="nav-link" data-scroll-target="#state-university-repository-theses-and-embargoes"><span class="header-section-number">5.5.1</span> State university repository: theses and embargoes</a></li>
+  <li><a href="#provincial-library-digitized-newspapers" id="toc-provincial-library-digitized-newspapers" class="nav-link" data-scroll-target="#provincial-library-digitized-newspapers"><span class="header-section-number">5.5.2</span> Provincial library: digitized newspapers</a></li>
+  <li><a href="#museum-exhibit-object-records-behind-the-story" id="toc-museum-exhibit-object-records-behind-the-story" class="nav-link" data-scroll-target="#museum-exhibit-object-records-behind-the-story"><span class="header-section-number">5.5.3</span> Museum exhibit: object records behind the story</a></li>
+  <li><a href="#community-archive-tiered-cultural-access" id="toc-community-archive-tiered-cultural-access" class="nav-link" data-scroll-target="#community-archive-tiered-cultural-access"><span class="header-section-number">5.5.4</span> Community archive: tiered cultural access</a></li>
+  <li><a href="#regional-aggregation-local-records-shared-discovery" id="toc-regional-aggregation-local-records-shared-discovery" class="nav-link" data-scroll-target="#regional-aggregation-local-records-shared-discovery"><span class="header-section-number">5.5.5</span> Regional aggregation: local records, shared discovery</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-build-a-three-item-prototype-collection" id="toc-hands-on-activity-build-a-three-item-prototype-collection" class="nav-link" data-scroll-target="#hands-on-activity-build-a-three-item-prototype-collection"><span class="header-section-number">5.6</span> Hands-on activity: Build a three-item prototype collection</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">5.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">5.6.2</span> Tools</a></li>
+  <li><a href="#source-package" id="toc-source-package" class="nav-link" data-scroll-target="#source-package"><span class="header-section-number">5.6.3</span> Source package</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">5.6.4</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">5.6.5</span> Expected output</a></li>
+  <li><a href="#activity-checklist" id="toc-activity-checklist" class="nav-link" data-scroll-target="#activity-checklist"><span class="header-section-number">5.6.6</span> Activity checklist</a></li>
+  <li><a href="#prototype-rubric" id="toc-prototype-rubric" class="nav-link" data-scroll-target="#prototype-rubric"><span class="header-section-number">5.6.7</span> Prototype rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-access-is-not-the-same-as-permission" id="toc-ethical-and-professional-issue-access-is-not-the-same-as-permission" class="nav-link" data-scroll-target="#ethical-and-professional-issue-access-is-not-the-same-as-permission"><span class="header-section-number">5.7</span> Ethical and professional issue: access is not the same as permission</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">5.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-centennial-digital-campus-archive" id="toc-mini-case-the-centennial-digital-campus-archive" class="nav-link" data-scroll-target="#mini-case-the-centennial-digital-campus-archive"><span class="header-section-number">5.9</span> Mini case: The centennial digital campus archive</a></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">5.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#readings-and-frameworks" id="toc-readings-and-frameworks" class="nav-link" data-scroll-target="#readings-and-frameworks"><span class="header-section-number">5.10.1</span> Readings and frameworks</a></li>
+  <li><a href="#open-and-widely-accessible-tools" id="toc-open-and-widely-accessible-tools" class="nav-link" data-scroll-target="#open-and-widely-accessible-tools"><span class="header-section-number">5.10.2</span> Open and widely accessible tools</a></li>
+  <li><a href="#chapter-5-bridge" id="toc-chapter-5-bridge" class="nav-link" data-scroll-target="#chapter-5-bridge"><span class="header-section-number">5.10.3</span> Chapter 5 bridge</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">5.1</span> Chapter overview</h2>
+<p>A university purchases a repository platform and announces that it now has a digital library. Faculty upload PDFs, the archives scans photographs, and students build online exhibits. A year later, many records lack rights information, departments use inconsistent names, preservation copies are mixed with thumbnails, some files cannot be downloaded, and no one knows how to export the collection if the vendor contract ends.</p>
+<p>The central problem of this chapter is <strong>how to turn selected digital content into a governed, discoverable, usable, and sustainable information service</strong>. A platform can store files and display pages, but it cannot decide what belongs in the collection, what an object represents, which metadata rules apply, whether consent permits online access, which copy should be preserved, or who will maintain the service after project funding ends.</p>
+<p>Digital libraries, institutional repositories, digital archives, exhibits, collection management systems, and commercial content platforms overlap, but they are not synonyms. Their purposes, content models, workflows, user communities, rights responsibilities, and preservation commitments differ. This chapter compares those systems, follows a digital object from selection through ingest and access, and gives students a beginner framework for platform evaluation.</p>
+<p>Chapter 4 established that metadata carries description, identity, rights, provenance, and relationships. Chapter 5 places that metadata inside operational workflows. The focus remains on service problems rather than software menus.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">5.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Differentiate</strong> digital libraries, institutional repositories, digital archives, digital exhibits, collection management systems, and commercial content platforms.</li>
+<li><strong>Diagram</strong> a basic workflow from selection and rights review through ingest, quality assurance, publication, maintenance, and preservation.</li>
+<li><strong>Distinguish</strong> master files, preservation copies, access derivatives, thumbnails, metadata records, and submission packages.</li>
+<li><strong>Compare</strong> content platforms using metadata, interoperability, accessibility, security, preservation, governance, cost, and exit criteria.</li>
+<li><strong>Create</strong> a small prototype collection with coherent metadata, identifiers, rights statements, and file relationships.</li>
+<li><strong>Evaluate</strong> ethical and professional risks involving copyright, consent, privacy, cultural sensitivity, exclusion, takedown, and sustainability.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">5.3</span> Key concepts</h2>
+<p><a href="#tbl-platform-key-concepts" class="quarto-xref">Table&nbsp;<span>5.1</span></a> supplies the working vocabulary. Several terms describe functions rather than specific products. A repository may support exhibits, and a digital library may use repository software, but their service commitments still need to be stated.</p>
+<div id="tbl-platform-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-platform-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: Key concepts for digital collections and content platforms
+</figcaption>
+<div aria-describedby="tbl-platform-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-platform-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Digital library</td>
+<td style="text-align: left;">An organized digital collection with services for discovery, access, use, and stewardship.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Institutional repository</td>
+<td style="text-align: left;">A service that collects, manages, preserves, and disseminates an institution's intellectual output.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Digital archive</td>
+<td style="text-align: left;">A system and professional context for maintaining digital records with provenance, order, authenticity, and access controls.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digital exhibit</td>
+<td style="text-align: left;">A curated interpretive presentation using selected digital objects and narrative.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Collection management system</td>
+<td style="text-align: left;">A system for documenting and managing collections, objects, locations, rights, and activities.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Content platform</td>
+<td style="text-align: left;">A technical and organizational base on which content services are built.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ingest</td>
+<td style="text-align: left;">The controlled process of receiving, validating, describing, and accepting content into a system.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Submission package</td>
+<td style="text-align: left;">Files, metadata, documentation, and agreements transferred for ingest.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Digital object</td>
+<td style="text-align: left;">Content plus the metadata and relationships needed to identify and manage it.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Master file</td>
+<td style="text-align: left;">The best available high-quality source created or selected for future reuse.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Preservation copy</td>
+<td style="text-align: left;">A managed copy intended to support long-term continuity.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Access derivative</td>
+<td style="text-align: left;">A version optimized for delivery, such as a compressed image or PDF.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Thumbnail</td>
+<td style="text-align: left;">A small preview image used in lists and navigation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OCR</td>
+<td style="text-align: left;">Optical character recognition that converts image-based text into machine-readable text.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Persistent identifier</td>
+<td style="text-align: left;">A managed identifier intended to remain stable when technical locations change.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Embargo</td>
+<td style="text-align: left;">A defined delay before content becomes openly accessible.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Takedown</td>
+<td style="text-align: left;">Removal or restriction of content in response to a justified request or policy.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Harvesting</td>
+<td style="text-align: left;">Automated collection of metadata from another service.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Interoperability</td>
+<td style="text-align: left;">The ability to exchange and meaningfully use content and metadata.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Platform governance</td>
+<td style="text-align: left;">Policies, roles, decisions, resources, and oversight sustaining a platform.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vendor lock-in</td>
+<td style="text-align: left;">Dependence that makes moving data, functions, or workflows unusually difficult or costly.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Exit plan</td>
+<td style="text-align: left;">A tested approach for exporting, reconstructing, migrating, or retiring a service.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">5.4</span> Core discussion</h2>
+<section id="different-systems-different-promises" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="different-systems-different-promises"><span class="header-section-number">5.4.1</span> Different systems, different promises</h3>
+<p>The phrase <strong>digital library</strong> emphasizes organized collections and services: selection, description, discovery, access, use, and stewardship. It is broader than a website containing files. Users should be able to understand what the collection contains, find relevant objects, interpret them, and know how they may be used.</p>
+<p>An <strong>institutional repository</strong> is typically tied to an organization’s intellectual output: theses, articles, reports, conference materials, datasets, learning objects, and other works. Lynch describes institutional repositories as organizationally defined services and infrastructure for managing and disseminating digital materials <span class="citation" data-cites="lynch2003repositories">(<a href="references.html#ref-lynch2003repositories" role="doc-biblioref">Lynch 2003</a>)</span>. The emphasis is not only software but institutional commitment.</p>
+<p>A <strong>digital archive</strong> maintains digital records with attention to provenance, original order, authenticity, restrictions, and long-term context. A public interface may show item-level descriptions, but archival control can also operate at collection, series, file, or aggregate levels.</p>
+<p>A <strong>digital exhibit</strong> selects objects to support an interpretive argument or story. It is curated and intentionally partial. Exhibit captions should link to fuller object records rather than replacing them.</p>
+<p>A <strong>collection management system</strong> supports internal documentation and workflows such as accessioning, location control, conservation, loans, valuation, rights, and exhibition history. Its public portal may expose selected fields, but internal records can contain confidential or operational data.</p>
+<p>A <strong>commercial content platform</strong> provides licensed discovery and delivery. The library may configure authentication, links, branding, and holdings, but it usually does not control source metadata, preservation, interface code, or long-term availability.</p>
+<p><a href="#tbl-system-types" class="quarto-xref">Table&nbsp;<span>5.2</span></a> compares these systems by primary purpose. The comparison prevents a common procurement error: choosing software before agreeing on the service commitment.</p>
+<div id="tbl-system-types" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-system-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: Purposes and risks of selected digital content systems
+</figcaption>
+<div aria-describedby="tbl-system-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-system-types" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">System</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Primary purpose</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Typical unit</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Central risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Digital library</td>
+<td style="text-align: left;">Provide organized digital collections and services</td>
+<td style="text-align: left;">Item, object, collection, or compound object</td>
+<td style="text-align: left;">Weak context or unsustainable project growth</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Institutional repository</td>
+<td style="text-align: left;">Steward and disseminate institutional intellectual output</td>
+<td style="text-align: left;">Submission, work, file, person, department, or collection</td>
+<td style="text-align: left;">Low deposit, unclear rights, or poor preservation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Digital archive</td>
+<td style="text-align: left;">Maintain records with provenance, context, authenticity, and restrictions</td>
+<td style="text-align: left;">Fonds, collection, series, file, item, or record</td>
+<td style="text-align: left;">Loss of context or inappropriate disclosure</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digital exhibit</td>
+<td style="text-align: left;">Interpret selected objects through narrative and design</td>
+<td style="text-align: left;">Story section, exhibit page, media object</td>
+<td style="text-align: left;">Narrative without durable object stewardship</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Collection management system</td>
+<td style="text-align: left;">Manage collection objects, locations, rights, and activities</td>
+<td style="text-align: left;">Object, accession, agent, location, event</td>
+<td style="text-align: left;">Confusing internal control with public access</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Licensed platform</td>
+<td style="text-align: left;">Deliver vendor-controlled licensed content</td>
+<td style="text-align: left;">Article, chapter, book, issue, media item</td>
+<td style="text-align: left;">Vendor dependence and unstable access</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="a-digital-object-is-more-than-one-file" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="a-digital-object-is-more-than-one-file"><span class="header-section-number">5.4.2</span> A digital object is more than one file</h3>
+<p>A digitized newspaper issue may include master images, cropped access images, OCR text, a searchable PDF, page-order metadata, descriptive metadata, checksums, rights statements, and links to the source volume. A born-digital thesis may include the submitted PDF, supplemental files, deposit agreement, embargo date, author identifier, department authority, and preservation events.</p>
+<p><a href="#fig-digital-object" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> shows a layered object. Users may encounter only the access derivative, but stewardship depends on the other layers.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-digital-object" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-digital-object-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-digital-object">flowchart TB
+    O["Digital object"] --&gt; F["Content files"]
+    O --&gt; M["Metadata"]
+    O --&gt; R["Relationships"]
+    O --&gt; G["Governance"]
+    F --&gt; F1["Master or submitted file"]
+    F --&gt; F2["Preservation copy"]
+    F --&gt; F3["Access derivative and thumbnail"]
+    M --&gt; M1["Descriptive and structural"]
+    M --&gt; M2["Technical, rights, and preservation"]
+    R --&gt; R1["Source object, parts, versions, agents, collections"]
+    G --&gt; G1["Consent, license, restriction, retention, takedown"]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-digital-object-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: A digital object combines content, metadata, relationships, and governance
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-digital-object" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> indicates, a file without metadata may be unreadable in context, while metadata without a managed file cannot deliver the object. Relationships are especially important for compound objects, versions, translations, supplements, and collections.</p>
+</section>
+<section id="selection-and-collection-policy" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="selection-and-collection-policy"><span class="header-section-number">5.4.3</span> Selection and collection policy</h3>
+<p>Digital projects often begin with opportunity: a grant, donated scanner, available platform, or anniversary. Sustainable services begin with a collection policy. The policy should define:</p>
+<ul>
+<li>mission and intended communities;</li>
+<li>subject, geographic, chronological, institutional, and format scope;</li>
+<li>selection and exclusion criteria;</li>
+<li>relationship to existing collections and mandates;</li>
+<li>rights, consent, privacy, and cultural-sensitivity requirements;</li>
+<li>descriptive depth and languages;</li>
+<li>file formats and quality targets;</li>
+<li>preservation commitment;</li>
+<li>access levels and restrictions;</li>
+<li>responsibilities for correction and takedown; and</li>
+<li>resource limits and review schedule.</li>
+</ul>
+<p>Selection is not neutral. Digitizing prominent collections first may reinforce an institution’s existing historical emphasis. Selection should consider significance, demand, condition, rights, representational gaps, community priorities, feasibility, and preservation risk.</p>
+</section>
+<section id="digitization-and-born-digital-content" class="level3" data-number="5.4.4">
+<h3 data-number="5.4.4" class="anchored" data-anchor-id="digitization-and-born-digital-content"><span class="header-section-number">5.4.4</span> Digitization and born-digital content</h3>
+<p><strong>Digitization</strong> converts analog information into digital form. It does not automatically create a digital library or preserve the original. A scanning workflow should record the source object, equipment, settings, operator, date, processing, quality checks, file names, and relationships among derivatives.</p>
+<p>A <strong>master file</strong> should retain sufficient quality for future use. An <strong>access derivative</strong> is optimized for current delivery. Thumbnails support browsing but should not become the only surviving copy. Format and quality choices depend on content, use, storage, standards, and institutional capacity.</p>
+<p>OCR makes text in images searchable and reusable. It introduces errors, especially with degraded paper, complex layouts, historical type, diacritics, and Southeast Asian scripts. OCR should be stored as a derivative with software and quality provenance. It should not silently replace an authoritative transcription.</p>
+<p>Born-digital content brings different risks: proprietary formats, external links, embedded media, passwords, macros, personal data, version ambiguity, and malware. Ingest should include inventory, validation, security scanning, rights review, and documentation of original context.</p>
+</section>
+<section id="ingest-as-a-controlled-workflow" class="level3" data-number="5.4.5">
+<h3 data-number="5.4.5" class="anchored" data-anchor-id="ingest-as-a-controlled-workflow"><span class="header-section-number">5.4.5</span> Ingest as a controlled workflow</h3>
+<p><strong>Ingest</strong> is the controlled transfer of content into a managed system. It is not the same as dragging files into a folder. <a href="#fig-ingest-workflow" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> follows a basic lifecycle.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-ingest-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ingest-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-ingest-workflow">flowchart LR
+    S["Select and appraise"] --&gt; A["Secure rights, consent, and agreement"]
+    A --&gt; P["Prepare files and metadata"]
+    P --&gt; V["Validate, scan, and quality-check"]
+    V --&gt; I["Ingest and assign identifier"]
+    I --&gt; Q["Metadata and access review"]
+    Q --&gt; U["Publish or restrict"]
+    U --&gt; M["Monitor use, integrity, links, and rights"]
+    M --&gt; C["Correct, migrate, preserve, or withdraw"]
+    C --&gt; M
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ingest-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: A basic lifecycle from selection to continuing stewardship
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The feedback loop in <a href="#fig-ingest-workflow" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> matters. Publication is not the end. Files can corrupt, links break, rights change, communities request corrections, and platforms require upgrades. Every stage needs acceptance criteria and an accountable role.</p>
+<p>A submission package may include:</p>
+<ul>
+<li>content inventory;</li>
+<li>source and derivative files;</li>
+<li>descriptive, structural, technical, and rights metadata;</li>
+<li>deposit, transfer, or consent agreement;</li>
+<li>checksums;</li>
+<li>virus-scan result;</li>
+<li>restrictions and embargo dates;</li>
+<li>identifiers and relationships; and</li>
+<li>processing or exception notes.</li>
+</ul>
+<p>Not every small project needs an elaborate package, but every project needs enough evidence to explain what was received, what was changed, what was accepted, and under what authority.</p>
+</section>
+<section id="content-models-and-metadata" class="level3" data-number="5.4.6">
+<h3 data-number="5.4.6" class="anchored" data-anchor-id="content-models-and-metadata"><span class="header-section-number">5.4.6</span> Content models and metadata</h3>
+<p>A <strong>content model</strong> defines how a platform represents communities, collections, items, files, people, versions, and relationships. DSpace, for example, supports repository structures and workflows documented across its communities, collections, items, bundles, and bitstreams <span class="citation" data-cites="dspace2026docs">(<a href="references.html#ref-dspace2026docs" role="doc-biblioref">DSpace Project 2026</a>)</span>. Omeka S centers resources, items, item sets, media, vocabularies, and sites for digital collections and exhibits <span class="citation" data-cites="omeka2026manual">(<a href="references.html#ref-omeka2026manual" role="doc-biblioref">Omeka Team 2026</a>)</span>.</p>
+<p>These examples are not universal templates. Before configuring a platform, teams should map professional entities to platform entities. If one oral-history interview has audio, transcript, consent form, and photographs, will they be media attached to one item, separate related items, or a compound object? The answer affects metadata, rights, discovery, export, and preservation.</p>
+<p>Metadata should follow an application profile, not whatever fields a default form happens to show. Required fields should reflect service needs. Controlled values should use authority sources. Administrative and restricted metadata should not be exposed accidentally through public APIs or exports.</p>
+</section>
+<section id="identifiers-and-stable-access" class="level3" data-number="5.4.7">
+<h3 data-number="5.4.7" class="anchored" data-anchor-id="identifiers-and-stable-access"><span class="header-section-number">5.4.7</span> Identifiers and stable access</h3>
+<p>A stable identifier separates identity from current location. Persistent identifier systems such as DOI and Handle depend on organizational maintenance, not magical strings. The DOI system, for example, combines identifiers with resolution and metadata obligations <span class="citation" data-cites="doi2026handbook">(<a href="references.html#ref-doi2026handbook" role="doc-biblioref">International DOI Foundation 2026</a>)</span>.</p>
+<p>A repository should define:</p>
+<ul>
+<li>what entity receives an identifier;</li>
+<li>who assigns and maintains it;</li>
+<li>whether it resolves publicly;</li>
+<li>what happens after withdrawal;</li>
+<li>how versions are distinguished; and</li>
+<li>how identifiers appear in citations and exports.</li>
+</ul>
+<p>Changing a platform should not force every citation to break. Redirects, identifier resolution, domain control, and export are part of continuity planning.</p>
+</section>
+<section id="discovery-harvesting-and-interoperability" class="level3" data-number="5.4.8">
+<h3 data-number="5.4.8" class="anchored" data-anchor-id="discovery-harvesting-and-interoperability"><span class="header-section-number">5.4.8</span> Discovery, harvesting, and interoperability</h3>
+<p>Repositories rarely serve users only through their own search box. Records may be discovered through search engines, union catalogues, subject portals, aggregators, ORCID profiles, citation links, and APIs.</p>
+<p>OAI-PMH provides a protocol through which service providers can harvest metadata records from repositories using defined requests, identifiers, datestamps, sets, and metadata formats <span class="citation" data-cites="oai2008pmh">(<a href="references.html#ref-oai2008pmh" role="doc-biblioref">Open Archives Initiative 2008</a>)</span>. Harvesting increases reach but exposes metadata quality problems. If names, dates, rights, and types are inconsistent locally, aggregation magnifies inconsistency.</p>
+<p>IIIF provides interoperable APIs for presenting and working with images and audiovisual resources. Its Presentation API describes the structure and layout of compound digital objects through manifests and related resources <span class="citation" data-cites="iiif2024presentation">(<a href="references.html#ref-iiif2024presentation" role="doc-biblioref">IIIF Consortium 2024</a>)</span>. IIIF can support deep zoom, page sequence, annotation, and reuse across viewers while leaving content under institutional control.</p>
+<p><a href="#tbl-interoperability-services" class="quarto-xref">Table&nbsp;<span>5.3</span></a> distinguishes several exchange mechanisms. None substitutes for meaningful metadata or rights governance.</p>
+<div id="tbl-interoperability-services" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-interoperability-services-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.3: Interoperability services and governance requirements
+</figcaption>
+<div aria-describedby="tbl-interoperability-services-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-interoperability-services" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mechanism</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Main function</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Required governance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Search-engine indexing</td>
+<td style="text-align: left;">Expose public pages to general web discovery</td>
+<td style="text-align: left;">Robots, sitemaps, privacy, public metadata quality</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OAI-PMH</td>
+<td style="text-align: left;">Harvest metadata records incrementally</td>
+<td style="text-align: left;">Sets, datestamps, metadata formats, deleted-record policy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REST API</td>
+<td style="text-align: left;">Request or manipulate structured data through endpoints</td>
+<td style="text-align: left;">Authentication, limits, versions, documentation, privacy</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IIIF</td>
+<td style="text-align: left;">Present and annotate image or audiovisual objects interoperably</td>
+<td style="text-align: left;">Rights, manifests, media delivery, annotation policy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Structured export</td>
+<td style="text-align: left;">Move records and relationships for audit or migration</td>
+<td style="text-align: left;">Schema, vocabularies, provenance, completeness, testing</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Persistent identifier</td>
+<td style="text-align: left;">Maintain a managed reference independent of current location</td>
+<td style="text-align: left;">Assignment scope, resolution, update, withdrawal, funding</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="access-copies-restrictions-and-embargoes" class="level3" data-number="5.4.9">
+<h3 data-number="5.4.9" class="anchored" data-anchor-id="access-copies-restrictions-and-embargoes"><span class="header-section-number">5.4.9</span> Access copies, restrictions, and embargoes</h3>
+<p>Open access is not identical to unrestricted access. Content may be limited by copyright, donor agreement, privacy, cultural protocol, security, research ethics, or temporary embargo. A platform should represent access decisions explicitly rather than using hidden files and informal notes.</p>
+<p>Access levels might include open, registered-user, institutional, reading-room, mediated request, embargoed-until-date, and closed. Each level needs an authority, rationale, review date, and user-facing explanation. Metadata may remain public while files are restricted, but descriptive metadata can itself disclose sensitive information.</p>
+<p>An embargo should expire through monitored workflow. A permanent “temporary” restriction is a governance failure. Takedown procedures should provide a contact, criteria, documentation, interim actions, review, decision, and appeal or correction route.</p>
+</section>
+<section id="rights-and-licenses" class="level3" data-number="5.4.10">
+<h3 data-number="5.4.10" class="anchored" data-anchor-id="rights-and-licenses"><span class="header-section-number">5.4.10</span> Rights and licenses</h3>
+<p>Owning a physical object does not automatically transfer copyright. Permission to digitize does not always include permission to publish globally, allow download, or authorize reuse. Deposit agreements should state rights granted, representations by depositors, embargoes, preservation permissions, permitted transformations, and takedown conditions.</p>
+<p>Standard rights statements help users understand known conditions <span class="citation" data-cites="rightsstatements2026">(<a href="references.html#ref-rightsstatements2026" role="doc-biblioref">RightsStatements.org 2026</a>)</span>. A rights field should identify the statement, rights holder where known, source of determination, jurisdiction or date assumptions, and contact route. “For educational use only” is often too vague to guide lawful reuse.</p>
+</section>
+<section id="platform-selection" class="level3" data-number="5.4.11">
+<h3 data-number="5.4.11" class="anchored" data-anchor-id="platform-selection"><span class="header-section-number">5.4.11</span> Platform selection</h3>
+<p>Platform selection should begin with requirements and capacity. <a href="#tbl-platform-evaluation" class="quarto-xref">Table&nbsp;<span>5.4</span></a> presents criteria that apply to open-source, proprietary, locally hosted, and managed services. Open source can support inspectability and local control but still requires hosting and expertise. Proprietary hosting can reduce some operational burden but may increase dependency.</p>
+<div id="tbl-platform-evaluation" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-platform-evaluation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.4: Platform evaluation criteria and evidence
+</figcaption>
+<div aria-describedby="tbl-platform-evaluation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-platform-evaluation" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Questions</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Service fit</td>
+<td style="text-align: left;">Does it support the users, collections, tasks, and scale in scope?</td>
+<td style="text-align: left;">Task demonstration with representative users and content</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Content model and metadata</td>
+<td style="text-align: left;">Can it represent entities, files, relationships, profiles, authorities, and provenance?</td>
+<td style="text-align: left;">Configured sample records and exported profile</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Discovery and interoperability</td>
+<td style="text-align: left;">Does it support stable URLs, search indexing, APIs, harvesting, and documented exports?</td>
+<td style="text-align: left;">Test harvest, API request, and URL plan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Accessibility and performance</td>
+<td style="text-align: left;">Can users operate it with assistive technology, mobile devices, and constrained connections?</td>
+<td style="text-align: left;">Accessibility and low-bandwidth test</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rights and workflow</td>
+<td style="text-align: left;">Can roles, review, embargo, restriction, correction, and takedown be managed?</td>
+<td style="text-align: left;">Workflow demonstration and policy mapping</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Security and privacy</td>
+<td style="text-align: left;">How are accounts, permissions, patches, logs, vendors, and sensitive data governed?</td>
+<td style="text-align: left;">Security documentation and data-flow review</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Preservation and backup</td>
+<td style="text-align: left;">Are integrity checks, copies, recovery, and preservation actions supported and tested?</td>
+<td style="text-align: left;">Backup and recovery test</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Administration and support</td>
+<td style="text-align: left;">What skills, documentation, community, vendor response, and upgrade work are required?</td>
+<td style="text-align: left;">Upgrade plan, service levels, and staff skills inventory</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cost and sustainability</td>
+<td style="text-align: left;">What are implementation, migration, hosting, staffing, storage, and long-term costs?</td>
+<td style="text-align: left;">Five-year total-cost scenario</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Export and exit</td>
+<td style="text-align: left;">Can complete data, files, identifiers, relationships, rights, and history be reconstructed elsewhere?</td>
+<td style="text-align: left;">Trial export and reconstruction exercise</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The crucial final row in <a href="#tbl-platform-evaluation" class="quarto-xref">Table&nbsp;<span>5.4</span></a> is often neglected. A screenshot of exported CSV is not enough. The team should verify that files, metadata, identifiers, relationships, rights, versions, and audit history can be reconstructed meaningfully.</p>
+</section>
+<section id="governance-sustainability-and-community-practice" class="level3" data-number="5.4.12">
+<h3 data-number="5.4.12" class="anchored" data-anchor-id="governance-sustainability-and-community-practice"><span class="header-section-number">5.4.12</span> Governance, sustainability, and community practice</h3>
+<p>A platform needs a governance group with authority over scope, priorities, metadata, rights, access, security, preservation, integrations, upgrades, and retirement. Roles may include collection owner, repository manager, metadata librarian, archivist, IT administrator, privacy or legal adviser, accessibility lead, and community representative.</p>
+<p>The COAR Community Framework recommends good practices across discovery, access, reuse, integrity, quality assurance, preservation, sustainability, and governance <span class="citation" data-cites="coar2023framework">(<a href="references.html#ref-coar2023framework" role="doc-biblioref">Confederation of Open Access Repositories 2023</a>)</span>. The framework is useful because it treats repositories as community infrastructure rather than storage products.</p>
+<p>Sustainability requires recurring resources: staff time, hosting, storage, backups, training, documentation, accessibility remediation, upgrades, identifiers, and user support. Grant funding can start a service but cannot substitute for an institutional owner.</p>
+<p>Usage statistics should inform improvement without becoming the sole measure of value. Rare local-history resources may have modest traffic but high cultural importance. Metrics should document definitions, bot filtering, privacy controls, and limitations.</p>
+<blockquote class="blockquote">
+<p><strong>Reflective prompt.</strong> Choose a digital collection you have used. What promise does it appear to make about access, context, persistence, and correction? What evidence supports that judgment?</p>
+</blockquote>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">5.5</span> Philippine and Southeast Asian examples</h2>
+<section id="state-university-repository-theses-and-embargoes" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="state-university-repository-theses-and-embargoes"><span class="header-section-number">5.5.1</span> State university repository: theses and embargoes</h3>
+<p>A Philippine state university requires electronic theses. The repository receives a PDF, adviser approval, abstract, department, keywords, ORCID where available, and an access decision. Some theses have patent, publication, or participant-confidentiality concerns. The workflow records an embargo end date and responsible office. Staff test expiry rather than relying on memory, and public metadata explains when the file will open.</p>
+</section>
+<section id="provincial-library-digitized-newspapers" class="level3" data-number="5.5.2">
+<h3 data-number="5.5.2" class="anchored" data-anchor-id="provincial-library-digitized-newspapers"><span class="header-section-number">5.5.2</span> Provincial library: digitized newspapers</h3>
+<p>A provincial library scans fragile newspapers. Each issue becomes a compound object with page order, master TIFF files, smaller JPEG images, OCR text, a searchable PDF, title and date metadata, source-volume identification, and rights notes. OCR quality is sampled because historical printing and damaged pages create errors. The public interface offers page images and text search, while preservation copies remain outside routine delivery.</p>
+</section>
+<section id="museum-exhibit-object-records-behind-the-story" class="level3" data-number="5.5.3">
+<h3 data-number="5.5.3" class="anchored" data-anchor-id="museum-exhibit-object-records-behind-the-story"><span class="header-section-number">5.5.3</span> Museum exhibit: object records behind the story</h3>
+<p>A museum creates an online exhibit about regional weaving. Exhibit pages combine narrative, interviews, photographs, and object details. Every displayed object links to a durable collection record with maker, materials, dimensions, provenance, community terminology, rights, and correction contact. When the exhibit ends, the object records remain managed rather than becoming orphaned media.</p>
+</section>
+<section id="community-archive-tiered-cultural-access" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="community-archive-tiered-cultural-access"><span class="header-section-number">5.5.4</span> Community archive: tiered cultural access</h3>
+<p>A community archive holds public festival photographs, family histories, and recordings with culturally sensitive knowledge. It avoids a simple open/closed switch. Community-approved categories specify who may view files, which metadata may display, and when decisions must be reviewed. Platform configuration follows the protocol rather than defining it.</p>
+</section>
+<section id="regional-aggregation-local-records-shared-discovery" class="level3" data-number="5.5.5">
+<h3 data-number="5.5.5" class="anchored" data-anchor-id="regional-aggregation-local-records-shared-discovery"><span class="header-section-number">5.5.5</span> Regional aggregation: local records, shared discovery</h3>
+<p>Several Southeast Asian repositories expose selected Dublin Core records for harvesting. The aggregator normalizes type and language codes for filtering but preserves local titles, original scripts, identifiers, and source links. Mapping provenance allows users to distinguish the aggregator’s transformations from the contributing institution’s description.</p>
+</section>
+</section>
+<section id="hands-on-activity-build-a-three-item-prototype-collection" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="hands-on-activity-build-a-three-item-prototype-collection"><span class="header-section-number">5.6</span> Hands-on activity: Build a three-item prototype collection</h2>
+<section id="purpose" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">5.6.1</span> Purpose</h3>
+<p>Design and document a small digital collection from selection through public access, including files, metadata, rights, quality review, and export.</p>
+</section>
+<section id="tools" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">5.6.2</span> Tools</h3>
+<p>Choose one:</p>
+<ul>
+<li>Omeka S using an instructor-provided installation and its user documentation <span class="citation" data-cites="omeka2026manual">(<a href="references.html#ref-omeka2026manual" role="doc-biblioref">Omeka Team 2026</a>)</span>;</li>
+<li>another approved repository sandbox; or</li>
+<li>a local simulation using folders, CSV metadata, HTML item pages, and a manifest.</li>
+</ul>
+<p>Also use a text editor, spreadsheet, checksum tool, and image editor that preserves the master file.</p>
+</section>
+<section id="source-package" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="source-package"><span class="header-section-number">5.6.3</span> Source package</h3>
+<p>Use three fictional or instructor-cleared items from one coherent collection. Do not upload personal or copyrighted material without authorization. Suitable items include public-domain posters, institution-created photographs with permission, or fully fictional surrogates.</p>
+</section>
+<section id="steps" class="level3" data-number="5.6.4">
+<h3 data-number="5.6.4" class="anchored" data-anchor-id="steps"><span class="header-section-number">5.6.4</span> Steps</h3>
+<ol type="1">
+<li>Write a 150-word collection statement defining purpose, audience, scope, selection, exclusions, and stewardship commitment.</li>
+<li>Inventory the three source objects and state what entity each record describes.</li>
+<li>Create a master or submitted file and at least one access derivative where appropriate.</li>
+<li>Record file names, formats, sizes, checksums, source, and derivative relationships.</li>
+<li>Create item records using the Chapter 4 application profile. Include title, creator, date, type, format, identifier, source, language, subject, description, rights, and record provenance.</li>
+<li>Create one collection-level record and connect all items to it.</li>
+<li>Assign stable local identifiers and design public URLs that do not depend on file names.</li>
+<li>Add a rights statement, access condition, and takedown contact for every item.</li>
+<li>Configure or simulate browse, search, and one collection landing page.</li>
+<li>Test one mobile task, one keyboard-only task, and one known-item search with a peer.</li>
+<li>Export metadata and files. Verify whether relationships and identifiers can be reconstructed.</li>
+<li>Submit a change log and one prioritized improvement.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="5.6.5">
+<h3 data-number="5.6.5" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">5.6.5</span> Expected output</h3>
+<p>Submit:</p>
+<ul>
+<li>collection statement and selection rationale;</li>
+<li>three item records and one collection record;</li>
+<li>file inventory with checksums and derivative relationships;</li>
+<li>rights, access, and takedown notes;</li>
+<li>screenshots or local HTML showing collection and item views;</li>
+<li>usability and accessibility test notes;</li>
+<li>metadata and file export;</li>
+<li>reconstruction or exit note; and</li>
+<li>a 200-word reflection.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Reflection question.</strong> Which part of the prototype depended on software, which depended on metadata policy, and which depended on institutional or community authority?</p>
+</blockquote>
+</section>
+<section id="activity-checklist" class="level3" data-number="5.6.6">
+<h3 data-number="5.6.6" class="anchored" data-anchor-id="activity-checklist"><span class="header-section-number">5.6.6</span> Activity checklist</h3>
+<p><a href="#tbl-ch5-lab-checklist" class="quarto-xref">Table&nbsp;<span>5.5</span></a> should be completed before submission. It emphasizes that a polished exhibit view is not sufficient without files, metadata, rights, testing, and an exit path.</p>
+<div id="tbl-ch5-lab-checklist" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ch5-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.5: Chapter 5 prototype collection submission checklist
+</figcaption>
+<div aria-describedby="tbl-ch5-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ch5-lab-checklist" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Check</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Collection purpose, users, scope, selection, and exclusions are stated</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Three item entities and their source objects are distinguished</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Master or submitted files and access derivatives are inventoried</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Checksums, formats, sizes, and file relationships are recorded</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Metadata follows the application profile and controlled values</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Identifiers, collection relationships, and public URLs are coherent</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rights, access condition, and takedown contact appear for every item</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mobile, keyboard, and discovery tests are documented</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Export supports a documented reconstruction or exit assessment</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="prototype-rubric" class="level3" data-number="5.6.7">
+<h3 data-number="5.6.7" class="anchored" data-anchor-id="prototype-rubric"><span class="header-section-number">5.6.7</span> Prototype rubric</h3>
+<p><a href="#tbl-ch5-lab-rubric" class="quarto-xref">Table&nbsp;<span>5.6</span></a> allocates 30 points. Technical polish receives credit only when it supports a coherent service and stewardship plan.</p>
+<div id="tbl-ch5-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ch5-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.6: Rubric for the Chapter 5 prototype digital collection
+</figcaption>
+<div aria-describedby="tbl-ch5-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ch5-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Points</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Full credit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Collection rationale and users</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Scope and selection answer a specific service need and acknowledge exclusions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Files and object relationships</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Sources, masters, derivatives, checksums, and relationships are accurate and traceable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Metadata and discovery</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Records follow the profile and support identification, browse, search, and context</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rights, access, and ethics</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Authority, conditions, sensitivity, and takedown are explicit and appropriate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Testing, export, sustainability, and reflection</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Evidence supports usability, accessibility, reconstruction, improvement, and reflection</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-access-is-not-the-same-as-permission" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="ethical-and-professional-issue-access-is-not-the-same-as-permission"><span class="header-section-number">5.7</span> Ethical and professional issue: access is not the same as permission</h2>
+<p>Digitization can increase access while increasing exposure. A photograph may be legally publishable but humiliating to depicted people. An oral-history narrator may have consented to research-room use, not global streaming. A sacred object may be widely photographed but governed by community protocols. A student thesis may include personal information that passed an academic defense but should not be indexed openly.</p>
+<p>Ethical review should ask:</p>
+<ul>
+<li>Who created, owns, appears in, speaks in, or is affected by the content?</li>
+<li>What permission was actually granted, for which uses and audiences?</li>
+<li>Does public metadata reveal sensitive facts even when the file is closed?</li>
+<li>Can people request correction, restriction, contextualization, or takedown?</li>
+<li>Who has authority to decide, and how are decisions recorded and reviewed?</li>
+<li>Does the platform force a simpler access rule than the community requires?</li>
+</ul>
+<p>Copyright review and ethical review overlap but are not identical. A public-domain object can still present privacy or cultural concerns. A copyrighted object may be lawfully available under permission, license, or an applicable exception. Rights metadata should communicate evidence and uncertainty rather than making unsupported claims.</p>
+<p>Consent should be specific enough to guide workflows. A checkbox saying “I agree” may not explain search-engine indexing, download, reuse, automated transcription, AI processing, or cross-border hosting. Meaningful consent also requires a feasible way to revisit decisions where the agreement allows.</p>
+<p>Takedown is not an admission that the project failed. It is part of accountable access. Institutions need a visible contact, interim response, documented review, preservation of evidence, and communication with affected parties. Removed public content may still require a tombstone record so citations and identifiers do not silently disappear.</p>
+<p>Platform design can also exclude. Image-heavy exhibits may consume mobile data; complex viewers may fail with assistive technology; mandatory accounts may block casual inquiry; English-only interfaces may hide local-language collections. Access must be evaluated through actual community conditions.</p>
+<blockquote class="blockquote">
+<p><strong>Ethical checkpoint.</strong> A donor signed a broad deed in 1995, but people depicted in the photographs object to online facial recognition and unrestricted download. What legal evidence, community authority, technical options, and interim actions should guide the response?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">5.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> Distinguish a digital library, institutional repository, digital archive, and digital exhibit.</li>
+<li><strong>Identification:</strong> Define master file, preservation copy, access derivative, and thumbnail.</li>
+<li><strong>Short answer:</strong> Why is ingest more than uploading files?</li>
+<li><strong>Short answer:</strong> What information should accompany a submission package?</li>
+<li><strong>Short answer:</strong> How do OAI-PMH and IIIF support different forms of interoperability?</li>
+<li><strong>Applied analysis:</strong> A project stores only JPEG thumbnails and a spreadsheet. Identify the service and stewardship risks.</li>
+<li><strong>Applied analysis:</strong> A repository migration exports metadata but loses file relationships and embargo dates. Which evaluation and exit tests were inadequate?</li>
+<li><strong>Scenario:</strong> A thesis embargo has no end-date automation or responsible office. Propose a corrected workflow.</li>
+<li><strong>Scenario:</strong> A digital exhibit receives a community takedown request. Outline an immediate and long-term response.</li>
+<li><strong>Synthesis:</strong> Explain how collection policy, metadata, platform configuration, rights, and preservation jointly determine access.</li>
+</ol>
+</section>
+<section id="mini-case-the-centennial-digital-campus-archive" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="mini-case-the-centennial-digital-campus-archive"><span class="header-section-number">5.9</span> Mini case: The centennial digital campus archive</h2>
+<p>Bayview College plans a centennial portal containing yearbooks, student newspapers, photographs, theses, oral histories, and memorabilia. The president wants everything searchable before the anniversary in six months. The vendor proposes one hosted platform with unlimited users but charges for large exports. Most yearbooks are under copyright; newspapers name students in disciplinary reports; oral-history consent forms mention classroom research but not public streaming. Scans are stored on one external drive, metadata use inconsistent names, and no preservation budget exists after the grant. Alumni want facial tagging, while the Indigenous student association asks for restrictions on ceremonial images.</p>
+<p><strong>Guide questions</strong></p>
+<ol type="1">
+<li>Divide the proposed content into appropriate system purposes, access categories, and phased priorities.</li>
+<li>Design an ingest and governance workflow naming decisions, evidence, roles, checks, identifiers, and review points.</li>
+<li>Create a platform evaluation and exit test that addresses files, metadata, relationships, rights, accessibility, costs, and community protocols.</li>
+</ol>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">5.10</span> Further reading and tools</h2>
+<section id="readings-and-frameworks" class="level3" data-number="5.10.1">
+<h3 data-number="5.10.1" class="anchored" data-anchor-id="readings-and-frameworks"><span class="header-section-number">5.10.1</span> Readings and frameworks</h3>
+<ul>
+<li><strong>Lynch, “Institutional Repositories.”</strong> A foundational account of repositories as institutional infrastructure <span class="citation" data-cites="lynch2003repositories">(<a href="references.html#ref-lynch2003repositories" role="doc-biblioref">Lynch 2003</a>)</span>.</li>
+<li><strong>COAR Community Framework.</strong> Good practices for repository discovery, access, integrity, preservation, sustainability, and governance <span class="citation" data-cites="coar2023framework">(<a href="references.html#ref-coar2023framework" role="doc-biblioref">Confederation of Open Access Repositories 2023</a>)</span>.</li>
+<li><strong>OAI-PMH specification.</strong> Protocol for metadata harvesting <span class="citation" data-cites="oai2008pmh">(<a href="references.html#ref-oai2008pmh" role="doc-biblioref">Open Archives Initiative 2008</a>)</span>.</li>
+<li><strong>IIIF Presentation API.</strong> Interoperable structure and presentation of digital objects <span class="citation" data-cites="iiif2024presentation">(<a href="references.html#ref-iiif2024presentation" role="doc-biblioref">IIIF Consortium 2024</a>)</span>.</li>
+<li><strong>RightsStatements.org.</strong> Standardized rights statements for cultural heritage collections <span class="citation" data-cites="rightsstatements2026">(<a href="references.html#ref-rightsstatements2026" role="doc-biblioref">RightsStatements.org 2026</a>)</span>.</li>
+<li><strong>DOI Handbook.</strong> Identifier, metadata, and resolution responsibilities <span class="citation" data-cites="doi2026handbook">(<a href="references.html#ref-doi2026handbook" role="doc-biblioref">International DOI Foundation 2026</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-and-widely-accessible-tools" class="level3" data-number="5.10.2">
+<h3 data-number="5.10.2" class="anchored" data-anchor-id="open-and-widely-accessible-tools"><span class="header-section-number">5.10.2</span> Open and widely accessible tools</h3>
+<ul>
+<li><strong>Omeka S:</strong> digital collections, vocabularies, media, item sets, and exhibits <span class="citation" data-cites="omeka2026manual">(<a href="references.html#ref-omeka2026manual" role="doc-biblioref">Omeka Team 2026</a>)</span>.</li>
+<li><strong>DSpace:</strong> institutional repository software and documentation <span class="citation" data-cites="dspace2026docs">(<a href="references.html#ref-dspace2026docs" role="doc-biblioref">DSpace Project 2026</a>)</span>.</li>
+<li><strong>ArchivesSpace:</strong> archival description and collections management.</li>
+<li><strong>CollectiveAccess:</strong> collections management and public access.</li>
+<li><strong>OpenRefine:</strong> metadata cleanup and reconciliation before ingest.</li>
+<li><strong>ExifTool:</strong> extraction and inspection of embedded technical metadata.</li>
+<li><strong>BagIt tools:</strong> package files with manifests for transfer.</li>
+<li><strong>Fixity and checksum utilities:</strong> verify file integrity.</li>
+</ul>
+</section>
+<section id="chapter-5-bridge" class="level3" data-number="5.10.3">
+<h3 data-number="5.10.3" class="anchored" data-anchor-id="chapter-5-bridge"><span class="header-section-number">5.10.3</span> Chapter 5 bridge</h3>
+<p>Publishing content does not guarantee that users will find the right material. Chapter 6 examines information retrieval and discovery systems: indexes, fields, tokenization, Boolean logic, facets, relevance, precision, recall, federated search, discovery layers, and evidence-based evaluation.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-coar2023framework" class="csl-entry" role="listitem">
+Confederation of Open Access Repositories. 2023. <em>COAR Community Framework for Good Practices in Repositories</em>. COAR. <a href="https://coar-repositories.org/coar-community-framework-for-good-practices-in-repositories/">https://coar-repositories.org/coar-community-framework-for-good-practices-in-repositories/</a>.
+</div>
+<div id="ref-dspace2026docs" class="csl-entry" role="listitem">
+DSpace Project. 2026. <em>DSpace 8.x Documentation</em>. <a href="https://wiki.lyrasis.org/display/DSDOC8x/DSpace+8.x+Documentation">https://wiki.lyrasis.org/display/DSDOC8x/DSpace+8.x+Documentation</a>.
+</div>
+<div id="ref-iiif2024presentation" class="csl-entry" role="listitem">
+IIIF Consortium. 2024. <em>IIIF Presentation API 3.0</em>. <a href="https://iiif.io/api/presentation/3.0/">https://iiif.io/api/presentation/3.0/</a>.
+</div>
+<div id="ref-doi2026handbook" class="csl-entry" role="listitem">
+International DOI Foundation. 2026. <em>DOI Handbook</em>. <a href="https://www.doi.org/the-identifier/resources/handbook">https://www.doi.org/the-identifier/resources/handbook</a>.
+</div>
+<div id="ref-lynch2003repositories" class="csl-entry" role="listitem">
+Lynch, Clifford A. 2003. <span>“Institutional Repositories: Essential Infrastructure for Scholarship in the Digital Age.”</span> <em>ARL Bimonthly Report</em>, no. 226. <a href="https://www.cni.org/publications/cliffs-pubs/institutional-repositories-infrastructure-for-scholarship">https://www.cni.org/publications/cliffs-pubs/institutional-repositories-infrastructure-for-scholarship</a>.
+</div>
+<div id="ref-omeka2026manual" class="csl-entry" role="listitem">
+Omeka Team. 2026. <em>Omeka s User Manual</em>. <a href="https://omeka.org/s/docs/user-manual/">https://omeka.org/s/docs/user-manual/</a>.
+</div>
+<div id="ref-oai2008pmh" class="csl-entry" role="listitem">
+Open Archives Initiative. 2008. <em>The Open Archives Initiative Protocol for Metadata Harvesting, Version 2.0</em>. <a href="https://www.openarchives.org/OAI/openarchivesprotocol.html">https://www.openarchives.org/OAI/openarchivesprotocol.html</a>.
+</div>
+<div id="ref-rightsstatements2026" class="csl-entry" role="listitem">
+RightsStatements.org. 2026. <em>Rights Statements for Cultural Heritage Institutions</em>. <a href="https://rightsstatements.org/en/">https://rightsstatements.org/en/</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-04-metadata-cataloguing.html" class="pagination-link" aria-label="Metadata and Cataloguing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-06-information-retrieval-discovery.html" class="pagination-link" aria-label="Information Retrieval and Discovery Systems">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Digital Preservation and Cloud Services – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-11-cybersecurity-law-project.html" rel="next">
+<link href="./chapter-09-ux-accessibility-mobile.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-10-digital-preservation-cloud.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">10.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">10.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">10.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">10.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#preservation-is-a-managed-commitment" id="toc-preservation-is-a-managed-commitment" class="nav-link" data-scroll-target="#preservation-is-a-managed-commitment"><span class="header-section-number">10.4.1</span> Preservation is a managed commitment</a></li>
+  <li><a href="#storage-sync-backup-and-preservation" id="toc-storage-sync-backup-and-preservation" class="nav-link" data-scroll-target="#storage-sync-backup-and-preservation"><span class="header-section-number">10.4.2</span> Storage, sync, backup, and preservation</a></li>
+  <li><a href="#threats-to-digital-continuity" id="toc-threats-to-digital-continuity" class="nav-link" data-scroll-target="#threats-to-digital-continuity"><span class="header-section-number">10.4.3</span> Threats to digital continuity</a></li>
+  <li><a href="#files-bitstreams-and-representation-information" id="toc-files-bitstreams-and-representation-information" class="nav-link" data-scroll-target="#files-bitstreams-and-representation-information"><span class="header-section-number">10.4.4</span> Files, bitstreams, and representation information</a></li>
+  <li><a href="#fixity-and-checksums" id="toc-fixity-and-checksums" class="nav-link" data-scroll-target="#fixity-and-checksums"><span class="header-section-number">10.4.5</span> Fixity and checksums</a></li>
+  <li><a href="#authenticity-requires-more-than-fixity" id="toc-authenticity-requires-more-than-fixity" class="nav-link" data-scroll-target="#authenticity-requires-more-than-fixity"><span class="header-section-number">10.4.6</span> Authenticity requires more than fixity</a></li>
+  <li><a href="#redundancy-and-the-3-2-1-heuristic" id="toc-redundancy-and-the-3-2-1-heuristic" class="nav-link" data-scroll-target="#redundancy-and-the-3-2-1-heuristic"><span class="header-section-number">10.4.7</span> Redundancy and the 3-2-1 heuristic</a></li>
+  <li><a href="#inventory-and-identity" id="toc-inventory-and-identity" class="nav-link" data-scroll-target="#inventory-and-identity"><span class="header-section-number">10.4.8</span> Inventory and identity</a></li>
+  <li><a href="#file-format-sustainability" id="toc-file-format-sustainability" class="nav-link" data-scroll-target="#file-format-sustainability"><span class="header-section-number">10.4.9</span> File-format sustainability</a></li>
+  <li><a href="#significant-properties-and-acceptable-change" id="toc-significant-properties-and-acceptable-change" class="nav-link" data-scroll-target="#significant-properties-and-acceptable-change"><span class="header-section-number">10.4.10</span> Significant properties and acceptable change</a></li>
+  <li><a href="#preservation-metadata-and-premis" id="toc-preservation-metadata-and-premis" class="nav-link" data-scroll-target="#preservation-metadata-and-premis"><span class="header-section-number">10.4.11</span> Preservation metadata and PREMIS</a></li>
+  <li><a href="#oais-packages-and-functions" id="toc-oais-packages-and-functions" class="nav-link" data-scroll-target="#oais-packages-and-functions"><span class="header-section-number">10.4.12</span> OAIS packages and functions</a></li>
+  <li><a href="#cloud-computing-and-service-models" id="toc-cloud-computing-and-service-models" class="nav-link" data-scroll-target="#cloud-computing-and-service-models"><span class="header-section-number">10.4.13</span> Cloud computing and service models</a></li>
+  <li><a href="#storage-tiers-durability-availability-and-recovery" id="toc-storage-tiers-durability-availability-and-recovery" class="nav-link" data-scroll-target="#storage-tiers-durability-availability-and-recovery"><span class="header-section-number">10.4.14</span> Storage tiers, durability, availability, and recovery</a></li>
+  <li><a href="#evaluating-cloud-preservation-services" id="toc-evaluating-cloud-preservation-services" class="nav-link" data-scroll-target="#evaluating-cloud-preservation-services"><span class="header-section-number">10.4.15</span> Evaluating cloud preservation services</a></li>
+  <li><a href="#service-level-agreements-and-shared-responsibility" id="toc-service-level-agreements-and-shared-responsibility" class="nav-link" data-scroll-target="#service-level-agreements-and-shared-responsibility"><span class="header-section-number">10.4.16</span> Service-level agreements and shared responsibility</a></li>
+  <li><a href="#cost-and-total-cost-of-stewardship" id="toc-cost-and-total-cost-of-stewardship" class="nav-link" data-scroll-target="#cost-and-total-cost-of-stewardship"><span class="header-section-number">10.4.17</span> Cost and total cost of stewardship</a></li>
+  <li><a href="#exit-planning-and-vendor-lock-in" id="toc-exit-planning-and-vendor-lock-in" class="nav-link" data-scroll-target="#exit-planning-and-vendor-lock-in"><span class="header-section-number">10.4.18</span> Exit planning and vendor lock-in</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">10.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#provincial-archive-typhoon-aware-redundancy" id="toc-provincial-archive-typhoon-aware-redundancy" class="nav-link" data-scroll-target="#provincial-archive-typhoon-aware-redundancy"><span class="header-section-number">10.5.1</span> Provincial archive: typhoon-aware redundancy</a></li>
+  <li><a href="#university-repository-theses-and-embargoes" id="toc-university-repository-theses-and-embargoes" class="nav-link" data-scroll-target="#university-repository-theses-and-embargoes"><span class="header-section-number">10.5.2</span> University repository: theses and embargoes</a></li>
+  <li><a href="#public-library-community-oral-histories" id="toc-public-library-community-oral-histories" class="nav-link" data-scroll-target="#public-library-community-oral-histories"><span class="header-section-number">10.5.3</span> Public library: community oral histories</a></li>
+  <li><a href="#government-records-center-retention-and-authorized-deletion" id="toc-government-records-center-retention-and-authorized-deletion" class="nav-link" data-scroll-target="#government-records-center-retention-and-authorized-deletion"><span class="header-section-number">10.5.4</span> Government records center: retention and authorized deletion</a></li>
+  <li><a href="#regional-museum-consortium-shared-capacity-without-shared-passwords" id="toc-regional-museum-consortium-shared-capacity-without-shared-passwords" class="nav-link" data-scroll-target="#regional-museum-consortium-shared-capacity-without-shared-passwords"><span class="header-section-number">10.5.5</span> Regional museum consortium: shared capacity without shared passwords</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-build-and-test-a-small-preservation-package" id="toc-hands-on-activity-build-and-test-a-small-preservation-package" class="nav-link" data-scroll-target="#hands-on-activity-build-and-test-a-small-preservation-package"><span class="header-section-number">10.6</span> Hands-on activity: Build and test a small preservation package</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">10.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">10.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">10.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">10.6.4</span> Expected output</a></li>
+  <li><a href="#lab-checklist" id="toc-lab-checklist" class="nav-link" data-scroll-target="#lab-checklist"><span class="header-section-number">10.6.5</span> Lab checklist</a></li>
+  <li><a href="#assessment-rubric" id="toc-assessment-rubric" class="nav-link" data-scroll-target="#assessment-rubric"><span class="header-section-number">10.6.6</span> Assessment rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-preservation-rights-privacy-and-sustainable-custody" id="toc-ethical-and-professional-issue-preservation-rights-privacy-and-sustainable-custody" class="nav-link" data-scroll-target="#ethical-and-professional-issue-preservation-rights-privacy-and-sustainable-custody"><span class="header-section-number">10.7</span> Ethical and professional issue: preservation rights, privacy, and sustainable custody</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">10.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-cloud-repository-renewal" id="toc-mini-case-the-cloud-repository-renewal" class="nav-link" data-scroll-target="#mini-case-the-cloud-repository-renewal"><span class="header-section-number">10.9</span> Mini case: The cloud repository renewal</a>
+  <ul class="collapse">
+  <li><a href="#guide-questions" id="toc-guide-questions" class="nav-link" data-scroll-target="#guide-questions"><span class="header-section-number">10.9.1</span> Guide questions</a></li>
+  </ul></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">10.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#readings-and-standards" id="toc-readings-and-standards" class="nav-link" data-scroll-target="#readings-and-standards"><span class="header-section-number">10.10.1</span> Readings and standards</a></li>
+  <li><a href="#open-or-widely-accessible-tools" id="toc-open-or-widely-accessible-tools" class="nav-link" data-scroll-target="#open-or-widely-accessible-tools"><span class="header-section-number">10.10.2</span> Open or widely accessible tools</a></li>
+  <li><a href="#closing-synthesis" id="toc-closing-synthesis" class="nav-link" data-scroll-target="#closing-synthesis"><span class="header-section-number">10.10.3</span> Closing synthesis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">10.1</span> Chapter overview</h2>
+<p>A provincial archive digitizes photographs and stores the master TIFF files on an external drive. Staff also upload JPEG copies to a cloud folder and describe the collection in a spreadsheet. Five years later, the drive still turns on, but several folders were renamed, the spreadsheet no longer matches the files, one cloud account belongs to a former employee, and no one has checked whether the copies are identical. The institution has storage and copies, yet it cannot demonstrate that the collection is complete, authentic, understandable, recoverable, or sustainable.</p>
+<p>The central problem of this chapter is <strong>how to keep digital information understandable, trustworthy, findable, and usable for as long as it is needed despite technological, organizational, financial, legal, and environmental change</strong>. Digital preservation is not a one-time technical treatment. It is an ongoing service combining selection, policy, metadata, file management, storage, monitoring, security, rights, and planned action.</p>
+<p>Preservation must be distinguished from digitization, storage, synchronization, and backup. Digitization creates digital representations. Storage holds bits. Synchronization makes locations reflect changes, including accidental deletion. Backup enables recovery from selected failures. Preservation coordinates these functions with identity, context, authenticity, access, and long-term responsibility.</p>
+<p>Cloud services can contribute geographic separation, scalable storage, managed infrastructure, and automated controls. They do not transfer accountability away from the library or archive. Cost, connectivity, encryption, identity management, jurisdiction, service changes, data egress, environmental impact, and exit planning remain institutional concerns.</p>
+<p>This chapter introduces digital objects, bitstreams, fixity, checksums, integrity, authenticity, redundancy, the 3-2-1 heuristic, file-format risk, migration, emulation, preservation metadata, OAIS information packages, storage tiers, cloud service and deployment models, service-level agreements, shared responsibility, vendor lock-in, and recovery testing.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">10.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Distinguish</strong> digitization, storage, synchronization, backup, disaster recovery, and digital preservation.</li>
+<li><strong>Identify and assess</strong> technological, environmental, human, organizational, legal, and vendor threats to digital continuity.</li>
+<li><strong>Generate, record, verify, and interpret</strong> SHA-256 checksums for a small preservation package.</li>
+<li><strong>Propose</strong> a basic redundant-storage, monitoring, and recovery plan using the 3-2-1 heuristic critically.</li>
+<li><strong>Compare</strong> preservation strategies and cloud options using format, cost, control, security, privacy, jurisdiction, sustainability, and exit criteria.</li>
+<li><strong>Document</strong> preservation objects, events, agents, rights, and outcomes in a reviewable action plan.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">10.3</span> Key concepts</h2>
+<p><a href="#tbl-preservation-key-concepts" class="quarto-xref">Table&nbsp;<span>10.1</span></a> provides the working vocabulary. The distinctions matter because each term supports a different control.</p>
+<div id="tbl-preservation-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-preservation-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.1: Key concepts in digital preservation and cloud services
+</figcaption>
+<div aria-describedby="tbl-preservation-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-preservation-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Digital preservation</td>
+<td style="text-align: left;">Managed activities that maintain access to authentic digital information for as long as required.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digital object</td>
+<td style="text-align: left;">Content together with the metadata and relationships needed to identify, manage, render, and understand it.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bitstream</td>
+<td style="text-align: left;">A sequence of bits considered as a unit, whether or not stored as a standalone file.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">File</td>
+<td style="text-align: left;">A named sequence of bytes represented within a file system or storage service.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Storage</td>
+<td style="text-align: left;">Infrastructure and services that hold data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Backup</td>
+<td style="text-align: left;">A recoverable copy made according to a defined schedule and retention policy.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Synchronization</td>
+<td style="text-align: left;">Propagation of changes among locations, which may also propagate corruption or deletion.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Disaster recovery</td>
+<td style="text-align: left;">Plans and capabilities for restoring systems and services after disruption.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fixity</td>
+<td style="text-align: left;">The property of remaining unchanged at the bit level, assessed against a recorded value.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Checksum</td>
+<td style="text-align: left;">A compact value calculated from data and later recalculated to detect change.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hash function</td>
+<td style="text-align: left;">An algorithm mapping data of arbitrary size to a fixed-length value.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Integrity</td>
+<td style="text-align: left;">The quality of being complete and unaltered except through authorized, documented action.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Authenticity</td>
+<td style="text-align: left;">The quality of being what it claims to be, supported by identity, context, custody, and evidence.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Information about origin, custody, ownership, and transformations over time.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Redundancy</td>
+<td style="text-align: left;">Deliberate duplication of components or copies so one failure does not eliminate access.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3-2-1 rule</td>
+<td style="text-align: left;">A heuristic: at least three copies, on two types of storage, with one copy off-site.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Media failure</td>
+<td style="text-align: left;">Loss or unreadability caused by deterioration or failure of a storage device or medium.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bit rot</td>
+<td style="text-align: left;">Informal term for unintended data change or unreadability over time.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Obsolescence</td>
+<td style="text-align: left;">Loss of practical support for a format, software, hardware, interface, or dependency.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Migration</td>
+<td style="text-align: left;">Controlled transformation to a different format or environment to maintain usability.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Normalization</td>
+<td style="text-align: left;">Conversion at ingest to one or more selected preservation or access formats.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Emulation</td>
+<td style="text-align: left;">Re-creation of an earlier hardware or software environment so original digital objects can run or render.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Significant property</td>
+<td style="text-align: left;">A characteristic judged necessary to preserve meaning, behavior, appearance, or evidential value.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Preservation metadata</td>
+<td style="text-align: left;">Metadata supporting continuity, identity, provenance, rights, technical management, and preservation actions.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OAIS</td>
+<td style="text-align: left;">The Open Archival Information System reference model and terminology for long-term preservation functions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SIP</td>
+<td style="text-align: left;">Submission Information Package transferred by a producer for ingest.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AIP</td>
+<td style="text-align: left;">Archival Information Package managed for preservation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DIP</td>
+<td style="text-align: left;">Dissemination Information Package delivered to a consumer.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Storage tier</td>
+<td style="text-align: left;">A storage class defined by access speed, durability, retrieval conditions, or cost.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cloud computing</td>
+<td style="text-align: left;">On-demand network access to configurable shared computing resources under defined service characteristics.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IaaS</td>
+<td style="text-align: left;">Infrastructure as a Service: provider-managed computing infrastructure with customer-managed systems and data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PaaS</td>
+<td style="text-align: left;">Platform as a Service: provider-managed platform for deploying customer applications and data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SaaS</td>
+<td style="text-align: left;">Software as a Service: provider-hosted application used through a service interface.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SLA</td>
+<td style="text-align: left;">A service-level agreement defining measurable service commitments and responsibilities.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shared responsibility</td>
+<td style="text-align: left;">Allocation of controls between provider and customer rather than transfer of all responsibility to one party.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vendor lock-in</td>
+<td style="text-align: left;">Dependence that makes migration or replacement unusually difficult, slow, or expensive.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Data egress</td>
+<td style="text-align: left;">Transfer of data out of a service, often subject to time, bandwidth, and charges.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Exit plan</td>
+<td style="text-align: left;">A tested plan for exporting data, metadata, logs, identities, and functions and securely ending a service.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">10.4</span> Core discussion</h2>
+<section id="preservation-is-a-managed-commitment" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="preservation-is-a-managed-commitment"><span class="header-section-number">10.4.1</span> Preservation is a managed commitment</h3>
+<p>Digital preservation begins with a mandate: what must remain available, for whom, for how long, and with which properties and restrictions? A university repository may preserve accepted theses indefinitely. A records center may retain records for legally defined periods and then destroy them through authorized disposition. A museum may preserve a complex interactive artwork whose behavior matters as much as its files.</p>
+<p>Preserving everything forever is not a strategy. Selection, appraisal, retention, rights, and resource limits determine scope. The preservation policy should name responsible roles, designated communities, content types, minimum metadata, storage and monitoring expectations, access conditions, review cycles, and authority for actions.</p>
+<p>The OAIS reference model describes an archive as an organization of people and systems that accepts responsibility for preserving information and making it available to a designated community <span class="citation" data-cites="ccsds2012oais">(<a href="references.html#ref-ccsds2012oais" role="doc-biblioref">Consultative Committee for Space Data Systems 2012</a>)</span>. OAIS is a conceptual model, not a software product or certificate.</p>
+</section>
+<section id="storage-sync-backup-and-preservation" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="storage-sync-backup-and-preservation"><span class="header-section-number">10.4.2</span> Storage, sync, backup, and preservation</h3>
+<p><a href="#tbl-continuity-functions" class="quarto-xref">Table&nbsp;<span>10.2</span></a> distinguishes related functions.</p>
+<div id="tbl-continuity-functions" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-continuity-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.2: Distinguishing digital continuity functions
+</figcaption>
+<div aria-describedby="tbl-continuity-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-continuity-functions" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Function</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Primary goal</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Does not alone provide</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Digitization</td>
+<td style="text-align: left;">Create digital representations</td>
+<td style="text-align: left;">Long-term management or preservation rights</td>
+<td style="text-align: left;">Capture specifications and quality review</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Storage</td>
+<td style="text-align: left;">Hold data on managed media or services</td>
+<td style="text-align: left;">Identity, monitoring, context, or recovery</td>
+<td style="text-align: left;">Inventory, configuration, monitoring, and access controls</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Synchronization</td>
+<td style="text-align: left;">Keep working locations aligned</td>
+<td style="text-align: left;">Protection from propagated deletion</td>
+<td style="text-align: left;">Sync logs, conflict rules, and version behavior</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Backup</td>
+<td style="text-align: left;">Restore data after loss or corruption</td>
+<td style="text-align: left;">Meaning, provenance, format action, or permanent retention</td>
+<td style="text-align: left;">Schedules, retention, success logs, and restore tests</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Disaster recovery</td>
+<td style="text-align: left;">Restore systems and priority services after disruption</td>
+<td style="text-align: left;">Appraisal, representation information, or long-term access</td>
+<td style="text-align: left;">Recovery objectives, roles, exercises, and incident records</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Digital preservation</td>
+<td style="text-align: left;">Maintain authentic, understandable, usable information over time</td>
+<td style="text-align: left;">Unlimited retention or zero-risk continuity</td>
+<td style="text-align: left;">Policy, packages, metadata, fixity, actions, audits, and access tests</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-continuity-functions" class="quarto-xref">Table&nbsp;<span>10.2</span></a> shows, copies become preservation resources only when they are identified, monitored, protected, recoverable, and connected to policy and metadata.</p>
+</section>
+<section id="threats-to-digital-continuity" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="threats-to-digital-continuity"><span class="header-section-number">10.4.3</span> Threats to digital continuity</h3>
+<p>Digital objects face interacting threats:</p>
+<ul>
+<li>media degradation and hardware failure;</li>
+<li>accidental deletion, overwriting, misfiling, or incomplete transfer;</li>
+<li>malicious alteration, ransomware, account takeover, or insider abuse;</li>
+<li>software, format, dependency, and interface obsolescence;</li>
+<li>incomplete metadata or separation of files from context;</li>
+<li>undocumented migration or transformation;</li>
+<li>loss of keys, credentials, domains, subscriptions, or staff knowledge;</li>
+<li>rights uncertainty and restrictions preventing preservation action;</li>
+<li>vendor failure, contract termination, price change, or service redesign;</li>
+<li>disasters, power instability, heat, humidity, flooding, fire, and political disruption;</li>
+<li>institutional neglect, unclear ownership, and insufficient recurring funding.</li>
+</ul>
+<p>A threat model connects assets, threats, vulnerabilities, consequences, and controls. “The cloud might fail” is too vague. A useful statement is: “A single administrator account controls deletion of all cloud copies; credential compromise could remove every version before detection.” Controls might include separate roles, multifactor authentication, immutable retention, alerts, delayed deletion, and an independently administered copy.</p>
+</section>
+<section id="files-bitstreams-and-representation-information" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="files-bitstreams-and-representation-information"><span class="header-section-number">10.4.4</span> Files, bitstreams, and representation information</h3>
+<p>A file extension is a hint, not proof of format. A file named <code>.pdf</code> may be malformed or may contain embedded fonts, images, scripts, encryption, signatures, or attachments. Format identification examines signatures and structure. Validation asks whether the file conforms to a specification. Characterization records technical features needed for management.</p>
+<p>A bitstream may be embedded within a file. A container such as a PDF, ZIP, video file, or disk image can contain multiple streams. Preserving bytes does not guarantee that future users can interpret them. Documentation, software dependencies, fonts, codecs, schemas, encryption keys, and contextual metadata may be necessary representation information.</p>
+</section>
+<section id="fixity-and-checksums" class="level3" data-number="10.4.5">
+<h3 data-number="10.4.5" class="anchored" data-anchor-id="fixity-and-checksums"><span class="header-section-number">10.4.5</span> Fixity and checksums</h3>
+<p>A checksum is calculated from a sequence of bytes. If one byte changes, a strong cryptographic hash such as SHA-256 will almost certainly produce a different value. Preservation systems record a checksum, later recalculate it, and compare the values.</p>
+<p>Fixity checking can demonstrate that a bitstream has or has not changed since a recorded event. It cannot prove that the original file was correct, complete, authentic, virus-free, or meaningful. If a damaged file is ingested and hashed, later fixity checks can faithfully confirm the damaged bytes.</p>
+<p>The <code>openssl</code> R package exposes SHA-256 hashing functions <span class="citation" data-cites="opensslr2026">(<a href="references.html#ref-opensslr2026" role="doc-biblioref">Ooms 2026</a>)</span>. A manifest should record algorithm, relative path, checksum, size, date, tool, and event outcome. Relative paths allow the package to move without rewriting every entry.</p>
+<p>Verification recalculates values from the files rather than trusting the old manifest:</p>
+<p>A failed check is an incident, not an instruction to overwrite the expected value. Quarantine the affected copy, compare independent copies, investigate cause, restore from a verified source, and record every action.</p>
+</section>
+<section id="authenticity-requires-more-than-fixity" class="level3" data-number="10.4.6">
+<h3 data-number="10.4.6" class="anchored" data-anchor-id="authenticity-requires-more-than-fixity"><span class="header-section-number">10.4.6</span> Authenticity requires more than fixity</h3>
+<p><strong>Integrity</strong> concerns completeness and authorized change. <strong>Authenticity</strong> concerns whether an object is what it claims to be. Evidence may include provenance, chain of custody, identifiers, relationships, creator and transfer documentation, access controls, signatures, validation, and preservation events.</p>
+<p>An authorized migration intentionally changes bytes. The new checksum differs, yet authenticity can be supported when the source and output, agent, tool, parameters, validation, date, reason, and relationship are documented. Conversely, an unchanged anonymous file with no provenance may have fixity but weak authenticity evidence.</p>
+</section>
+<section id="redundancy-and-the-3-2-1-heuristic" class="level3" data-number="10.4.7">
+<h3 data-number="10.4.7" class="anchored" data-anchor-id="redundancy-and-the-3-2-1-heuristic"><span class="header-section-number">10.4.7</span> Redundancy and the 3-2-1 heuristic</h3>
+<p>The 3-2-1 rule recommends at least three copies, on two kinds of storage, with one copy off-site. It is a useful beginner heuristic, not a guarantee. Three folders on one cloud account are not independent copies. Two media types in the same flood zone share a location risk. An offline disk that is never read may be unusable.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-redundant-storage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-redundant-storage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-redundant-storage">flowchart TB
+    P["Preservation package and manifest"] --&gt; L["Copy A: managed local storage"]
+    P --&gt; C["Copy B: cloud object storage in another region"]
+    P --&gt; O["Copy C: offline or separately administered storage"]
+    L --&gt; M["Scheduled fixity and access monitoring"]
+    C --&gt; M
+    O --&gt; M
+    M --&gt; R["Documented restore test and incident response"]
+    R --&gt; P
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-redundant-storage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: A basic preservation storage arrangement with independent controls
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-redundant-storage" class="quarto-xref">Figure&nbsp;<span>10.1</span></a> shows, each copy participates in monitoring and recovery. Independence includes technology, location, credentials, administration, and failure mode. The NDSA Levels of Digital Preservation provide a staged framework across storage, integrity, control, metadata, and content <span class="citation" data-cites="ndsa2019levels">(<a href="references.html#ref-ndsa2019levels" role="doc-biblioref">National Digital Stewardship Alliance 2019</a>)</span>.</p>
+</section>
+<section id="inventory-and-identity" class="level3" data-number="10.4.8">
+<h3 data-number="10.4.8" class="anchored" data-anchor-id="inventory-and-identity"><span class="header-section-number">10.4.8</span> Inventory and identity</h3>
+<p>An organization cannot preserve what it does not know it holds. A preservation inventory records stable identifier, path or object key, size, format, dates, rights, source, responsible unit, retention, access restrictions, checksum, storage copies, and last check.</p>
+<p>File names should be stable, unique within scope, and machine-safe, but filenames should not carry the only metadata. Renaming files can break links and authenticity evidence. If renaming is necessary, preserve original names and document the mapping.</p>
+<p>Packaging formats can bind content and manifests for transfer. BagIt defines a hierarchical package with payload files and manifests <span class="citation" data-cites="kunze2018bagit">(<a href="references.html#ref-kunze2018bagit" role="doc-biblioref">Kunze et al. 2018</a>)</span>. A bag is not automatically a complete preservation repository; it supports reliable transfer and validation within a larger workflow.</p>
+</section>
+<section id="file-format-sustainability" class="level3" data-number="10.4.9">
+<h3 data-number="10.4.9" class="anchored" data-anchor-id="file-format-sustainability"><span class="header-section-number">10.4.9</span> File-format sustainability</h3>
+<p>No format is permanently safe. Format assessment considers:</p>
+<ul>
+<li>public documentation and openness;</li>
+<li>adoption and community support;</li>
+<li>transparency versus compression or encryption;</li>
+<li>self-documentation and embedded metadata;</li>
+<li>external dependencies;</li>
+<li>patent or licensing restrictions;</li>
+<li>validation and rendering tools;</li>
+<li>ability to preserve significant properties;</li>
+<li>institutional capacity.</li>
+</ul>
+<p>The Library of Congress sustainability guidance evaluates formats through factors such as disclosure, adoption, transparency, self-documentation, external dependencies, patents, and technical protection <span class="citation" data-cites="loc2026formats">(<a href="references.html#ref-loc2026formats" role="doc-biblioref">Library of Congress 2026</a>)</span>. Preferred-format lists should be reviewed, not treated as timeless rankings.</p>
+<p><a href="#tbl-format-strategies" class="quarto-xref">Table&nbsp;<span>10.3</span></a> compares common responses.</p>
+<div id="tbl-format-strategies" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-format-strategies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.3: Selected digital preservation format strategies
+</figcaption>
+<div aria-describedby="tbl-format-strategies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-format-strategies" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strategy</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Use</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strength</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Preserve as received</td>
+<td style="text-align: left;">Retain original evidence and future options</td>
+<td style="text-align: left;">Avoids immediate transformation loss</td>
+<td style="text-align: left;">Future rendering may become difficult</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Normalization</td>
+<td style="text-align: left;">Create a selected format at ingest while retaining source</td>
+<td style="text-align: left;">Simplifies some management and access workflows</td>
+<td style="text-align: left;">Significant properties can be lost at ingest</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Migration</td>
+<td style="text-align: left;">Transform content when support or risk changes</td>
+<td style="text-align: left;">Maintains use with current tools</td>
+<td style="text-align: left;">Repeated transformations and undocumented changes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Emulation</td>
+<td style="text-align: left;">Recreate an environment for software-dependent behavior</td>
+<td style="text-align: left;">Can preserve original interaction and behavior</td>
+<td style="text-align: left;">Complexity, licensing, security, and specialist dependence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Encapsulation and documentation</td>
+<td style="text-align: left;">Keep content with software, specifications, metadata, or dependencies</td>
+<td style="text-align: left;">Preserves context needed for later interpretation</td>
+<td style="text-align: left;">Package may remain unusable without future action</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-format-strategies" class="quarto-xref">Table&nbsp;<span>10.3</span></a> shows, strategies can be combined. Preserve the original, create a normalized preservation version, and generate an accessible derivative, while documenting relationships and validation.</p>
+</section>
+<section id="significant-properties-and-acceptable-change" class="level3" data-number="10.4.10">
+<h3 data-number="10.4.10" class="anchored" data-anchor-id="significant-properties-and-acceptable-change"><span class="header-section-number">10.4.10</span> Significant properties and acceptable change</h3>
+<p>Migration cannot preserve every technical feature perfectly. <strong>Significant properties</strong> are characteristics judged necessary to retain meaning, evidential value, appearance, structure, or behavior for the designated community.</p>
+<p>For a thesis, text, page order, figures, equations, citations, and accessibility may matter. For a spreadsheet, formulas, values, cell relationships, comments, formatting, and macros may have different significance. For an interactive artwork, timing, input, audiovisual behavior, and network dependencies may be central.</p>
+<p>Significance is not purely technical. It follows mandate, user needs, records requirements, creator intent, cultural authority, and feasible resources. Document the judgment and validate migrations against it.</p>
+</section>
+<section id="preservation-metadata-and-premis" class="level3" data-number="10.4.11">
+<h3 data-number="10.4.11" class="anchored" data-anchor-id="preservation-metadata-and-premis"><span class="header-section-number">10.4.11</span> Preservation metadata and PREMIS</h3>
+<p>Preservation metadata records what an object is, what happened to it, who or what acted, which rights authorize action, and how components relate. PREMIS organizes preservation information around objects, events, agents, and rights <span class="citation" data-cites="loc2015premis">(<a href="references.html#ref-loc2015premis" role="doc-biblioref">PREMIS Editorial Committee 2015</a>)</span>.</p>
+<p><a href="#tbl-premis-entities" class="quarto-xref">Table&nbsp;<span>10.4</span></a> uses a simple migration example.</p>
+<div id="tbl-premis-entities" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-premis-entities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.4: PREMIS-oriented entities in a preservation workflow
+</figcaption>
+<div aria-describedby="tbl-premis-entities-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-premis-entities" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Entity</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Example</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Question answered</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Object</td>
+<td style="text-align: left;">Source TIFF and normalized TIFF, each with identifiers and fixity</td>
+<td style="text-align: left;">What was managed?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Event</td>
+<td style="text-align: left;">Format validation, migration, fixity check, or restore with date and outcome</td>
+<td style="text-align: left;">What happened and with what result?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Agent</td>
+<td style="text-align: left;">Staff member, institution, script, or software tool responsible for an event</td>
+<td style="text-align: left;">Who or what acted?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rights</td>
+<td style="text-align: left;">Permission or basis allowing preservation copying, migration, and controlled access</td>
+<td style="text-align: left;">What action was permitted and under what conditions?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Relationship</td>
+<td style="text-align: left;">Normalized file derived from source; access JPEG derived from preservation object</td>
+<td style="text-align: left;">How do versions and components connect?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-premis-entities" class="quarto-xref">Table&nbsp;<span>10.4</span></a> indicates, preservation metadata supports accountability and future interpretation. A spreadsheet can introduce these ideas at small scale, but larger programs need governed systems and controlled values.</p>
+</section>
+<section id="oais-packages-and-functions" class="level3" data-number="10.4.12">
+<h3 data-number="10.4.12" class="anchored" data-anchor-id="oais-packages-and-functions"><span class="header-section-number">10.4.12</span> OAIS packages and functions</h3>
+<p>OAIS uses three package concepts:</p>
+<ul>
+<li><strong>SIP:</strong> what a producer submits;</li>
+<li><strong>AIP:</strong> what the archive manages for preservation;</li>
+<li><strong>DIP:</strong> what the archive provides to a consumer.</li>
+</ul>
+<p>The packages need not be one ZIP file. They are conceptual combinations of content information and preservation description information. Ingest validates and transforms submissions into managed archival packages. Access creates dissemination packages appropriate to user rights and needs.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-oais-flow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-oais-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-oais-flow">flowchart LR
+    PR["Producer"] --&gt; SIP["Submission Information Package"]
+    SIP --&gt; IN["Ingest: verify, identify, validate, document"]
+    IN --&gt; AIP["Archival Information Package"]
+    AIP --&gt; ST["Archival storage and data management"]
+    ST --&gt; PM["Preservation planning and administration"]
+    ST --&gt; AC["Access"]
+    AC --&gt; DIP["Dissemination Information Package"]
+    DIP --&gt; CO["Consumer / designated community"]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oais-flow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: A simplified OAIS-oriented preservation flow
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-oais-flow" class="quarto-xref">Figure&nbsp;<span>10.2</span></a> highlights that preservation planning and administration continue after ingest. Deposit is the beginning of managed custody, not the end.</p>
+</section>
+<section id="cloud-computing-and-service-models" class="level3" data-number="10.4.13">
+<h3 data-number="10.4.13" class="anchored" data-anchor-id="cloud-computing-and-service-models"><span class="header-section-number">10.4.13</span> Cloud computing and service models</h3>
+<p>NIST defines cloud computing through on-demand access to shared configurable resources and identifies service and deployment models <span class="citation" data-cites="mell2011cloud">(<a href="references.html#ref-mell2011cloud" role="doc-biblioref">Mell and Grance 2011</a>)</span>. In simplified terms:</p>
+<ul>
+<li><strong>IaaS:</strong> the provider manages facilities, network, servers, and virtualization; the customer manages operating systems, applications, identities, configuration, and data.</li>
+<li><strong>PaaS:</strong> the provider also manages more of the application platform; the customer manages deployed applications, data, and access.</li>
+<li><strong>SaaS:</strong> the provider operates the application; the customer configures use, identities, data, workflows, and governance.</li>
+</ul>
+<p>“Managed by provider” does not mean “no customer responsibility.” The institution must configure access, monitor use, classify data, maintain metadata, check exports, and understand contractual controls. Security and privacy responsibilities vary by service and agreement <span class="citation" data-cites="jansen2011cloud">(<a href="references.html#ref-jansen2011cloud" role="doc-biblioref">Jansen and Grance 2011</a>)</span>.</p>
+<p>Cloud deployment can be public, private, community, or hybrid. The labels do not by themselves determine security or suitability. Architecture, configuration, operations, contracts, and evidence matter.</p>
+</section>
+<section id="storage-tiers-durability-availability-and-recovery" class="level3" data-number="10.4.14">
+<h3 data-number="10.4.14" class="anchored" data-anchor-id="storage-tiers-durability-availability-and-recovery"><span class="header-section-number">10.4.14</span> Storage tiers, durability, availability, and recovery</h3>
+<p>Cloud object storage often offers hot, cool, and archival tiers. Lower storage prices may bring retrieval delays, minimum retention periods, request charges, or egress fees. A preservation copy that takes hours to restore may be acceptable if another access copy exists, but incident plans must reflect that delay.</p>
+<p><strong>Durability</strong> estimates the likelihood that stored objects remain intact. <strong>Availability</strong> concerns whether they can be accessed when needed. Neither is a substitute for independent verification and recovery testing. Provider replication within one account may protect hardware failure but not customer deletion, compromised credentials, billing suspension, legal seizure, or provider-wide defects.</p>
+</section>
+<section id="evaluating-cloud-preservation-services" class="level3" data-number="10.4.15">
+<h3 data-number="10.4.15" class="anchored" data-anchor-id="evaluating-cloud-preservation-services"><span class="header-section-number">10.4.15</span> Evaluating cloud preservation services</h3>
+<p><a href="#tbl-cloud-evaluation" class="quarto-xref">Table&nbsp;<span>10.5</span></a> identifies questions beyond monthly storage price.</p>
+<div id="tbl-cloud-evaluation" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cloud-evaluation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.5: Questions for evaluating cloud preservation services
+</figcaption>
+<div aria-describedby="tbl-cloud-evaluation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-cloud-evaluation" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dimension</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Questions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Data and metadata</td>
+<td style="text-align: left;">Can all files, metadata, relationships, logs, and versions be exported completely?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Integrity</td>
+<td style="text-align: left;">Who calculates and exposes checksums? Can customer fixity be verified independently?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Identity and access</td>
+<td style="text-align: left;">Are least privilege, MFA, separate roles, service accounts, and account recovery supported?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Security and privacy</td>
+<td style="text-align: left;">How are data encrypted, keys managed, incidents notified, and subcontractors controlled?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Location and jurisdiction</td>
+<td style="text-align: left;">Where can replicas, backups, support access, and processing occur? Which laws apply?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Availability and recovery</td>
+<td style="text-align: left;">What are measured commitments, restoration times, dependencies, and tested alternatives?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cost</td>
+<td style="text-align: left;">What are storage, request, retrieval, egress, support, growth, and migration costs?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interoperability and exit</td>
+<td style="text-align: left;">Are standard formats and APIs available? How long and how costly is complete exit?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Governance and evidence</td>
+<td style="text-align: left;">What audit reports, logs, change notices, deletion evidence, and contract remedies exist?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-cloud-evaluation" class="quarto-xref">Table&nbsp;<span>10.5</span></a> shows, procurement is part of preservation planning. A low entry price with expensive egress can make exit financially difficult.</p>
+</section>
+<section id="service-level-agreements-and-shared-responsibility" class="level3" data-number="10.4.16">
+<h3 data-number="10.4.16" class="anchored" data-anchor-id="service-level-agreements-and-shared-responsibility"><span class="header-section-number">10.4.16</span> Service-level agreements and shared responsibility</h3>
+<p>An SLA should define measurable service scope, availability, support response, durability where applicable, incident notice, backup and restore, maintenance, data location, deletion, export, and remedies. A service credit after failure may not compensate for irreplaceable cultural loss.</p>
+<p>A shared-responsibility matrix names each control and assigns provider, institution, or joint responsibility. Avoid vague statements such as “security is shared.” For example:</p>
+<ul>
+<li>provider: physical data-center controls;</li>
+<li>institution: classification and least-privilege roles;</li>
+<li>joint: incident communication and evidence exchange;</li>
+<li>institution: independent preservation metadata and off-provider copy.</li>
+</ul>
+</section>
+<section id="cost-and-total-cost-of-stewardship" class="level3" data-number="10.4.17">
+<h3 data-number="10.4.17" class="anchored" data-anchor-id="cost-and-total-cost-of-stewardship"><span class="header-section-number">10.4.17</span> Cost and total cost of stewardship</h3>
+<p>Preservation costs include selection, appraisal, rights, transfer, metadata, quality control, storage, monitoring, validation, security, access, staff training, format action, audits, incident response, migration, and exit. Cloud invoices add operations, retrieval, egress, API requests, monitoring, and support.</p>
+<p>A cost model should state assumptions: annual growth, number and size of copies, access frequency, retention, geographic regions, retrieval tests, staffing, currency exposure, and price change. Comparing one local disk purchase with one month of cloud storage ignores staffing, replacement, power, facilities, risk, and exit.</p>
+</section>
+<section id="exit-planning-and-vendor-lock-in" class="level3" data-number="10.4.18">
+<h3 data-number="10.4.18" class="anchored" data-anchor-id="exit-planning-and-vendor-lock-in"><span class="header-section-number">10.4.18</span> Exit planning and vendor lock-in</h3>
+<p>An exit plan should exist before signing a contract. It identifies triggers, authority, export formats, APIs, metadata, checksums, logs, identities, encryption keys, bandwidth, egress cost, destination capacity, validation, parallel operation, final deletion, and proof.</p>
+<p>A tabletop exit test asks: Can the institution list everything? Export a sample? Reconstruct relationships? Verify checksums? Estimate time and cost for all content? Continue access during transition? Confirm vendor deletion afterward?</p>
+<p>If the answer depends on an employee’s memory or a proprietary interface, preservation risk is high.</p>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">10.5</span> Philippine and Southeast Asian examples</h2>
+<section id="provincial-archive-typhoon-aware-redundancy" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="provincial-archive-typhoon-aware-redundancy"><span class="header-section-number">10.5.1</span> Provincial archive: typhoon-aware redundancy</h3>
+<p>A provincial archive stores digitized land and municipal records in a flood-prone area. One managed copy remains on-site for work, a second is held at a partner institution in another island group, and a third is stored in cloud object storage under a separately administered account. Quarterly fixity checks and annual restoration exercises are documented. The arrangement considers geographic hazards, connectivity, and the need for local access after disruption.</p>
+</section>
+<section id="university-repository-theses-and-embargoes" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="university-repository-theses-and-embargoes"><span class="header-section-number">10.5.2</span> University repository: theses and embargoes</h3>
+<p>A university repository preserves submitted PDFs, supplemental files, deposit agreements, embargo dates, metadata, and preservation events. Public access copies are separate from restricted archival copies. Cloud storage rules do not accidentally publish embargoed files, and exit tests verify that rights and restriction metadata export with content.</p>
+</section>
+<section id="public-library-community-oral-histories" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="public-library-community-oral-histories"><span class="header-section-number">10.5.3</span> Public library: community oral histories</h3>
+<p>A city library preserves uncompressed or losslessly compressed audio masters, interview agreements, transcripts, access derivatives, and community restrictions. Migration tests compare duration, channels, sampling characteristics, embedded metadata, and intelligibility. Consent is reviewed before cloud replication across jurisdictions.</p>
+</section>
+<section id="government-records-center-retention-and-authorized-deletion" class="level3" data-number="10.5.4">
+<h3 data-number="10.5.4" class="anchored" data-anchor-id="government-records-center-retention-and-authorized-deletion"><span class="header-section-number">10.5.4</span> Government records center: retention and authorized deletion</h3>
+<p>A government records center distinguishes preservation from permanent retention. Cloud immutability protects records during their retention period, but authorized disposition remains possible after legal, audit, and archival requirements are satisfied. Deletion includes replicas and provider backups according to contract, with evidence recorded.</p>
+</section>
+<section id="regional-museum-consortium-shared-capacity-without-shared-passwords" class="level3" data-number="10.5.5">
+<h3 data-number="10.5.5" class="anchored" data-anchor-id="regional-museum-consortium-shared-capacity-without-shared-passwords"><span class="header-section-number">10.5.5</span> Regional museum consortium: shared capacity without shared passwords</h3>
+<p>Several Southeast Asian museums pool preservation storage. Each institution retains identifiers, metadata, and authority over its collections. Federated identity and role-based access replace shared administrator passwords. Agreements define incident response, cost allocation, withdrawal, community restrictions, and recovery when one partner loses connectivity.</p>
+<blockquote class="blockquote">
+<p><strong>Reflect:</strong> Which disaster is most visible in your institution’s planning, and which slower organizational or technical threat is easier to overlook?</p>
+</blockquote>
+</section>
+</section>
+<section id="hands-on-activity-build-and-test-a-small-preservation-package" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="hands-on-activity-build-and-test-a-small-preservation-package"><span class="header-section-number">10.6</span> Hands-on activity: Build and test a small preservation package</h2>
+<section id="purpose" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">10.6.1</span> Purpose</h3>
+<p>Create a preservation package for three to five non-sensitive files, record inventory and SHA-256 fixity, maintain three controlled copies, simulate unintended change, restore from a verified copy, and document the event. This activity contributes to the ethics and preservation brief.</p>
+</section>
+<section id="tools" class="level3" data-number="10.6.2">
+<h3 data-number="10.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">10.6.2</span> Tools</h3>
+<ul>
+<li>R and Quarto;</li>
+<li>R package <code>openssl</code> <span class="citation" data-cites="opensslr2026">(<a href="references.html#ref-opensslr2026" role="doc-biblioref">Ooms 2026</a>)</span>;</li>
+<li>three to five instructor-provided or self-created non-sensitive files in at least two formats;</li>
+<li>three storage locations approved for class use, with at least one logically or geographically separate;</li>
+<li>the package fields in <a href="#tbl-package-manifest" class="quarto-xref">Table&nbsp;<span>10.6</span></a>.</li>
+</ul>
+<div id="tbl-package-manifest" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-package-manifest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.6: Minimum manifest fields for the preservation-package lab
+</figcaption>
+<div aria-describedby="tbl-package-manifest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-package-manifest" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Field</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">object_id</td>
+<td style="text-align: left;">Stable identity within the exercise</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">relative_path</td>
+<td style="text-align: left;">Location independent of the storage root</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">original_name</td>
+<td style="text-align: left;">Evidence of the supplied filename</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bytes</td>
+<td style="text-align: left;">Expected file size</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">format</td>
+<td style="text-align: left;">Identified format rather than extension alone</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">format_version</td>
+<td style="text-align: left;">Version when known</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sha256</td>
+<td style="text-align: left;">Recorded fixity value and algorithm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">source</td>
+<td style="text-align: left;">Creator, transfer, or source context</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rights_access</td>
+<td style="text-align: left;">Preservation and access authority or restriction</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">copy_locations</td>
+<td style="text-align: left;">Controlled identifiers for three copies</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">last_fixity</td>
+<td style="text-align: left;">Date and outcome of last verification</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">status</td>
+<td style="text-align: left;">Active, quarantined, missing, or superseded</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-package-manifest" class="quarto-xref">Table&nbsp;<span>10.6</span></a> combines technical and stewardship evidence. Do not place passwords, personal data, or sensitive locations in the exercise package.</p>
+</section>
+<section id="steps" class="level3" data-number="10.6.3">
+<h3 data-number="10.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">10.6.3</span> Steps</h3>
+<ol type="1">
+<li>State the collection purpose, designated users, retention expectation, significant properties, rights, and excluded sensitive content.</li>
+<li>Create <code>package/data/</code>, <code>package/metadata/</code>, and <code>package/logs/</code>. Copy the selected source files into <code>data/</code>; do not alter the originals.</li>
+<li>Inventory each file with stable object ID, relative path, original filename, size, format, source, rights, and significant properties.</li>
+<li>Calculate SHA-256 checksums in R. Export <code>metadata/manifest-sha256.csv</code> and record tool and date.</li>
+<li>Verify every file immediately against the manifest. Record a <code>FIXITY_CHECK</code> event with <code>PASS</code> or <code>FAIL</code>.</li>
+<li>Create three named copies using two storage types, with one separate from the primary location. Record location, administrator, encryption, access, and sync behavior.</li>
+<li>Verify all three copies independently. Do not assume the copy command succeeded.</li>
+<li>On a disposable test copy only, change one byte or edit one file. Recalculate checksums and observe the failure.</li>
+<li>Quarantine the altered copy. Restore the affected file from an independently verified copy. Recalculate fixity and record investigation, restoration, agent, time, and outcome.</li>
+<li>Select one format and complete a risk note covering documentation, adoption, dependencies, validation tools, and significant properties.</li>
+<li>Draw a storage and responsibility diagram showing copies, failure domains, administrators, monitoring, and recovery path.</li>
+<li>Compare one local and one cloud option using the criteria in <a href="#tbl-cloud-evaluation" class="quarto-xref">Table&nbsp;<span>10.5</span></a>. Estimate storage and exit assumptions rather than quoting only a headline price.</li>
+<li>Write a one-page preservation action plan with schedule, owners, incident steps, annual restore test, format review, and exit trigger.</li>
+<li>Render the Quarto report and verify that another student can reconstruct what happened without oral explanation.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="10.6.4">
+<h3 data-number="10.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">10.6.4</span> Expected output</h3>
+<p>Submit:</p>
+<ul>
+<li>preservation package with <code>data/</code>, <code>metadata/</code>, and <code>logs/</code>;</li>
+<li>inventory and SHA-256 manifest;</li>
+<li>fixity log showing initial checks, deliberate failure, quarantine, restore, and final pass;</li>
+<li>storage and responsibility diagram;</li>
+<li>format-risk and significant-properties note;</li>
+<li>local-versus-cloud comparison;</li>
+<li>one-page preservation action plan; and</li>
+<li>a 200-word reflection: <strong>Which evidence demonstrates continuity, and which preservation claims remain assumptions?</strong></li>
+</ul>
+</section>
+<section id="lab-checklist" class="level3" data-number="10.6.5">
+<h3 data-number="10.6.5" class="anchored" data-anchor-id="lab-checklist"><span class="header-section-number">10.6.5</span> Lab checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">The package contains no sensitive or copyrighted content unsuitable for class copying.</label></li>
+<li><label><input type="checkbox">Original files remain unchanged.</label></li>
+<li><label><input type="checkbox">Relative paths and stable object IDs are used.</label></li>
+<li><label><input type="checkbox">SHA-256 algorithm, tool, and dates are recorded.</label></li>
+<li><label><input type="checkbox">Every copy is verified independently.</label></li>
+<li><label><input type="checkbox">The deliberate failure occurs only in a disposable test copy.</label></li>
+<li><label><input type="checkbox">A failed checksum is investigated, not overwritten.</label></li>
+<li><label><input type="checkbox">Three copies have meaningfully different failure domains.</label></li>
+<li><label><input type="checkbox">Rights, significant properties, owners, and schedules are documented.</label></li>
+<li><label><input type="checkbox">Recovery and exit are tested or estimated with evidence.</label></li>
+</ul>
+</section>
+<section id="assessment-rubric" class="level3" data-number="10.6.6">
+<h3 data-number="10.6.6" class="anchored" data-anchor-id="assessment-rubric"><span class="header-section-number">10.6.6</span> Assessment rubric</h3>
+<p><a href="#tbl-preservation-lab-rubric" class="quarto-xref">Table&nbsp;<span>10.7</span></a> emphasizes evidence and recovery rather than the mere presence of copies.</p>
+<div id="tbl-preservation-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-preservation-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.7: Rubric for the preservation package and recovery test
+</figcaption>
+<div aria-describedby="tbl-preservation-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-preservation-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strong performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Scope and package</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Objects, identifiers, metadata, rights, significant properties, and exclusions are coherent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fixity and event evidence</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">Checksums are reproducible; failure, quarantine, restore, and outcomes are accurately logged</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Redundancy and recovery</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Copies have independent failure domains and a demonstrated recovery path</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Format and cloud analysis</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Format risk and local/cloud comparison use explicit evidence, cost, jurisdiction, and exit criteria</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Governance, ethics, and sustainability</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Owners, privacy, access, retention, monitoring, review, and limitations are professionally addressed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-preservation-rights-privacy-and-sustainable-custody" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="ethical-and-professional-issue-preservation-rights-privacy-and-sustainable-custody"><span class="header-section-number">10.7</span> Ethical and professional issue: preservation rights, privacy, and sustainable custody</h2>
+<p>Preserving a digital object can conflict with access restrictions, privacy, copyright, community authority, and the right to be forgotten or to restrict harmful exposure. Copying, migration, decryption, format analysis, and cloud replication are preservation actions, but technical necessity does not automatically provide legal or ethical authority.</p>
+<p>Archives may hold records containing personal addresses, health information, political activity, disciplinary records, or names of vulnerable people. Cultural collections may contain sacred or restricted knowledge. Cloud replication can move data into additional jurisdictions and expose it to provider personnel or legal demands. Encryption protects some risks but complicates key preservation; losing the key can make intact copies permanently inaccessible.</p>
+<p>Responsible stewardship includes:</p>
+<ul>
+<li>document authority for preservation copying, transformation, and access;</li>
+<li>separate preservation retention from public availability;</li>
+<li>classify sensitive content and apply proportionate access controls;</li>
+<li>minimize cloud metadata that can reveal identities or collection sensitivity;</li>
+<li>record embargoes, community protocols, takedown, and review dates;</li>
+<li>maintain key custody, recovery, rotation, and authorized destruction;</li>
+<li>obtain deletion evidence when retention authority ends;</li>
+<li>assess vendor location, subcontractors, incident reporting, and data reuse;</li>
+<li>budget for ongoing custody rather than launching unfunded collections;</li>
+<li>consult affected communities about significant properties and acceptable access.</li>
+</ul>
+<p>Under the Philippine Data Privacy Act, long-term retention of personal information still requires lawful purpose, proportionality, security, and retention discipline <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>. “For preservation” should not become an unlimited exemption from governance.</p>
+<p>Environmental sustainability is also professional. Multiple copies, computation, media replacement, and cloud storage consume energy and materials. The response is not to abandon redundancy, but to appraise responsibly, avoid uncontrolled duplication, choose appropriate storage tiers, monitor actual use, and include environmental cost in stewardship decisions.</p>
+<blockquote class="blockquote">
+<p><strong>Professional judgment prompt:</strong> A donor gives a hard drive of community photographs with no agreements and asks the archive to “keep everything forever in the cloud.” What must be clarified before copying, identifying, uploading, or providing access?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">10.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> Distinguish storage, synchronization, backup, disaster recovery, and digital preservation.</li>
+<li><strong>Identification:</strong> What does a checksum establish, and what can it not establish?</li>
+<li><strong>Short answer:</strong> Why are three folders in one cloud account not three independent preservation copies?</li>
+<li><strong>Short answer:</strong> Explain the relationship among integrity, authenticity, provenance, and fixity.</li>
+<li><strong>Applied analysis:</strong> A file fails a SHA-256 check. List the immediate actions that should occur before replacing anything.</li>
+<li><strong>Applied strategy:</strong> Compare migration and emulation for an interactive digital exhibit. Which significant properties might drive the choice?</li>
+<li><strong>Scenario:</strong> A cloud archive tier is inexpensive to store but costly and slow to retrieve. Which recovery, cost, and exit questions must be answered?</li>
+<li><strong>Scenario:</strong> A repository exports files but not embargoes, relationships, or event logs. Why is the exit incomplete?</li>
+<li><strong>Scenario:</strong> An institution keeps encrypted preservation copies but only one employee knows the key password. Identify the risks and controls.</li>
+<li><strong>Critical analysis:</strong> When can authorized deletion be part of responsible digital stewardship rather than preservation failure?</li>
+</ol>
+</section>
+<section id="mini-case-the-cloud-repository-renewal" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="mini-case-the-cloud-repository-renewal"><span class="header-section-number">10.9</span> Mini case: The cloud repository renewal</h2>
+<p>Luntian State University stores 60 terabytes of theses, research data, and digitized archives in a vendor-hosted repository. The renewal price will double. The vendor reports “eleven nines” of durability but does not expose object checksums. Export is available as files and Dublin Core CSV, but compound-object relationships, access restrictions, version history, and preservation events require a custom paid service. Egress is charged per gigabyte. Two administrators share one account, no restore exercise has occurred, and some donor agreements prohibit storage outside the Philippines. The university has ninety days to renew or migrate.</p>
+<section id="guide-questions" class="level3" data-number="10.9.1">
+<h3 data-number="10.9.1" class="anchored" data-anchor-id="guide-questions"><span class="header-section-number">10.9.1</span> Guide questions</h3>
+<ol type="1">
+<li>Which technical, metadata, security, rights, jurisdiction, financial, and governance risks should be addressed first?</li>
+<li>What evidence and sample exports are needed to determine whether a complete, authentic migration is possible?</li>
+<li>Propose a ninety-day triage plan and a longer-term architecture that reduces future lock-in without pretending all risk can be eliminated.</li>
+</ol>
+</section>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">10.10</span> Further reading and tools</h2>
+<section id="readings-and-standards" class="level3" data-number="10.10.1">
+<h3 data-number="10.10.1" class="anchored" data-anchor-id="readings-and-standards"><span class="header-section-number">10.10.1</span> Readings and standards</h3>
+<ul>
+<li><strong>OAIS Reference Model.</strong> Foundational concepts for archival information packages, functions, and designated communities <span class="citation" data-cites="ccsds2012oais">(<a href="references.html#ref-ccsds2012oais" role="doc-biblioref">Consultative Committee for Space Data Systems 2012</a>)</span>.</li>
+<li><strong>PREMIS Data Dictionary.</strong> Preservation metadata for objects, events, agents, and rights <span class="citation" data-cites="loc2015premis">(<a href="references.html#ref-loc2015premis" role="doc-biblioref">PREMIS Editorial Committee 2015</a>)</span>.</li>
+<li><strong>NDSA Levels of Digital Preservation.</strong> A staged assessment and planning framework <span class="citation" data-cites="ndsa2019levels">(<a href="references.html#ref-ndsa2019levels" role="doc-biblioref">National Digital Stewardship Alliance 2019</a>)</span>.</li>
+<li><strong>Library of Congress Sustainability of Digital Formats.</strong> Format descriptions and sustainability factors <span class="citation" data-cites="loc2026formats">(<a href="references.html#ref-loc2026formats" role="doc-biblioref">Library of Congress 2026</a>)</span>.</li>
+<li><strong>Digital Preservation Handbook.</strong> Accessible guidance across organizational and technical preservation practice <span class="citation" data-cites="dpc2026handbook">(<a href="references.html#ref-dpc2026handbook" role="doc-biblioref">Digital Preservation Coalition 2026</a>)</span>.</li>
+<li><strong>NIST cloud definition and security guidance.</strong> Core service models plus public-cloud security and privacy considerations <span class="citation" data-cites="mell2011cloud jansen2011cloud">(<a href="references.html#ref-mell2011cloud" role="doc-biblioref">Mell and Grance 2011</a>; <a href="references.html#ref-jansen2011cloud" role="doc-biblioref">Jansen and Grance 2011</a>)</span>.</li>
+<li><strong>BagIt RFC 8493.</strong> A standardized packaging format for transferring files with manifests <span class="citation" data-cites="kunze2018bagit">(<a href="references.html#ref-kunze2018bagit" role="doc-biblioref">Kunze et al. 2018</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-or-widely-accessible-tools" class="level3" data-number="10.10.2">
+<h3 data-number="10.10.2" class="anchored" data-anchor-id="open-or-widely-accessible-tools"><span class="header-section-number">10.10.2</span> Open or widely accessible tools</h3>
+<ul>
+<li><strong>R <code>openssl</code> package:</strong> calculate SHA-256 checksums in reproducible workflows <span class="citation" data-cites="opensslr2026">(<a href="references.html#ref-opensslr2026" role="doc-biblioref">Ooms 2026</a>)</span>.</li>
+<li><strong>PowerShell <code>Get-FileHash</code> or platform SHA tools:</strong> verify checksums independently of R.</li>
+<li><strong>DROID or Siegfried:</strong> identify file formats using maintained signature data.</li>
+<li><strong>JHOVE:</strong> identify, validate, and characterize selected formats.</li>
+<li><strong>BagIt tools:</strong> create and validate transfer packages; a valid bag is only one component of preservation.</li>
+<li><strong>Archivematica:</strong> open-source preservation workflow system useful for studying ingest, normalization, metadata, and packages.</li>
+<li><strong>Fixity and inventory scripts:</strong> small tools are valuable when their source, versions, logs, schedules, and failure handling are documented.</li>
+</ul>
+</section>
+<section id="closing-synthesis" class="level3" data-number="10.10.3">
+<h3 data-number="10.10.3" class="anchored" data-anchor-id="closing-synthesis"><span class="header-section-number">10.10.3</span> Closing synthesis</h3>
+<p>Digital preservation is the managed continuity of information, not the indefinite survival of one disk or vendor account. Checksums provide evidence of bit-level change. Redundant copies reduce selected failure risks. Metadata preserves identity, provenance, rights, events, and relationships. Format strategies address obsolescence. Recovery tests demonstrate that copies can become service again.</p>
+<p>Cloud services can strengthen preservation architecture, but they introduce new dependencies, costs, jurisdictions, and exit problems. The professional question is therefore not “local or cloud?” It is: <strong>Which risks are controlled, which are transferred or concentrated, what evidence demonstrates continuity, who remains accountable, and can the institution recover or leave?</strong> Chapter 11 builds on this risk-based reasoning by integrating cybersecurity, law, ethics, and project planning.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-ccsds2012oais" class="csl-entry" role="listitem">
+Consultative Committee for Space Data Systems. 2012. <em>Reference Model for an Open Archival Information System (OAIS)</em>. CCSDS 650.0-M-2. CCSDS Secretariat. <a href="https://public.ccsds.org/pubs/650x0m2.pdf">https://public.ccsds.org/pubs/650x0m2.pdf</a>.
+</div>
+<div id="ref-dpc2026handbook" class="csl-entry" role="listitem">
+Digital Preservation Coalition. 2026. <em>Digital Preservation Handbook</em>. <a href="https://www.dpconline.org/handbook">https://www.dpconline.org/handbook</a>.
+</div>
+<div id="ref-jansen2011cloud" class="csl-entry" role="listitem">
+Jansen, Wayne, and Timothy Grance. 2011. <em>Guidelines on Security and Privacy in Public Cloud Computing</em>. NIST Special Publication 800-144. National Institute of Standards; Technology. <a href="https://doi.org/10.6028/NIST.SP.800-144">https://doi.org/10.6028/NIST.SP.800-144</a>.
+</div>
+<div id="ref-kunze2018bagit" class="csl-entry" role="listitem">
+Kunze, John, Justin Littman, Liz Madden, Emily Scancella, and Chris Adams. 2018. <em>The BagIt File Packaging Format (V1.0)</em>. RFC No. 8493. Internet Engineering Task Force. <a href="https://doi.org/10.17487/RFC8493">https://doi.org/10.17487/RFC8493</a>.
+</div>
+<div id="ref-loc2026formats" class="csl-entry" role="listitem">
+Library of Congress. 2026. <em>Sustainability of Digital Formats: Planning for Library of Congress Collections</em>. <a href="https://www.loc.gov/preservation/digital/formats/">https://www.loc.gov/preservation/digital/formats/</a>.
+</div>
+<div id="ref-mell2011cloud" class="csl-entry" role="listitem">
+Mell, Peter, and Timothy Grance. 2011. <em>The NIST Definition of Cloud Computing</em>. NIST Special Publication 800-145. National Institute of Standards; Technology. <a href="https://doi.org/10.6028/NIST.SP.800-145">https://doi.org/10.6028/NIST.SP.800-145</a>.
+</div>
+<div id="ref-ndsa2019levels" class="csl-entry" role="listitem">
+National Digital Stewardship Alliance. 2019. <em>Levels of Digital Preservation, Version 2.0</em>. <a href="https://ndsa.org/publications/levels-of-digital-preservation/">https://ndsa.org/publications/levels-of-digital-preservation/</a>.
+</div>
+<div id="ref-npc2023dpa" class="csl-entry" role="listitem">
+National Privacy Commission. 2023. <em>Data Privacy Act of 2012</em>. <a href="https://privacy.gov.ph/data-privacy-act/">https://privacy.gov.ph/data-privacy-act/</a>.
+</div>
+<div id="ref-opensslr2026" class="csl-entry" role="listitem">
+Ooms, Jeroen. 2026. <em>Openssl: Toolkit for Encryption, Signatures and Certificates Based on OpenSSL</em>. <a href="https://jeroen.r-universe.dev/openssl/">https://jeroen.r-universe.dev/openssl/</a>.
+</div>
+<div id="ref-loc2015premis" class="csl-entry" role="listitem">
+PREMIS Editorial Committee. 2015. <em>PREMIS Data Dictionary for Preservation Metadata, Version 3.0</em>. <a href="https://www.loc.gov/standards/premis/v3/premis-3-0-final.pdf">https://www.loc.gov/standards/premis/v3/premis-3-0-final.pdf</a>.
+</div>
+<div id="ref-philippines2012dpa" class="csl-entry" role="listitem">
+Republic of the Philippines. 2012. <em>Republic Act No. 10173: Data Privacy Act of 2012</em>. <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html">https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-09-ux-accessibility-mobile.html" class="pagination-link" aria-label="UX, Accessibility, and Mobile Library Services">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-11-cybersecurity-law-project.html" class="pagination-link" aria-label="Cybersecurity, Law, Ethics, and Project Planning">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

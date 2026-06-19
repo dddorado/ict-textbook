@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Programming for LIS and Automation – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-08-apis-linked-data.html" rel="next">
+<link href="./chapter-06-information-retrieval-discovery.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-07-programming-automation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">7.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">7.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">7.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">7.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#programming-as-explicit-procedural-knowledge" id="toc-programming-as-explicit-procedural-knowledge" class="nav-link" data-scroll-target="#programming-as-explicit-procedural-knowledge"><span class="header-section-number">7.4.1</span> Programming as explicit procedural knowledge</a></li>
+  <li><a href="#a-safe-automation-workflow" id="toc-a-safe-automation-workflow" class="nav-link" data-scroll-target="#a-safe-automation-workflow"><span class="header-section-number">7.4.2</span> A safe automation workflow</a></li>
+  <li><a href="#meeting-r-objects-assignment-and-expressions" id="toc-meeting-r-objects-assignment-and-expressions" class="nav-link" data-scroll-target="#meeting-r-objects-assignment-and-expressions"><span class="header-section-number">7.4.3</span> Meeting R: objects, assignment, and expressions</a></li>
+  <li><a href="#data-types-and-missing-values" id="toc-data-types-and-missing-values" class="nav-link" data-scroll-target="#data-types-and-missing-values"><span class="header-section-number">7.4.4</span> Data types and missing values</a></li>
+  <li><a href="#vectors-working-with-a-column-of-values" id="toc-vectors-working-with-a-column-of-values" class="nav-link" data-scroll-target="#vectors-working-with-a-column-of-values"><span class="header-section-number">7.4.5</span> Vectors: working with a column of values</a></li>
+  <li><a href="#data-frames-and-tidy-rectangular-data" id="toc-data-frames-and-tidy-rectangular-data" class="nav-link" data-scroll-target="#data-frames-and-tidy-rectangular-data"><span class="header-section-number">7.4.6</span> Data frames and tidy rectangular data</a></li>
+  <li><a href="#import-before-transformation" id="toc-import-before-transformation" class="nav-link" data-scroll-target="#import-before-transformation"><span class="header-section-number">7.4.7</span> Import before transformation</a></li>
+  <li><a href="#conditions-rules-with-consequences" id="toc-conditions-rules-with-consequences" class="nav-link" data-scroll-target="#conditions-rules-with-consequences"><span class="header-section-number">7.4.8</span> Conditions: rules with consequences</a></li>
+  <li><a href="#functions-packaging-one-rule" id="toc-functions-packaging-one-rule" class="nav-link" data-scroll-target="#functions-packaging-one-rule"><span class="header-section-number">7.4.9</span> Functions: packaging one rule</a></li>
+  <li><a href="#iteration-and-vectorization" id="toc-iteration-and-vectorization" class="nav-link" data-scroll-target="#iteration-and-vectorization"><span class="header-section-number">7.4.10</span> Iteration and vectorization</a></li>
+  <li><a href="#packages-and-dependencies" id="toc-packages-and-dependencies" class="nav-link" data-scroll-target="#packages-and-dependencies"><span class="header-section-number">7.4.11</span> Packages and dependencies</a></li>
+  <li><a href="#a-readable-metadata-cleaning-pipeline" id="toc-a-readable-metadata-cleaning-pipeline" class="nav-link" data-scroll-target="#a-readable-metadata-cleaning-pipeline"><span class="header-section-number">7.4.12</span> A readable metadata-cleaning pipeline</a></li>
+  <li><a href="#validation-assertions-and-exception-reports" id="toc-validation-assertions-and-exception-reports" class="nav-link" data-scroll-target="#validation-assertions-and-exception-reports"><span class="header-section-number">7.4.13</span> Validation, assertions, and exception reports</a></li>
+  <li><a href="#errors-warnings-and-debugging" id="toc-errors-warnings-and-debugging" class="nav-link" data-scroll-target="#errors-warnings-and-debugging"><span class="header-section-number">7.4.14</span> Errors, warnings, and debugging</a></li>
+  <li><a href="#testing-transformation-rules" id="toc-testing-transformation-rules" class="nav-link" data-scroll-target="#testing-transformation-rules"><span class="header-section-number">7.4.15</span> Testing transformation rules</a></li>
+  <li><a href="#output-logs-and-reproducible-reports" id="toc-output-logs-and-reproducible-reports" class="nav-link" data-scroll-target="#output-logs-and-reproducible-reports"><span class="header-section-number">7.4.16</span> Output, logs, and reproducible reports</a></li>
+  <li><a href="#deciding-what-to-automate" id="toc-deciding-what-to-automate" class="nav-link" data-scroll-target="#deciding-what-to-automate"><span class="header-section-number">7.4.17</span> Deciding what to automate</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">7.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#academic-library-thesis-deposit-quality-checks" id="toc-academic-library-thesis-deposit-quality-checks" class="nav-link" data-scroll-target="#academic-library-thesis-deposit-quality-checks"><span class="header-section-number">7.5.1</span> Academic library: thesis deposit quality checks</a></li>
+  <li><a href="#public-library-multilingual-program-statistics" id="toc-public-library-multilingual-program-statistics" class="nav-link" data-scroll-target="#public-library-multilingual-program-statistics"><span class="header-section-number">7.5.2</span> Public library: multilingual program statistics</a></li>
+  <li><a href="#school-library-accession-and-label-preparation" id="toc-school-library-accession-and-label-preparation" class="nav-link" data-scroll-target="#school-library-accession-and-label-preparation"><span class="header-section-number">7.5.3</span> School library: accession and label preparation</a></li>
+  <li><a href="#government-records-center-file-inventory-validation" id="toc-government-records-center-file-inventory-validation" class="nav-link" data-scroll-target="#government-records-center-file-inventory-validation"><span class="header-section-number">7.5.4</span> Government records center: file inventory validation</a></li>
+  <li><a href="#regional-digital-heritage-project-filename-and-manifest-checks" id="toc-regional-digital-heritage-project-filename-and-manifest-checks" class="nav-link" data-scroll-target="#regional-digital-heritage-project-filename-and-manifest-checks"><span class="header-section-number">7.5.5</span> Regional digital heritage project: filename and manifest checks</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-build-a-metadata-quality-and-cleanup-report" id="toc-hands-on-activity-build-a-metadata-quality-and-cleanup-report" class="nav-link" data-scroll-target="#hands-on-activity-build-a-metadata-quality-and-cleanup-report"><span class="header-section-number">7.6</span> Hands-on activity: Build a metadata quality and cleanup report</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">7.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">7.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">7.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">7.6.4</span> Expected output</a></li>
+  <li><a href="#lab-checklist" id="toc-lab-checklist" class="nav-link" data-scroll-target="#lab-checklist"><span class="header-section-number">7.6.5</span> Lab checklist</a></li>
+  <li><a href="#assessment-rubric" id="toc-assessment-rubric" class="nav-link" data-scroll-target="#assessment-rubric"><span class="header-section-number">7.6.6</span> Assessment rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-automation-bias-and-accountable-intervention" id="toc-ethical-and-professional-issue-automation-bias-and-accountable-intervention" class="nav-link" data-scroll-target="#ethical-and-professional-issue-automation-bias-and-accountable-intervention"><span class="header-section-number">7.7</span> Ethical and professional issue: automation bias and accountable intervention</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">7.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-authority-cleanup-that-changed-identities" id="toc-mini-case-the-authority-cleanup-that-changed-identities" class="nav-link" data-scroll-target="#mini-case-the-authority-cleanup-that-changed-identities"><span class="header-section-number">7.9</span> Mini case: The authority cleanup that changed identities</a>
+  <ul class="collapse">
+  <li><a href="#guide-questions" id="toc-guide-questions" class="nav-link" data-scroll-target="#guide-questions"><span class="header-section-number">7.9.1</span> Guide questions</a></li>
+  </ul></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">7.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#readings-and-documentation" id="toc-readings-and-documentation" class="nav-link" data-scroll-target="#readings-and-documentation"><span class="header-section-number">7.10.1</span> Readings and documentation</a></li>
+  <li><a href="#open-or-widely-accessible-tools" id="toc-open-or-widely-accessible-tools" class="nav-link" data-scroll-target="#open-or-widely-accessible-tools"><span class="header-section-number">7.10.2</span> Open or widely accessible tools</a></li>
+  <li><a href="#closing-synthesis" id="toc-closing-synthesis" class="nav-link" data-scroll-target="#closing-synthesis"><span class="header-section-number">7.10.3</span> Closing synthesis</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">7.1</span> Chapter overview</h2>
+<p>A repository assistant receives 4,200 records exported from several departments. Dates appear as <code>2025-03-14</code>, <code>14 March 2025</code>, <code>03/14/25</code>, and <code>n.d.</code>. Creator names contain extra spaces. Some titles are blank. File names mix spaces, punctuation, and inconsistent identifiers. Correcting every cell by hand would take days and would be difficult to audit. A global search-and-replace might be faster, but it could silently damage valid values.</p>
+<p>The central problem of this chapter is <strong>how to express a repeatable information-processing procedure clearly enough that a computer can carry it out while people remain responsible for the rules, exceptions, and consequences</strong>. Programming is not magic and is not limited to professional software developers. In LIS work, a short, well-documented script can import a metadata export, preserve the original, standardize predictable values, flag uncertain cases, summarize changes, and produce a new file for review.</p>
+<p>Programming should not be confused with indiscriminate automation. A program implements instructions. An <strong>automation</strong> connects instructions to a recurring workflow, often with inputs, schedules, outputs, logs, permissions, and failure handling. A human task may include contextual judgment that cannot safely be reduced to rules. The goal is therefore not “automate everything.” It is to decide what can be made consistent and reproducible, what evidence must be retained, and where professional review must remain.</p>
+<p>This chapter introduces algorithms, scripts, variables, data types, vectors, data frames, conditions, functions, packages, input and output, errors, debugging, testing, and reproducibility through R. R is used because it is open source, works well with rectangular data, and integrates with Quarto documents <span class="citation" data-cites="r2026 quarto2026docs">(<a href="references.html#ref-r2026" role="doc-biblioref">R Core Team 2026</a>; <a href="references.html#ref-quarto2026docs" role="doc-biblioref">Posit 2026</a>)</span>. The concepts transfer to Python, JavaScript, shell scripting, spreadsheet formulas, and workflow tools.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">7.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Explain</strong> algorithms, programs, scripts, data types, variables, functions, packages, and automation in LIS terms.</li>
+<li><strong>Read and modify</strong> a short R script containing objects, vectors, data frames, conditions, and functions.</li>
+<li><strong>Import, inspect, clean, validate, and export</strong> a small metadata CSV without overwriting the source file.</li>
+<li><strong>Apply</strong> conditional and vectorized operations to flag missing, inconsistent, or invalid values.</li>
+<li><strong>Test and debug</strong> a script using small known examples, assertions, logs, and exception reports.</li>
+<li><strong>Evaluate</strong> an automation proposal for risk, privacy, bias, maintainability, and appropriate human review.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">7.3</span> Key concepts</h2>
+<p><a href="#tbl-programming-key-concepts" class="quarto-xref">Table&nbsp;<span>7.1</span></a> defines the chapter’s working vocabulary. The definitions emphasize actions and responsibilities rather than particular R syntax.</p>
+<div id="tbl-programming-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-programming-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.1: Key concepts in programming and automation
+</figcaption>
+<div aria-describedby="tbl-programming-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-programming-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Algorithm</td>
+<td style="text-align: left;">A finite, ordered procedure for accomplishing a task or solving a defined problem.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Program</td>
+<td style="text-align: left;">Instructions and related components that a computer can execute.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Script</td>
+<td style="text-align: left;">A usually small source-code file used to perform a focused or sequential task.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Source code</td>
+<td style="text-align: left;">Human-readable instructions written in a programming language.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Variable</td>
+<td style="text-align: left;">A named reference whose associated value may be used or changed.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Object</td>
+<td style="text-align: left;">A value stored and manipulated in R, including vectors, tables, functions, and models.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Data type</td>
+<td style="text-align: left;">A category that determines how a value is represented and what operations are valid.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vector</td>
+<td style="text-align: left;">An ordered collection of values that normally share one data type.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Data frame</td>
+<td style="text-align: left;">A rectangular table in which columns are vectors and rows are observations.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Expression</td>
+<td style="text-align: left;">Code that produces or transforms a value.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Assignment</td>
+<td style="text-align: left;">Binding a name to a value, commonly with the R operator &lt;-.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Condition</td>
+<td style="text-align: left;">A logical test used to choose an action or classify a value.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Iteration</td>
+<td style="text-align: left;">Repeated execution over values, records, files, or another collection.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vectorization</td>
+<td style="text-align: left;">Applying an operation to a whole vector rather than explicitly processing one item at a time.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Function</td>
+<td style="text-align: left;">A named, reusable block of instructions with defined inputs and output.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Argument</td>
+<td style="text-align: left;">A value supplied to a function.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Return value</td>
+<td style="text-align: left;">The value produced by a function after it finishes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Package</td>
+<td style="text-align: left;">A documented collection of R functions, data, and supporting materials.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dependency</td>
+<td style="text-align: left;">Software or data required for another program to run correctly.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Input</td>
+<td style="text-align: left;">Data, files, parameters, or signals received by a program.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Output</td>
+<td style="text-align: left;">Data, files, messages, or actions produced by a program.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Exception</td>
+<td style="text-align: left;">A case requiring separate handling because it does not fit the normal rule.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Error</td>
+<td style="text-align: left;">A condition that prevents code from completing as intended.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Warning</td>
+<td style="text-align: left;">A message that indicates a possible problem while execution may continue.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Debugging</td>
+<td style="text-align: left;">The systematic process of locating, understanding, and correcting defects.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Test</td>
+<td style="text-align: left;">A controlled check comparing actual behavior with an expected result.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Assertion</td>
+<td style="text-align: left;">A statement that stops or flags execution when a required condition is false.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Log</td>
+<td style="text-align: left;">A time-stamped record of actions, results, decisions, or failures.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reproducibility</td>
+<td style="text-align: left;">The ability to obtain consistent results from documented data, code, software, and steps.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Automation</td>
+<td style="text-align: left;">The scheduled or triggered execution of a defined process with limited manual intervention.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Idempotence</td>
+<td style="text-align: left;">The property that rerunning a process has no unintended additional effect.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">7.4</span> Core discussion</h2>
+<section id="programming-as-explicit-procedural-knowledge" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="programming-as-explicit-procedural-knowledge"><span class="header-section-number">7.4.1</span> Programming as explicit procedural knowledge</h3>
+<p>LIS professionals already design procedures. A cataloguing manual states how to choose a preferred source of information. A digitization workflow specifies file naming, quality checks, and derivative creation. A reference interview uses questions to clarify a need. Programming makes one part of procedural knowledge explicit in a form a computer can execute.</p>
+<p>Consider a rule: “Remove spaces at the beginning and end of every title; if nothing remains, flag the record for review.” The rule has an input, a transformation, a condition, and an output. Before coding it, the author must answer professional questions. Does whitespace inside the title remain? Is a title containing only punctuation missing? Should an absent supplied title be created automatically? Where will the original value be retained? The code cannot responsibly answer questions that its author has not resolved.</p>
+<p>An <strong>algorithm</strong> is the procedure; <strong>source code</strong> expresses it in a language; a <strong>program</strong> is the executable arrangement; and a <strong>script</strong> is commonly a focused code file that coordinates a task. The same algorithm can be implemented in several languages. Syntax changes, but decomposition, validation, testing, and documentation remain.</p>
+</section>
+<section id="a-safe-automation-workflow" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="a-safe-automation-workflow"><span class="header-section-number">7.4.2</span> A safe automation workflow</h3>
+<p><a href="#fig-automation-workflow" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> shows a beginner workflow for metadata processing. It separates source data, transformations, exceptions, validation, and approved delivery.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-automation-workflow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-automation-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-automation-workflow">flowchart LR
+    S["Read-only source export"] --&gt; I["Import and inspect"]
+    I --&gt; R["Declare rules and assumptions"]
+    R --&gt; T["Transform a working copy"]
+    T --&gt; E["Separate exceptions"]
+    T --&gt; V["Validate expected results"]
+    E --&gt; H["Human review"]
+    V --&gt; H
+    H --&gt; O["Approved output"]
+    T --&gt; L["Change log and summary"]
+    H --&gt; L
+    O --&gt; A["Archive code, parameters, and report"]
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-automation-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: A reviewable workflow for LIS data automation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-automation-workflow" class="quarto-xref">Figure&nbsp;<span>7.1</span></a> indicates, the source export is not overwritten. Predictable cases can move through transformations, while uncertain records enter an exception queue. Validation checks the output against stated rules. Human review is not evidence that automation failed; it is a designed control for cases requiring context.</p>
+<p>This workflow also supports rollback. If a date rule is later found to be wrong, the team can correct the script and regenerate the output from the preserved source. Manual editing of the only copy would make the history harder to reconstruct.</p>
+</section>
+<section id="meeting-r-objects-assignment-and-expressions" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="meeting-r-objects-assignment-and-expressions"><span class="header-section-number">7.4.3</span> Meeting R: objects, assignment, and expressions</h3>
+<p>R evaluates expressions and stores results as objects. The assignment operator <code>&lt;-</code> binds a name to a value.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Barangay Reading Center Collection"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1300</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+</div>
+<p>In this example, text is placed in quotation marks, the number is numeric, and <code>FALSE</code> is a logical value. Names such as <code>record_count</code> communicate more than names such as <code>x</code>. R is case-sensitive: <code>Title</code>, <code>title</code>, and <code>TITLE</code> are different names.</p>
+<p>Comments begin with <code>#</code> and explain decisions that code alone cannot make clear:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep the source wording; only remove surrounding whitespace.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>clean_title <span class="ot">&lt;-</span> <span class="fu">trimws</span>(source_title)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A comment should explain <strong>why</strong> a rule exists, its source, or a non-obvious limitation. Comments that merely translate syntax, such as <code># add one</code> above <code>x &lt;- x + 1</code>, create noise.</p>
+</section>
+<section id="data-types-and-missing-values" class="level3" data-number="7.4.4">
+<h3 data-number="7.4.4" class="anchored" data-anchor-id="data-types-and-missing-values"><span class="header-section-number">7.4.4</span> Data types and missing values</h3>
+<p>Common R data types include character, numeric, integer, logical, and date-time classes. Data types affect valid operations. The text <code>"2025"</code> cannot automatically be treated as a publication year in every context, and identifiers with leading zeros should often remain character values.</p>
+<p>R represents a missing value with <code>NA</code>. It is not the same as an empty string <code>""</code>, the text <code>"N/A"</code>, the number <code>0</code>, or the word <code>"unknown"</code>. These may express different states:</p>
+<ul>
+<li>no value was supplied;</li>
+<li>the value is not applicable;</li>
+<li>the value is unknown;</li>
+<li>the value is intentionally withheld;</li>
+<li>the field contains an invalid placeholder.</li>
+</ul>
+<p>Collapsing these states without a policy can damage meaning. Use <code>is.na(x)</code> to test missingness rather than <code>x == NA</code>.</p>
+<p><a href="#tbl-r-types" class="quarto-xref">Table&nbsp;<span>7.2</span></a> gives LIS examples and common mistakes.</p>
+<div id="tbl-r-types" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-r-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.2: Common R data types in LIS work
+</figcaption>
+<div aria-describedby="tbl-r-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-r-types" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">LIS example</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Caution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Character</td>
+<td style="text-align: left;">Title, identifier, language code</td>
+<td style="text-align: left;">Do not convert identifiers merely because they contain digits</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">File size in megabytes</td>
+<td style="text-align: left;">Floating-point values may require tolerance in comparisons</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Integer</td>
+<td style="text-align: left;">Page or item count</td>
+<td style="text-align: left;">Counts should not contain decimal fractions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Logical</td>
+<td style="text-align: left;">Rights reviewed: TRUE/FALSE</td>
+<td style="text-align: left;">Unknown is not always equivalent to FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">Embargo end or accession date</td>
+<td style="text-align: left;">Ambiguous day/month order requires a declared rule</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Missing value</td>
+<td style="text-align: left;">Unknown creator represented as NA</td>
+<td style="text-align: left;">NA, blank, not applicable, and withheld may have different meanings</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-r-types" class="quarto-xref">Table&nbsp;<span>7.2</span></a> shows, choosing a type is also a description decision. A barcode is an identifier, not a quantity: adding two barcodes is meaningless even when both contain only digits.</p>
+</section>
+<section id="vectors-working-with-a-column-of-values" class="level3" data-number="7.4.5">
+<h3 data-number="7.4.5" class="anchored" data-anchor-id="vectors-working-with-a-column-of-values"><span class="header-section-number">7.4.5</span> Vectors: working with a column of values</h3>
+<p>A <strong>vector</strong> holds an ordered set of values of a common type. The function <code>c()</code> combines values.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE  TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE    NA  TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Book" "Book"</code></pre>
+</div>
+</div>
+<p>The comparison <code>formats == "Book"</code> returns a logical vector. This is important because many R operations are <strong>vectorized</strong>: one expression applies to a whole column. The expression <code>years &gt;= 2020</code> produces <code>TRUE</code>, <code>TRUE</code>, <code>NA</code>, and <code>TRUE</code> for the example. The missing year remains unknown rather than becoming false.</p>
+<p>Useful vector operations include:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(formats)             <span class="co"># number of values</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(formats)             <span class="co"># distinct values</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(formats)              <span class="co"># frequency counts</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(years))           <span class="co"># count missing years</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(formats))       <span class="co"># distinct values in order</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Before changing metadata, frequency tables often reveal variants such as <code>Book</code>, <code>book</code>, <code>Books</code>, and <code>BK</code>. Inspection should precede normalization.</p>
+</section>
+<section id="data-frames-and-tidy-rectangular-data" class="level3" data-number="7.4.6">
+<h3 data-number="7.4.6" class="anchored" data-anchor-id="data-frames-and-tidy-rectangular-data"><span class="header-section-number">7.4.6</span> Data frames and tidy rectangular data</h3>
+<p>A <strong>data frame</strong> is a rectangular table whose columns are vectors. In a tidy arrangement, each variable is a column, each observation is a row, and each type of observational unit forms a table <span class="citation" data-cites="wickham2014tidy">(<a href="references.html#ref-wickham2014tidy" role="doc-biblioref">Wickham 2014</a>)</span>. This structure is not the only possible data model, but it supports consistent analysis and transformation.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3 obs. of  4 variables:
+ $ record_id: chr  "R001" "R002" "R003"
+ $ title    : chr  "  Coastal livelihoods " "" "Mga Kuwentong Bayan"
+ $ year     : chr  "2021" "n.d." "2019"
+ $ language : chr  "eng" "eng" "fil"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  record_id                  title year language
+1      R001   Coastal livelihoods  2021      eng
+2      R002                        n.d.      eng
+3      R003    Mga Kuwentong Bayan 2019      fil</code></pre>
+</div>
+</div>
+<p>Each row needs a stable identifier. Row numbers are weak identifiers because sorting or filtering changes their position. A <code>record_id</code> allows an exception report to point back to the source record.</p>
+<p>Real bibliographic and archival data are not always naturally flat. One work can have multiple creators, subjects, files, or related works. Repeating these values in a single cell may be acceptable for a temporary exchange file, but a relational database or structured format may be more appropriate for long-term management. Chapter 3’s data-modeling principles still apply.</p>
+</section>
+<section id="import-before-transformation" class="level3" data-number="7.4.7">
+<h3 data-number="7.4.7" class="anchored" data-anchor-id="import-before-transformation"><span class="header-section-number">7.4.7</span> Import before transformation</h3>
+<p>Programs receive <strong>input</strong> and produce <strong>output</strong>. CSV is common for metadata exchange, but it has hazards: character encoding, embedded commas, line breaks, date interpretation, and automatic type guessing. The <code>readr</code> package provides functions for rectangular text data and reports parsing problems <span class="citation" data-cites="readr2026">(<a href="references.html#ref-readr2026" role="doc-biblioref">Tidyverse Team 2026b</a>)</span>.</p>
+<p>The explicit import types prevent identifiers from being converted to numbers and preserve date strings until their patterns are understood. The <code>na</code> argument should reflect a documented local policy. Do not casually treat <code>unknown</code>, <code>withheld</code>, and <code>not applicable</code> as identical missing values.</p>
+<p>Initial inspection can ask:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(records_raw)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(records_raw)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(records_raw)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(records_raw, <span class="dv">10</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">table</span>(records_raw<span class="sc">$</span>language, <span class="at">useNA =</span> <span class="st">"ifany"</span>), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Never begin by writing changes back to the integrated library system or repository. Work with an export or test environment, confirm that the export is complete, and record when and how it was created.</p>
+</section>
+<section id="conditions-rules-with-consequences" class="level3" data-number="7.4.8">
+<h3 data-number="7.4.8" class="anchored" data-anchor-id="conditions-rules-with-consequences"><span class="header-section-number">7.4.8</span> Conditions: rules with consequences</h3>
+<p>A condition produces <code>TRUE</code>, <code>FALSE</code>, or sometimes <code>NA</code>. An <code>if</code> statement chooses one path for a single condition.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "REVIEW_MISSING_TITLE"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "OK"</code></pre>
+</div>
+</div>
+<p>For whole columns, vectorized functions are usually clearer. Base R’s <code>ifelse()</code> or dplyr’s <code>case_when()</code> can classify records. The following rule preserves the source column and creates new columns:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  record_id                  title         title_clean         title_status
+1      R001   Coastal livelihoods  Coastal livelihoods                   OK
+2      R002                                            REVIEW_MISSING_TITLE
+3      R003    Mga Kuwentong Bayan Mga Kuwentong Bayan                   OK</code></pre>
+</div>
+</div>
+<p>This design is preferable to silently filling every missing title with <code>[Untitled]</code>. Whether a supplied title may be constructed depends on the descriptive standard, source evidence, and institutional policy.</p>
+</section>
+<section id="functions-packaging-one-rule" class="level3" data-number="7.4.9">
+<h3 data-number="7.4.9" class="anchored" data-anchor-id="functions-packaging-one-rule"><span class="header-section-number">7.4.9</span> Functions: packaging one rule</h3>
+<p>A <strong>function</strong> gives a procedure a name, accepts arguments, and returns a result. Functions reduce duplication and provide units that can be tested.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "eng" "fil" "ceb" NA   </code></pre>
+</div>
+</div>
+<p>The unmatched <code>Hiligaynon</code> becomes <code>NA</code>, which is useful for teaching but insufficient for production: the script should preserve the original value and flag the row. The example also keeps <code>fil</code> and <code>tgl</code> distinct. A mapping table should cite the vocabulary and document local decisions rather than encode casual assumptions about language identity.</p>
+<p>Good functions are focused. A function named <code>clean_everything()</code> that changes titles, dates, names, subjects, and rights is hard to test. Separate functions such as <code>trim_title()</code>, <code>parse_date()</code>, and <code>validate_rights_uri()</code> make failures easier to locate.</p>
+</section>
+<section id="iteration-and-vectorization" class="level3" data-number="7.4.10">
+<h3 data-number="7.4.10" class="anchored" data-anchor-id="iteration-and-vectorization"><span class="header-section-number">7.4.10</span> Iteration and vectorization</h3>
+<p><strong>Iteration</strong> repeats an operation. A <code>for</code> loop is appropriate when the sequence itself matters or when processing files one at a time.</p>
+<p>Vectorized operations are often shorter for column transformations, but loops are not inherently wrong. Clarity and correctness matter more than avoiding a particular construct. For many files, iteration must also handle failures: one corrupt CSV should be logged and isolated rather than causing silent loss or an incomplete batch presented as complete.</p>
+</section>
+<section id="packages-and-dependencies" class="level3" data-number="7.4.11">
+<h3 data-number="7.4.11" class="anchored" data-anchor-id="packages-and-dependencies"><span class="header-section-number">7.4.11</span> Packages and dependencies</h3>
+<p>Base R includes many data-processing functions. Packages extend R with documented functions. The <strong>tidyverse</strong> is a collection of packages with related conventions <span class="citation" data-cites="tidyverse2026">(<a href="references.html#ref-tidyverse2026" role="doc-biblioref">Tidyverse Team 2026d</a>)</span>. Three useful packages for this chapter are:</p>
+<ul>
+<li><code>readr</code> for rectangular text import and export;</li>
+<li><code>dplyr</code> for selecting, filtering, creating, and summarizing columns <span class="citation" data-cites="dplyr2026">(<a href="references.html#ref-dplyr2026" role="doc-biblioref">Tidyverse Team 2026a</a>)</span>;</li>
+<li><code>stringr</code> for consistent text operations <span class="citation" data-cites="stringr2026">(<a href="references.html#ref-stringr2026" role="doc-biblioref">Tidyverse Team 2026c</a>)</span>.</li>
+</ul>
+<p>Packages must be installed once and loaded in a session. In a shared script, installation is normally kept separate from analysis:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run deliberately at setup time, not every time the script executes.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"readr"</span>, <span class="st">"dplyr"</span>, <span class="st">"stringr"</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run at the start of the analysis session.</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Every dependency adds maintenance and supply-chain considerations. Record package versions, prefer well-maintained packages from trusted repositories, review major updates, and avoid installing unknown code merely because it solves a small problem. A short base R solution may be more sustainable than a dependency-heavy one; an established package may be safer than a custom parser. The choice depends on risk and maintenance capacity.</p>
+</section>
+<section id="a-readable-metadata-cleaning-pipeline" class="level3" data-number="7.4.12">
+<h3 data-number="7.4.12" class="anchored" data-anchor-id="a-readable-metadata-cleaning-pipeline"><span class="header-section-number">7.4.12</span> A readable metadata-cleaning pipeline</h3>
+<p>The pipe operator passes a result to the next operation. The following non-executed example shows a tidyverse workflow while preserving source columns:</p>
+<p>The regular expressions in the pipeline recognize shapes, not truth. The string <code>2025-99-99</code> matches the date shape but is not a valid calendar date. Pattern checks should be followed by semantic validation. Similarly, a nonblank title is not necessarily accurate.</p>
+</section>
+<section id="validation-assertions-and-exception-reports" class="level3" data-number="7.4.13">
+<h3 data-number="7.4.13" class="anchored" data-anchor-id="validation-assertions-and-exception-reports"><span class="header-section-number">7.4.13</span> Validation, assertions, and exception reports</h3>
+<p>Cleaning and validation are different. <strong>Cleaning</strong> applies a declared transformation; <strong>validation</strong> asks whether data satisfy requirements. A script should fail clearly when essential assumptions are false.</p>
+<p><code>stopifnot()</code> is a simple assertion. In production, more informative error messages and a testing framework may be appropriate. The key idea is that the script should not quietly continue when identifiers are duplicated or required columns disappear.</p>
+<p>An <strong>exception report</strong> converts uncertainty into work that can be assigned and reviewed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>exceptions <span class="ot">&lt;-</span> records_clean <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(title_status <span class="sc">!=</span> <span class="st">"OK"</span> <span class="sc">|</span> <span class="sc">!</span>date_status <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"OK_YEAR"</span>, <span class="st">"OK_DATE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(record_id, title_source, title, title_status,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>         date_source, date_issued, date_status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Include the record identifier, source value, proposed value, rule, reason, and review decision. Do not export sensitive fields that reviewers do not need.</p>
+</section>
+<section id="errors-warnings-and-debugging" class="level3" data-number="7.4.14">
+<h3 data-number="7.4.14" class="anchored" data-anchor-id="errors-warnings-and-debugging"><span class="header-section-number">7.4.14</span> Errors, warnings, and debugging</h3>
+<p>An <strong>error</strong> stops an operation; a <strong>warning</strong> signals a possible problem while execution may continue; a <strong>message</strong> reports progress or information. Suppressing all warnings makes a report look clean while hiding evidence.</p>
+<p>A useful debugging process is:</p>
+<ol type="1">
+<li>reproduce the failure with the smallest relevant input;</li>
+<li>read the complete error and identify the first failing line under your control;</li>
+<li>inspect object names, types, dimensions, and representative values;</li>
+<li>state what you expected and what actually happened;</li>
+<li>test one hypothesis at a time;</li>
+<li>correct the cause, not merely the displayed symptom;</li>
+<li>add a test that would catch the defect if it returned.</li>
+</ol>
+<p>Common beginner problems are listed in <a href="#tbl-debugging-guide" class="quarto-xref">Table&nbsp;<span>7.3</span></a>.</p>
+<div id="tbl-debugging-guide" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-debugging-guide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.3: A first-response guide for common R problems
+</figcaption>
+<div aria-describedby="tbl-debugging-guide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-debugging-guide" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Symptom</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Likely question</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">First check</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Object not found</td>
+<td style="text-align: left;">Was the object created, and is spelling/capitalization exact?</td>
+<td style="text-align: left;">ls(), names(), and the preceding line</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Unexpected NA values</td>
+<td style="text-align: left;">Did conversion, unmatched mapping, or missing input produce NA?</td>
+<td style="text-align: left;">is.na(), source values, and warnings</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Numbers imported from identifiers</td>
+<td style="text-align: left;">Did type guessing treat a character identifier as numeric?</td>
+<td style="text-align: left;">str() and import column specifications</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Condition has length greater than one</td>
+<td style="text-align: left;">Was scalar if used where a vectorized operation was needed?</td>
+<td style="text-align: left;">length() and the condition expression</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Replacement has wrong number of rows</td>
+<td style="text-align: left;">Do the source and replacement vectors have compatible lengths?</td>
+<td style="text-align: left;">nrow() and length()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Output differs on another computer</td>
+<td style="text-align: left;">Are R, package versions, locale, encoding, paths, and inputs documented?</td>
+<td style="text-align: left;">sessionInfo(), file hashes, locale, and relative paths</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-debugging-guide" class="quarto-xref">Table&nbsp;<span>7.3</span></a> frames errors as evidence. Guessing random syntax changes can create a second defect while leaving the first unexplained.</p>
+</section>
+<section id="testing-transformation-rules" class="level3" data-number="7.4.15">
+<h3 data-number="7.4.15" class="anchored" data-anchor-id="testing-transformation-rules"><span class="header-section-number">7.4.15</span> Testing transformation rules</h3>
+<p>Tests should include typical values, boundaries, missing values, multilingual text, punctuation, and known exceptions. For the <code>normalize_language()</code> function:</p>
+<p>The fourth test does not claim Hiligaynon lacks a valid code. It confirms that the current mapping is incomplete and must flag rather than invent a value. Once the authorized mapping is expanded, the expected result and documentation should change together.</p>
+<p>Best-practice guidance for computational work emphasizes small steps, version control, testing, and automated repetition <span class="citation" data-cites="wilson2014best">(<a href="references.html#ref-wilson2014best" role="doc-biblioref">Wilson et al. 2014</a>)</span>. Reproducibility guidance likewise recommends recording how each result was produced and preserving intermediate reasoning <span class="citation" data-cites="sandve2013reproducible">(<a href="references.html#ref-sandve2013reproducible" role="doc-biblioref">Sandve et al. 2013</a>)</span>.</p>
+</section>
+<section id="output-logs-and-reproducible-reports" class="level3" data-number="7.4.16">
+<h3 data-number="7.4.16" class="anchored" data-anchor-id="output-logs-and-reproducible-reports"><span class="header-section-number">7.4.16</span> Output, logs, and reproducible reports</h3>
+<p>Output should be deliberately named and never confused with source data:</p>
+<p>A run record should identify source file, source checksum when appropriate, run date, script version, parameters, row counts, exceptions, software versions, operator, and approval status. Quarto can combine narrative, code, results, tables, and citations in one reproducible document <span class="citation" data-cites="quarto2026docs">(<a href="references.html#ref-quarto2026docs" role="doc-biblioref">Posit 2026</a>)</span>. R for Data Science provides a freely accessible introduction to importing, transforming, and communicating data with R <span class="citation" data-cites="wickham2023r4ds">(<a href="references.html#ref-wickham2023r4ds" role="doc-biblioref">Wickham et al. 2023</a>)</span>.</p>
+<p>Avoid absolute paths tied to one person’s computer. A project structure such as <code>data/</code>, <code>R/</code>, <code>output/</code>, and <code>reports/</code> supports relative paths. Source data containing personal information should not be committed to public version control.</p>
+</section>
+<section id="deciding-what-to-automate" class="level3" data-number="7.4.17">
+<h3 data-number="7.4.17" class="anchored" data-anchor-id="deciding-what-to-automate"><span class="header-section-number">7.4.17</span> Deciding what to automate</h3>
+<p>Tasks are good initial candidates when they are frequent, rule-based, reversible, testable, and performed on consistent inputs. Tasks require caution when they involve ambiguous description, rights, identity, appraisal, deletion, access restriction, or direct changes to production systems.</p>
+<p><a href="#tbl-automation-decisions" class="quarto-xref">Table&nbsp;<span>7.4</span></a> provides a decision framework.</p>
+<div id="tbl-automation-decisions" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-automation-decisions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.4: Factors for deciding whether and how to automate
+</figcaption>
+<div aria-describedby="tbl-automation-decisions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-automation-decisions" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dimension</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Lower risk signal</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Higher risk signal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Rule clarity</td>
+<td style="text-align: left;">Rule has authoritative, testable criteria</td>
+<td style="text-align: left;">Rule depends on context or contested judgment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Input consistency</td>
+<td style="text-align: left;">Schema and values are stable</td>
+<td style="text-align: left;">Inputs vary without notice</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consequence of error</td>
+<td style="text-align: left;">Error affects a review copy</td>
+<td style="text-align: left;">Error changes rights, identity, deletion, or public access</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Reversibility</td>
+<td style="text-align: left;">Source and rollback are preserved</td>
+<td style="text-align: left;">Action is destructive or difficult to undo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Testability</td>
+<td style="text-align: left;">Expected outputs can be checked</td>
+<td style="text-align: left;">Correctness cannot be observed</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Exception rate</td>
+<td style="text-align: left;">Exceptions are rare and visible</td>
+<td style="text-align: left;">Exceptions are common or silently coerced</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Privacy and security</td>
+<td style="text-align: left;">Only necessary nonsensitive data are processed</td>
+<td style="text-align: left;">Personal or restricted data move across systems</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maintenance ownership</td>
+<td style="text-align: left;">Named staff can understand and maintain it</td>
+<td style="text-align: left;">Only the original author understands the workflow</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-automation-decisions" class="quarto-xref">Table&nbsp;<span>7.4</span></a> shows, automation is a governance decision. A high-risk task may still use code, but with a dry run, smaller batches, peer review, stronger testing, approvals, access controls, and an explicit rollback plan.</p>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">7.5</span> Philippine and Southeast Asian examples</h2>
+<section id="academic-library-thesis-deposit-quality-checks" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="academic-library-thesis-deposit-quality-checks"><span class="header-section-number">7.5.1</span> Academic library: thesis deposit quality checks</h3>
+<p>A university library receives thesis metadata from several colleges. A script checks that each submission has a stable identifier, nonblank title, department code, adviser field, date pattern, rights statement, and file reference. It normalizes whitespace and approved codes but does not invent missing titles or change names. Exceptions return to depositing units with record identifiers and clear reasons. The workflow reduces repetitive checking while preserving academic and cataloguing responsibility.</p>
+</section>
+<section id="public-library-multilingual-program-statistics" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="public-library-multilingual-program-statistics"><span class="header-section-number">7.5.2</span> Public library: multilingual program statistics</h3>
+<p>A city library combines monthly CSV files from branch reading programs. Branch names and activity labels vary. A mapping table standardizes approved organizational codes, while unmatched labels appear in an exception report. Participant totals are aggregated only after duplicates and missing branch identifiers are checked. Public reporting uses grouped counts to reduce privacy risk, especially for small communities.</p>
+</section>
+<section id="school-library-accession-and-label-preparation" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="school-library-accession-and-label-preparation"><span class="header-section-number">7.5.3</span> School library: accession and label preparation</h3>
+<p>A school library script produces draft spine-label data from an accession export. It checks required call-number components, detects duplicate accession numbers, and flags unusually long labels. Staff review every label before printing. The script is helpful because formatting rules are repeatable; classification and subject analysis remain professional judgments.</p>
+</section>
+<section id="government-records-center-file-inventory-validation" class="level3" data-number="7.5.4">
+<h3 data-number="7.5.4" class="anchored" data-anchor-id="government-records-center-file-inventory-validation"><span class="header-section-number">7.5.4</span> Government records center: file inventory validation</h3>
+<p>A records center validates transfer-list spreadsheets from offices. The script checks series codes, inclusive dates, retention-rule references, box-number sequences, and required security classifications. It never disposes of a record. Destruction requires authorized appraisal, approval, and documented action outside the validation script.</p>
+</section>
+<section id="regional-digital-heritage-project-filename-and-manifest-checks" class="level3" data-number="7.5.5">
+<h3 data-number="7.5.5" class="anchored" data-anchor-id="regional-digital-heritage-project-filename-and-manifest-checks"><span class="header-section-number">7.5.5</span> Regional digital heritage project: filename and manifest checks</h3>
+<p>Partner institutions in Southeast Asia contribute image files and metadata manifests. A script checks that every manifest identifier has a file, every file has a manifest row, checksums are present, and filenames conform to an agreed pattern. Unicode text in titles and names is preserved. Transliteration and culturally sensitive description are reviewed by contributing institutions rather than imposed automatically by the aggregator.</p>
+<blockquote class="blockquote">
+<p><strong>Reflect:</strong> Identify one repetitive task in an information organization. Which part is mechanical, which part requires contextual judgment, and what evidence would a reviewer need before accepting the output?</p>
+</blockquote>
+</section>
+</section>
+<section id="hands-on-activity-build-a-metadata-quality-and-cleanup-report" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="hands-on-activity-build-a-metadata-quality-and-cleanup-report"><span class="header-section-number">7.6</span> Hands-on activity: Build a metadata quality and cleanup report</h2>
+<section id="purpose" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">7.6.1</span> Purpose</h3>
+<p>Use R and Quarto to clean predictable formatting issues, flag uncertain records, validate assumptions, and export reviewable outputs. The lab contributes to short labs and can form the data-processing component of the database or API mini-project.</p>
+</section>
+<section id="tools" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">7.6.2</span> Tools</h3>
+<ul>
+<li>R 4.x and Quarto;</li>
+<li>an editor such as RStudio, Positron, or VS Code with R support;</li>
+<li>packages <code>readr</code>, <code>dplyr</code>, and <code>stringr</code>;</li>
+<li>a teacher-provided CSV with the fields in <a href="#tbl-lab-fields" class="quarto-xref">Table&nbsp;<span>7.5</span></a>;</li>
+<li>a project folder containing <code>data/</code>, <code>output/</code>, and the <code>.qmd</code> report.</li>
+</ul>
+<div id="tbl-lab-fields" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lab-fields-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.5: Fields and boundaries for the metadata-cleaning lab
+</figcaption>
+<div aria-describedby="tbl-lab-fields-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-lab-fields" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Field</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Intended rule</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Do not automate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">record_id</td>
+<td style="text-align: left;">Required, character, unique</td>
+<td style="text-align: left;">Do not renumber silently</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">Required; surrounding/repeated whitespace may be normalized</td>
+<td style="text-align: left;">Do not invent a title</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">creator</td>
+<td style="text-align: left;">Preserve source form; normalize only whitespace</td>
+<td style="text-align: left;">Do not invert or merge names without authority rules</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">date_issued</td>
+<td style="text-align: left;">Accept YYYY or valid YYYY-MM-DD; flag other patterns</td>
+<td style="text-align: left;">Do not guess ambiguous dates</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">language</td>
+<td style="text-align: left;">Map only approved labels or codes</td>
+<td style="text-align: left;">Do not infer language from title alone</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rights_uri</td>
+<td style="text-align: left;">Flag missing or non-HTTP(S) values for review</td>
+<td style="text-align: left;">Do not assign a license without evidence</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">file_name</td>
+<td style="text-align: left;">Required; compare stem with record identifier under the local convention</td>
+<td style="text-align: left;">Do not rename source files before review and backup</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><a href="#tbl-lab-fields" class="quarto-xref">Table&nbsp;<span>7.5</span></a> defines both transformation rules and boundaries. The “do not automate” column is part of the specification, not an optional caution.</p>
+</section>
+<section id="steps" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">7.6.3</span> Steps</h3>
+<ol type="1">
+<li>Create a project folder with <code>data/</code> and <code>output/</code>. Place the original CSV in <code>data/</code> and treat it as read-only.</li>
+<li>Create <code>metadata_cleanup.qmd</code> with title, purpose, date, author, and a short data-handling note.</li>
+<li>Load <code>readr</code>, <code>dplyr</code>, and <code>stringr</code>. Import all identifier, date, language, rights, and filename fields as character values.</li>
+<li>Record the source filename, row count, column names, duplicate identifiers, parsing problems, and missing counts.</li>
+<li>Preserve original title, creator, date, language, rights, and filename values in <code>_source</code> columns.</li>
+<li>Normalize leading, trailing, and repeated whitespace in title and creator. Do not alter internal punctuation or name order.</li>
+<li>Create <code>title_status</code>, <code>date_status</code>, <code>language_status</code>, <code>rights_status</code>, and <code>filename_status</code> fields. Use explicit labels such as <code>OK</code>, <code>REVIEW_MISSING</code>, and <code>REVIEW_PATTERN</code>.</li>
+<li>Build an exception table containing the stable identifier, source value, proposed value, status, and review note.</li>
+<li>Add assertions: required columns exist, source and output row counts match, identifiers are nonmissing and unique, and no source columns were removed.</li>
+<li>Export <code>metadata_cleaned.csv</code>, <code>metadata_exceptions.csv</code>, and <code>run_summary.csv</code> to <code>output/</code>. Never overwrite the source.</li>
+<li>Render the Quarto report. Discuss the number and type of changes, unresolved exceptions, limitations, and required human decisions.</li>
+<li>Exchange reports with a partner. The partner selects five records, traces source-to-output changes, and records whether each rule behaved as documented.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="7.6.4">
+<h3 data-number="7.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">7.6.4</span> Expected output</h3>
+<p>Submit:</p>
+<ul>
+<li><code>metadata_cleanup.qmd</code> and its rendered HTML or DOCX;</li>
+<li><code>metadata_cleaned.csv</code>;</li>
+<li><code>metadata_exceptions.csv</code>;</li>
+<li><code>run_summary.csv</code>;</li>
+<li>a data dictionary and rule table;</li>
+<li>at least five documented tests;</li>
+<li>a peer-verification checklist; and</li>
+<li>a 200-word reflection: <strong>Which decisions became clearer when you had to express them as code, and which decisions resisted automation?</strong></li>
+</ul>
+</section>
+<section id="lab-checklist" class="level3" data-number="7.6.5">
+<h3 data-number="7.6.5" class="anchored" data-anchor-id="lab-checklist"><span class="header-section-number">7.6.5</span> Lab checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">The source file remains unchanged.</label></li>
+<li><label><input type="checkbox">Identifier-like fields were imported as character data.</label></li>
+<li><label><input type="checkbox">Original values are retained beside transformed values.</label></li>
+<li><label><input type="checkbox">Rules and non-rules are documented.</label></li>
+<li><label><input type="checkbox">Uncertain values are flagged instead of guessed.</label></li>
+<li><label><input type="checkbox">Assertions protect required structure and row identity.</label></li>
+<li><label><input type="checkbox">Outputs have clear names and separate locations.</label></li>
+<li><label><input type="checkbox">At least five cases were traced from source to output.</label></li>
+<li><label><input type="checkbox">No unnecessary personal or confidential data appear in the report.</label></li>
+<li><label><input type="checkbox">Another student can rerun the workflow from the instructions.</label></li>
+</ul>
+</section>
+<section id="assessment-rubric" class="level3" data-number="7.6.6">
+<h3 data-number="7.6.6" class="anchored" data-anchor-id="assessment-rubric"><span class="header-section-number">7.6.6</span> Assessment rubric</h3>
+<p><a href="#tbl-programming-lab-rubric" class="quarto-xref">Table&nbsp;<span>7.6</span></a> rewards correctness, evidence, and maintainability rather than code length.</p>
+<div id="tbl-programming-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-programming-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7.6: Rubric for the metadata quality and cleanup lab
+</figcaption>
+<div aria-describedby="tbl-programming-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-programming-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Weight</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Strong performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Problem and rules</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Rules, boundaries, inputs, and expected outputs are explicit</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Code and data handling</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">Code is readable and reproducible; source and original values are protected</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Validation and tests</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Assertions and representative tests detect structural and value problems</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Outputs and audit trail</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Cleaned data, exceptions, and summary agree and can be traced by identifier</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Professional judgment and reflection</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">Uncertainty, privacy, limitations, maintenance, and human review are addressed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-automation-bias-and-accountable-intervention" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="ethical-and-professional-issue-automation-bias-and-accountable-intervention"><span class="header-section-number">7.7</span> Ethical and professional issue: automation bias and accountable intervention</h2>
+<p>Automation changes authority. A value produced by a script may look consistent and therefore trustworthy even when the rule is incomplete. <strong>Automation bias</strong> occurs when people give undue weight to automated output or fail to investigate contradictory evidence. In metadata work, this can turn a convenient mapping into widespread representational harm.</p>
+<p>Consider a script that infers creator nationality from names, assigns gender from honorifics, translates Indigenous terms without community review, or labels rights based only on publication year. Each operation may be technically possible. None is professionally justified without reliable evidence, a legitimate purpose, documented uncertainty, and appropriate authority.</p>
+<p>AI-assisted coding introduces a second layer. A generative system can suggest R syntax, explanations, mappings, or regular expressions, but plausible code may call nonexistent functions, mishandle missing values, expose data to an external service, or encode a policy the user did not intend. AI-generated code must be treated as untrusted draft code: review it line by line, test it on known cases, inspect dependencies, and never supply restricted records to a service without authorization and data-protection review.</p>
+<p>Accountable automation includes:</p>
+<ul>
+<li>a stated service problem and responsible owner;</li>
+<li>documented source, scope, rule authority, assumptions, and exclusions;</li>
+<li>minimum necessary data and controlled access;</li>
+<li>preserved source values and reversible outputs;</li>
+<li>tests covering multilingual, missing, boundary, and adversarial cases;</li>
+<li>visible exception handling rather than forced conformity;</li>
+<li>logs proportionate to the task and protected by retention rules;</li>
+<li>peer review for high-impact transformations;</li>
+<li>a way for affected users or communities to challenge results;</li>
+<li>monitoring after deployment and a defined stop condition.</li>
+</ul>
+<p>Privacy obligations apply to scripts as much as to databases. A temporary CSV copied to a personal cloud folder can create a breach even if the code is correct. Under the Philippine Data Privacy Act, processing must have a legitimate purpose and use proportionate safeguards <span class="citation" data-cites="philippines2012dpa npc2023dpa">(<a href="references.html#ref-philippines2012dpa" role="doc-biblioref">Republic of the Philippines 2012</a>; <a href="references.html#ref-npc2023dpa" role="doc-biblioref">National Privacy Commission 2023</a>)</span>. Test with synthetic or de-identified data when possible, and do not place secrets, passwords, or API keys inside source code.</p>
+<blockquote class="blockquote">
+<p><strong>Professional judgment prompt:</strong> A script can assign subject headings to 80% of new records with 92% agreement against a past dataset. What does this statistic fail to tell you? Which records require review, who can contest a heading, and what evidence would justify moving from suggestion to automatic assignment?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">7.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> Distinguish an algorithm, program, script, and automation.</li>
+<li><strong>Identification:</strong> What is the difference among <code>NA</code>, an empty string, <code>0</code>, and the text <code>unknown</code>?</li>
+<li><strong>Short answer:</strong> Why should identifiers such as barcodes and record numbers often be imported as character data?</li>
+<li><strong>Short answer:</strong> Explain why preserving source columns improves rollback, auditing, and professional review.</li>
+<li><strong>Code reading:</strong> What values does <code>is.na(c(2020, NA, 2024))</code> return, and how could the result be used in a quality report?</li>
+<li><strong>Applied analysis:</strong> Write pseudocode that trims title whitespace, flags blank titles, and leaves nonblank wording unchanged.</li>
+<li><strong>Scenario:</strong> A date-cleaning script converts <code>03/04/2025</code> to 3 April 2025. What assumption was made, and how should ambiguous dates be handled?</li>
+<li><strong>Scenario:</strong> A batch process completes 97 of 100 files but reports only “success.” What logging and failure-handling changes are needed?</li>
+<li><strong>Scenario:</strong> A colleague proposes automatically replacing all unmatched language values with <code>eng</code>. Identify the technical, metadata, and ethical problems.</li>
+<li><strong>Critical analysis:</strong> Choose one LIS task that should use automation only for recommendation or flagging. Explain the human decision that must remain and design one safeguard.</li>
+</ol>
+</section>
+<section id="mini-case-the-authority-cleanup-that-changed-identities" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="mini-case-the-authority-cleanup-that-changed-identities"><span class="header-section-number">7.9</span> Mini case: The authority cleanup that changed identities</h2>
+<p>Maharlika University Library exports 18,000 repository creator strings. A student assistant writes a script that trims spaces, changes all names to title case, splits values at commas, and merges creators sharing the same surname and first initial. The script reduces the apparent number of creators by 22%. It also changes capitalization in several Indigenous and international names, separates a compound family name incorrectly, and merges distinct researchers. Because the cleaned file looks consistent, the repository manager is ready to import it directly. No source-value columns, exception report, or rollback test exist.</p>
+<section id="guide-questions" class="level3" data-number="7.9.1">
+<h3 data-number="7.9.1" class="anchored" data-anchor-id="guide-questions"><span class="header-section-number">7.9.1</span> Guide questions</h3>
+<ol type="1">
+<li>Which assumptions in the script are unsafe, and what kinds of identity or discovery harm could follow?</li>
+<li>How would you redesign the workflow to preserve evidence, generate candidate matches, and route uncertain cases for authority review?</li>
+<li>What tests, approval steps, and rollback evidence must be completed before any production import?</li>
+</ol>
+</section>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">7.10</span> Further reading and tools</h2>
+<section id="readings-and-documentation" class="level3" data-number="7.10.1">
+<h3 data-number="7.10.1" class="anchored" data-anchor-id="readings-and-documentation"><span class="header-section-number">7.10.1</span> Readings and documentation</h3>
+<ul>
+<li><strong>R manuals and documentation.</strong> The authoritative starting point for the R language, functions, packages, and data structures <span class="citation" data-cites="r2026">(<a href="references.html#ref-r2026" role="doc-biblioref">R Core Team 2026</a>)</span>.</li>
+<li><strong>R for Data Science, second edition.</strong> A free book on importing, transforming, visualizing, and communicating data <span class="citation" data-cites="wickham2023r4ds">(<a href="references.html#ref-wickham2023r4ds" role="doc-biblioref">Wickham et al. 2023</a>)</span>.</li>
+<li><strong>Tidy Data.</strong> A concise explanation of how consistent tabular structure supports analysis <span class="citation" data-cites="wickham2014tidy">(<a href="references.html#ref-wickham2014tidy" role="doc-biblioref">Wickham 2014</a>)</span>.</li>
+<li><strong>Best Practices for Scientific Computing.</strong> Practical guidance on readable code, testing, version control, and automation <span class="citation" data-cites="wilson2014best">(<a href="references.html#ref-wilson2014best" role="doc-biblioref">Wilson et al. 2014</a>)</span>.</li>
+<li><strong>Ten Simple Rules for Reproducible Computational Research.</strong> Principles for connecting results to recorded inputs and steps <span class="citation" data-cites="sandve2013reproducible">(<a href="references.html#ref-sandve2013reproducible" role="doc-biblioref">Sandve et al. 2013</a>)</span>.</li>
+<li><strong>Library Carpentry lessons.</strong> Open, library-oriented introductions to data, software, regular expressions, OpenRefine, Git, R, Python, and related tools <span class="citation" data-cites="librarycarpentry2026">(<a href="references.html#ref-librarycarpentry2026" role="doc-biblioref">Library Carpentry 2026</a>)</span>.</li>
+<li><strong>Quarto documentation.</strong> Guidance for combining prose, executable code, citations, figures, and multi-format publishing <span class="citation" data-cites="quarto2026docs">(<a href="references.html#ref-quarto2026docs" role="doc-biblioref">Posit 2026</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-or-widely-accessible-tools" class="level3" data-number="7.10.2">
+<h3 data-number="7.10.2" class="anchored" data-anchor-id="open-or-widely-accessible-tools"><span class="header-section-number">7.10.2</span> Open or widely accessible tools</h3>
+<ul>
+<li><strong>R:</strong> open-source environment for data processing, analysis, and visualization <span class="citation" data-cites="r2026">(<a href="references.html#ref-r2026" role="doc-biblioref">R Core Team 2026</a>)</span>.</li>
+<li><strong>RStudio, Positron, or VS Code:</strong> editors that support R projects and source files.</li>
+<li><strong>readr, dplyr, and stringr:</strong> packages for import/export, data transformation, and text processing <span class="citation" data-cites="readr2026 dplyr2026 stringr2026">(<a href="references.html#ref-readr2026" role="doc-biblioref">Tidyverse Team 2026b</a>, <a href="references.html#ref-dplyr2026" role="doc-biblioref">2026a</a>, <a href="references.html#ref-stringr2026" role="doc-biblioref">2026c</a>)</span>.</li>
+<li><strong>OpenRefine:</strong> interactive tool for profiling and reconciling messy metadata; useful for comparing scripted and visual workflows.</li>
+<li><strong>Git:</strong> version-control system for source code and documentation. Sensitive data should remain outside public repositories.</li>
+<li><strong>renv:</strong> R package for recording and restoring project package dependencies.</li>
+</ul>
+</section>
+<section id="closing-synthesis" class="level3" data-number="7.10.3">
+<h3 data-number="7.10.3" class="anchored" data-anchor-id="closing-synthesis"><span class="header-section-number">7.10.3</span> Closing synthesis</h3>
+<p>Programming gives LIS professionals a way to make procedural choices inspectable, repeatable, and testable. Its value is not measured by how many lines of code are written or how many staff actions disappear. A strong script protects source data, states its assumptions, handles missingness, separates predictable transformations from uncertain cases, validates outputs, and leaves evidence another person can review.</p>
+<p>Automation is therefore both technical and institutional. It redistributes labor, attention, risk, and authority. The LIS professional must ask not only “Can this be automated?” but <strong>“Which rule is being enacted, whose evidence supports it, what happens to exceptions, how will errors be detected and reversed, and who remains accountable?”</strong> Chapter 8 extends these foundations from local files to networked data exchange through APIs, JSON, identifiers, linked data, and semantic relationships.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-librarycarpentry2026" class="csl-entry" role="listitem">
+Library Carpentry. 2026. <em>Library Carpentry Lessons</em>. <a href="https://librarycarpentry.org/lessons/">https://librarycarpentry.org/lessons/</a>.
+</div>
+<div id="ref-npc2023dpa" class="csl-entry" role="listitem">
+National Privacy Commission. 2023. <em>Data Privacy Act of 2012</em>. <a href="https://privacy.gov.ph/data-privacy-act/">https://privacy.gov.ph/data-privacy-act/</a>.
+</div>
+<div id="ref-quarto2026docs" class="csl-entry" role="listitem">
+Posit. 2026. <em>Quarto Documentation</em>. <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>.
+</div>
+<div id="ref-r2026" class="csl-entry" role="listitem">
+R Core Team. 2026. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-philippines2012dpa" class="csl-entry" role="listitem">
+Republic of the Philippines. 2012. <em>Republic Act No. 10173: Data Privacy Act of 2012</em>. <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html">https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html</a>.
+</div>
+<div id="ref-sandve2013reproducible" class="csl-entry" role="listitem">
+Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, and Eivind Hovig. 2013. <span>“Ten Simple Rules for Reproducible Computational Research.”</span> <em>PLoS Computational Biology</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.
+</div>
+<div id="ref-dplyr2026" class="csl-entry" role="listitem">
+Tidyverse Team. 2026a. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>.
+</div>
+<div id="ref-readr2026" class="csl-entry" role="listitem">
+Tidyverse Team. 2026b. <em>Readr: Read Rectangular Text Data</em>. <a href="https://readr.tidyverse.org/">https://readr.tidyverse.org/</a>.
+</div>
+<div id="ref-stringr2026" class="csl-entry" role="listitem">
+Tidyverse Team. 2026c. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://stringr.tidyverse.org/">https://stringr.tidyverse.org/</a>.
+</div>
+<div id="ref-tidyverse2026" class="csl-entry" role="listitem">
+Tidyverse Team. 2026d. <em>Tidyverse Packages</em>. <a href="https://www.tidyverse.org/packages/">https://www.tidyverse.org/packages/</a>.
+</div>
+<div id="ref-wickham2014tidy" class="csl-entry" role="listitem">
+Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
+</div>
+<div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Cetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed. O’Reilly Media. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+<div id="ref-wilson2014best" class="csl-entry" role="listitem">
+Wilson, Greg, D. A. Aruliah, C. Titus Brown, et al. 2014. <span>“Best Practices for Scientific Computing.”</span> <em>PLoS Biology</em> 12 (1): e1001745. <a href="https://doi.org/10.1371/journal.pbio.1001745">https://doi.org/10.1371/journal.pbio.1001745</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-06-information-retrieval-discovery.html" class="pagination-link" aria-label="Information Retrieval and Discovery Systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-08-apis-linked-data.html" class="pagination-link" aria-label="APIs, Linked Data, and the Semantic Web">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

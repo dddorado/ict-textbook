@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Metadata and Cataloguing – Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./chapter-05-digital-libraries-repositories.html" rel="next">
+<link href="./chapter-03-databases.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9e3e5b9121e68b3f077afb32f2c64d95.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./chapter-04-metadata-cataloguing.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Information-and-Communication-Technologies-for-Library-and-Information-Science--Foundations,-Systems,-and-Services.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About This Book</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./disclaimer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Disclaimer</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Detailed Textbook Outline</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introductory-ict-lis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">ICT in LIS as Service Infrastructure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-02-networking-web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Networking, Web Basics, and Library Websites</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-03-databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-04-metadata-cataloguing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-05-digital-libraries-repositories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-06-information-retrieval-discovery.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information Retrieval and Discovery Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-07-programming-automation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programming for LIS and Automation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-08-apis-linked-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">APIs, Linked Data, and the Semantic Web</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-09-ux-accessibility-mobile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">UX, Accessibility, and Mobile Library Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-10-digital-preservation-cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Digital Preservation and Cloud Services</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-11-cybersecurity-law-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cybersecurity, Law, Ethics, and Project Planning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapter-12-data-literacy-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Literacy and Capstone Integration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#chapter-overview" id="toc-chapter-overview" class="nav-link active" data-scroll-target="#chapter-overview"><span class="header-section-number">4.1</span> Chapter overview</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">4.2</span> Learning objectives</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">4.3</span> Key concepts</a></li>
+  <li><a href="#core-discussion" id="toc-core-discussion" class="nav-link" data-scroll-target="#core-discussion"><span class="header-section-number">4.4</span> Core discussion</a>
+  <ul class="collapse">
+  <li><a href="#metadata-as-service-infrastructure" id="toc-metadata-as-service-infrastructure" class="nav-link" data-scroll-target="#metadata-as-service-infrastructure"><span class="header-section-number">4.4.1</span> Metadata as service infrastructure</a></li>
+  <li><a href="#a-stack-of-models-rules-elements-values-and-syntax" id="toc-a-stack-of-models-rules-elements-values-and-syntax" class="nav-link" data-scroll-target="#a-stack-of-models-rules-elements-values-and-syntax"><span class="header-section-number">4.4.2</span> A stack of models, rules, elements, values, and syntax</a></li>
+  <li><a href="#user-tasks-and-bibliographic-entities" id="toc-user-tasks-and-bibliographic-entities" class="nav-link" data-scroll-target="#user-tasks-and-bibliographic-entities"><span class="header-section-number">4.4.3</span> User tasks and bibliographic entities</a></li>
+  <li><a href="#marc-21-rda-dublin-core-and-bibframe" id="toc-marc-21-rda-dublin-core-and-bibframe" class="nav-link" data-scroll-target="#marc-21-rda-dublin-core-and-bibframe"><span class="header-section-number">4.4.4</span> MARC 21, RDA, Dublin Core, and BIBFRAME</a></li>
+  <li><a href="#elements-values-and-application-profiles" id="toc-elements-values-and-application-profiles" class="nav-link" data-scroll-target="#elements-values-and-application-profiles"><span class="header-section-number">4.4.5</span> Elements, values, and application profiles</a></li>
+  <li><a href="#identifiers-and-access-points" id="toc-identifiers-and-access-points" class="nav-link" data-scroll-target="#identifiers-and-access-points"><span class="header-section-number">4.4.6</span> Identifiers and access points</a></li>
+  <li><a href="#authority-control" id="toc-authority-control" class="nav-link" data-scroll-target="#authority-control"><span class="header-section-number">4.4.7</span> Authority control</a></li>
+  <li><a href="#subject-access-and-classification" id="toc-subject-access-and-classification" class="nav-link" data-scroll-target="#subject-access-and-classification"><span class="header-section-number">4.4.8</span> Subject access and classification</a></li>
+  <li><a href="#a-dublin-core-example" id="toc-a-dublin-core-example" class="nav-link" data-scroll-target="#a-dublin-core-example"><span class="header-section-number">4.4.9</span> A Dublin Core example</a></li>
+  <li><a href="#metadata-quality" id="toc-metadata-quality" class="nav-link" data-scroll-target="#metadata-quality"><span class="header-section-number">4.4.10</span> Metadata quality</a></li>
+  <li><a href="#interoperability-crosswalks-and-loss" id="toc-interoperability-crosswalks-and-loss" class="nav-link" data-scroll-target="#interoperability-crosswalks-and-loss"><span class="header-section-number">4.4.11</span> Interoperability, crosswalks, and loss</a></li>
+  <li><a href="#workflow-provenance-and-maintenance" id="toc-workflow-provenance-and-maintenance" class="nav-link" data-scroll-target="#workflow-provenance-and-maintenance"><span class="header-section-number">4.4.12</span> Workflow, provenance, and maintenance</a></li>
+  </ul></li>
+  <li><a href="#philippine-and-southeast-asian-examples" id="toc-philippine-and-southeast-asian-examples" class="nav-link" data-scroll-target="#philippine-and-southeast-asian-examples"><span class="header-section-number">4.5</span> Philippine and Southeast Asian examples</a>
+  <ul class="collapse">
+  <li><a href="#university-theses-names-departments-and-advisers" id="toc-university-theses-names-departments-and-advisers" class="nav-link" data-scroll-target="#university-theses-names-departments-and-advisers"><span class="header-section-number">4.5.1</span> University theses: names, departments, and advisers</a></li>
+  <li><a href="#municipal-photographs-supplied-titles-and-local-knowledge" id="toc-municipal-photographs-supplied-titles-and-local-knowledge" class="nav-link" data-scroll-target="#municipal-photographs-supplied-titles-and-local-knowledge"><span class="header-section-number">4.5.2</span> Municipal photographs: supplied titles and local knowledge</a></li>
+  <li><a href="#indigenous-cultural-heritage-negotiated-access-metadata" id="toc-indigenous-cultural-heritage-negotiated-access-metadata" class="nav-link" data-scroll-target="#indigenous-cultural-heritage-negotiated-access-metadata"><span class="header-section-number">4.5.3</span> Indigenous cultural heritage: negotiated access metadata</a></li>
+  <li><a href="#government-records-office-names-across-reorganizations" id="toc-government-records-office-names-across-reorganizations" class="nav-link" data-scroll-target="#government-records-office-names-across-reorganizations"><span class="header-section-number">4.5.4</span> Government records: office names across reorganizations</a></li>
+  <li><a href="#southeast-asian-multilingual-collections" id="toc-southeast-asian-multilingual-collections" class="nav-link" data-scroll-target="#southeast-asian-multilingual-collections"><span class="header-section-number">4.5.5</span> Southeast Asian multilingual collections</a></li>
+  </ul></li>
+  <li><a href="#hands-on-activity-describe-and-review-a-local-heritage-item" id="toc-hands-on-activity-describe-and-review-a-local-heritage-item" class="nav-link" data-scroll-target="#hands-on-activity-describe-and-review-a-local-heritage-item"><span class="header-section-number">4.6</span> Hands-on activity: Describe and review a local heritage item</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose"><span class="header-section-number">4.6.1</span> Purpose</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools"><span class="header-section-number">4.6.2</span> Tools</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="header-section-number">4.6.3</span> Steps</a></li>
+  <li><a href="#expected-output" id="toc-expected-output" class="nav-link" data-scroll-target="#expected-output"><span class="header-section-number">4.6.4</span> Expected output</a></li>
+  <li><a href="#activity-checklist" id="toc-activity-checklist" class="nav-link" data-scroll-target="#activity-checklist"><span class="header-section-number">4.6.5</span> Activity checklist</a></li>
+  <li><a href="#metadata-assignment-rubric" id="toc-metadata-assignment-rubric" class="nav-link" data-scroll-target="#metadata-assignment-rubric"><span class="header-section-number">4.6.6</span> Metadata assignment rubric</a></li>
+  </ul></li>
+  <li><a href="#ethical-and-professional-issue-description-power-and-accountable-revision" id="toc-ethical-and-professional-issue-description-power-and-accountable-revision" class="nav-link" data-scroll-target="#ethical-and-professional-issue-description-power-and-accountable-revision"><span class="header-section-number">4.7</span> Ethical and professional issue: description, power, and accountable revision</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">4.8</span> Review questions</a></li>
+  <li><a href="#mini-case-the-island-heritage-collection" id="toc-mini-case-the-island-heritage-collection" class="nav-link" data-scroll-target="#mini-case-the-island-heritage-collection"><span class="header-section-number">4.9</span> Mini case: The island heritage collection</a></li>
+  <li><a href="#further-reading-and-tools" id="toc-further-reading-and-tools" class="nav-link" data-scroll-target="#further-reading-and-tools"><span class="header-section-number">4.10</span> Further reading and tools</a>
+  <ul class="collapse">
+  <li><a href="#standards-and-models" id="toc-standards-and-models" class="nav-link" data-scroll-target="#standards-and-models"><span class="header-section-number">4.10.1</span> Standards and models</a></li>
+  <li><a href="#open-and-widely-accessible-tools" id="toc-open-and-widely-accessible-tools" class="nav-link" data-scroll-target="#open-and-widely-accessible-tools"><span class="header-section-number">4.10.2</span> Open and widely accessible tools</a></li>
+  <li><a href="#chapter-4-bridge" id="toc-chapter-4-bridge" class="nav-link" data-scroll-target="#chapter-4-bridge"><span class="header-section-number">4.10.3</span> Chapter 4 bridge</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metadata and Cataloguing</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-overview" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="chapter-overview"><span class="header-section-number">4.1</span> Chapter overview</h2>
+<p>A digitized photograph appears in a repository with the title “Old picture,” creator “Unknown,” date “1900s,” and no subject, place, rights, or provenance information. The image file opens correctly, but can a student discover it? Can a community member correct its description? Can staff distinguish the original photograph from the digital scan? Can another institution reuse the record? Can a future curator explain where the item came from and what may legally be done with it?</p>
+<p>The central problem of this chapter is <strong>how to describe resources consistently enough for people and systems to identify, select, obtain, understand, manage, connect, and preserve them without erasing important context</strong>. Metadata makes collections legible. Cataloguing applies professional principles, standards, vocabularies, and judgment to create and maintain that metadata.</p>
+<p>Metadata is not decoration added after digitization, nor is cataloguing simply typing information into fixed boxes. Every record is a structured claim about entities, names, subjects, relationships, provenance, rights, and access. Those claims affect discovery and memory. They may reproduce inherited bias, or they may make previously obscured people and relationships visible.</p>
+<p>This chapter connects database structure from Chapter 3 to descriptive meaning. Students will distinguish metadata schemas from content standards, encoding formats, value vocabularies, and conceptual models; examine MARC 21, RDA, Dublin Core, IFLA LRM, and BIBFRAME; practice authority and subject work; and create a small, quality-checked metadata record for a local heritage object.</p>
+</section>
+<section id="learning-objectives" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">4.2</span> Learning objectives</h2>
+<p>After completing this chapter, you should be able to:</p>
+<ol type="1">
+<li><strong>Classify</strong> metadata as descriptive, administrative, structural, technical, rights, provenance, or preservation metadata.</li>
+<li><strong>Distinguish</strong> conceptual models, element sets, content standards, value vocabularies, encoding formats, and application profiles.</li>
+<li><strong>Create</strong> a Dublin Core record using defined elements, controlled values, identifiers, language tags, and rights information.</li>
+<li><strong>Explain</strong> the purposes of authority control, identifiers, classification, and subject vocabularies.</li>
+<li><strong>Evaluate and revise</strong> metadata for completeness, accuracy, consistency, provenance, accessibility, and interoperability.</li>
+<li><strong>Analyze</strong> how descriptive choices affect representation, intellectual freedom, cultural rights, privacy, and discovery.</li>
+</ol>
+</section>
+<section id="key-concepts" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">4.3</span> Key concepts</h2>
+<p><a href="#tbl-metadata-key-concepts" class="quarto-xref">Table&nbsp;<span>4.1</span></a> introduces the chapter vocabulary. Notice that a metadata record contains both elements and values, while rules and vocabularies determine how those values are formed.</p>
+<div id="tbl-metadata-key-concepts" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metadata-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Key concepts for metadata and cataloguing
+</figcaption>
+<div aria-describedby="tbl-metadata-key-concepts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-metadata-key-concepts" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Term</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Working definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Metadata</td>
+<td style="text-align: left;">Structured information used to describe, manage, discover, interpret, or preserve resources.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metadata record</td>
+<td style="text-align: left;">A set of metadata statements describing an entity or resource in a defined context.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Element</td>
+<td style="text-align: left;">A named property such as title, creator, language, or rights.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Value</td>
+<td style="text-align: left;">The content supplied for an element.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Schema or element set</td>
+<td style="text-align: left;">A defined set of metadata elements and their meanings.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Conceptual model</td>
+<td style="text-align: left;">An abstract account of entities, attributes, relationships, and user tasks.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Content standard</td>
+<td style="text-align: left;">Rules for selecting and recording values.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Encoding format</td>
+<td style="text-align: left;">A machine-processable syntax or structure for representing and exchanging records.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Value vocabulary</td>
+<td style="text-align: left;">A managed set of terms, names, codes, or identifiers used as values.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Application profile</td>
+<td style="text-align: left;">A documented selection and refinement of elements and rules for a community or project.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Identifier</td>
+<td style="text-align: left;">A string or URI intended to distinguish an entity or resource.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Authority control</td>
+<td style="text-align: left;">The work of managing identities, preferred forms, variants, and relationships consistently.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Authorized access point</td>
+<td style="text-align: left;">A standardized form chosen to represent an entity in retrieval.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Variant access point</td>
+<td style="text-align: left;">An alternative name or form that directs users to the represented entity.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Controlled vocabulary</td>
+<td style="text-align: left;">A deliberately maintained set of terms and relationships.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Classification</td>
+<td style="text-align: left;">Systematic arrangement of resources into classes, often expressed through notation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Subject heading</td>
+<td style="text-align: left;">A controlled term or string representing the topic, form, place, period, or group of a resource.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Information about origin, custody, ownership, or creation history.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Crosswalk</td>
+<td style="text-align: left;">A mapping between elements in different metadata schemas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interoperability</td>
+<td style="text-align: left;">The ability of systems and communities to exchange and meaningfully use information.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Metadata quality</td>
+<td style="text-align: left;">Fitness of metadata for stated functions and communities.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Granularity</td>
+<td style="text-align: left;">The level of detail at which entities, components, events, or relationships are described.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="core-discussion" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="core-discussion"><span class="header-section-number">4.4</span> Core discussion</h2>
+<section id="metadata-as-service-infrastructure" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="metadata-as-service-infrastructure"><span class="header-section-number">4.4.1</span> Metadata as service infrastructure</h3>
+<p>Metadata links users to resources. A catalogue result depends on recorded titles, names, subjects, identifiers, relationships, holdings, and access conditions. A repository browse depends on consistent departments, dates, resource types, and languages. A digital exhibit depends on captions, provenance, rights, and connections among objects. Preservation depends on file formats, checksums, events, agents, and dependencies.</p>
+<p>The phrase “data about data” is useful but incomplete. Metadata may describe a physical object, a person, an organization, an event, a place, a right, or a relationship. In one context a city name is descriptive metadata; in a geographic authority file, the city is the primary entity. What matters is the statement being made: which property describes which entity, according to which rules, for which purpose.</p>
+<p>NISO groups metadata broadly into descriptive, structural, and administrative functions <span class="citation" data-cites="niso2004understanding">(<a href="references.html#ref-niso2004understanding" role="doc-biblioref">Understanding Metadata 2004</a>)</span>. In practice, administrative metadata is often divided further. <a href="#tbl-metadata-functions" class="quarto-xref">Table&nbsp;<span>4.2</span></a> shows how the categories support different work. One value can serve more than one function, so categories are analytical aids rather than sealed boxes.</p>
+<div id="tbl-metadata-functions" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metadata-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Metadata functions in information organizations
+</figcaption>
+<div aria-describedby="tbl-metadata-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-metadata-functions" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Purpose</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Descriptive</td>
+<td style="text-align: left;">Support identification, discovery, selection, and contextual understanding</td>
+<td style="text-align: left;">Title, creator, subject, language, description</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Structural</td>
+<td style="text-align: left;">Express how components are ordered or related</td>
+<td style="text-align: left;">Page sequence or relationship between a photograph and album</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Technical</td>
+<td style="text-align: left;">Record characteristics needed to render or manage files and systems</td>
+<td style="text-align: left;">File format, dimensions, software, capture device</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rights</td>
+<td style="text-align: left;">State ownership, licenses, permissions, restrictions, and access conditions</td>
+<td style="text-align: left;">Copyright holder, license URI, access restriction</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Document origin, custody, sources, and responsibility for statements</td>
+<td style="text-align: left;">Donor, source collection, cataloguer, record history</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Preservation</td>
+<td style="text-align: left;">Support authenticity, integrity, monitoring, and long-term action</td>
+<td style="text-align: left;">Checksum, preservation event, migration agent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Use or service</td>
+<td style="text-align: left;">Support operations and evaluation while respecting privacy</td>
+<td style="text-align: left;">Circulation status or aggregated download count</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-metadata-functions" class="quarto-xref">Table&nbsp;<span>4.2</span></a> shows, a digitized object needs more than a title. Its page order, file characteristics, rights, source, and preservation history may determine whether it remains usable and trustworthy.</p>
+</section>
+<section id="a-stack-of-models-rules-elements-values-and-syntax" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="a-stack-of-models-rules-elements-values-and-syntax"><span class="header-section-number">4.4.2</span> A stack of models, rules, elements, values, and syntax</h3>
+<p>Students often say that MARC, RDA, and Dublin Core are competing “metadata standards.” They are related, but they do not do the same job. <a href="#fig-metadata-stack" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> separates the layers.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-metadata-stack" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-metadata-stack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-metadata-stack">flowchart TB
+    N["Community needs and user tasks"] --&gt; M["Conceptual model&lt;br/&gt;entities and relationships"]
+    M --&gt; E["Element set or schema&lt;br/&gt;properties that may be recorded"]
+    E --&gt; C["Content standard&lt;br/&gt;rules for forming values"]
+    C --&gt; V["Value vocabularies and identifiers&lt;br/&gt;controlled names, terms, and codes"]
+    V --&gt; S["Encoding and exchange syntax&lt;br/&gt;MARC, XML, RDF, JSON, CSV"]
+    A["Application profile and local policy"] --- E
+    A --- C
+    A --- V
+    Q["Quality review, provenance, and maintenance"] --- S
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metadata-stack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Layers that shape a metadata record
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-metadata-stack" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> is not a rigid production sequence. A project may begin with an existing platform or exchange format. The figure is a diagnostic tool: when records fail, ask whether the problem lies in the conceptual model, available elements, content rules, values, encoding, local profile, or maintenance.</p>
+<p>A <strong>conceptual model</strong> defines entities and relationships at an abstract level. An <strong>element set</strong> defines properties such as title or creator. A <strong>content standard</strong> gives instructions for recording values. A <strong>value vocabulary</strong> supplies controlled names, subjects, types, or codes. An <strong>encoding format</strong> makes statements machine-processable. An <strong>application profile</strong> combines selected elements, obligations, vocabularies, and local rules for a specific community.</p>
+</section>
+<section id="user-tasks-and-bibliographic-entities" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="user-tasks-and-bibliographic-entities"><span class="header-section-number">4.4.3</span> User tasks and bibliographic entities</h3>
+<p>Cataloguing is shaped by what users need to do. The IFLA Library Reference Model identifies broad user tasks: find, identify, select, obtain, and explore <span class="citation" data-cites="ifla2017lrm">(<a href="references.html#ref-ifla2017lrm" role="doc-biblioref">IFLA Library Reference Model Review Group 2017</a>)</span>. These tasks require both attributes and relationships. A user may need to distinguish a novel from its translation, identify an edition suitable for citation, obtain an accessible format, or explore other works by a creator.</p>
+<p>IFLA LRM models bibliographic information through entities including Work, Expression, Manifestation, Item, Agent, Nomen, Place, and Time-span. In simplified terms:</p>
+<ul>
+<li><strong>Work</strong> concerns a distinct intellectual or artistic creation.</li>
+<li><strong>Expression</strong> concerns the realization of a work, such as a language or performance.</li>
+<li><strong>Manifestation</strong> concerns a publication or production embodiment.</li>
+<li><strong>Item</strong> concerns an individual exemplar.</li>
+</ul>
+<p>These distinctions prevent common errors. A barcode identifies an item, while an ISBN generally identifies a manifestation. A translator contributes to an expression. Damage notes apply to an item. A publication statement belongs to a manifestation context.</p>
+<p>Conceptual entities do not always appear as separate screens or database tables. They guide consistent description and help systems connect related resources.</p>
+</section>
+<section id="marc-21-rda-dublin-core-and-bibframe" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="marc-21-rda-dublin-core-and-bibframe"><span class="header-section-number">4.4.4</span> MARC 21, RDA, Dublin Core, and BIBFRAME</h3>
+<p><a href="#tbl-framework-comparison" class="quarto-xref">Table&nbsp;<span>4.3</span></a> compares four frameworks students will encounter. The rows are deliberately phrased by role because the frameworks may be used together rather than selected as exact substitutes.</p>
+<div id="tbl-framework-comparison" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-framework-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.3: Roles of selected metadata and cataloguing frameworks
+</figcaption>
+<div aria-describedby="tbl-framework-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-framework-comparison" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Framework</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Primary role</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Typical expression</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Important caution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">MARC 21</td>
+<td style="text-align: left;">Structured communication format for bibliographic and authority data</td>
+<td style="text-align: left;">Tagged fields, indicators, subfields, codes</td>
+<td style="text-align: left;">Field syntax alone does not supply cataloguing judgment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RDA</td>
+<td style="text-align: left;">Guidance and data elements for resource description and access</td>
+<td style="text-align: left;">Statements and relationships recorded according to instructions</td>
+<td style="text-align: left;">RDA is not identical to MARC or one display style</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dublin Core terms</td>
+<td style="text-align: left;">General-purpose metadata terms for cross-domain resource description</td>
+<td style="text-align: left;">Properties such as title, creator, subject, date, and rights</td>
+<td style="text-align: left;">Simple elements can become ambiguous without profiles and vocabularies</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BIBFRAME</td>
+<td style="text-align: left;">Linked-data model and vocabulary for bibliographic description</td>
+<td style="text-align: left;">RDF resources and relationships centered on Work, Instance, and Item</td>
+<td style="text-align: left;">Linked identifiers do not repair weak or biased source description</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>MARC 21 provides formats for communicating bibliographic, authority, holdings, classification, and community information. Its bibliographic format defines tags, indicators, subfields, and coded elements <span class="citation" data-cites="locmarc21">(<a href="references.html#ref-locmarc21" role="doc-biblioref">Library of Congress 2024b</a>)</span>. A MARC field such as 245 structures title information; cataloguing instructions determine which title to record and how.</p>
+<p>RDA is designed around resource description and access, with entities, elements, relationships, and instructions. The open RDA Registry publishes element and vocabulary representations for machine use <span class="citation" data-cites="rdaregistry2026">(<a href="references.html#ref-rdaregistry2026" role="doc-biblioref">RDA Steering Committee 2026</a>)</span>. RDA is not a file format. RDA data may be encoded in MARC or other structures.</p>
+<p>Dublin Core provides broadly applicable terms. The DCMI terms vocabulary includes properties such as title, creator, subject, date, type, format, identifier, source, language, relation, coverage, and rights <span class="citation" data-cites="dcmi2020terms">(<a href="references.html#ref-dcmi2020terms" role="doc-biblioref">Dublin Core Metadata Initiative 2020</a>)</span>. Its apparent simplicity is valuable for cross-domain projects, but projects must define obligations and value rules.</p>
+<p>BIBFRAME is a Library of Congress initiative for representing bibliographic description as linked data. Its model centers on Work, Instance, and Item and uses RDF relationships <span class="citation" data-cites="loc2024bibframe">(<a href="references.html#ref-loc2024bibframe" role="doc-biblioref">Library of Congress 2024a</a>)</span>. Chapter 8 returns to RDF and linked data.</p>
+</section>
+<section id="elements-values-and-application-profiles" class="level3" data-number="4.4.5">
+<h3 data-number="4.4.5" class="anchored" data-anchor-id="elements-values-and-application-profiles"><span class="header-section-number">4.4.5</span> Elements, values, and application profiles</h3>
+<p>An element is not a screen label. It is a property with a definition, expected value, and domain of use. “Date” may mean creation, publication, capture, accession, modification, copyright, or availability. A profile that uses one undifferentiated date field will create ambiguity even if every value follows YYYY-MM-DD.</p>
+<p>An <strong>application profile</strong> should document:</p>
+<ul>
+<li>element name and URI where available;</li>
+<li>definition and examples;</li>
+<li>obligation: required, recommended, or optional;</li>
+<li>repeatability;</li>
+<li>expected value type or syntax;</li>
+<li>controlled vocabulary or authority source;</li>
+<li>language and script practices;</li>
+<li>source and provenance rules;</li>
+<li>display and indexing behavior; and</li>
+<li>validation and maintenance responsibility.</li>
+</ul>
+<p>Profiles turn general standards into accountable local practice. They should not redefine established elements casually. If a local need cannot be represented, a documented local extension may be preferable to silently changing an existing element’s meaning.</p>
+</section>
+<section id="identifiers-and-access-points" class="level3" data-number="4.4.6">
+<h3 data-number="4.4.6" class="anchored" data-anchor-id="identifiers-and-access-points"><span class="header-section-number">4.4.6</span> Identifiers and access points</h3>
+<p>An <strong>identifier</strong> distinguishes an entity within a defined system. Examples include ISBNs, ISSNs, DOIs, ORCID iDs, accession numbers, barcodes, control numbers, handles, and URIs. Identifiers improve matching and exchange only when their scope is understood.</p>
+<p>A string can look unique without being persistent. File names, shelf locations, and database row numbers may change. Projects should document the identifier’s assigning authority, entity, uniqueness, persistence expectation, display form, and resolution behavior.</p>
+<p>An <strong>access point</strong> is a name, term, code, or other representation through which a user can retrieve a record. An authorized access point provides a consistent form; variant access points preserve other forms and lead users to the represented entity.</p>
+</section>
+<section id="authority-control" class="level3" data-number="4.4.7">
+<h3 data-number="4.4.7" class="anchored" data-anchor-id="authority-control"><span class="header-section-number">4.4.7</span> Authority control</h3>
+<p>Authority control manages identities, preferred forms, variants, sources, and relationships. It is not simply forcing every name into one spelling. A useful authority record may connect:</p>
+<ul>
+<li>an authorized form;</li>
+<li>variant names, earlier names, pseudonyms, transliterations, and local forms;</li>
+<li>identifiers from trusted systems;</li>
+<li>dates or contextual attributes needed for distinction;</li>
+<li>relationships to people, families, organizations, places, and works;</li>
+<li>sources consulted and evidence for decisions; and</li>
+<li>notes about scope, uncertainty, or community preference.</li>
+</ul>
+<p><a href="#fig-authority-network" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> illustrates why authority work is relational. Different labels can point to one identity, while one ambiguous label can refer to different identities.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-authority-network" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-authority-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-authority-network">flowchart LR
+    V1["Variant name"] --&gt; E["Identified person or organization"]
+    V2["Name in another script"] --&gt; E
+    V3["Earlier or later name"] --&gt; E
+    I1["Local authority ID"] --&gt; E
+    I2["External identifier"] --&gt; E
+    E --&gt; W["Associated works"]
+    E --&gt; O["Affiliated organization"]
+    E --&gt; P["Related place"]
+    S["Sources and provenance"] --- E
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-authority-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Authority control connects variants, identifiers, and relationships to an entity
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As <a href="#fig-authority-network" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows, authority data support collocation and exploration. They also prepare repositories for linked data <span class="citation" data-cites="wolverton2013authority">(<a href="references.html#ref-wolverton2013authority" role="doc-biblioref">Wolverton and Jin 2013</a>)</span>. However, an authority file is not infallible. Identities can be uncertain, names can be contested, and communities may prefer forms different from legacy sources. Records need provenance and revision pathways.</p>
+</section>
+<section id="subject-access-and-classification" class="level3" data-number="4.4.8">
+<h3 data-number="4.4.8" class="anchored" data-anchor-id="subject-access-and-classification"><span class="header-section-number">4.4.8</span> Subject access and classification</h3>
+<p>Subject access attempts to represent what a resource is about, what form it takes, and sometimes its geographic, chronological, or demographic context. Tools include subject-heading lists, thesauri, taxonomies, classifications, genre/form vocabularies, and locally maintained terms.</p>
+<p>A controlled vocabulary improves consistency by managing preferred terms, synonyms, broader and narrower concepts, and related concepts. A classification scheme places resources into a systematic arrangement, often supporting shelf order and browsing. Neither is neutral. Categories emerge from particular histories, institutions, languages, and assumptions.</p>
+<p>Good subject analysis requires evidence from the resource and appropriate contextual sources. Cataloguers should distinguish what a resource is about from whom it is by, where it is stored, or who is expected to use it. Exhaustivity and specificity should match project policy. Overly broad terms hide distinctions; excessive unsupported specificity creates false precision.</p>
+<p>Local and community vocabularies may represent concepts absent from larger systems. Mapping can support interoperability, but a local concept should not be erased merely because no exact external equivalent exists. The mapping may be close, broader, narrower, related, or intentionally absent.</p>
+</section>
+<section id="a-dublin-core-example" class="level3" data-number="4.4.9">
+<h3 data-number="4.4.9" class="anchored" data-anchor-id="a-dublin-core-example"><span class="header-section-number">4.4.9</span> A Dublin Core example</h3>
+<p><a href="#tbl-dublin-core-example" class="quarto-xref">Table&nbsp;<span>4.4</span></a> presents a simplified record for a fictional digitized photograph. The record is compact, but values are still governed: the title is supplied and marked as such, the creator uses an authorized form, language follows a code, type uses a DCMI term, and the rights statement is represented by a URI.</p>
+<div id="tbl-dublin-core-example" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dublin-core-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.4: Example Dublin Core record for a digitized photograph
+</figcaption>
+<div aria-describedby="tbl-dublin-core-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-dublin-core-example" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Element</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Value</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Rule or source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">title</td>
+<td style="text-align: left;">[Students at the municipal library inauguration]</td>
+<td style="text-align: left;">Supplied title, visibly identified by brackets</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">creator</td>
+<td style="text-align: left;">Santos, Elena M.</td>
+<td style="text-align: left;">Local authority file</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">1968-06-12</td>
+<td style="text-align: left;">ISO-style date from event annotation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">Image</td>
+<td style="text-align: left;">DCMI Type Vocabulary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">format</td>
+<td style="text-align: left;">image/tiff</td>
+<td style="text-align: left;">Media type</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">identifier</td>
+<td style="text-align: left;">https://example.org/items/photo-0042</td>
+<td style="text-align: left;">Repository persistent URI</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">source</td>
+<td style="text-align: left;">Municipal Archives, Photograph Collection, Box 3</td>
+<td style="text-align: left;">Local collection citation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">spatial</td>
+<td style="text-align: left;">Iloilo City (Philippines)</td>
+<td style="text-align: left;">Geographic authority form</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">language</td>
+<td style="text-align: left;">zxx</td>
+<td style="text-align: left;">Language code: no linguistic content</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">subject</td>
+<td style="text-align: left;">Public libraries--Philippines; Library buildings</td>
+<td style="text-align: left;">Controlled subjects</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rights</td>
+<td style="text-align: left;">https://rightsstatements.org/vocab/InC/1.0/</td>
+<td style="text-align: left;">RightsStatements.org URI</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">description</td>
+<td style="text-align: left;">Black-and-white group photograph showing students outside the newly opened library.</td>
+<td style="text-align: left;">Objective scope note</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The record in <a href="#tbl-dublin-core-example" class="quarto-xref">Table&nbsp;<span>4.4</span></a> does not claim certainty about everything. Brackets identify a supplied title, and the description avoids naming people without evidence. A real profile would define repeatability, language tags, refinements, contributor roles, digitization metadata, record provenance, and validation.</p>
+</section>
+<section id="metadata-quality" class="level3" data-number="4.4.10">
+<h3 data-number="4.4.10" class="anchored" data-anchor-id="metadata-quality"><span class="header-section-number">4.4.10</span> Metadata quality</h3>
+<p>Quality means fitness for stated purposes and communities, not maximal fullness. A record can be complete according to a template yet inaccurate, inaccessible, or harmful. Research on repository metadata repeatedly identifies consistency, completeness, accuracy, provenance, and interoperability as recurring quality concerns <span class="citation" data-cites="park2009quality">(<a href="references.html#ref-park2009quality" role="doc-biblioref">Park 2009</a>)</span>.</p>
+<p><a href="#tbl-metadata-quality" class="quarto-xref">Table&nbsp;<span>4.5</span></a> provides operational questions. Quality dimensions can conflict: adding detail may improve discovery but create privacy risk; using one controlled vocabulary may improve consistency but weaken community representation.</p>
+<div id="tbl-metadata-quality" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-metadata-quality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.5: Metadata quality dimensions and review evidence
+</figcaption>
+<div aria-describedby="tbl-metadata-quality-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-metadata-quality" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dimension</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Review question</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Possible measure</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Accuracy</td>
+<td style="text-align: left;">Does the statement match reliable evidence and the entity described?</td>
+<td style="text-align: left;">Sample verification against source</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Completeness</td>
+<td style="text-align: left;">Are required elements present for the intended service?</td>
+<td style="text-align: left;">Required-field rate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consistency</td>
+<td style="text-align: left;">Are comparable resources described with comparable rules and values?</td>
+<td style="text-align: left;">Variant and duplicate analysis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Conformance</td>
+<td style="text-align: left;">Does the record follow the profile, syntax, and controlled vocabularies?</td>
+<td style="text-align: left;">Validation error rate</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Provenance</td>
+<td style="text-align: left;">Can users tell who supplied or changed a statement and from what source?</td>
+<td style="text-align: left;">Presence of source and change history</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Timeliness</td>
+<td style="text-align: left;">Are changing names, rights, locations, and links reviewed?</td>
+<td style="text-align: left;">Overdue review count</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accessibility</td>
+<td style="text-align: left;">Can people understand labels, language, context, and access conditions?</td>
+<td style="text-align: left;">User testing and language review</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interoperability</td>
+<td style="text-align: left;">Will another system preserve enough structure and meaning to use the record?</td>
+<td style="text-align: left;">Test export and crosswalk loss report</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As <a href="#tbl-metadata-quality" class="quarto-xref">Table&nbsp;<span>4.5</span></a> indicates, a quality program needs evidence. Validation catches some structural errors but cannot determine whether a culturally sensitive description is appropriate. Automated checks and human review should complement each other.</p>
+</section>
+<section id="interoperability-crosswalks-and-loss" class="level3" data-number="4.4.11">
+<h3 data-number="4.4.11" class="anchored" data-anchor-id="interoperability-crosswalks-and-loss"><span class="header-section-number">4.4.11</span> Interoperability, crosswalks, and loss</h3>
+<p>Metadata interoperability includes technical, syntactic, semantic, and organizational dimensions. Two systems can exchange XML while disagreeing about what “creator” or “date” means. Shared syntax does not guarantee shared semantics.</p>
+<p>A <strong>crosswalk</strong> maps elements between schemas. Crosswalks support migration and aggregation but are rarely lossless. A detailed MARC statement with roles, indicators, and controlled subfields may map to one broad Dublin Core creator value. When mapping many source elements into one target element, reconstructing the original distinctions may be impossible.</p>
+<p>Before conversion, teams should:</p>
+<ol type="1">
+<li>document source and target definitions;</li>
+<li>identify one-to-one, one-to-many, many-to-one, and unmappable cases;</li>
+<li>preserve original records or exports;</li>
+<li>test representative difficult records;</li>
+<li>record transformation rules and software versions;</li>
+<li>measure information loss and validation errors; and</li>
+<li>obtain review from metadata specialists and affected communities.</li>
+</ol>
+<p>Interoperability should not mean flattening every local distinction. Aggregators can retain local values and provide mapped access values with provenance.</p>
+</section>
+<section id="workflow-provenance-and-maintenance" class="level3" data-number="4.4.12">
+<h3 data-number="4.4.12" class="anchored" data-anchor-id="workflow-provenance-and-maintenance"><span class="header-section-number">4.4.12</span> Workflow, provenance, and maintenance</h3>
+<p>Metadata is created through workflows: selection, examination, transcription, normalization, authority work, subject analysis, rights review, encoding, validation, publication, correction, and migration. Each handoff should have an accountable role.</p>
+<p>Record provenance should identify sources, creator or agent, creation and modification dates, imported versus locally supplied statements, automated transformations, review status, and uncertainty. Batch-generated or AI-suggested metadata should be marked and sampled for error.</p>
+<p>Maintenance is essential. URLs break, organizations change names, rights expire, vocabularies revise terms, and users identify errors. A correction mechanism should allow evidence-based revision without silently erasing record history.</p>
+<blockquote class="blockquote">
+<p><strong>Reflective prompt.</strong> Find a catalogue or repository record that helped or hindered you. Which element, value, relationship, or missing context produced that experience?</p>
+</blockquote>
+</section>
+</section>
+<section id="philippine-and-southeast-asian-examples" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="philippine-and-southeast-asian-examples"><span class="header-section-number">4.5</span> Philippine and Southeast Asian examples</h2>
+<section id="university-theses-names-departments-and-advisers" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="university-theses-names-departments-and-advisers"><span class="header-section-number">4.5.1</span> University theses: names, departments, and advisers</h3>
+<p>A Philippine university repository receives theses from many colleges. Department names change over time, students enter advisers in free text, and Filipino names appear in inconsistent order. The repository creates authority identifiers for people and organizations, retains historical department names with dates, and records adviser roles separately from authorship. This improves browse lists and prevents organizational history from being overwritten.</p>
+</section>
+<section id="municipal-photographs-supplied-titles-and-local-knowledge" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="municipal-photographs-supplied-titles-and-local-knowledge"><span class="header-section-number">4.5.2</span> Municipal photographs: supplied titles and local knowledge</h3>
+<p>A city library digitizes photographs with captions written decades after the events. Staff distinguish transcribed captions from supplied titles and community-contributed identifications. Each statement records source and date. Community corrections are reviewed rather than inserted anonymously, preserving both improved access and provenance.</p>
+</section>
+<section id="indigenous-cultural-heritage-negotiated-access-metadata" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="indigenous-cultural-heritage-negotiated-access-metadata"><span class="header-section-number">4.5.3</span> Indigenous cultural heritage: negotiated access metadata</h3>
+<p>A cultural institution holds recordings connected to an Indigenous community. Generic “open” or “closed” fields cannot express community protocols. Representatives participate in terminology, sensitivity review, access categories, and correction procedures. Public discovery metadata may remain visible while files have culturally governed conditions. Local values are documented and mapped only where appropriate.</p>
+</section>
+<section id="government-records-office-names-across-reorganizations" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="government-records-office-names-across-reorganizations"><span class="header-section-number">4.5.4</span> Government records: office names across reorganizations</h3>
+<p>A government information service describes reports issued by agencies that have merged or changed names. Authority records connect earlier and later corporate bodies without pretending they are identical. Issuing body, current custodian, and subject are recorded separately. Users can search the historical name while navigating to related bodies.</p>
+</section>
+<section id="southeast-asian-multilingual-collections" class="level3" data-number="4.5.5">
+<h3 data-number="4.5.5" class="anchored" data-anchor-id="southeast-asian-multilingual-collections"><span class="header-section-number">4.5.5</span> Southeast Asian multilingual collections</h3>
+<p>A regional portal aggregates records in Filipino, Bahasa Indonesia, Malay, Thai, Vietnamese, and English. It preserves original scripts, adds language tags, stores transliterations as variant access points, and avoids treating English as the authoritative original. Shared type and rights vocabularies support regional filtering while local descriptions retain their source and context.</p>
+</section>
+</section>
+<section id="hands-on-activity-describe-and-review-a-local-heritage-item" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="hands-on-activity-describe-and-review-a-local-heritage-item"><span class="header-section-number">4.6</span> Hands-on activity: Describe and review a local heritage item</h2>
+<section id="purpose" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">4.6.1</span> Purpose</h3>
+<p>Create a beginner Dublin Core record, document the rules behind its values, and improve it through peer quality review.</p>
+</section>
+<section id="tools" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="tools"><span class="header-section-number">4.6.2</span> Tools</h3>
+<ul>
+<li>One instructor-provided digitized photograph, poster, letter, oral-history excerpt, or pamphlet</li>
+<li>A spreadsheet or CSV template with metadata fields</li>
+<li>DCMI Metadata Terms <span class="citation" data-cites="dcmi2020terms">(<a href="references.html#ref-dcmi2020terms" role="doc-biblioref">Dublin Core Metadata Initiative 2020</a>)</span></li>
+<li>RightsStatements.org statements <span class="citation" data-cites="rightsstatements2026">(<a href="references.html#ref-rightsstatements2026" role="doc-biblioref">RightsStatements.org 2026</a>)</span></li>
+<li>Appropriate name, geographic, language, type, and subject vocabularies</li>
+<li>A shared class data dictionary</li>
+</ul>
+</section>
+<section id="steps" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="steps"><span class="header-section-number">4.6.3</span> Steps</h3>
+<ol type="1">
+<li>Examine the object and distinguish visible evidence from supplied contextual information.</li>
+<li>State the entity being described: original object, digital surrogate, or both through separate records.</li>
+<li>Complete title, creator, contributor, date, type, format, identifier, source, language, subject, spatial coverage, description, and rights fields.</li>
+<li>Mark a supplied title according to class policy.</li>
+<li>Use at least one controlled name or subject value and record its source.</li>
+<li>Use a stable identifier for the item and a URI for the rights statement where applicable.</li>
+<li>Record unknown, uncertain, approximate, and not-applicable values according to the profile; do not invent information.</li>
+<li>Add record provenance: metadata creator, date created, sources consulted, and review status.</li>
+<li>Exchange the record with a peer. The reviewer checks the object, profile, vocabularies, and quality dimensions.</li>
+<li>Revise the record and maintain a short change log explaining accepted and rejected suggestions.</li>
+</ol>
+</section>
+<section id="expected-output" class="level3" data-number="4.6.4">
+<h3 data-number="4.6.4" class="anchored" data-anchor-id="expected-output"><span class="header-section-number">4.6.4</span> Expected output</h3>
+<p>Submit:</p>
+<ul>
+<li>one completed metadata record;</li>
+<li>a data dictionary excerpt for five selected elements;</li>
+<li>authority or vocabulary evidence for at least three values;</li>
+<li>a peer-review checklist;</li>
+<li>a change log;</li>
+<li>a short rights and sensitivity note; and</li>
+<li>a 200-word reflection.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Reflection question.</strong> Which metadata decision required transcription, which required a standard, which required community or contextual knowledge, and which remained uncertain?</p>
+</blockquote>
+</section>
+<section id="activity-checklist" class="level3" data-number="4.6.5">
+<h3 data-number="4.6.5" class="anchored" data-anchor-id="activity-checklist"><span class="header-section-number">4.6.5</span> Activity checklist</h3>
+<p><a href="#tbl-ch4-lab-checklist" class="quarto-xref">Table&nbsp;<span>4.6</span></a> should be completed before submission. It makes uncertainty and provenance visible rather than rewarding unsupported completeness.</p>
+<div id="tbl-ch4-lab-checklist" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ch4-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.6: Chapter 4 metadata lab submission checklist
+</figcaption>
+<div aria-describedby="tbl-ch4-lab-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ch4-lab-checklist" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Check</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Complete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Described entity and relationship to digital surrogate are clear</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Required elements follow the class application profile</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Supplied and transcribed information are distinguishable</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Names, subjects, types, languages, and places cite value sources</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Identifier and rights value have appropriate scope</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Unknown and uncertain facts are not invented</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Record provenance and sources are documented</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peer review addresses at least five quality dimensions</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Change log explains revisions and retained decisions</td>
+<td style="text-align: left;">[ ]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="metadata-assignment-rubric" class="level3" data-number="4.6.6">
+<h3 data-number="4.6.6" class="anchored" data-anchor-id="metadata-assignment-rubric"><span class="header-section-number">4.6.6</span> Metadata assignment rubric</h3>
+<p><a href="#tbl-ch4-lab-rubric" class="quarto-xref">Table&nbsp;<span>4.7</span></a> allocates 30 points and corresponds to the course metadata and cataloguing assessment.</p>
+<div id="tbl-ch4-lab-rubric" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ch4-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.7: Rubric for the Chapter 4 metadata and cataloguing assignment
+</figcaption>
+<div aria-describedby="tbl-ch4-lab-rubric-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="tbl-ch4-lab-rubric" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Criterion</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Points</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Full credit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Entity analysis and transcription</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Record clearly distinguishes evidence, supplied context, resource, and surrogate</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Elements and content rules</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Values follow definitions, obligations, repeatability, syntax, and uncertainty rules</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Authorities, vocabularies, and identifiers</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Controlled values and identifiers are appropriate, sourced, and consistently applied</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rights, ethics, and provenance</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Rights and sensitivity are addressed; record origin and decisions are traceable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quality review, revision, and reflection</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Peer evidence leads to justified revisions and a specific professional reflection</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ethical-and-professional-issue-description-power-and-accountable-revision" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="ethical-and-professional-issue-description-power-and-accountable-revision"><span class="header-section-number">4.7</span> Ethical and professional issue: description, power, and accountable revision</h2>
+<p>Description is an exercise of power. Cataloguers decide which names become prominent, which relationships are recorded, which terms group resources, and which histories remain invisible. Legacy records may contain colonial language, racial or ethnic slurs, medicalized terminology, imposed names, gender assumptions, or descriptions centered on collectors rather than represented communities.</p>
+<p>Removing harmful language immediately may improve access for current users, but silently replacing every historical statement can erase evidence about institutional practice. A responsible strategy may preserve the original statement in restricted administrative provenance while presenting a revised public value and an explanatory note. The appropriate choice depends on purpose, harm, law, community expectations, and archival integrity.</p>
+<p>Community participation should be more than asking people to approve a nearly finished record. Communities may help define entities, preferred names, protocols, access categories, and correction processes. Participation requires time, compensation where appropriate, consent, and clarity about who has final authority.</p>
+<p>Rights metadata also has ethical consequences. “Copyright unknown” does not mean “free to use,” while “copyrighted” does not automatically mean inaccessible. Standardized rights statements can communicate known conditions consistently <span class="citation" data-cites="rightsstatements2026">(<a href="references.html#ref-rightsstatements2026" role="doc-biblioref">RightsStatements.org 2026</a>)</span>, but staff must document the evidence and jurisdiction behind the choice.</p>
+<p>AI systems can suggest captions, subjects, names, translations, or summaries. They can also hallucinate identities, repeat bias, flatten cultural distinctions, and expose restricted content to external services. AI-generated metadata should never be treated as authoritative merely because it is fluent. Projects need approved tools, data-protection review, provenance, confidence thresholds, representative sampling, human validation, and a path for correction.</p>
+<p>Professional neutrality does not mean avoiding responsibility. It means applying transparent principles, evidence, community knowledge, intellectual freedom, privacy, and accountable revision rather than personal preference or vendor defaults.</p>
+<blockquote class="blockquote">
+<p><strong>Ethical checkpoint.</strong> A legacy photograph caption uses a derogatory term but is the only evidence of how the institution described the community in 1950. What should remain, what should display publicly, who should be consulted, and how should the revision be documented?</p>
+</blockquote>
+</section>
+<section id="review-questions" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">4.8</span> Review questions</h2>
+<ol type="1">
+<li><strong>Identification:</strong> Define metadata element, value, schema, and application profile.</li>
+<li><strong>Identification:</strong> Distinguish descriptive, structural, technical, rights, provenance, and preservation metadata.</li>
+<li><strong>Short answer:</strong> Why are MARC 21 and RDA not the same kind of standard?</li>
+<li><strong>Short answer:</strong> Explain the difference among Work, Expression, Manifestation, and Item.</li>
+<li><strong>Short answer:</strong> What are the purposes of authorized and variant access points?</li>
+<li><strong>Applied analysis:</strong> A repository uses one field called date for creation, publication, upload, and copyright. Diagnose the semantic problem and propose a profile revision.</li>
+<li><strong>Applied analysis:</strong> A project maps detailed MARC records to simple Dublin Core. What information loss should be tested and documented?</li>
+<li><strong>Scenario:</strong> A community member disputes a subject heading applied to sacred material. Outline an evidence-based and participatory response.</li>
+<li><strong>Scenario:</strong> An AI tool identifies people in historical photographs. What technical, ethical, privacy, and provenance controls are required before any value is published?</li>
+<li><strong>Synthesis:</strong> Explain how database design, metadata standards, authority work, and interface display jointly affect discovery.</li>
+</ol>
+</section>
+<section id="mini-case-the-island-heritage-collection" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="mini-case-the-island-heritage-collection"><span class="header-section-number">4.9</span> Mini case: The island heritage collection</h2>
+<p>A university library receives 2,000 digitized photographs, field notebooks, and audio recordings documenting an island community from 1948 to 1985. The donor spreadsheet has columns called Name, Date, Place, Tribe, Notes, and Copyright. Some rows mix photographers and depicted persons. Dates range from exact days to guesses. Place names use colonial and current forms. The term in Tribe is rejected by community representatives. Several recordings contain ceremonies not intended for unrestricted circulation. The repository platform offers simple Dublin Core and an automatic image-captioning plugin. The grant requires public launch in four months.</p>
+<p><strong>Guide questions</strong></p>
+<ol type="1">
+<li>Design an application profile identifying entities, required elements, repeatability, vocabularies, uncertainty, provenance, and access conditions.</li>
+<li>Propose a workflow for community participation, rights review, automated suggestions, quality control, correction, and phased release.</li>
+<li>Identify what should not be mapped into one public field, and explain how original donor data can be preserved without controlling public description.</li>
+</ol>
+</section>
+<section id="further-reading-and-tools" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="further-reading-and-tools"><span class="header-section-number">4.10</span> Further reading and tools</h2>
+<section id="standards-and-models" class="level3" data-number="4.10.1">
+<h3 data-number="4.10.1" class="anchored" data-anchor-id="standards-and-models"><span class="header-section-number">4.10.1</span> Standards and models</h3>
+<ul>
+<li><strong>NISO, <em>Understanding Metadata</em>.</strong> A concise introduction to metadata functions and components <span class="citation" data-cites="niso2004understanding">(<a href="references.html#ref-niso2004understanding" role="doc-biblioref">Understanding Metadata 2004</a>)</span>.</li>
+<li><strong>DCMI Metadata Terms.</strong> Definitions and usage for Dublin Core properties, classes, and vocabularies <span class="citation" data-cites="dcmi2020terms">(<a href="references.html#ref-dcmi2020terms" role="doc-biblioref">Dublin Core Metadata Initiative 2020</a>)</span>.</li>
+<li><strong>MARC 21 Format for Bibliographic Data.</strong> Tags, indicators, subfields, and coded structures <span class="citation" data-cites="locmarc21">(<a href="references.html#ref-locmarc21" role="doc-biblioref">Library of Congress 2024b</a>)</span>.</li>
+<li><strong>IFLA Library Reference Model.</strong> Entities, relationships, and bibliographic user tasks <span class="citation" data-cites="ifla2017lrm">(<a href="references.html#ref-ifla2017lrm" role="doc-biblioref">IFLA Library Reference Model Review Group 2017</a>)</span>.</li>
+<li><strong>RDA Registry.</strong> Open machine-readable RDA elements and vocabularies <span class="citation" data-cites="rdaregistry2026">(<a href="references.html#ref-rdaregistry2026" role="doc-biblioref">RDA Steering Committee 2026</a>)</span>.</li>
+<li><strong>BIBFRAME 2.0 Model.</strong> Library of Congress linked-data model for bibliographic description <span class="citation" data-cites="loc2024bibframe">(<a href="references.html#ref-loc2024bibframe" role="doc-biblioref">Library of Congress 2024a</a>)</span>.</li>
+<li><strong>RightsStatements.org.</strong> Standardized rights statements for cultural heritage institutions <span class="citation" data-cites="rightsstatements2026">(<a href="references.html#ref-rightsstatements2026" role="doc-biblioref">RightsStatements.org 2026</a>)</span>.</li>
+</ul>
+</section>
+<section id="open-and-widely-accessible-tools" class="level3" data-number="4.10.2">
+<h3 data-number="4.10.2" class="anchored" data-anchor-id="open-and-widely-accessible-tools"><span class="header-section-number">4.10.2</span> Open and widely accessible tools</h3>
+<ul>
+<li><strong>OpenRefine:</strong> clean, cluster, reconcile, and transform metadata with an operation history.</li>
+<li><strong>MarcEdit:</strong> validate, transform, and edit MARC and related metadata formats.</li>
+<li><strong>Zotero:</strong> inspect bibliographic metadata and identifiers from common sources.</li>
+<li><strong>Library of Congress Linked Data Service:</strong> browse and retrieve authority and vocabulary data.</li>
+<li><strong>Getty Vocabularies:</strong> reference resources for art, architecture, people, and places.</li>
+<li><strong>Wikidata:</strong> a multilingual linked-data source that requires normal source evaluation.</li>
+<li><strong>CSVLint and XML validators:</strong> check structural conformance of exchange files.</li>
+</ul>
+</section>
+<section id="chapter-4-bridge" class="level3" data-number="4.10.3">
+<h3 data-number="4.10.3" class="anchored" data-anchor-id="chapter-4-bridge"><span class="header-section-number">4.10.3</span> Chapter 4 bridge</h3>
+<p>Metadata becomes operational inside content systems. Chapter 5 examines digital libraries, repositories, digital archives, exhibits, and content platforms: how objects and records move through selection, ingest, review, storage, publication, rights management, access, and preservation workflows.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-dcmi2020terms" class="csl-entry" role="listitem">
+Dublin Core Metadata Initiative. 2020. <em>DCMI Metadata Terms</em>. <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/">https://www.dublincore.org/specifications/dublin-core/dcmi-terms/</a>.
+</div>
+<div id="ref-ifla2017lrm" class="csl-entry" role="listitem">
+IFLA Library Reference Model Review Group. 2017. <em>IFLA Library Reference Model: A Conceptual Model for Bibliographic Information</em>. International Federation of Library Associations; Institutions. <a href="https://repository.ifla.org/handle/123456789/40">https://repository.ifla.org/handle/123456789/40</a>.
+</div>
+<div id="ref-loc2024bibframe" class="csl-entry" role="listitem">
+Library of Congress. 2024a. <em>BIBFRAME 2.0 Model</em>. <a href="https://www.loc.gov/bibframe/docs/bibframe2-model.html">https://www.loc.gov/bibframe/docs/bibframe2-model.html</a>.
+</div>
+<div id="ref-locmarc21" class="csl-entry" role="listitem">
+Library of Congress. 2024b. <em>MARC 21 Format for Bibliographic Data</em>. <a href="https://www.loc.gov/marc/bibliographic/">https://www.loc.gov/marc/bibliographic/</a>.
+</div>
+<div id="ref-park2009quality" class="csl-entry" role="listitem">
+Park, Jung-Ran. 2009. <span>“Metadata Quality in Digital Repositories: A Survey of the Current State of the Art.”</span> <em>Cataloging and Classification Quarterly</em> 47 (3–4): 213–28. <a href="https://doi.org/10.1080/01639370902737240">https://doi.org/10.1080/01639370902737240</a>.
+</div>
+<div id="ref-rdaregistry2026" class="csl-entry" role="listitem">
+RDA Steering Committee. 2026. <em>RDA Registry</em>. <a href="https://www.rdaregistry.info/">https://www.rdaregistry.info/</a>.
+</div>
+<div id="ref-rightsstatements2026" class="csl-entry" role="listitem">
+RightsStatements.org. 2026. <em>Rights Statements for Cultural Heritage Institutions</em>. <a href="https://rightsstatements.org/en/">https://rightsstatements.org/en/</a>.
+</div>
+<div id="ref-niso2004understanding" class="csl-entry" role="listitem">
+Understanding Metadata (2004). <a href="https://www.niso.org/publications/understanding-metadata-2017">https://www.niso.org/publications/understanding-metadata-2017</a>.
+</div>
+<div id="ref-wolverton2013authority" class="csl-entry" role="listitem">
+Wolverton, Robert E., and Qiang Jin. 2013. <span>“Authority Control in a Digital Repository: Preparing for Linked Data.”</span> <em>Journal of Library Metadata</em> 13 (2–3): 95–113. <a href="https://doi.org/10.1080/19386389.2013.826061">https://doi.org/10.1080/19386389.2013.826061</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chapter-03-databases.html" class="pagination-link" aria-label="Databases for Library Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Databases for Library Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./chapter-05-digital-libraries-repositories.html" class="pagination-link" aria-label="Digital Libraries, Repositories, and Content Platforms">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Digital Libraries, Repositories, and Content Platforms</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

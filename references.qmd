@@ -1,7 +1,0 @@
----
-title: "# References {.unnumbered}"
-number-sections: false
----
-
-::: {#refs}
-:::
