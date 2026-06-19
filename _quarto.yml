@@ -39,11 +39,14 @@ format:
     toc: true
     number-sections: true
     theme: cosmo
+    filters:
+      - clean-unnumbered-title.lua
   pdf:
     documentclass: scrreprt
     toc: true
     number-sections: true
     filters:
+      - clean-unnumbered-title.lua
       - section-index.lua
     include-in-header:
       text: |
