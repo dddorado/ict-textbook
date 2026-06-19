@@ -1,0 +1,405 @@
+---
+title: "ICT in LIS as Service Infrastructure"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# Output-aware tables: tabularx for PDF, Pandoc pipe tables for DOCX,
+# and escaped HTML tables for HTML.
+latex_escape <- function(x) {
+  x <- gsub("\\", "<<<BACKSLASH>>>", as.character(x), fixed = TRUE)
+  x <- gsub("([#$%&_{}])", "\\\\\\1", x, perl = TRUE)
+  x <- gsub("~", "\\textasciitilde{}", x, fixed = TRUE)
+  gsub("<<<BACKSLASH>>>", "\\textbackslash{}", x, fixed = TRUE)
+}
+
+ict_table <- function(data, caption, label = NULL, widths = NULL) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  names(data) <- gsub("_", " ", names(data), fixed = TRUE)
+  anchor <- if (!is.null(label)) paste0("{#tbl-", label, "}") else ""
+
+  if (knitr::is_latex_output()) {
+    align <- paste(rep("Y", ncol(data)), collapse = "")
+    header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
+    rows <- apply(data, 1, function(row) {
+      paste(vapply(row, latex_escape, character(1)), collapse = " & ")
+    })
+    out <- c(
+      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
+      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+      "\\toprule", paste0(header, " \\\\"), "\\midrule",
+      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
+    )
+  } else if (knitr::is_html_output()) {
+    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+  } else {
+    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+  }
+  knitr::asis_output(paste(out, collapse = "\n"))
+}
+```
+
+## Chapter overview
+
+A student searches an online public access catalogue for a Filipino-language edition of a novel. The screen reports no results. What failed? The library may not own the edition. The record may use a different title, language code, or name form. The search index may be stale. The server may be unavailable. A network link may be slow. The mobile interface may hide useful filters. The student may not know the catalogue's vocabulary. Each explanation points to a different part of the service, yet the user experiences only one outcome: “the library does not have it.”
+
+The central problem of this chapter is therefore **how to see an information service as a whole system**. ICT work in LIS is not confined to repairing computers or teaching software. It involves designing and governing the connected arrangements through which people encounter collections and records. Infrastructure is often least visible when it works and most visible when it breaks. @star1996steps argues that infrastructure is relational and embedded in practice: the same network, identifier, or standard can be enabling for one community and obstructive for another.
+
+This systems view matters across LIS careers. A cataloguer's authorized access point affects discovery. An archivist's file-naming and preservation decisions affect future authenticity. A reference librarian's chat platform affects privacy and reach. A records manager's retention rule affects both accountability and exposure. A systems librarian's authentication configuration affects who can use licensed resources from home. Technical and professional decisions are already intertwined.
+
+## Learning objectives
+
+After completing this chapter, you should be able to:
+
+1. **Define** ICT, information infrastructure, information system, platform, interoperability, and sociotechnical system in LIS terms.
+2. **Identify** the people, data, metadata, technology, policy, and workflow components of a library or information service.
+3. **Trace** a user request through interface, application, metadata, data, and physical infrastructure layers.
+4. **Distinguish** digitization, digitalization, automation, and digital transformation using concrete examples.
+5. **Diagnose** likely points of service failure and connect them to affected stakeholders.
+6. **Evaluate** an ICT choice using access, privacy, inclusion, reliability, sustainability, and accountability criteria.
+
+## Key concepts
+
+@tbl-key-concepts provides the working vocabulary for the chapter. Notice that several terms describe relationships rather than objects. For instance, interoperability is not a feature of one database in isolation; it describes whether systems can exchange and meaningfully use information.
+
+```{r}
+#| label: tbl-key-concepts
+#| results: asis
+key_concepts <- data.frame(
+  Term = c("ICT", "Information infrastructure", "Sociotechnical system", "Information system",
+           "Data", "Metadata", "Hardware", "Software", "Network", "Platform", "Workflow",
+           "Standard", "Interoperability", "Automation", "Digitization", "Digitalization",
+           "Digital transformation", "Availability", "Stakeholder", "Digital divide"),
+  Working_definition = c(
+    "Technologies and practices used to create, process, store, communicate, secure, and use information.",
+    "The embedded people, institutions, standards, data, technologies, and routines that sustain information activity.",
+    "An arrangement in which social and technical components shape one another.",
+    "An organized combination of people, processes, data, and technology that supports defined activities or decisions.",
+    "Recorded representations of observations, entities, events, or transactions.",
+    "Structured information that describes, manages, explains, locates, or preserves other information resources.",
+    "Physical equipment such as servers, scanners, routers, storage devices, and user devices.",
+    "Programs and instructions that direct computing activity.",
+    "Connected devices and protocols that permit communication and resource sharing.",
+    "A technical and organizational base on which services, content, or interactions are built.",
+    "A defined sequence of tasks, decisions, roles, and handoffs that produces an outcome.",
+    "An agreed specification or rule that promotes consistency and coordination.",
+    "The capacity of systems or organizations to exchange information and use it meaningfully.",
+    "The execution of a repeatable task or decision by a machine according to defined rules.",
+    "Conversion of analog material into digital form.",
+    "Use of digital tools to improve an existing process or service.",
+    "Substantial redesign of services, roles, or organizational models around digital possibilities and needs.",
+    "The degree to which an authorized user can obtain a service or resource when needed.",
+    "A person, group, or institution that affects, uses, governs, or is affected by a service.",
+    "Unequal ability to obtain devices, connectivity, skills, support, and meaningful benefits from digital participation."
+  )
+)
+ict_table(key_concepts, "Key concepts for understanding ICT as service infrastructure", "key-concepts", c(1, 3))
+```
+
+## Core discussion
+
+### From tools to infrastructure
+
+It is useful to know how to operate a spreadsheet, content management system, or scanner. Yet tool competence alone does not answer the questions LIS professionals face: What information should be collected? How should it be described? Who should have access? What happens when a vendor closes? How will a community correct harmful description? Can a user complete a task on an old phone over a slow connection? Who is accountable after a breach?
+
+An **infrastructure** perspective widens the unit of analysis. Infrastructure includes visible components, such as computers and interfaces, and less visible components, such as classification practices, identifiers, procurement rules, staff expertise, maintenance schedules, electrical supply, and agreements with vendors. @borgman2007scholarship shows that information infrastructures support knowledge work through relationships among content, tools, communities, and institutions. They are built over time, inherit earlier decisions, and require continuing labor.
+
+Consider an institutional repository. Its website is only the public surface. Behind it are submission policies, file-format rules, author names, department identifiers, metadata templates, copyright permissions, review workflows, storage systems, backups, domain registration, authentication, staff training, and preservation commitments. Changing one component may affect many others. A new login system can improve account security yet exclude alumni contributors. A cheaper cloud tier can reduce current expense yet increase retrieval fees or complicate exit. A metadata shortcut can accelerate ingest yet weaken later discovery.
+
+### ICT is a sociotechnical system
+
+A **sociotechnical system** contains technical components and social components that mutually shape outcomes. People do not simply “use” a neutral technology after it has been designed. Their workarounds, skills, authority, incentives, languages, and values influence what the system becomes. Conversely, software defaults and data structures shape what staff can record and what users can find.
+
+Suppose a school library adopts a barcode circulation system. The technical components include barcodes, scanners, computers, software, a database, and perhaps a network. The social components include borrowing rules, student identities, staff roles, training, consent and notice, exception handling, discipline practices, and expectations about confidentiality. If the software requires a permanent address but some learners do not have one, a database field becomes a social barrier. If staff share one administrator account because individual accounts are inconvenient, a workflow workaround becomes a security and accountability problem.
+
+No single professional needs to master every layer. LIS competence includes knowing enough to ask precise questions, document requirements, recognize consequences, collaborate with IT staff and vendors, and protect professional values. “The system requires it” is rarely the end of an inquiry; requirements are produced by design choices, contracts, policies, and institutional priorities.
+
+### The layers of an information service
+
+@fig-service-layers presents a simplified route through a discovery service. A user's task enters through an interface. An application interprets the request. An index and metadata make matching possible. Data stores hold descriptions, content, accounts, or transactions. Networks, compute, storage, power, and facilities support every layer. People, policies, standards, and governance cross all layers rather than sitting at the bottom.
+
+```{mermaid}
+%%| label: fig-service-layers
+%%| fig-cap: "A layered model of an LIS information service"
+flowchart TB
+    U["User need and context"] --> I["Interface: catalogue, app, website, kiosk"]
+    I --> A["Application: search, circulation, repository workflow"]
+    A --> M["Metadata and indexes: fields, terms, identifiers, rankings"]
+    M --> D["Data and content: records, files, accounts, transactions"]
+    D --> P["Physical and network infrastructure: devices, servers, storage, connectivity, power"]
+    G["People, policy, standards, governance, and maintenance"] --- I
+    G --- A
+    G --- M
+    G --- D
+    G --- P
+    P --> D
+    D --> M
+    M --> A
+    A --> I
+    I --> R["Service outcome"]
+```
+
+The arrows in @fig-service-layers run both ways because services are interactive. A search response returns from lower layers to the interface, while logs, corrections, and transactions may travel back into the system. The figure is deliberately not a vendor architecture. It is a thinking tool: when a service fails, ask what each layer contributed and which cross-cutting rule or responsibility governs the response.
+
+#### Interface layer
+
+The **interface** is the point of interaction: catalogue screen, website, mobile app, self-check machine, digital exhibit, or staff dashboard. It determines which actions are visible, what language is used, how errors are explained, and whether people using keyboards, screen readers, small screens, or slow networks can participate. Accessibility is therefore a system requirement, not a decorative feature added after launch. WCAG 2.2 provides testable guidance for perceivable, operable, understandable, and robust web content [@w3cwcag22].
+
+#### Application and workflow layer
+
+The **application** performs service logic. A circulation module checks whether an item can be borrowed, calculates a due date, and records a transaction. A repository may route a submission from depositor to reviewer to publication. These rules encode policy. Staff should know which rules are configurable, who approved them, and how exceptions are handled.
+
+#### Metadata and index layer
+
+**Metadata** enables systems and people to identify, manage, retrieve, interpret, and preserve resources. NISO's broad account includes descriptive, structural, and administrative functions [@niso2004understanding]. A title, creator identifier, subject term, rights statement, file checksum, and relationship between pages are all metadata, though they serve different purposes.
+
+Metadata is central because retrieval cannot operate directly on meaning. Systems match representations: characters, fields, identifiers, terms, embeddings, links, and rules. If names are inconsistent or local-language terms are absent, an apparently sophisticated discovery system may still fail. MARC 21, for example, provides a structured format for communicating bibliographic data, but meaningful use also depends on cataloguing rules, controlled vocabularies, local policy, and system configuration [@locmarc21]. Chapter 4 examines these distinctions in depth.
+
+#### Data and content layer
+
+This layer includes bibliographic records, authority files, digital objects, finding aids, membership records, use logs, preservation metadata, and research datasets. Data have a lifecycle: they are collected or created, validated, stored, used, shared, retained, archived, or disposed of. Each step should have a purpose and an accountable role. “Keep everything” is not neutral; it increases security, privacy, discovery, storage, and governance burdens.
+
+#### Physical and network layer
+
+Digital services rely on material conditions: electricity, cables, radio links, routers, servers, storage media, cooling, devices, and repair capacity. A cloud service still runs on physical infrastructure owned and governed somewhere. In an archipelagic region, bandwidth, latency, weather, power stability, and last-mile connectivity can materially shape service design. ASEAN's regional digital agenda recognizes both the economic role of digital infrastructure and persistent gaps in access and capability [@asean2021digital].
+
+### Data, metadata, and knowledge organization
+
+The boundary between data and metadata depends on context. In a catalogue, “Quezon City” may be metadata describing place of publication. In a geographic authority file, Quezon City may be the entity being described. The practical question is not “Is this always metadata?” but “What does this element describe, under which rules, for which function?”
+
+Knowledge organization supplies intellectual and technical structures for bringing related resources together and distinguishing unlike resources. Classification, subject headings, taxonomies, thesauri, authority files, ontologies, and entity relationships all support navigation and retrieval. Their values are never merely mechanical. Terms may reflect the history and assumptions of the institutions that created them. Local description can repair gaps, but uncontrolled local changes can also weaken interoperability. LIS work therefore balances consistency, context, community language, and exchange.
+
+Interoperability has several dimensions:
+
+* **Technical interoperability** means systems can connect and exchange bits through compatible protocols and formats.
+* **Syntactic interoperability** means exchanged data follow a shared structure, such as agreed JSON properties or MARC fields.
+* **Semantic interoperability** means participants interpret the data with sufficiently shared meaning.
+* **Organizational interoperability** means policies, responsibilities, permissions, and workflows allow the exchange to be used in practice.
+
+A successful file transfer proves only the first two dimensions. If one repository uses “date” for creation date and another uses it for upload date, the same syntax can carry incompatible meaning. If two agencies agree on meaning but lack a lawful data-sharing basis, semantic agreement does not create organizational permission.
+
+### Standards, platforms, and local judgment
+
+A **standard** coordinates practice by providing agreed specifications. Standards can support predictable exchange, reduce duplicated work, and help collections travel across systems. WorldCat, for example, depends on large-scale contribution and reuse of structured bibliographic records across institutions [@oclc2025worldcat]. Yet standards require interpretation and local policy. Adopting a field list without deciding who supplies values, which vocabulary is used, and how quality is checked does not create interoperable metadata.
+
+A **platform** provides a base for multiple activities or services. An integrated library system may support acquisitions, cataloguing, circulation, serials, and reporting. A repository platform may support submission, review, publication, search, and statistics. Platforms are attractive because they integrate work, but they also concentrate dependencies. Institutions should consider data export, documentation, accessibility, security updates, local skills, cost over time, and an exit path before adoption.
+
+Open-source software can offer inspectability and community control, but it is not cost-free. Hosting, configuration, upgrades, backups, training, and support require labor. Proprietary software can provide contracted support, but a contract does not eliminate risks related to lock-in, inaccessible design, weak export, price changes, or business closure. A professional evaluation asks how the choice fits the institution's mission and capacity.
+
+### Digitization, digitalization, automation, and transformation
+
+These four terms are related but not interchangeable. @tbl-digital-change compares them. The distinctions prevent organizations from calling every scan or subscription “transformation” and help teams set appropriate outcomes.
+
+```{r}
+#| label: tbl-digital-change
+#| results: asis
+digital_change <- data.frame(
+  Term = c("Digitization", "Digitalization", "Automation", "Digital transformation"),
+  Central_change = c("Analog representation becomes digital data",
+                     "An existing process uses digital tools",
+                     "A repeatable action is performed by programmed rules",
+                     "Services, roles, governance, or models are substantially redesigned"),
+  LIS_example = c("Scanning a local newspaper and creating master image files",
+                  "Replacing a paper room-booking log with an online form and calendar",
+                  "Sending due-date reminders from circulation transactions",
+                  "Building a community-controlled digital heritage program with new consent, description, access, and preservation workflows"),
+  Success_question = c("Is the digital surrogate accurate and documented?",
+                       "Is the process more usable, reliable, and accountable?",
+                       "Are rules correct, exceptions visible, and results checked?",
+                       "Does the redesign create lasting public value without transferring unacceptable risk?")
+)
+ict_table(digital_change, "Forms of digital change in information organizations", "digital-change", c(.8, 1.2, 1.6, 1.4))
+```
+
+As @tbl-digital-change shows, scale alone does not determine the category. Scanning one page and scanning one million pages are both digitization. Transformation concerns changes in relationships, responsibilities, and value creation. Automation is especially suitable for consistent, high-volume, low-ambiguity tasks, such as flagging blank required fields. Human review remains important where context, consequence, or contested meaning is high, such as deciding culturally appropriate access to sensitive community materials.
+
+### Reliability, maintenance, and graceful failure
+
+Information services need more than a successful launch. They require maintenance: software updates, metadata correction, documentation, staff development, storage monitoring, accessibility testing, vendor management, and incident response. Maintenance is professional work even when it produces no dramatic new feature.
+
+**Availability** is the ability of authorized users to obtain a service when needed. High availability may require redundant network links, monitored servers, backups, documented recovery procedures, and staff coverage. The appropriate level depends on the service. A public safety information portal and an internal exhibit-planning tool do not carry the same consequences of downtime.
+
+Services should also fail **gracefully**. An unavailable catalogue can display a clear status message, alternative contact method, and realistic restoration estimate. A form can preserve a draft when connectivity drops. A digital exhibit can provide smaller images for low-bandwidth users. A circulation desk can maintain a documented offline procedure. Graceful failure treats disruption as a predictable condition rather than a personal failure by the user.
+
+### A service-centered decision framework
+
+Before selecting or changing technology, ask:
+
+1. **Purpose:** What service problem is being addressed, and what evidence shows it matters?
+2. **People:** Who uses, operates, maintains, governs, and is affected by the service?
+3. **Information:** What data, metadata, content, and records are needed? What should not be collected?
+4. **Workflow:** What tasks, decisions, handoffs, exceptions, and approvals occur?
+5. **Technology:** What devices, software, networks, integrations, and skills are required?
+6. **Values and obligations:** How will the design protect access, privacy, intellectual freedom, accessibility, cultural rights, and accountability?
+7. **Continuity:** How will the institution fund, document, maintain, preserve, evaluate, and eventually replace or retire the service?
+
+This framework keeps procurement from becoming the first step. A product demonstration shows what a platform can do under selected conditions; requirements analysis identifies what the institution and its communities actually need.
+
+> **Reflective prompt.** Recall a digital service that made you feel competent and one that made you feel at fault. Which interface, metadata, policy, or support choices produced those feelings?
+
+## Philippine and Southeast Asian examples
+
+### Academic library: remote access is more than a subscription
+
+A Philippine state university licenses journals for students across several campuses. Buying access is only one component. Students need current accounts, understandable authentication, a working discovery route, device-compatible pages, sufficient bandwidth, and reference support. Librarians need usage evidence, privacy-conscious logs, license knowledge, and escalation contacts. When students share screenshots of articles because login repeatedly fails, the workaround signals an infrastructure problem rather than simply “user error.”
+
+### Public library: a low-bandwidth local information portal
+
+A city public library develops a portal for disaster contacts, scholarship notices, livelihood resources, and local ordinances. A video-heavy homepage may look modern in the office yet perform poorly for residents using prepaid mobile data. The service team chooses compressed images, text-first pages, downloadable low-size PDFs, Filipino and local-language labels, clear update dates, and a telephone alternative. This is not a lesser website. It is a better fit between infrastructure and public purpose.
+
+### School library: accountable circulation automation
+
+A school library replaces handwritten loans with a small integrated library system. Barcodes shorten transactions and reports reveal heavily used materials. At the same time, the library decides not to display students' borrowing histories to teachers by default. It assigns individual staff accounts, documents corrections, sets a retention period for transaction histories, and keeps an offline procedure for power interruptions. Under the Philippine Data Privacy Act, personal information processing should have a lawful purpose and follow principles including transparency, legitimate purpose, and proportionality [@philippines2012dpa; @npc2023dpa].
+
+### Cultural heritage institution: description with communities
+
+A regional museum digitizes photographs of an Indigenous community. Staff can scan the photographs and enter legacy captions, but technical completion does not settle questions of authority, sensitivity, or access. The institution consults community representatives about names, context, culturally restricted knowledge, acceptable online resolution, correction processes, and takedown requests. It records provenance and access decisions as metadata. Here, infrastructure includes relationships of trust and procedures for continued governance.
+
+### National and regional discovery
+
+National libraries and archives increasingly provide digital collection access alongside on-site services; the National Library of the Philippines, for example, maintains web-based routes to collections and services [@nlp2024elibrary]. Across Southeast Asia, institutions work in multilingual settings and under unequal connectivity, staffing, and funding conditions. Shared standards can improve exchange, but local scripts, names, colonial description, community protocols, and jurisdiction-specific law require informed adaptation rather than mechanical import.
+
+## Hands-on activity: Service infrastructure audit
+
+### Purpose
+
+Map a familiar information service as a sociotechnical system and identify one improvement that is useful, ethical, and feasible.
+
+### Tools
+
+* A web browser and any familiar library or information service: catalogue, repository, library website, digital exhibit, circulation desk, online reference channel, or records-request portal
+* Paper and pen, a slide tool, or a diagram tool such as diagrams.net
+* A word processor or Quarto document for the final one-page report
+* Optional: browser developer tools for viewing network or mobile behavior
+
+### Steps
+
+1. **Choose one task.** State it from the user's perspective, such as “Find whether the library has an online copy of a thesis” or “Ask a reference question outside opening hours.” Keep the task narrow.
+2. **Perform and record.** Complete the task once. Record the starting point, major actions, messages, result, time, and any uncertainty. Do not enter real sensitive data for this exercise.
+3. **Map the components.** Identify the interface, application or workflow, metadata and indexes, stored data or content, physical/network dependencies, people and roles, policies or standards, and external services.
+4. **Trace the information.** Show what the user supplies, what the system returns, and what data or logs may remain afterward.
+5. **Test one disruption.** Without damaging the service, simulate or inspect one constraint: narrow the browser window, use a browser's offline mode after loading, disable images, search a spelling variant, or try keyboard-only navigation.
+6. **Identify failures and impacts.** List at least three possible failure points, the people affected, the visible symptom, and one preventive or recovery measure.
+7. **Recommend one improvement.** Use the service-centered decision framework. Explain the benefit, required work, possible risk, responsible role, and simple success measure.
+8. **Reflect.** Answer the question below in about 150 words.
+
+### Expected output
+
+Submit one PDF, DOCX, HTML page, or `.qmd` containing:
+
+* a task statement and brief observation log;
+* a labeled service map with at least eight components;
+* a failure-and-impact table with at least three rows;
+* one prioritized recommendation; and
+* a 150-word reflection.
+
+> **Reflection question.** Which part of the service was least visible before the audit, and how did recognizing it change your judgment about who is responsible for service quality?
+
+### Activity checklist
+
+Use the checklist in @tbl-lab-checklist before submission. The checklist emphasizes traceable reasoning rather than graphic polish.
+
+```{r}
+#| label: tbl-lab-checklist
+#| results: asis
+lab_checklist <- data.frame(
+  Check = c("Task is specific and user centered", "Map includes social and technical components",
+            "Information inputs, outputs, and traces are shown", "At least three failures connect cause to user impact",
+            "Recommendation names owner, risk, and measure", "No real personal or confidential data appear",
+            "Reflection explains a changed understanding"),
+  Complete = rep("[ ]", 7)
+)
+ict_table(lab_checklist, "Service infrastructure audit submission checklist", "lab-checklist", c(3, .5))
+```
+
+### Short lab rubric
+
+@tbl-lab-rubric allocates 20 points. A map can be simple and still earn full credit if its relationships are accurate and clearly explained.
+
+```{r}
+#| label: tbl-lab-rubric
+#| results: asis
+lab_rubric <- data.frame(
+  Criterion = c("Task and observation", "Systems map", "Failure analysis", "Recommendation", "Reflection and presentation"),
+  Points = c(3, 6, 4, 4, 3),
+  Full_credit = c("Task is bounded; observations separate evidence from assumption",
+                  "At least eight relevant components and meaningful relationships are labeled",
+                  "Three plausible failures connect causes, symptoms, stakeholders, and responses",
+                  "Improvement is feasible and addresses benefit, risk, owner, and measure",
+                  "Reflection is specific; output is readable, accessible, and privacy conscious")
+)
+ict_table(lab_rubric, "Rubric for the service infrastructure audit", "lab-rubric", c(1, .4, 2.8))
+```
+
+## Ethical and professional issue: convenience, privacy, and unequal access
+
+Digital services often promise convenience through personalization, analytics, and persistent accounts. A discovery system may remember searches; a chat service may keep transcripts; a building-entry system may record visits; an e-book platform may observe reading behavior. Each feature can support service improvement, but each also creates information about people.
+
+LIS ethics gives special weight to privacy because inquiry can reveal political belief, health concern, religious interest, legal difficulty, identity, or personal vulnerability. The IFLA code connects privacy, confidentiality, equitable service, access to information, and professional responsibility [@ifla2012ethics]. Privacy is not the same as secrecy. It concerns a person's ability to understand and influence how information about them is collected, used, shared, retained, and secured.
+
+The Philippine Data Privacy Act applies principles of transparency, legitimate purpose, and proportionality to personal information processing [@philippines2012dpa]. For an ICT project, these principles lead to practical questions:
+
+* Is each collected field necessary for a stated service purpose?
+* Is the notice understandable at the moment of collection?
+* Can the task be completed with less identification or shorter retention?
+* Who can view the data, and are privileges reviewed?
+* Does a vendor reuse or transfer the information?
+* What happens when a person seeks access, correction, or deletion where applicable?
+* How will a breach be detected, contained, documented, and communicated?
+
+Privacy can also conflict with accessibility and inclusion if handled simplistically. Requiring an app-based one-time password may strengthen authentication while excluding users without compatible phones or stable signals. Removing all service data may protect privacy but prevent the library from detecting systematic exclusion. Good governance seeks proportionate, documented solutions: collect the minimum useful data, restrict access, aggregate where possible, retain only as justified, offer accessible alternatives, and evaluate outcomes.
+
+Digital exclusion is broader than whether a connection exists. Meaningful access also depends on affordability, device quality, language, accessibility, skills, time, confidence, and support. The 2022 IFLA-UNESCO Public Library Manifesto explicitly includes access through digital technologies and the development of information and digital literacy within contemporary public library missions [@ifla2022manifesto]. An online-only service can therefore expand reach for some people while withdrawing it from others.
+
+> **Ethical checkpoint.** A vendor offers a free discovery interface in exchange for using search logs to improve commercial products. What information would you need before recommending acceptance? Who should take part in the decision?
+
+## Review questions
+
+1. **Identification:** What is a sociotechnical system?
+2. **Identification:** Define metadata and give one descriptive and one administrative example.
+3. **Short answer:** Why is a library website an interface rather than the entire information service?
+4. **Short answer:** Distinguish technical, syntactic, semantic, and organizational interoperability.
+5. **Short answer:** Explain why cloud services still depend on physical infrastructure.
+6. **Applied analysis:** A repository accepts PDF files but records all dates in one field without defining what the date means. Which dimensions of interoperability may succeed, and which may fail?
+7. **Applied analysis:** A public library scans rare local newspapers but does not create titles, dates, page order, rights information, or backups. What has it accomplished, and what service and stewardship work remains?
+8. **Scenario:** Students repeatedly share one staff account to operate a circulation system. Identify two risks and two improvements that consider both workflow and security.
+9. **Scenario:** A library replaces all in-person renewals with a mobile app. Evaluate the change using access, privacy, reliability, and accountability criteria.
+10. **Synthesis:** Choose one LIS role and explain how a technical choice in that role can affect discovery, preservation, or user rights elsewhere in the system.
+
+## Mini case: The provincial heritage portal
+
+The Provincial Library and Archives receives a grant to build an online heritage portal before the province's founding anniversary. The collection includes Spanish-period documents, postwar photographs, oral-history recordings, and recent community festival videos. The grant budget covers scanning equipment and one year of commercial hosting. A supplier promises to launch within three months using automatically generated descriptions. The archives has two staff members, neither assigned full-time to the project. Some photographs name children; several oral histories discuss land disputes; community representatives have not yet been consulted. Internet service is intermittent in upland municipalities, and the contract does not state how data can be exported when hosting ends.
+
+**Guide questions**
+
+1. Map at least eight social and technical components that must be included in the project beyond scanning equipment and a website.
+2. Identify the three most serious risks. For each, name the affected stakeholders and one immediate mitigation.
+3. Recommend a realistic first phase that could produce public value while protecting rights and improving long-term continuity.
+
+## Further reading and tools
+
+### Readings and standards
+
+* **IFLA-UNESCO Public Library Manifesto 2022.** A concise statement of public-library missions in access, culture, education, inclusion, and digital participation [@ifla2022manifesto].
+* **NISO, _Understanding Metadata_.** An accessible introduction to metadata functions and concepts [@niso2004understanding].
+* **Library of Congress MARC 21 documentation.** A primary reference for the structure and communication of bibliographic records [@locmarc21].
+* **WCAG 2.2.** The W3C standard used to evaluate web accessibility [@w3cwcag22].
+* **Republic Act No. 10173 and National Privacy Commission guidance.** Primary Philippine references for personal data protection [@philippines2012dpa; @npc2023dpa].
+* **Star and Ruhleder's infrastructure framework.** A foundational scholarly account of infrastructure as relational, embedded, learned, and visible upon breakdown [@star1996steps].
+
+### Open and widely accessible tools
+
+* **diagrams.net:** browser-based system and workflow diagramming.
+* **LibreOffice:** open-source word processing, spreadsheets, presentations, and database tools.
+* **Zotero:** open-source reference collection and citation management.
+* **OpenRefine:** interactive cleaning and reconciliation of messy structured data.
+* **DB Browser for SQLite:** graphical introduction to relational databases and SQL.
+* **R and RStudio or Positron:** reproducible data analysis and automation [@r2026].
+* **Quarto:** open-source publishing from Markdown and executable code to HTML, DOCX, PDF, and other formats [@quarto2026docs].
+
+### Chapter 1 bridge
+
+The next chapter opens the network and web layers shown in @fig-service-layers. You will trace how a browser locates a server, requests a resource, receives HTML, and presents a library page. Keep the systems map from this chapter: in Chapter 2, you will revise it with protocols, addresses, security, hosting, and web accessibility.

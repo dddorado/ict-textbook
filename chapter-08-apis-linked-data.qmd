@@ -1,0 +1,630 @@
+---
+title: "APIs, Linked Data, and the Semantic Web"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+latex_escape <- function(x) {
+  x <- gsub("\\", "<<<BACKSLASH>>>", as.character(x), fixed = TRUE)
+  x <- gsub("([#$%&_{}])", "\\\\\\1", x, perl = TRUE)
+  x <- gsub("~", "\\textasciitilde{}", x, fixed = TRUE)
+  gsub("<<<BACKSLASH>>>", "\\textbackslash{}", x, fixed = TRUE)
+}
+
+ict_table <- function(data, caption, label = NULL, widths = NULL) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  names(data) <- gsub("_", " ", names(data), fixed = TRUE)
+  anchor <- if (!is.null(label)) paste0("{#tbl-", label, "}") else ""
+  if (knitr::is_latex_output()) {
+    align <- paste(rep("Y", ncol(data)), collapse = "")
+    header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
+    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
+    out <- c(
+      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
+      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+      "\\toprule", paste0(header, " \\\\"), "\\midrule",
+      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
+    )
+  } else if (knitr::is_html_output()) {
+    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+  } else {
+    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+  }
+  knitr::asis_output(paste(out, collapse = "\n"))
+}
+```
+
+## Chapter overview
+
+A reference librarian maintains a subject guide on Philippine children's literature. Every month, the librarian searches several catalogues, copies titles and authors into a table, checks cover links, and updates availability notes. The guide is useful, but the process is slow and quickly becomes outdated. A public books API could supply structured records, yet its creator names, subjects, editions, and cover images do not always match local cataloguing practice. A linked-data service could connect authors and subjects to stable identifiers, but those links may also import errors or externally imposed descriptions.
+
+The central problem of this chapter is **how information systems exchange structured data and meaningful relationships without losing provenance, context, governance, or professional judgment**. An application programming interface (API) lets one software system request functions or data from another under a documented contract. Linked data uses web identifiers and explicit statements to connect entities across datasets. The semantic web is the broader vision of web data whose meanings and relationships can be processed across organizational boundaries.
+
+These technologies matter throughout LIS. A catalogue retrieves cover images and availability. A repository exposes metadata for harvesting. A digital exhibit embeds manifests. A reference guide draws from an authority service. A records dashboard combines data from agencies. A discovery layer queries indexes and link resolvers. An archives portal connects people, places, organizations, collections, and events. The technical exchange is only one layer: terms of use, privacy, attribution, rate limits, data quality, sustainability, and community authority determine whether reuse is responsible.
+
+This chapter introduces API requests and responses, endpoints, parameters, authentication, HTTP methods and status codes, JSON and XML, pagination, rate limiting, error handling, identifiers, RDF triples, vocabularies, ontologies, knowledge graphs, JSON-LD, and SPARQL. R examples use `httr2` and `jsonlite`, but the concepts apply across programming languages and platforms [@httr22026; @jsonlite2026].
+
+## Learning objectives
+
+After completing this chapter, you should be able to:
+
+1. **Describe** an API exchange using client, endpoint, method, parameters, headers, status, and response body.
+2. **Interpret** nested JSON and XML structures and select fields needed for an LIS service.
+3. **Construct and document** a read-only API request in R with error, pagination, rate-limit, and provenance handling.
+4. **Express** bibliographic or cultural-heritage relationships as RDF subject-predicate-object triples using stable identifiers.
+5. **Read and modify** a simple SPARQL `SELECT` query.
+6. **Evaluate** data reuse for licensing, privacy, bias, provenance, accessibility, reliability, and sustainability.
+
+## Key concepts
+
+@tbl-api-linked-key-concepts defines the chapter vocabulary. Several concepts belong to different layers: JSON is a syntax, an API is an interface contract, and RDF is a data model.
+
+```{r}
+#| label: tbl-api-linked-key-concepts
+#| results: asis
+api_linked_key_concepts <- data.frame(
+  Term = c("API", "Client", "Server", "Endpoint", "Resource", "Request", "Response",
+           "HTTP method", "Parameter", "Header", "Status code", "Authentication", "Authorization",
+           "API key", "Rate limit", "Pagination", "JSON", "XML", "Serialization", "Schema",
+           "URI", "IRI", "Persistent identifier", "RDF", "Triple", "Literal", "Vocabulary",
+           "Ontology", "Linked data", "Knowledge graph", "JSON-LD", "SPARQL", "Provenance"),
+  Working_definition = c(
+    "A documented interface through which software requests data or operations from other software.",
+    "The application that sends a request.", "The system that receives a request and returns a response.",
+    "A network address representing an API function or resource collection.",
+    "An entity or data object exposed through an interface.", "A message asking a service to perform an operation.",
+    "A message reporting the outcome and often carrying returned data.",
+    "A verb such as GET or POST expressing the requested kind of action.",
+    "A value that modifies a request, such as query, field, page, or limit.",
+    "Metadata accompanying a request or response, such as content type or authorization.",
+    "A three-digit HTTP code summarizing the outcome of a request.",
+    "The process of establishing the identity of a client or user.",
+    "The process of deciding what an authenticated identity may do.",
+    "A credential identifying or controlling an application that calls an API.",
+    "A rule limiting requests within a time period.", "A method for returning a large result set in smaller parts.",
+    "A text format representing objects, arrays, names, values, numbers, booleans, and nulls.",
+    "A markup language representing nested elements, attributes, and text.",
+    "A concrete syntax used to encode a data model for storage or exchange.",
+    "A formal or documented description of expected structure and constraints.",
+    "A uniform resource identifier used to identify a resource.",
+    "An internationalized resource identifier that extends URI characters beyond ASCII.",
+    "A managed identifier intended to remain stable even when locations or systems change.",
+    "The Resource Description Framework model for statements about resources.",
+    "An RDF statement consisting of subject, predicate, and object.",
+    "A value such as a string, date, number, or language-tagged text rather than another identified resource.",
+    "A managed set of terms used to describe classes, properties, or values.",
+    "A formal representation of concepts, properties, constraints, and relationships in a domain.",
+    "Data published with web identifiers and explicit links to related data.",
+    "A graph of identified entities and typed relationships assembled from one or more sources.",
+    "A JSON serialization designed to express linked data.",
+    "A query language and protocol for RDF data.",
+    "Information about the origin, custody, derivation, and transformations of data."
+  )
+)
+ict_table(api_linked_key_concepts, "Key concepts for APIs and linked data",
+          "api-linked-key-concepts", c(1, 3))
+```
+
+## Core discussion
+
+### Interfaces as service contracts
+
+An API is not simply “a URL that returns data.” It is a contract describing what may be requested, how requests are expressed, how responses are structured, what errors mean, which uses are authorized, and how service changes are communicated. Documentation may specify endpoints, parameters, examples, schemas, authentication, rate limits, versions, licensing, and support.
+
+In a graphical interface, a person selects a search field and clicks a button. With an API, software expresses the action directly. This enables repeatable integration, but it removes many visual warnings. A programmer must read the documentation and make limits explicit.
+
+@fig-api-exchange shows a simplified read-only request. The server may consult an index or database before producing a response.
+
+```{mermaid}
+%%| label: fig-api-exchange
+%%| fig-cap: "A basic API request-response exchange"
+sequenceDiagram
+    participant C as LIS client script
+    participant A as API endpoint
+    participant D as Data service
+    C->>A: GET /search?q=children&limit=20
+    A->>A: Authenticate, validate, and apply limits
+    A->>D: Run approved query
+    D-->>A: Matching records
+    A-->>C: 200 + JSON body + response headers
+    C->>C: Validate, transform, log, and attribute
+```
+
+As @fig-api-exchange indicates, a successful status does not guarantee trustworthy data. The client must validate structure, preserve provenance, and check whether the response is complete.
+
+### Anatomy of a request
+
+Consider this illustrative URL:
+
+```text
+https://openlibrary.org/search.json?q=philippine+folktales&fields=key,title,author_name,first_publish_year&limit=20
+```
+
+It contains:
+
+* the scheme `https`;
+* the host `openlibrary.org`;
+* the endpoint path `/search.json`;
+* query parameters after `?`;
+* parameter-value pairs separated by `&`.
+
+The query value must be URL-encoded. Libraries should use an HTTP client rather than construct complex URLs through manual concatenation. An HTTP client manages encoding, headers, timeouts, and errors more reliably.
+
+HTTP methods have conventional meanings. `GET` retrieves a representation and should not alter data. `POST` commonly creates a resource or submits processing. `PUT` replaces or creates at a known identifier, `PATCH` applies a partial change, and `DELETE` requests removal. Actual behavior depends on the API contract. A method that modifies a production catalogue is a consequential action requiring authorization, validation, logging, and usually confirmation.
+
+@tbl-http-api-status lists common status families and reasonable client responses. HTTP semantics are standardized, while each API defines additional error details [@fielding2022http].
+
+```{r}
+#| label: tbl-http-api-status
+#| results: asis
+api_status <- data.frame(
+  Code = c("200", "201", "204", "400", "401", "403", "404", "409", "429", "500/503"),
+  Meaning = c("Request succeeded", "Resource created", "Succeeded with no response body",
+              "Invalid request", "Authentication required or failed", "Identity lacks permission",
+              "Resource or endpoint not found", "Request conflicts with current state",
+              "Too many requests", "Server or service failure"),
+  Client_action = c("Validate body and completeness", "Verify location and created representation",
+                    "Do not attempt to parse a body", "Correct syntax, parameter, or data",
+                    "Refresh or correct credentials without exposing them", "Stop; review authorization and policy",
+                    "Check identifier, version, or deletion", "Retrieve current state and resolve safely",
+                    "Honor retry guidance and reduce rate", "Retry cautiously later; log and avoid duplicate writes")
+)
+ict_table(api_status, "Common HTTP status codes in API work", "http-api-status", c(.6, 1.8, 2.5))
+```
+
+As @tbl-http-api-status shows, retrying every failure is unsafe. Repeating a malformed request wastes capacity; repeating a write may create duplicates unless the operation is idempotent.
+
+### Authentication, authorization, and secrets
+
+Some public APIs allow anonymous reading. Others require an API key, OAuth token, institutional identity, or user authorization. **Authentication** establishes identity; **authorization** determines allowed actions. An API key should not be embedded in a published `.qmd`, committed to Git, printed in logs, or pasted into a public issue.
+
+Credentials can be stored in environment variables and read at runtime:
+
+```r
+api_key <- Sys.getenv("BOOKS_API_KEY")
+if (api_key == "") stop("BOOKS_API_KEY is not configured")
+```
+
+Environment variables reduce accidental disclosure but do not replace secure secret storage, rotation, restricted permissions, and incident response. A client should request only the scopes it needs. A guide that reads public book data does not need permission to modify records.
+
+### JSON: nested objects and arrays
+
+JSON is a text interchange format built from objects, arrays, strings, numbers, booleans, and `null` [@bray2017json]. Objects use name-value pairs; arrays contain ordered values.
+
+```json
+{
+  "key": "/works/OL123W",
+  "title": "Mga Kuwentong Bayan",
+  "authors": [
+    {"name": "A. Dela Cruz", "id": "/authors/OL45A"}
+  ],
+  "first_publish_year": 1998,
+  "languages": ["fil", "eng"],
+  "open_access": true,
+  "description": null
+}
+```
+
+The top level is an object. `authors` is an array of objects; `languages` is an array of strings; `open_access` is logical; `description` is explicitly null. A rectangular table cannot represent every nested relationship without transformation. Flattening authors into one string is convenient but may discard identifiers and roles.
+
+In R, `jsonlite::fromJSON()` parses JSON into R objects [@jsonlite2026]:
+
+```{r}
+#| label: lst-parse-json
+#| eval: false
+#| code-summary: "Parse and inspect a JSON response"
+library(jsonlite)
+
+raw_text <- readLines("data/sample_response.json", warn = FALSE)
+payload <- fromJSON(paste(raw_text, collapse = "\n"), simplifyVector = FALSE)
+
+names(payload)
+payload$title
+payload$authors[[1]]$name
+payload$languages
+```
+
+Before flattening, inspect names, types, nesting, optional fields, and nulls. An API may return no `author_name`, several authors, or different structures across record types.
+
+### XML and namespaces
+
+XML represents nested elements, attributes, and text [@w3c2008xml]. Library standards frequently use XML, including MARCXML, Dublin Core exchanges, OAI-PMH responses, and some authority services.
+
+```xml
+<record xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <dc:identifier>local:123</dc:identifier>
+  <dc:title xml:lang="fil">Mga Kuwentong Bayan</dc:title>
+  <dc:creator>A. Dela Cruz</dc:creator>
+  <dc:language>fil</dc:language>
+</record>
+```
+
+The `dc` prefix is bound to a namespace URI. The prefix itself can change while the namespace identity remains. Parsing XML by searching strings such as `<dc:title>` is fragile because whitespace, prefixes, attributes, and nesting can vary. Use an XML parser that understands namespaces.
+
+JSON and XML are serializations, not guarantees of semantics. A JSON property named `author` and an XML element named `creator` may or may not express the same rule. Interoperability requires documentation, schema mapping, and shared or reconciled vocabularies.
+
+@tbl-json-xml compares common characteristics without declaring a universal winner.
+
+```{r}
+#| label: tbl-json-xml
+#| results: asis
+json_xml <- data.frame(
+  Dimension = c("Basic structure", "Metadata features", "Typical API use", "LIS examples", "Main caution"),
+  JSON = c("Objects, arrays, names, and scalar values", "No native namespaces; conventions or JSON-LD contexts add meaning",
+           "Common in contemporary web APIs", "Search results, IIIF manifests, JSON-LD records",
+           "Nested and optional data can be flattened incorrectly"),
+  XML = c("Elements, attributes, text, and ordered nesting", "Namespaces, schemas, mixed content, and attributes",
+          "Common in established standards and enterprise exchange", "MARCXML, OAI-PMH, METS, EAD",
+          "Namespace-unaware parsing and string manipulation are error-prone")
+)
+ict_table(json_xml, "Selected characteristics of JSON and XML", "json-xml", c(1, 2, 2))
+```
+
+As @tbl-json-xml demonstrates, format selection follows service requirements, standards, tooling, and partner capacity.
+
+### Calling a read-only API in R
+
+The `httr2` package provides a structured way to build HTTP requests and process responses [@httr22026]. The following example is not executed during book rendering because external services can be unavailable or change.
+
+```{r}
+#| label: lst-api-request
+#| eval: false
+#| code-summary: "Request selected Open Library search fields"
+library(httr2)
+
+request <- request("https://openlibrary.org/search.json") |>
+  req_url_query(
+    q = "philippine folktales",
+    fields = "key,title,author_name,first_publish_year,language",
+    limit = 20
+  ) |>
+  req_user_agent("LIS-course-lab/1.0 (course contact: instructor@example.edu)") |>
+  req_timeout(20) |>
+  req_retry(max_tries = 3)
+
+response <- req_perform(request)
+resp_status(response)
+payload <- resp_body_json(response, simplifyVector = FALSE)
+```
+
+Open Library documents public APIs for searching and retrieving book-related data [@openlibrary2026api]. Even when authentication is not required, a client should identify itself appropriately, limit traffic, cache responses when permitted, and follow published terms.
+
+The script should check more than status:
+
+```r
+stopifnot(resp_status(response) == 200)
+stopifnot(is.list(payload$docs))
+stopifnot(length(payload$docs) <= 20)
+```
+
+Do not assume every record contains every field. A safe extraction provides explicit missing values and preserves the source key:
+
+```{r}
+#| label: lst-api-extract
+#| eval: false
+#| code-summary: "Extract selected fields while preserving identifiers"
+first_or_na <- function(x) {
+  if (is.null(x) || length(x) == 0) NA_character_ else as.character(x[[1]])
+}
+
+records <- lapply(payload$docs, function(doc) {
+  data.frame(
+    source_key = first_or_na(doc$key),
+    title = first_or_na(doc$title),
+    creator = first_or_na(doc$author_name),
+    first_publish_year = first_or_na(doc$first_publish_year),
+    language = paste(unlist(doc$language), collapse = "; "),
+    stringsAsFactors = FALSE
+  )
+})
+
+guide_data <- do.call(rbind, records)
+```
+
+This extraction selects only fields needed for the guide. It does not claim to create a complete bibliographic record. Source identifiers and retrieval dates allow later verification.
+
+### Pagination, rate limits, caching, and change
+
+APIs rarely return every matching record in one response. **Pagination** may use page numbers, offsets, cursors, or continuation tokens. The response may include `next`, `total`, or limit information. A client should stop deliberately and detect repeated tokens to avoid an infinite loop.
+
+Rate limits protect shared services. A `429` response often indicates that the client should wait, reduce its request frequency, or consult a response header. Adding many parallel requests can worsen the problem. Caching a permitted response reduces network use and supports reproducibility, but cached data need a retrieval date and refresh policy.
+
+APIs evolve. Fields can be added, renamed, restructured, or deprecated. Versioned endpoints help but do not eliminate change. A sustainable integration requires:
+
+* schema and sample-response tests;
+* timeouts and bounded retries;
+* logs without secrets or unnecessary personal data;
+* a cached or saved raw response when licensing permits;
+* clear failure display rather than stale data presented as current;
+* an owner who monitors documentation and service notices;
+* a fallback or exit plan.
+
+### From identifiers to linked data
+
+Traditional records often store labels: `Manila`, `Jose Rizal`, or `Children's literature`. Labels are ambiguous and vary by language and time. Linked data uses identifiers for things and properties, while retaining labels for people.
+
+The foundational linked-data guidance recommends using HTTP identifiers, providing useful information when identifiers are looked up, and linking to other identifiers [@bernerslee2006linkeddata]. An identifier is not automatically correct or permanent, but it provides a reference that systems can distinguish from a text label.
+
+Persistent identifier systems include DOI for digital objects, ORCID for researchers, and locally governed archival or authority identifiers. Persistence is an organizational promise supported by governance and redirection, not a visual property of a URL [@doi2026handbook].
+
+### RDF triples: statements as a graph
+
+RDF represents statements as **triples**: subject, predicate, object [@w3c2014rdf]. The subject is an identified resource. The predicate identifies a property or relationship. The object is another resource or a literal.
+
+```text
+<https://example.edu/work/123>
+    <http://purl.org/dc/terms/title>
+    "Mga Kuwentong Bayan"@fil .
+
+<https://example.edu/work/123>
+    <http://purl.org/dc/terms/creator>
+    <https://example.edu/person/45> .
+```
+
+The first object is a Filipino-language literal. The second is another identified resource. Using a creator URI allows further statements about the person without repeating all details in every work record.
+
+@fig-rdf-graph visualizes a small graph. Arrows are predicates, not unlabeled lines.
+
+```{mermaid}
+%%| label: fig-rdf-graph
+%%| fig-cap: "A small bibliographic RDF graph"
+flowchart LR
+    W["Work URI: /work/123"] -->|"dcterms:title"| T["Mga Kuwentong Bayan @fil"]
+    W -->|"dcterms:creator"| P["Person URI: /person/45"]
+    W -->|"dcterms:subject"| S["Concept URI: /concept/folktales"]
+    W -->|"bf:instanceOf"| I["Instance URI: /instance/789"]
+    P -->|"rdfs:label"| N["A. Dela Cruz"]
+    S -->|"skos:prefLabel"| L["Folk literature"]
+```
+
+As @fig-rdf-graph shows, a graph can connect work, instance, person, and concept while keeping labels and relationships distinct. BIBFRAME applies linked-data principles to bibliographic description and distinguishes conceptual and material aspects such as Work, Instance, and Item [@loc2024bibframe].
+
+### Vocabularies, ontologies, and application profiles
+
+A vocabulary supplies identified terms; an ontology adds formal expression of classes, properties, relationships, and sometimes constraints. The difference is not always sharp in practice. DCMI Metadata Terms provides properties and classes useful across domains [@dcmi2020terms]. BIBFRAME and RDA vocabularies express bibliographic entities and relationships [@loc2024bibframe; @rdaregistry2026].
+
+Reusing a vocabulary does not mean using every term. An **application profile** identifies which terms a service uses, whether they are required or repeatable, their expected value types, and local constraints. Chapter 4's distinction among element sets, value vocabularies, content rules, and encodings remains essential.
+
+The Library of Congress Linked Data Service publishes authorities and vocabularies as dereferenceable identifiers [@loc2026id]. Linking a local subject to an external authority can improve reconciliation, but the local institution remains responsible for whether that concept represents the community appropriately.
+
+### JSON-LD: linked data in JSON
+
+JSON-LD expresses RDF-compatible linked data using JSON syntax and a context that maps short terms to identifiers [@w3c2020jsonld].
+
+```json
+{
+  "@context": {
+    "dcterms": "http://purl.org/dc/terms/",
+    "title": "dcterms:title",
+    "creator": {"@id": "dcterms:creator", "@type": "@id"}
+  },
+  "@id": "https://example.edu/work/123",
+  "title": {"@value": "Mga Kuwentong Bayan", "@language": "fil"},
+  "creator": "https://example.edu/person/45"
+}
+```
+
+Without the context, `title` and `creator` are merely local JSON property names. The context connects them to DCMI properties and declares that the creator value is an identifier rather than ordinary text. Contexts must be governed and preserved; changing a mapping can change meaning without changing the visible short property name.
+
+### SPARQL: asking graph-shaped questions
+
+SPARQL queries RDF graphs by matching triple patterns [@w3c2013sparql]. A basic query uses prefixes, selects variables, and specifies patterns in a `WHERE` block:
+
+```sparql
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT ?work ?title
+WHERE {
+  ?work dcterms:subject <https://example.edu/concept/folktales> ;
+        dcterms:title ?title .
+  FILTER(LANG(?title) = "fil")
+}
+LIMIT 20
+```
+
+The semicolon reuses the same subject. The query asks for works associated with one concept and Filipino-language titles. SPARQL can join across relationships without flattening everything into one table. Public endpoints such as the Wikidata Query Service provide environments for learning, subject to service limits and data quality [@wikidata2026query].
+
+SPARQL results are not inherently authoritative. They reflect what is present in the graph, which identifiers were linked, and which modeling decisions were made.
+
+### APIs, harvesting, and linked data are different tools
+
+@tbl-exchange-approaches distinguishes several mechanisms encountered in LIS.
+
+```{r}
+#| label: tbl-exchange-approaches
+#| results: asis
+exchange_approaches <- data.frame(
+  Approach = c("REST-style API", "OAI-PMH", "IIIF Presentation API", "SPARQL endpoint", "Bulk data export"),
+  Primary_use = c("Request resources or operations through HTTP", "Harvest repository metadata incrementally",
+                  "Describe and present digital objects and their structure", "Query RDF graphs by relationship patterns",
+                  "Transfer a complete or scheduled dataset snapshot"),
+  Strength = c("Flexible application integration", "Established repository harvesting protocol",
+               "Interoperable image and audiovisual presentation", "Graph traversal and semantic joins",
+               "Efficient reproducible processing at scale"),
+  Main_caution = c("Version, limits, authentication, and vendor dependence", "Metadata-only exchange and variable source quality",
+                   "Manifest interpretation, rights, and media-service dependencies", "Endpoint load, modeling complexity, and uneven links",
+                   "Freshness, secure transfer, storage, and schema drift")
+)
+ict_table(exchange_approaches, "Selected approaches to data exchange and query",
+          "exchange-approaches", c(1, 2, 2, 2))
+```
+
+As @tbl-exchange-approaches shows, an API is not automatically more modern or appropriate than harvesting or bulk export. Repositories may expose OAI-PMH for aggregation [@oai2008pmh]. Digital collections may publish IIIF manifests for interoperable presentation [@iiif2024presentation]. Large research datasets may be more responsibly distributed as versioned bulk files than through millions of API calls.
+
+## Philippine and Southeast Asian examples
+
+### Academic library: an API-powered subject guide
+
+A Philippine university library builds a guide to disaster-risk-reduction publications. A script queries an open bibliographic API for candidate titles, stores the raw response and retrieval date, and produces a review table. Librarians verify local relevance, editions, creator names, rights, and links before publication. The guide labels external data sources and includes locally catalogued government reports that the API does not cover.
+
+### National and local authority work
+
+Libraries and archives may reconcile names of Philippine agencies across reorganizations. A knowledge graph can represent that one agency succeeded another, used an earlier name during a period, and issued particular records. The model should preserve dates, source evidence, and uncertainty. It should not merge organizations only because acronyms match.
+
+### Cultural heritage and community identifiers
+
+A regional museum portal links objects to place and community identifiers. External global datasets improve cross-institution discovery but may contain colonial names, disputed boundaries, or categories rejected by communities. The portal preserves local preferred labels, records external matches with provenance and confidence, and allows contributing institutions to reject or revise links.
+
+### Public library mobile service
+
+A city library's mobile page calls an API for branch hours and service alerts. The interface caches the last successful response for low-bandwidth use but clearly displays when it was updated. If the API fails, the page shows a telephone and text-message contact rather than an empty schedule. Operational data are separated from patron account data.
+
+### Government open-data integration
+
+A civic information service combines agency datasets. Similar field names such as `location`, `region`, and `office` do not necessarily have the same meaning. The team publishes a data dictionary and transformation log, retains source identifiers, checks licenses, and avoids joining personal records merely because technical identifiers make linkage possible.
+
+> **Reflect:** Name two datasets that could improve a local information service if linked. What identifier would connect them, and what harm could result from an incorrect or excessive link?
+
+## Hands-on activity: Build an API-powered subject-guide dataset
+
+### Purpose
+
+Retrieve a small public API response, preserve the raw data, extract selected fields, document provenance and limitations, and produce a review-ready subject-guide table. This lab can complete the database or API mini-project.
+
+### Tools
+
+* R and Quarto;
+* packages `httr2`, `jsonlite`, `dplyr`, `readr`, and `knitr`;
+* the official Open Library API documentation [@openlibrary2026api];
+* a topic connected to an LIS service, such as local history, children's literature, archives, preservation, media literacy, or disaster information.
+
+### Steps
+
+1. Write a one-sentence audience and information need. Define inclusion and exclusion criteria before requesting data.
+2. Read the API documentation. Record endpoint, parameters, fields, authentication, rate limits, pagination, terms, and attribution requirements.
+3. Design a request for no more than 20 results and only necessary fields. Use `GET`, a descriptive user agent, HTTPS, and a timeout.
+4. Run the request once. Record retrieval time, final URL without secrets, HTTP status, relevant headers, and the source's documentation URL.
+5. Save the raw JSON response unchanged as `data/raw_response_YYYY-MM-DD.json` if the terms permit.
+6. Inspect structure before flattening. Note missing fields, arrays, nested objects, identifiers, and nulls.
+7. Extract source key, title, first creator, first publication year, language values, and one source link. Preserve multiple values or document how they were reduced.
+8. Add local fields: `selection_status`, `selection_reason`, `verified_by`, `verified_date`, and `local_note`. Do not present API results as endorsed resources before review.
+9. Validate row count, unique source keys, required titles, plausible years, and valid source URLs. Send anomalies to an exception table.
+10. Produce a review table and a separate five-item publishable table. Include source attribution and retrieval date.
+11. Express one selected book, creator, and topic as at least five RDF-like triples. Distinguish URI objects from literals and add a language tag where appropriate.
+12. Render a Quarto report containing method, request documentation, data dictionary, tables, limitations, ethics, and maintenance plan.
+
+### Expected output
+
+Submit:
+
+* a reproducible `.qmd` report and rendered HTML or DOCX;
+* saved raw response, subject to source terms;
+* cleaned CSV and exception CSV;
+* request and response metadata without credentials;
+* data dictionary and attribution statement;
+* five RDF-like triples with namespace notes;
+* five reviewed subject-guide entries; and
+* a 200-word reflection: **What meaning was lost or added when the API response became a local guide?**
+
+### Lab checklist
+
+- [ ] The information need and selection criteria precede the request.
+- [ ] Official API documentation and terms were consulted.
+- [ ] The request is bounded, read-only, identified, and reproducible.
+- [ ] Raw data and retrieval metadata are preserved when permitted.
+- [ ] Nested and repeated values are handled explicitly.
+- [ ] External identifiers remain attached to transformed records.
+- [ ] Errors, missing fields, and exceptions are visible.
+- [ ] Results receive human selection and verification.
+- [ ] Attribution and limitations appear in the output.
+- [ ] Credentials and unnecessary personal data are absent.
+
+### Assessment rubric
+
+@tbl-api-lab-rubric emphasizes service reasoning and responsible data handling alongside technical execution.
+
+```{r}
+#| label: tbl-api-lab-rubric
+#| results: asis
+api_lab_rubric <- data.frame(
+  Criterion = c("Service question and source", "Request and error handling", "Transformation and validation",
+                "Linked-data modeling", "Documentation, ethics, and sustainability"),
+  Weight = c("20%", "20%", "25%", "15%", "20%"),
+  Strong_performance = c("Audience, criteria, API fitness, scope, and terms are justified",
+                         "Request is bounded and reproducible; status, limits, timeouts, and failures are handled",
+                         "Raw data and identifiers are preserved; nesting, missingness, and exceptions are explicit",
+                         "Triples distinguish resources and literals and reuse terms with documented meaning",
+                         "Attribution, provenance, privacy, bias, accessibility, maintenance, and fallback are addressed")
+)
+ict_table(api_lab_rubric, "Rubric for the API-powered subject-guide mini-project",
+          "api-lab-rubric", c(1.2, .6, 3))
+```
+
+## Ethical and professional issue: linkage, consent, and contextual integrity
+
+Linked data can make relationships visible, but visibility is not always harmless. Connecting an archival name to a current identity, a historical address to a household, or a community object to a sacred place can expose people or knowledge beyond the context in which information was provided. Public availability in one database does not automatically justify aggregation, enrichment, or republication in another.
+
+APIs also make extraction scalable. A website intended for individual lookup may expose an API that enables bulk profiling. Technical access is not the same as ethical permission. Professionals must examine law, license, consent, expectations, community protocols, and the consequences of combination.
+
+Responsible API and linked-data practice includes:
+
+* collect only fields necessary for the stated service;
+* distinguish identifiers, assertions, labels, and inferred links;
+* record source, retrieval time, transformation, license, and confidence;
+* retain local or community-preferred description when external links are added;
+* avoid publishing precise sensitive locations or personal relationships without authority;
+* provide correction, unlinking, and takedown routes;
+* test for language, geographic, historical, and collection bias;
+* do not expose API keys, tokens, patron identifiers, or query histories;
+* review vendor reuse, analytics, retention, and cross-border processing;
+* design a fallback when an external API changes or disappears.
+
+The Philippine Data Privacy Act applies when linked datasets contain personal information, including when separate fields become identifying through combination [@philippines2012dpa; @npc2023dpa]. Data minimization and purpose limitation should guide both requests and published outputs.
+
+Machine-generated links require particular care. Entity reconciliation may assign a confidence score, but a high score is not evidence of consent or community acceptance. Namesakes, transliteration, changing boundaries, and organizational succession create plausible false matches. Use automated matching to produce candidates, preserve alternatives, and require appropriate review for consequential links.
+
+> **Professional judgment prompt:** A genealogy API can connect digitized school registers to living family trees. What lawful purpose, consent, time limits, access restrictions, accuracy controls, and community consultation would be required before a library enabled the connection?
+
+## Review questions
+
+1. **Identification:** Distinguish endpoint, parameter, header, status code, and response body.
+2. **Identification:** What is the difference between authentication and authorization?
+3. **Short answer:** Why should a client preserve a raw response and retrieval metadata when source terms permit?
+4. **Short answer:** Explain why JSON, an API, and RDF are not interchangeable terms.
+5. **Code reading:** In a JSON record, `authors` is an array of objects. What information might be lost by keeping only the first author name?
+6. **Applied analysis:** A service returns `429` with a retry header. What should the client do, and what should it avoid doing?
+7. **Applied modeling:** Write three RDF-like triples connecting a digitized photograph, its photographer, and a depicted place. Identify resources and literals.
+8. **Scenario:** A public API changes `author_name` from a string to an array. How should schema tests, error handling, and maintenance respond?
+9. **Scenario:** A knowledge graph links two people because their romanized names and birth years match. What additional evidence and review are needed?
+10. **Critical analysis:** When would bulk export be more appropriate than an API or SPARQL endpoint for an LIS project?
+
+## Mini case: The regional heritage graph
+
+Five Southeast Asian museums create a shared portal linking objects, makers, places, communities, and historical events. A contractor reconciles names against a global knowledge graph and automatically accepts matches above 90% confidence. The portal gains multilingual labels and external links, but it also merges two artists with similar romanized names, assigns present-day nationalities to people who lived before current borders, exposes the location of a sacred site, and replaces a community-preferred object name with a colonial term. Source institutions cannot see which statements came from them, the contractor, or the external graph.
+
+### Guide questions
+
+1. Which failures involve identity, modeling, provenance, privacy, community authority, and workflow governance?
+2. How should the graph represent competing labels, historical jurisdictions, uncertain matches, and statement-level sources?
+3. Design a correction and approval workflow that preserves useful links without treating automated reconciliation as authoritative.
+
+## Further reading and tools
+
+### Readings and standards
+
+* **HTTP Semantics.** The authoritative specification for methods, statuses, headers, and HTTP behavior [@fielding2022http].
+* **RFC 8259.** The JSON data interchange specification [@bray2017json].
+* **XML 1.0.** The W3C recommendation for XML syntax [@w3c2008xml].
+* **RDF 1.1 Concepts and Abstract Syntax.** The core RDF data model [@w3c2014rdf].
+* **SPARQL 1.1 Query Language.** The W3C recommendation for querying RDF [@w3c2013sparql].
+* **JSON-LD 1.1.** A JSON-based serialization for linked data [@w3c2020jsonld].
+* **BIBFRAME 2.0 Model.** Library of Congress documentation for a bibliographic linked-data model [@loc2024bibframe].
+* **DCMI Metadata Terms.** Reusable properties and classes for resource description [@dcmi2020terms].
+
+### Open or widely accessible tools
+
+* **Open Library APIs:** public book and catalogue-related interfaces for bounded learning projects [@openlibrary2026api].
+* **Library of Congress Linked Data Service:** browsable and machine-readable authority and vocabulary data [@loc2026id].
+* **Wikidata Query Service:** a public SPARQL learning and exploration environment [@wikidata2026query].
+* **httr2 and jsonlite:** R packages for HTTP requests and JSON processing [@httr22026; @jsonlite2026].
+* **Postman, Insomnia, or Bruno:** graphical clients for inspecting API requests and responses; do not save secrets in shared workspaces.
+* **RDF playgrounds and validators:** useful for checking syntax, but sensitive institutional data should not be pasted into external services.
+
+### Closing synthesis
+
+APIs make functions and data addressable across systems. JSON and XML encode responses. Identifiers distinguish resources from labels. RDF expresses statements as graph relationships. Vocabularies contribute shared meaning, JSON-LD carries that meaning in JSON, and SPARQL asks questions across graphs. Each layer solves a different problem.
+
+For LIS professionals, successful integration is not simply receiving a `200` status or producing a dense network visualization. The relevant question is: **Can users and maintainers understand where the data came from, what each relationship means, which values were transformed, what the source permits, which people or communities could be harmed, and what happens when the external service changes?** Chapter 9 turns from data exchange to the experience of people using these services, emphasizing usability, accessibility, responsive design, and mobile contexts.

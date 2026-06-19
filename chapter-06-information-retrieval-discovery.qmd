@@ -1,0 +1,547 @@
+---
+title: "Information Retrieval and Discovery Systems"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+latex_escape <- function(x) {
+  x <- gsub("\\", "<<<BACKSLASH>>>", as.character(x), fixed = TRUE)
+  x <- gsub("([#$%&_{}])", "\\\\\\1", x, perl = TRUE)
+  x <- gsub("~", "\\textasciitilde{}", x, fixed = TRUE)
+  gsub("<<<BACKSLASH>>>", "\\textbackslash{}", x, fixed = TRUE)
+}
+
+ict_table <- function(data, caption, label = NULL, widths = NULL) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  names(data) <- gsub("_", " ", names(data), fixed = TRUE)
+  anchor <- if (!is.null(label)) paste0("{#tbl-", label, "}") else ""
+  if (knitr::is_latex_output()) {
+    align <- paste(rep("Y", ncol(data)), collapse = "")
+    header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
+    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
+    out <- c(
+      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
+      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+      "\\toprule", paste0(header, " \\\\"), "\\midrule",
+      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
+    )
+  } else if (knitr::is_html_output()) {
+    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+  } else {
+    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+  }
+  knitr::asis_output(paste(out, collapse = "\n"))
+}
+```
+
+## Chapter overview
+
+A first-year student types `climate change Philippines` into a university discovery box. The system returns tens of thousands of records. A recent local policy report appears below older foreign articles; several promising records have no full-text link; a digitized map in the university repository does not appear at all. The search has produced results, but has it supported discovery?
+
+The central problem of this chapter is **how an information system turns a human information need into a useful, explainable, and actionable set of results**. People ask questions in incomplete and changing language. Systems work with stored representations: terms, fields, identifiers, relationships, holdings, licenses, and usage signals. Information retrieval (IR) joins these worlds through indexing, query processing, matching, ranking, display, and access services.
+
+Retrieval is not merely a search-box feature. It is an infrastructure connecting cataloguing, metadata, databases, repositories, licensed collections, archives, reference work, and user interfaces. A ranking algorithm cannot recover a subject term that was never assigned. A beautiful interface cannot supply a missing license link. A complete index may still fail a learner who does not know the vocabulary of a field. Discovery quality is therefore a shared responsibility among metadata workers, systems librarians, collection managers, vendors, reference librarians, and users.
+
+This chapter explains the retrieval pipeline, Boolean and fielded searching, text processing, relevance ranking, facets, precision and recall, discovery layers, federated search, and link resolution. It also asks whose language, collections, and behavior become visible in a discovery system. The aim is not to memorize one vendor interface, but to develop concepts that transfer across catalogues, databases, repositories, archives, and web-scale discovery services.
+
+## Learning objectives
+
+After completing this chapter, you should be able to:
+
+1. **Explain** how records, fields, tokens, indexes, queries, matching, and ranking support retrieval.
+2. **Construct** Boolean, phrase, fielded, truncated, and faceted searches for a stated information need.
+3. **Calculate and interpret** precision and recall in a small relevance-judgment set.
+4. **Compare** catalogues, subject databases, repositories, federated search tools, and discovery layers by coverage and function.
+5. **Diagnose** retrieval failures involving metadata, indexing, query processing, ranking, interface design, or access resolution.
+6. **Recommend** an ethical and evidence-based improvement to a discovery service.
+
+## Key concepts
+
+@tbl-ir-key-concepts provides the vocabulary used throughout the chapter. The terms describe different stages of a service; treating them as synonyms makes troubleshooting difficult.
+
+```{r}
+#| label: tbl-ir-key-concepts
+#| results: asis
+ir_key_concepts <- data.frame(
+  Term = c("Information need", "Corpus", "Document", "Record", "Field", "Index",
+           "Inverted index", "Token", "Query", "Controlled vocabulary", "Boolean operator",
+           "Phrase search", "Truncation", "Stemming", "Synonym expansion", "Facet",
+           "Relevance", "Ranking", "Precision", "Recall", "Discovery layer",
+           "Central index", "Federated search", "Link resolver", "OpenURL", "Relevance judgment"),
+  Working_definition = c(
+    "A gap in knowledge or evidence that motivates a search.",
+    "The collection of items or records available to be searched.",
+    "A retrievable unit, such as an article, book, record, image, dataset, or archival description.",
+    "A structured representation of an item or resource.",
+    "A named part of a record, such as title, creator, subject, or date.",
+    "A structure that supports faster lookup than scanning every record at query time.",
+    "A mapping from terms to the documents or records in which they occur.",
+    "A unit produced when text is divided for indexing or query processing.",
+    "A formal expression submitted to a retrieval system.",
+    "An authorized set of terms and relationships used consistently for description and retrieval.",
+    "AND, OR, or NOT used to combine or exclude search conditions.",
+    "A request for words in a specified sequence, often enclosed in quotation marks.",
+    "A search technique that retrieves multiple word endings from a shared character string.",
+    "Reduction of related word forms to a common stem for matching.",
+    "Automatic or deliberate addition of terms with similar meanings.",
+    "A category and value used to narrow or explore a result set.",
+    "The degree to which a result helps satisfy an information need in context.",
+    "The ordering of matched results using a scoring method.",
+    "The proportion of retrieved results judged relevant.",
+    "The proportion of all relevant items in the corpus that were retrieved.",
+    "A user-facing service that searches and presents records from multiple collections or indexes.",
+    "A prebuilt aggregated index containing metadata or content from many sources.",
+    "A method that sends a query to multiple remote systems and merges returned results.",
+    "A service that uses citation and institutional context to direct a user to an available copy or service.",
+    "A structured link carrying metadata about a requested item and the user's context to a resolver.",
+    "A documented decision that a result is or is not useful for a stated need."
+  )
+)
+ict_table(ir_key_concepts, "Key concepts in information retrieval and discovery",
+          "ir-key-concepts", c(1, 3))
+```
+
+## Core discussion
+
+### From an information need to an accessible item
+
+An **information need** is not identical to the words typed into a box. A student who enters `rice pest` may need a recent, locally applicable treatment guide written in Filipino and available without payment. The two-word query expresses only part of that need. During searching, the student may learn the scientific name of a pest, discover a government agency, or decide that date matters more than language. Searching is therefore iterative: the user and the system exchange signals, and the user's understanding changes.
+
+@fig-retrieval-cycle shows the service cycle. The upper path describes system work; the lower return path shows how results help a person revise the query or even the original question.
+
+```{mermaid}
+%%| label: fig-retrieval-cycle
+%%| fig-cap: "The information retrieval and access cycle"
+flowchart LR
+    N["Information need"] --> Q["Query representation"]
+    C["Corpus: records and content"] --> I["Processing and index"]
+    Q --> M["Matching and ranking"]
+    I --> M
+    M --> D["Results display and facets"]
+    D --> J["User judgment"]
+    J --> A["Access, save, cite, or request"]
+    J -->|"revise terms, filters, or scope"| Q
+    A -->|"new knowledge or gap"| N
+```
+
+As @fig-retrieval-cycle indicates, successful discovery has at least two outcomes: the user identifies a suitable resource and can take a meaningful next action. A record marked “available” that leads to a broken link is a discovery failure even if the ranking was excellent.
+
+### Records, fields, and the searchable corpus
+
+A **corpus** is the body of records or content that a system can search. In a catalogue it may consist mainly of bibliographic and holdings records. In a repository it may include metadata, abstracts, OCR text, and full text. In an archival system, collection- and series-level descriptions may be more prominent than item records. A discovery layer may combine a local catalogue, repository records, electronic-resource metadata, open-access sources, and a large vendor index.
+
+Coverage determines what can possibly be found. A resource outside the corpus has zero chance of retrieval, regardless of the query. Coverage may be limited by collection decisions, licenses, harvesting failures, incompatible metadata, embargoes, or deliberate restrictions. NISO's Open Discovery Initiative emphasizes transparency among content providers and discovery-service providers because coverage and indexing arrangements affect what users see [@niso2020odi].
+
+Structured records divide description into **fields**. Title, creator, subject, date, format, language, identifier, abstract, and full text can be indexed differently. A title field may receive a high ranking weight; a date field may support ranges; an identifier may require exact matching; a subject field may preserve controlled terms. This is one reason metadata remains central to discovery. When the title `Mga Kuwentong Bayan ng Panay` is placed in an undifferentiated note field, title searching and display may both fail.
+
+### How an inverted index works
+
+Scanning every document for every query would be slow at library scale. Retrieval systems usually prepare an index in advance. A simplified pipeline normalizes text, divides it into tokens, and records where those tokens occur. An **inverted index** points from a term to documents, reversing the document-to-words relationship familiar to readers [@manning2008ir].
+
+Suppose a tiny corpus contains these titles:
+
+* D1: *Community Archives and Memory*
+* D2: *Digital Archives in Communities*
+* D3: *Memory Institutions and Digital Stewardship*
+
+After lowercasing and simplified tokenization, part of the index looks like @tbl-inverted-index.
+
+```{r}
+#| label: tbl-inverted-index
+#| results: asis
+inverted_index <- data.frame(
+  Token = c("archives", "community", "communities", "digital", "memory", "stewardship"),
+  Posting_list = c("D1, D2", "D1", "D2", "D2, D3", "D1, D3", "D3")
+)
+ict_table(inverted_index, "A simplified inverted index for three titles", "inverted-index", c(1, 2))
+```
+
+@tbl-inverted-index shows that exact tokenization treats `community` and `communities` as different terms. A stemmer might connect them, while a controlled subject heading could represent both records with the same authorized concept. Neither technique is automatically superior. Stemming can increase recall but may join unrelated forms; controlled vocabulary can improve consistency but requires governance and may not reflect community language.
+
+Real indexes may store term positions for phrase searching, field identifiers for fielded search, frequency counts for ranking, language information, and permissions for access control. Indexing is not a one-time task. New and changed records must be added, deleted records removed, and mappings checked when schemas change.
+
+### Query formulation: translating a question
+
+Good searching begins by separating concepts rather than typing a full assignment sentence. Consider: “How do public libraries support disaster preparedness in coastal communities?” The main concepts might be public libraries, disaster preparedness, and coastal communities. Each concept can have alternative terms:
+
+```text
+("public librar*" OR "community librar*")
+AND ("disaster preparedness" OR "disaster risk reduction" OR resilience)
+AND (coastal OR island OR maritime)
+```
+
+This representation uses several common techniques:
+
+* **AND** requires both concepts and usually narrows a result set.
+* **OR** accepts alternatives and usually broadens a result set.
+* **NOT** excludes matches but can remove useful records and should be used cautiously.
+* **Phrase searching** requests adjacent words in order, although exact syntax varies.
+* **Truncation** such as `librar*` may retrieve `library`, `libraries`, and `librarianship`; the symbol and behavior vary by system.
+* **Fielded searching** limits a condition to a field, such as `title`, `author`, `subject`, or `date`.
+* **Facets** narrow a retrieved set by values such as format, year, language, location, or access status.
+
+@tbl-search-techniques connects each technique to a likely service problem. Interface labels and syntax must always be checked because systems implement these features differently.
+
+```{r}
+#| label: tbl-search-techniques
+#| results: asis
+search_techniques <- data.frame(
+  Technique = c("OR alternatives", "AND concepts", "Phrase", "Field", "Truncation", "Facet", "Known-item identifier"),
+  Use_when = c("Records may use different terms for one concept",
+               "Results discuss only one part of a multi-concept need",
+               "Word order carries a specific meaning",
+               "A term has a particular role, such as author or title",
+               "Grammatical endings or related forms vary",
+               "The result set is useful but too broad",
+               "An ISBN, DOI, call number, or exact identifier is known"),
+  Main_caution = c("Too many loose alternatives can add noise", "An absent concept can hide relevant records",
+                   "Different wording will be missed", "Incomplete or inconsistent metadata weakens matching",
+                   "The root may retrieve unintended words", "Missing or inconsistent values distort counts",
+                   "Punctuation, normalization, or record errors can prevent a match")
+)
+ict_table(search_techniques, "Search techniques, purposes, and cautions", "search-techniques", c(1, 2, 2))
+```
+
+As @tbl-search-techniques suggests, query formulation and metadata quality are inseparable. A language facet cannot reliably narrow results if language codes are missing. An author search depends on names being placed in creator fields and, ideally, connected through authority control.
+
+### Matching and relevance ranking
+
+Boolean retrieval asks whether a record satisfies stated conditions. Ranked retrieval asks how strongly each record matches. Many systems combine both: filters impose conditions, while a scoring model orders the matches.
+
+Ranking can consider term frequency, rarity across the corpus, field weights, phrase proximity, date, document type, popularity, citation signals, availability, and configured boosts. BM25, a widely used probabilistic ranking family, increases a score when query terms occur meaningfully in a document while moderating the effects of document length and repeated occurrences [@robertson2009bm25]. Apache Lucene, used within many search applications, provides a BM25 similarity implementation [@lucene2025bm25]. Students do not need to derive the formula in an introductory course, but they should understand three points:
+
+1. A relevance score is calculated, not discovered as an objective property.
+2. Different configurations can rank the same records differently.
+3. High-ranked results reflect indexed evidence and design choices, not the full value of a work.
+
+**Relevance** is contextual. A 2005 global review may be topically relevant to typhoon preparedness but unsuitable for a student who needs current Philippine local-government procedures. A primary source may be valuable to a historian even when it mentions the search terms only once. Systems approximate relevance; users and professionals interpret it.
+
+### Metadata as retrieval infrastructure
+
+Full-text searching is powerful, but it does not make metadata obsolete. Metadata supplies distinctions that text alone often cannot:
+
+* a person's role as author, editor, translator, or subject;
+* an authorized name across spelling and name changes;
+* a work's language, format, date, audience, and rights status;
+* the relationship among an original, translation, edition, adaptation, and digitized copy;
+* the hierarchy of an archive or the sequence of a compound object;
+* local holdings, shelf location, license conditions, and access restrictions.
+
+Controlled vocabularies connect records through consistent concepts, while user keywords capture current and local language. Effective discovery often uses both. A system may map a user's term to an authorized heading, search notes and OCR text for additional recall, and display the authorized label as a facet. Metadata quality dimensions such as completeness, accuracy, consistency, and conformance directly influence discovery [@park2009quality].
+
+Crosswalking records from many sources introduces loss. A detailed local field may be mapped to a broad central field; names may arrive as uncontrolled strings; dates may use incompatible formats; subject headings may be combined with keywords. The interface may appear unified while the underlying evidence remains uneven. Discovery teams should therefore examine field mappings, not only the search screen.
+
+### Precision and recall
+
+Retrieval evaluation requires a stated need and judgments about which items are relevant. Four counts organize the basic evaluation:
+
+* **true positives (TP):** relevant items retrieved;
+* **false positives (FP):** nonrelevant items retrieved;
+* **false negatives (FN):** relevant items not retrieved;
+* **true negatives (TN):** nonrelevant items not retrieved.
+
+Precision and recall are then:
+
+$$
+\text{Precision} = \frac{TP}{TP+FP}
+$$
+
+$$
+\text{Recall} = \frac{TP}{TP+FN}
+$$
+
+Imagine a corpus with 20 items, of which 8 are relevant. A search retrieves 10 items, including 6 relevant ones. The R code below calculates the measures reproducibly.
+
+```{r}
+#| label: lst-ir-metrics
+#| code-summary: "Calculate precision and recall from relevance counts"
+tp <- 6
+fp <- 4
+fn <- 2
+
+precision <- tp / (tp + fp)
+recall <- tp / (tp + fn)
+
+metrics <- data.frame(
+  Measure = c("Precision", "Recall"),
+  Calculation = c("6 / (6 + 4)", "6 / (6 + 2)"),
+  Result = sprintf("%.0f%%", 100 * c(precision, recall)),
+  Interpretation = c("Six of every ten retrieved items were relevant.",
+                     "The search found six of the eight relevant items.")
+)
+```
+
+```{r}
+#| label: tbl-ir-metrics
+#| results: asis
+ict_table(metrics, "Precision and recall for a small retrieval set", "ir-metrics", c(1, 1, .7, 2))
+```
+
+@tbl-ir-metrics reports 60% precision and 75% recall. Neither value is “good” without context. A quick reference search may favor precision because the user needs one dependable answer. A systematic search for evidence or a legal records request may favor recall because missing a relevant item has serious consequences. Walters argues that relevance measures can complement use statistics in library assessment by focusing attention on what searches retrieve and miss [@walters2016assessment].
+
+Precision and recall also have limits. Relevance judgments can differ between people and change over time. A binary relevant/not relevant label hides degrees of usefulness. Testing only popular English queries can conceal failures for Filipino, Cebuano, Bahasa Indonesia, Thai, or community terminology. Evaluation should combine measures with task observation, query-log analysis under privacy controls, interviews, accessibility testing, and metadata review.
+
+### Facets and exploratory discovery
+
+A **facet** is not simply a filter displayed on the left side of a page. It is a structured view of values present in the result set. Format, topic, creator, date, language, collection, location, and access status can help users understand a corpus while narrowing it.
+
+Useful facets require coherent metadata and understandable labels. A format facet containing `Text`, `Book`, `eBook`, `Electronic resource`, and `PDF` may mix content type, carrier, and file format. A geographic facet that lists both `Philippines` and `Philippine Islands` may split related records. Counts can mislead when records have multiple values or when metadata coverage is incomplete.
+
+Facet design should follow user tasks. An archival researcher may need collection, record group, date, place, and creator. A school learner may understand `Grade level` better than a technical audience code. A government information service may need agency, issuance type, jurisdiction, and effectivity date. Good facets expose meaningful structure without demanding that users understand the database schema.
+
+### Catalogues, databases, repositories, and discovery layers
+
+Different systems answer different questions. @tbl-discovery-systems compares common services.
+
+```{r}
+#| label: tbl-discovery-systems
+#| results: asis
+discovery_systems <- data.frame(
+  System = c("Library catalogue", "Subject database", "Institutional repository", "Web-scale discovery layer", "Federated search", "Archival finding-aid portal"),
+  Typical_strength = c("Known-item search, editions, holdings, location, circulation context",
+                       "Focused disciplinary indexing, abstracts, controlled vocabulary",
+                       "Local scholarship, theses, reports, datasets, and open files",
+                       "Broad single search across local and aggregated metadata",
+                       "Current querying of multiple remote sources",
+                       "Context, provenance, hierarchy, and collection-level description"),
+  Typical_limitation = c("Limited article-level coverage", "Licensed scope and specialized interface",
+                         "Variable deposit and metadata completeness", "Opaque coverage, mappings, and ranking",
+                         "Slow response, duplicate records, inconsistent result merging",
+                         "Item-level discovery may be incomplete"),
+  Best_question = c("Does the library hold this book or edition?", "What research has this discipline indexed?",
+                    "What has this institution produced or preserved?", "What can I discover across many library sources?",
+                    "What do several live systems return now?", "Which records exist in this creator or collection context?")
+)
+ict_table(discovery_systems, "Comparison of retrieval and discovery systems", "discovery-systems", c(1, 2, 2, 2))
+```
+
+As @tbl-discovery-systems shows, no system is universally complete. A discovery layer offers a useful starting point but does not replace specialized databases, archival context, or professional search strategy. Teaching should avoid both extremes: presenting the single search box as comprehensive, or treating it as academically inferior. Its fitness depends on the task.
+
+A **central-index discovery service** searches a preharvested index, which can be fast and consistently ranked. **Federated search** sends the query to remote sources at search time. Federated results may reflect current remote data, but differences in syntax, response speed, ranking, and record structure make merging difficult. The technical distinction matters when diagnosing missing records: did harvesting fail, did a remote target time out, or did field translation change the query?
+
+### From citation to copy: link resolution
+
+Discovery often identifies a citation before it identifies an accessible copy. A **link resolver** receives metadata about the cited item plus institutional context, checks a knowledge base of holdings and licenses, and offers appropriate services. OpenURL standardizes a framework for carrying this context [@niso2010openurl]. A resolver may link to licensed full text, an open copy, the catalogue, document delivery, or interlibrary loan.
+
+@fig-link-resolution separates discovery from delivery.
+
+```{mermaid}
+%%| label: fig-link-resolution
+%%| fig-cap: "A simplified context-sensitive link-resolution workflow"
+sequenceDiagram
+    participant U as User
+    participant D as Discovery system
+    participant R as Link resolver
+    participant K as Knowledge base
+    participant T as Target service
+    U->>D: Select "Check access"
+    D->>R: Send citation and institutional context
+    R->>K: Check holdings, dates, licenses, and links
+    K-->>R: Return candidate services
+    R-->>U: Display full text, catalogue, or request options
+    U->>T: Follow selected service
+```
+
+In @fig-link-resolution, a broken journey can result from incorrect citation metadata, inaccurate holdings dates, a changed target URL, authentication failure, or license restrictions. “No full text” is not always a collection-development problem. It can be a knowledge-base or metadata-maintenance problem.
+
+Older and specialized interoperability protocols remain relevant. Z39.50 supports search and retrieval across systems and continues to appear in library environments [@loc2026z3950]. OAI-PMH supports metadata harvesting for repositories [@oai2008pmh]. These protocols do different jobs: one should not be described as a replacement for the other.
+
+### Diagnosing retrieval as a layered service
+
+When users report “search is broken,” a useful diagnosis moves through layers:
+
+1. **Coverage:** Is the source or record in the searchable corpus?
+2. **Metadata:** Are essential values present, accurate, and mapped to the expected fields?
+3. **Indexing:** Was the record processed, tokenized, and updated correctly?
+4. **Query:** Did syntax, language processing, spelling correction, or field translation alter the request?
+5. **Matching and ranking:** Was the record matched but placed too low? Which boosts or filters mattered?
+6. **Interface:** Could the user interpret results, facets, availability, and system scope?
+7. **Delivery:** Did authentication, link resolution, rights, or holdings prevent access?
+8. **Evaluation:** Is the reported failure reproducible for a stated task and user context?
+
+This layered method prevents expensive but irrelevant responses. Replacing the interface will not repair missing repository harvesting; changing the ranking model will not correct a broken subscription date range.
+
+## Philippine and Southeast Asian examples
+
+### Academic library: one query, several evidence environments
+
+A Philippine university student researching jeepney modernization might begin with a discovery layer, continue to a transport or policy database, search the institutional repository for local theses, and consult government websites for current issuances. The discovery layer offers breadth, but a local repository may contain the most contextually relevant work. Librarians can teach a **search pathway** rather than a preferred box: identify the evidence type, choose a likely corpus, translate concepts, judge results, and follow access options.
+
+### Public library: multilingual local-history discovery
+
+A city library digitizes photographs labelled in English, Filipino, and a local language. Community members search former street names, nicknames, barangay names, and terms used before administrative boundary changes. The library can retain original captions, add current and historical names, record language, link place authorities, and invite documented community corrections. This approach improves retrieval while preserving provenance instead of silently replacing older description.
+
+### School library: age-appropriate facets
+
+A school catalogue has subject headings suitable for professional control but difficult for younger pupils. The library retains the controlled headings for consistency and adds a student-facing topic facet with tested plain-language labels. Search logs are reviewed only in aggregate and with a short retention period. The design connects knowledge organization to age-appropriate UX and privacy.
+
+### Government information service: version and authority
+
+A public information portal contains memoranda, circulars, forms, and superseded issuances. Keyword relevance alone can place an obsolete document first. Structured fields for issuing agency, issuance type, number, effectivity date, amendment relationship, and current status allow the interface to label superseded material and prioritize authoritative versions without erasing the historical record.
+
+### Regional cultural heritage aggregation
+
+A Southeast Asian cultural heritage portal may aggregate records produced under different cataloguing traditions, scripts, languages, and levels of description. A single “creator” field can flatten distinctions among artist, collector, photographer, community, and donor. Crosswalks should document loss, interfaces should expose source institutions, and search evaluation should include local scripts and transliterations. Aggregation expands reach, but it does not remove the need to respect source context.
+
+> **Reflect:** Choose a local topic whose name has changed over time. What contemporary term, historical term, variant spelling, language form, broader term, and narrower term would you include in a test query set?
+
+## Hands-on activity: Compare three discovery environments
+
+### Purpose
+
+Investigate how corpus coverage, metadata, search features, ranking, and access services affect results for one information need. This lab contributes to the short-lab portfolio and prepares the UX or discovery critique.
+
+### Tools
+
+* a spreadsheet application or R with Quarto;
+* access to three systems, preferably a library catalogue or discovery layer, a subject database or national portal, and an institutional repository;
+* browser privacy mode if testing personalization is relevant;
+* the search-log fields in @tbl-search-log-template.
+
+```{r}
+#| label: tbl-search-log-template
+#| results: asis
+search_log <- data.frame(
+  Field = c("System and date", "Stated information need", "Corpus claim", "Exact query",
+            "Filters or facets", "Reported result count", "Top 10 relevance judgments",
+            "Useful metadata", "Access outcome", "Observed problem", "Proposed improvement"),
+  Record = c("Name, URL, date, and time", "One sentence including audience, place, date, or format needs",
+             "What the interface says it searches", "Copy exactly, including punctuation",
+             "Record values and sequence", "Record as displayed; treat as approximate",
+             "Relevant / partly relevant / not relevant, with one-line reason",
+             "Fields or snippets that supported judgment", "Opened, authenticated, requested, failed, or unavailable",
+             "Coverage, metadata, indexing, ranking, interface, or delivery", "One feasible, evidence-linked change")
+)
+ict_table(search_log, "Required fields in the discovery comparison search log", "search-log-template", c(1, 3))
+```
+
+@tbl-search-log-template makes the procedure reproducible. Do not record usernames, patron identifiers, or sensitive personal topics in a shared file.
+
+### Steps
+
+1. Write one information-need statement. Include at least two contextual requirements, such as Philippine coverage, publication date, language, audience, evidence type, or online availability.
+2. Identify two or three main concepts. List synonyms, variant spellings, controlled terms, abbreviations, and local-language terms.
+3. Select three discovery environments with meaningfully different corpora.
+4. Run the same basic query in each system. Record the exact query, date, claimed scope, result count, available facets, and first ten results.
+5. Judge each of the first ten results as relevant, partly relevant, or not relevant. State a reason based on the information need, not only the presence of keywords.
+6. For a simple comparison, count “relevant” as relevant and compute **precision at 10**: relevant items in the first ten divided by ten. Do not call this full-system recall; the total number of relevant items is unknown.
+7. Revise the search once in each system using a phrase, field, Boolean operator, controlled term, or facet. Record what changed.
+8. Attempt to access the two most promising items from each system. Record whether the link opened, required authentication, led to a request service, or failed.
+9. Classify one important problem per system as coverage, metadata, indexing/query processing, ranking, interface, or delivery.
+10. Recommend one feasible improvement and identify who would need to act: metadata staff, systems staff, reference staff, vendor, content provider, or policy owner.
+
+### Expected output
+
+Submit:
+
+* a completed search log for three systems;
+* a concept-and-synonym map;
+* a table comparing precision at 10 before and after one revision;
+* two annotated screenshots with personal data removed;
+* a 300-word recommendation connecting evidence to one service improvement; and
+* a 100-word reflection answering: **What did the system make easy to see, and what did it make easy to overlook?**
+
+### Lab checklist
+
+- [ ] The information need is specific enough to support relevance judgments.
+- [ ] Exact queries and filters are reproducible.
+- [ ] Three systems have different scopes.
+- [ ] Relevance reasons refer to the stated need.
+- [ ] Precision at 10 is labelled correctly and not presented as recall.
+- [ ] Access outcomes are tested, not assumed from icons.
+- [ ] The recommendation identifies a layer and responsible actor.
+- [ ] Screenshots and logs contain no personal information.
+
+### Assessment rubric
+
+@tbl-discovery-lab-rubric emphasizes reasoning and documentation over the number of results found.
+
+```{r}
+#| label: tbl-discovery-lab-rubric
+#| results: asis
+lab_rubric <- data.frame(
+  Criterion = c("Search design", "Documentation", "Relevance analysis", "Systems diagnosis", "Recommendation and reflection"),
+  Weight = c("20%", "20%", "25%", "20%", "15%"),
+  Strong_performance = c("Need, concepts, variants, and revisions are logically connected",
+                         "Queries, filters, dates, scope, and access outcomes can be reproduced",
+                         "Judgments use explicit criteria; precision at 10 is correct and qualified",
+                         "Problems are assigned to plausible layers with supporting evidence",
+                         "Improvement is feasible, professionally responsible, and attentive to what remains unseen")
+)
+ict_table(lab_rubric, "Rubric for the three-system discovery comparison", "discovery-lab-rubric", c(1, .6, 3))
+```
+
+## Ethical and professional issue: ranking, privacy, and representational harm
+
+Discovery systems distribute attention. A result on the first page is more likely to be read, cited, purchased, or remembered than a result on page twenty. Ranking therefore has professional consequences even when no person intends discrimination.
+
+Bias can enter through several routes. Collections reflect historical funding and exclusion. Metadata may use outdated, colonial, stigmatizing, or externally imposed language. Full-text availability can boost well-funded publishers over local print sources. Usage-based ranking can amplify what already receives attention. English-language test queries can make other languages appear less relevant. Vendor coverage agreements may be invisible to users. Automated query expansion, recommendation, and generative summaries can add further opacity.
+
+The professional response is not to promise a neutral system. It is to establish **accountable discovery**:
+
+* document corpus scope, important exclusions, and update schedules;
+* maintain provenance when description is corrected or supplemented;
+* test named user tasks across languages, devices, and access conditions;
+* include affected communities in terminology and interface decisions;
+* distinguish organic relevance, configured boosts, sponsored placement, and recommendations;
+* provide routes for reporting harmful description and broken access;
+* retain query logs only when necessary, minimize identifiers, restrict access, and set deletion rules;
+* require vendor explanations of coverage, ranking controls, analytics, and data reuse;
+* keep human review for high-impact automated changes.
+
+Search logs deserve special care. They can expose health concerns, political interests, religious questions, identities, locations, and research plans. The Philippine Data Privacy Act requires lawful, proportionate handling of personal information, and discovery analytics should follow purpose limitation and data minimization rather than collecting every available signal [@philippines2012dpa; @npc2023dpa]. A useful dashboard does not justify indefinite storage of identifiable queries.
+
+> **Professional judgment prompt:** A vendor offers “better personalization” if the library sends persistent user identifiers and complete search histories. What evidence would justify the benefit, what data could be avoided, how long would records be retained, and what nonpersonalized option would remain?
+
+## Review questions
+
+1. **Identification:** What is an inverted index, and how does it differ from a list of words stored inside one document record?
+2. **Identification:** Define precision and recall. What does the denominator of each measure represent?
+3. **Short answer:** Why can a relevant item fail to appear even when the user chooses reasonable search terms? Name three different layers.
+4. **Short answer:** Explain why full-text indexing does not eliminate the need for controlled metadata and authority control.
+5. **Applied search:** Translate the need “recent Filipino-language materials for parents about children's online privacy” into a concept map and a sample Boolean query.
+6. **Applied analysis:** A search retrieves 12 items, 9 of which are relevant. Evaluators know of 15 relevant items in the corpus. Calculate precision and recall and interpret both values.
+7. **Scenario:** A repository record appears in the local repository but not in the university discovery layer. What evidence would you collect before changing the ranking configuration?
+8. **Scenario:** A facet lists `Thesis`, `Dissertation`, `Text`, `PDF`, and `Electronic resource` under one heading. Diagnose the conceptual problem and propose a clearer design.
+9. **Scenario:** The top result links to a journal page, but the user's institution has access through another provider. Which services or data should be checked?
+10. **Critical analysis:** How might usage-based ranking reproduce existing inequalities in a regional cultural heritage portal? Propose two safeguards.
+
+## Mini case: The missing coastal knowledge collection
+
+Baybay State College launches a discovery layer linking its catalogue, institutional repository, and selected databases. Faculty search for locally produced work on mangrove rehabilitation. The repository contains 46 theses and extension reports, but only 11 appear in discovery. Searching the municipality's current name finds few older studies. Searching `mangrove` ranks international articles above local reports. Several local records have titles and dates but no subjects, abstracts, geographic fields, or stable links. The vendor recommends boosting the repository domain globally. The university archivist warns that some reports contain names and precise locations supplied by vulnerable coastal households.
+
+### Guide questions
+
+1. Which coverage, metadata, indexing, ranking, access, privacy, and governance problems can you identify? Keep causes separate from symptoms.
+2. What test set would you build to determine whether historical place names, local terminology, and repository records are retrievable?
+3. What phased improvement would balance local visibility with privacy and avoid making every repository item rank highly regardless of relevance?
+
+## Further reading and tools
+
+### Readings and standards
+
+* **Manning, Raghavan, and Schuetze, *Introduction to Information Retrieval*.** A freely available foundational text on indexing, Boolean retrieval, ranking, and evaluation [@manning2008ir].
+* **Robertson and Zaragoza, “The Probabilistic Relevance Framework.”** A deeper explanation of BM25 and its assumptions [@robertson2009bm25].
+* **NISO Open Discovery Initiative.** Recommended practice on transparency and exchange among content and discovery providers [@niso2020odi].
+* **ANSI/NISO Z39.88, OpenURL.** The framework underlying many context-sensitive linking services [@niso2010openurl].
+* **Library of Congress Z39.50 Maintenance Agency.** Background and documentation for a long-standing search-and-retrieval standard [@loc2026z3950].
+* **Open Archives Initiative Protocol for Metadata Harvesting.** Essential for understanding repository metadata aggregation [@oai2008pmh].
+* **Walters on recall, precision, and relevance in library assessment.** A bridge from IR measures to collection and service evaluation [@walters2016assessment].
+
+### Open or widely accessible tools
+
+* **Apache Solr and Elasticsearch/OpenSearch:** search platforms for experimenting with fields, analyzers, facets, and ranking. Begin with a small non-sensitive dataset.
+* **Apache Lucene documentation:** technical reference for the search library beneath many systems, including BM25 scoring [@lucene2025bm25].
+* **VuFind:** an open-source library resource discovery interface useful for examining records, facets, and integrations.
+* **Blacklight:** an open-source discovery framework commonly used with Solr.
+* **OpenRefine:** useful for inspecting and reconciling metadata values before indexing.
+* **R and Quarto:** appropriate for reproducible search logs, relevance calculations, tables, and reports. The calculations in this chapter use base R so that no additional package is required [@r2026; @quarto2026docs].
+
+### Closing synthesis
+
+Information retrieval is a chain of representations and decisions. Users represent needs as queries; institutions represent resources as records and indexes; systems represent relevance as scores; interfaces represent choices as ranked lists and facets. At every stage, something can be clarified, lost, privileged, or hidden.
+
+For LIS professionals, the practical question is not simply “Does search work?” It is: **Which users can discover which resources, through which language and metadata, under what ranking and access rules, with what evidence of success, and with what consequences for privacy and equity?** Chapter 7 builds on this question by introducing programming as a way to inspect, transform, and test structured information work reproducibly.

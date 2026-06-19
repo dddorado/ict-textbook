@@ -1,0 +1,12 @@
+---
+title: "# Disclaimer {.unnumbered}"
+number-sections: false
+---
+
+Examples, cases, activities, and datasets are provided for learning purposes. Any resemblance to specific persons, organizations, or events is unintended unless explicitly identified. Readers should adapt the discussions and activities to their own institutional context, available resources, legal obligations, community needs, and professional standards.
+
+Technology, platforms, laws, and standards change over time. Users should verify current requirements, software documentation, privacy regulations, accessibility guidelines, and cybersecurity practices before applying them in real library, archive, records, museum, or information-service settings.
+
+As a self-published open textbook, the author, who is also the publisher, assumes no liability for errors, omissions, or outcomes arising from the use of this textbook. Responsibility for implementation, compliance, risk assessment, and ethical decision-making rests with the reader and their institution.
+
+This textbook, *Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services*, is licensed under CC BY-NC-SA 4.0 unless otherwise indicated.

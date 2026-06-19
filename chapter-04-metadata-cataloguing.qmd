@@ -1,0 +1,542 @@
+---
+title: "Metadata and Cataloguing"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+latex_escape <- function(x) {
+  x <- gsub("\\", "<<<BACKSLASH>>>", as.character(x), fixed = TRUE)
+  x <- gsub("([#$%&_{}])", "\\\\\\1", x, perl = TRUE)
+  x <- gsub("~", "\\textasciitilde{}", x, fixed = TRUE)
+  gsub("<<<BACKSLASH>>>", "\\textbackslash{}", x, fixed = TRUE)
+}
+
+ict_table <- function(data, caption, label = NULL, widths = NULL) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  names(data) <- gsub("_", " ", names(data), fixed = TRUE)
+  anchor <- if (!is.null(label)) paste0("{#tbl-", label, "}") else ""
+  if (knitr::is_latex_output()) {
+    align <- paste(rep("Y", ncol(data)), collapse = "")
+    header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
+    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
+    out <- c(
+      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
+      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+      "\\toprule", paste0(header, " \\\\"), "\\midrule",
+      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
+    )
+  } else if (knitr::is_html_output()) {
+    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+  } else {
+    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+  }
+  knitr::asis_output(paste(out, collapse = "\n"))
+}
+```
+
+## Chapter overview
+
+A digitized photograph appears in a repository with the title "Old picture," creator "Unknown," date "1900s," and no subject, place, rights, or provenance information. The image file opens correctly, but can a student discover it? Can a community member correct its description? Can staff distinguish the original photograph from the digital scan? Can another institution reuse the record? Can a future curator explain where the item came from and what may legally be done with it?
+
+The central problem of this chapter is **how to describe resources consistently enough for people and systems to identify, select, obtain, understand, manage, connect, and preserve them without erasing important context**. Metadata makes collections legible. Cataloguing applies professional principles, standards, vocabularies, and judgment to create and maintain that metadata.
+
+Metadata is not decoration added after digitization, nor is cataloguing simply typing information into fixed boxes. Every record is a structured claim about entities, names, subjects, relationships, provenance, rights, and access. Those claims affect discovery and memory. They may reproduce inherited bias, or they may make previously obscured people and relationships visible.
+
+This chapter connects database structure from Chapter 3 to descriptive meaning. Students will distinguish metadata schemas from content standards, encoding formats, value vocabularies, and conceptual models; examine MARC 21, RDA, Dublin Core, IFLA LRM, and BIBFRAME; practice authority and subject work; and create a small, quality-checked metadata record for a local heritage object.
+
+## Learning objectives
+
+After completing this chapter, you should be able to:
+
+1. **Classify** metadata as descriptive, administrative, structural, technical, rights, provenance, or preservation metadata.
+2. **Distinguish** conceptual models, element sets, content standards, value vocabularies, encoding formats, and application profiles.
+3. **Create** a Dublin Core record using defined elements, controlled values, identifiers, language tags, and rights information.
+4. **Explain** the purposes of authority control, identifiers, classification, and subject vocabularies.
+5. **Evaluate and revise** metadata for completeness, accuracy, consistency, provenance, accessibility, and interoperability.
+6. **Analyze** how descriptive choices affect representation, intellectual freedom, cultural rights, privacy, and discovery.
+
+## Key concepts
+
+@tbl-metadata-key-concepts introduces the chapter vocabulary. Notice that a metadata record contains both elements and values, while rules and vocabularies determine how those values are formed.
+
+```{r}
+#| label: tbl-metadata-key-concepts
+#| results: asis
+metadata_key_concepts <- data.frame(
+  Term = c("Metadata", "Metadata record", "Element", "Value", "Schema or element set",
+           "Conceptual model", "Content standard", "Encoding format", "Value vocabulary",
+           "Application profile", "Identifier", "Authority control", "Authorized access point",
+           "Variant access point", "Controlled vocabulary", "Classification",
+           "Subject heading", "Provenance", "Crosswalk", "Interoperability",
+           "Metadata quality", "Granularity"),
+  Working_definition = c(
+    "Structured information used to describe, manage, discover, interpret, or preserve resources.",
+    "A set of metadata statements describing an entity or resource in a defined context.",
+    "A named property such as title, creator, language, or rights.",
+    "The content supplied for an element.",
+    "A defined set of metadata elements and their meanings.",
+    "An abstract account of entities, attributes, relationships, and user tasks.",
+    "Rules for selecting and recording values.",
+    "A machine-processable syntax or structure for representing and exchanging records.",
+    "A managed set of terms, names, codes, or identifiers used as values.",
+    "A documented selection and refinement of elements and rules for a community or project.",
+    "A string or URI intended to distinguish an entity or resource.",
+    "The work of managing identities, preferred forms, variants, and relationships consistently.",
+    "A standardized form chosen to represent an entity in retrieval.",
+    "An alternative name or form that directs users to the represented entity.",
+    "A deliberately maintained set of terms and relationships.",
+    "Systematic arrangement of resources into classes, often expressed through notation.",
+    "A controlled term or string representing the topic, form, place, period, or group of a resource.",
+    "Information about origin, custody, ownership, or creation history.",
+    "A mapping between elements in different metadata schemas.",
+    "The ability of systems and communities to exchange and meaningfully use information.",
+    "Fitness of metadata for stated functions and communities.",
+    "The level of detail at which entities, components, events, or relationships are described."
+  )
+)
+ict_table(metadata_key_concepts, "Key concepts for metadata and cataloguing",
+          "metadata-key-concepts", c(1, 3))
+```
+
+## Core discussion
+
+### Metadata as service infrastructure
+
+Metadata links users to resources. A catalogue result depends on recorded titles, names, subjects, identifiers, relationships, holdings, and access conditions. A repository browse depends on consistent departments, dates, resource types, and languages. A digital exhibit depends on captions, provenance, rights, and connections among objects. Preservation depends on file formats, checksums, events, agents, and dependencies.
+
+The phrase "data about data" is useful but incomplete. Metadata may describe a physical object, a person, an organization, an event, a place, a right, or a relationship. In one context a city name is descriptive metadata; in a geographic authority file, the city is the primary entity. What matters is the statement being made: which property describes which entity, according to which rules, for which purpose.
+
+NISO groups metadata broadly into descriptive, structural, and administrative functions [@niso2004understanding]. In practice, administrative metadata is often divided further. @tbl-metadata-functions shows how the categories support different work. One value can serve more than one function, so categories are analytical aids rather than sealed boxes.
+
+```{r}
+#| label: tbl-metadata-functions
+#| results: asis
+metadata_functions <- data.frame(
+  Type = c("Descriptive", "Structural", "Technical", "Rights",
+           "Provenance", "Preservation", "Use or service"),
+  Purpose = c("Support identification, discovery, selection, and contextual understanding",
+              "Express how components are ordered or related",
+              "Record characteristics needed to render or manage files and systems",
+              "State ownership, licenses, permissions, restrictions, and access conditions",
+              "Document origin, custody, sources, and responsibility for statements",
+              "Support authenticity, integrity, monitoring, and long-term action",
+              "Support operations and evaluation while respecting privacy"),
+  Example = c("Title, creator, subject, language, description",
+              "Page sequence or relationship between a photograph and album",
+              "File format, dimensions, software, capture device",
+              "Copyright holder, license URI, access restriction",
+              "Donor, source collection, cataloguer, record history",
+              "Checksum, preservation event, migration agent",
+              "Circulation status or aggregated download count")
+)
+ict_table(metadata_functions, "Metadata functions in information organizations",
+          "metadata-functions", c(.8, 2.2, 1.7))
+```
+
+As @tbl-metadata-functions shows, a digitized object needs more than a title. Its page order, file characteristics, rights, source, and preservation history may determine whether it remains usable and trustworthy.
+
+### A stack of models, rules, elements, values, and syntax
+
+Students often say that MARC, RDA, and Dublin Core are competing "metadata standards." They are related, but they do not do the same job. @fig-metadata-stack separates the layers.
+
+```{mermaid}
+%%| label: fig-metadata-stack
+%%| fig-cap: "Layers that shape a metadata record"
+flowchart TB
+    N["Community needs and user tasks"] --> M["Conceptual model<br/>entities and relationships"]
+    M --> E["Element set or schema<br/>properties that may be recorded"]
+    E --> C["Content standard<br/>rules for forming values"]
+    C --> V["Value vocabularies and identifiers<br/>controlled names, terms, and codes"]
+    V --> S["Encoding and exchange syntax<br/>MARC, XML, RDF, JSON, CSV"]
+    A["Application profile and local policy"] --- E
+    A --- C
+    A --- V
+    Q["Quality review, provenance, and maintenance"] --- S
+```
+
+@fig-metadata-stack is not a rigid production sequence. A project may begin with an existing platform or exchange format. The figure is a diagnostic tool: when records fail, ask whether the problem lies in the conceptual model, available elements, content rules, values, encoding, local profile, or maintenance.
+
+A **conceptual model** defines entities and relationships at an abstract level. An **element set** defines properties such as title or creator. A **content standard** gives instructions for recording values. A **value vocabulary** supplies controlled names, subjects, types, or codes. An **encoding format** makes statements machine-processable. An **application profile** combines selected elements, obligations, vocabularies, and local rules for a specific community.
+
+### User tasks and bibliographic entities
+
+Cataloguing is shaped by what users need to do. The IFLA Library Reference Model identifies broad user tasks: find, identify, select, obtain, and explore [@ifla2017lrm]. These tasks require both attributes and relationships. A user may need to distinguish a novel from its translation, identify an edition suitable for citation, obtain an accessible format, or explore other works by a creator.
+
+IFLA LRM models bibliographic information through entities including Work, Expression, Manifestation, Item, Agent, Nomen, Place, and Time-span. In simplified terms:
+
+* **Work** concerns a distinct intellectual or artistic creation.
+* **Expression** concerns the realization of a work, such as a language or performance.
+* **Manifestation** concerns a publication or production embodiment.
+* **Item** concerns an individual exemplar.
+
+These distinctions prevent common errors. A barcode identifies an item, while an ISBN generally identifies a manifestation. A translator contributes to an expression. Damage notes apply to an item. A publication statement belongs to a manifestation context.
+
+Conceptual entities do not always appear as separate screens or database tables. They guide consistent description and help systems connect related resources.
+
+### MARC 21, RDA, Dublin Core, and BIBFRAME
+
+@tbl-framework-comparison compares four frameworks students will encounter. The rows are deliberately phrased by role because the frameworks may be used together rather than selected as exact substitutes.
+
+```{r}
+#| label: tbl-framework-comparison
+#| results: asis
+framework_comparison <- data.frame(
+  Framework = c("MARC 21", "RDA", "Dublin Core terms", "BIBFRAME"),
+  Primary_role = c("Structured communication format for bibliographic and authority data",
+                   "Guidance and data elements for resource description and access",
+                   "General-purpose metadata terms for cross-domain resource description",
+                   "Linked-data model and vocabulary for bibliographic description"),
+  Typical_expression = c("Tagged fields, indicators, subfields, codes",
+                         "Statements and relationships recorded according to instructions",
+                         "Properties such as title, creator, subject, date, and rights",
+                         "RDF resources and relationships centered on Work, Instance, and Item"),
+  Important_caution = c("Field syntax alone does not supply cataloguing judgment",
+                        "RDA is not identical to MARC or one display style",
+                        "Simple elements can become ambiguous without profiles and vocabularies",
+                        "Linked identifiers do not repair weak or biased source description")
+)
+ict_table(framework_comparison, "Roles of selected metadata and cataloguing frameworks",
+          "framework-comparison", c(.8, 1.8, 1.8, 1.7))
+```
+
+MARC 21 provides formats for communicating bibliographic, authority, holdings, classification, and community information. Its bibliographic format defines tags, indicators, subfields, and coded elements [@locmarc21]. A MARC field such as 245 structures title information; cataloguing instructions determine which title to record and how.
+
+RDA is designed around resource description and access, with entities, elements, relationships, and instructions. The open RDA Registry publishes element and vocabulary representations for machine use [@rdaregistry2026]. RDA is not a file format. RDA data may be encoded in MARC or other structures.
+
+Dublin Core provides broadly applicable terms. The DCMI terms vocabulary includes properties such as title, creator, subject, date, type, format, identifier, source, language, relation, coverage, and rights [@dcmi2020terms]. Its apparent simplicity is valuable for cross-domain projects, but projects must define obligations and value rules.
+
+BIBFRAME is a Library of Congress initiative for representing bibliographic description as linked data. Its model centers on Work, Instance, and Item and uses RDF relationships [@loc2024bibframe]. Chapter 8 returns to RDF and linked data.
+
+### Elements, values, and application profiles
+
+An element is not a screen label. It is a property with a definition, expected value, and domain of use. "Date" may mean creation, publication, capture, accession, modification, copyright, or availability. A profile that uses one undifferentiated date field will create ambiguity even if every value follows YYYY-MM-DD.
+
+An **application profile** should document:
+
+* element name and URI where available;
+* definition and examples;
+* obligation: required, recommended, or optional;
+* repeatability;
+* expected value type or syntax;
+* controlled vocabulary or authority source;
+* language and script practices;
+* source and provenance rules;
+* display and indexing behavior; and
+* validation and maintenance responsibility.
+
+Profiles turn general standards into accountable local practice. They should not redefine established elements casually. If a local need cannot be represented, a documented local extension may be preferable to silently changing an existing element's meaning.
+
+### Identifiers and access points
+
+An **identifier** distinguishes an entity within a defined system. Examples include ISBNs, ISSNs, DOIs, ORCID iDs, accession numbers, barcodes, control numbers, handles, and URIs. Identifiers improve matching and exchange only when their scope is understood.
+
+A string can look unique without being persistent. File names, shelf locations, and database row numbers may change. Projects should document the identifier's assigning authority, entity, uniqueness, persistence expectation, display form, and resolution behavior.
+
+An **access point** is a name, term, code, or other representation through which a user can retrieve a record. An authorized access point provides a consistent form; variant access points preserve other forms and lead users to the represented entity.
+
+### Authority control
+
+Authority control manages identities, preferred forms, variants, sources, and relationships. It is not simply forcing every name into one spelling. A useful authority record may connect:
+
+* an authorized form;
+* variant names, earlier names, pseudonyms, transliterations, and local forms;
+* identifiers from trusted systems;
+* dates or contextual attributes needed for distinction;
+* relationships to people, families, organizations, places, and works;
+* sources consulted and evidence for decisions; and
+* notes about scope, uncertainty, or community preference.
+
+@fig-authority-network illustrates why authority work is relational. Different labels can point to one identity, while one ambiguous label can refer to different identities.
+
+```{mermaid}
+%%| label: fig-authority-network
+%%| fig-cap: "Authority control connects variants, identifiers, and relationships to an entity"
+flowchart LR
+    V1["Variant name"] --> E["Identified person or organization"]
+    V2["Name in another script"] --> E
+    V3["Earlier or later name"] --> E
+    I1["Local authority ID"] --> E
+    I2["External identifier"] --> E
+    E --> W["Associated works"]
+    E --> O["Affiliated organization"]
+    E --> P["Related place"]
+    S["Sources and provenance"] --- E
+```
+
+As @fig-authority-network shows, authority data support collocation and exploration. They also prepare repositories for linked data [@wolverton2013authority]. However, an authority file is not infallible. Identities can be uncertain, names can be contested, and communities may prefer forms different from legacy sources. Records need provenance and revision pathways.
+
+### Subject access and classification
+
+Subject access attempts to represent what a resource is about, what form it takes, and sometimes its geographic, chronological, or demographic context. Tools include subject-heading lists, thesauri, taxonomies, classifications, genre/form vocabularies, and locally maintained terms.
+
+A controlled vocabulary improves consistency by managing preferred terms, synonyms, broader and narrower concepts, and related concepts. A classification scheme places resources into a systematic arrangement, often supporting shelf order and browsing. Neither is neutral. Categories emerge from particular histories, institutions, languages, and assumptions.
+
+Good subject analysis requires evidence from the resource and appropriate contextual sources. Cataloguers should distinguish what a resource is about from whom it is by, where it is stored, or who is expected to use it. Exhaustivity and specificity should match project policy. Overly broad terms hide distinctions; excessive unsupported specificity creates false precision.
+
+Local and community vocabularies may represent concepts absent from larger systems. Mapping can support interoperability, but a local concept should not be erased merely because no exact external equivalent exists. The mapping may be close, broader, narrower, related, or intentionally absent.
+
+### A Dublin Core example
+
+@tbl-dublin-core-example presents a simplified record for a fictional digitized photograph. The record is compact, but values are still governed: the title is supplied and marked as such, the creator uses an authorized form, language follows a code, type uses a DCMI term, and the rights statement is represented by a URI.
+
+```{r}
+#| label: tbl-dublin-core-example
+#| results: asis
+dublin_core_example <- data.frame(
+  Element = c("title", "creator", "date", "type", "format", "identifier",
+              "source", "spatial", "language", "subject", "rights", "description"),
+  Value = c("[Students at the municipal library inauguration]",
+            "Santos, Elena M.", "1968-06-12", "Image", "image/tiff",
+            "https://example.org/items/photo-0042", "Municipal Archives, Photograph Collection, Box 3",
+            "Iloilo City (Philippines)", "zxx", "Public libraries--Philippines; Library buildings",
+            "https://rightsstatements.org/vocab/InC/1.0/",
+            "Black-and-white group photograph showing students outside the newly opened library."),
+  Rule_or_source = c("Supplied title, visibly identified by brackets", "Local authority file",
+                     "ISO-style date from event annotation", "DCMI Type Vocabulary",
+                     "Media type", "Repository persistent URI", "Local collection citation",
+                     "Geographic authority form", "Language code: no linguistic content",
+                     "Controlled subjects", "RightsStatements.org URI", "Objective scope note")
+)
+ict_table(dublin_core_example, "Example Dublin Core record for a digitized photograph",
+          "dublin-core-example", c(.8, 2.3, 1.7))
+```
+
+The record in @tbl-dublin-core-example does not claim certainty about everything. Brackets identify a supplied title, and the description avoids naming people without evidence. A real profile would define repeatability, language tags, refinements, contributor roles, digitization metadata, record provenance, and validation.
+
+### Metadata quality
+
+Quality means fitness for stated purposes and communities, not maximal fullness. A record can be complete according to a template yet inaccurate, inaccessible, or harmful. Research on repository metadata repeatedly identifies consistency, completeness, accuracy, provenance, and interoperability as recurring quality concerns [@park2009quality].
+
+@tbl-metadata-quality provides operational questions. Quality dimensions can conflict: adding detail may improve discovery but create privacy risk; using one controlled vocabulary may improve consistency but weaken community representation.
+
+```{r}
+#| label: tbl-metadata-quality
+#| results: asis
+metadata_quality <- data.frame(
+  Dimension = c("Accuracy", "Completeness", "Consistency", "Conformance",
+                "Provenance", "Timeliness", "Accessibility", "Interoperability"),
+  Review_question = c("Does the statement match reliable evidence and the entity described?",
+                      "Are required elements present for the intended service?",
+                      "Are comparable resources described with comparable rules and values?",
+                      "Does the record follow the profile, syntax, and controlled vocabularies?",
+                      "Can users tell who supplied or changed a statement and from what source?",
+                      "Are changing names, rights, locations, and links reviewed?",
+                      "Can people understand labels, language, context, and access conditions?",
+                      "Will another system preserve enough structure and meaning to use the record?"),
+  Possible_measure = c("Sample verification against source", "Required-field rate",
+                       "Variant and duplicate analysis", "Validation error rate",
+                       "Presence of source and change history", "Overdue review count",
+                       "User testing and language review", "Test export and crosswalk loss report")
+)
+ict_table(metadata_quality, "Metadata quality dimensions and review evidence",
+          "metadata-quality", c(.8, 2.5, 1.5))
+```
+
+As @tbl-metadata-quality indicates, a quality program needs evidence. Validation catches some structural errors but cannot determine whether a culturally sensitive description is appropriate. Automated checks and human review should complement each other.
+
+### Interoperability, crosswalks, and loss
+
+Metadata interoperability includes technical, syntactic, semantic, and organizational dimensions. Two systems can exchange XML while disagreeing about what "creator" or "date" means. Shared syntax does not guarantee shared semantics.
+
+A **crosswalk** maps elements between schemas. Crosswalks support migration and aggregation but are rarely lossless. A detailed MARC statement with roles, indicators, and controlled subfields may map to one broad Dublin Core creator value. When mapping many source elements into one target element, reconstructing the original distinctions may be impossible.
+
+Before conversion, teams should:
+
+1. document source and target definitions;
+2. identify one-to-one, one-to-many, many-to-one, and unmappable cases;
+3. preserve original records or exports;
+4. test representative difficult records;
+5. record transformation rules and software versions;
+6. measure information loss and validation errors; and
+7. obtain review from metadata specialists and affected communities.
+
+Interoperability should not mean flattening every local distinction. Aggregators can retain local values and provide mapped access values with provenance.
+
+### Workflow, provenance, and maintenance
+
+Metadata is created through workflows: selection, examination, transcription, normalization, authority work, subject analysis, rights review, encoding, validation, publication, correction, and migration. Each handoff should have an accountable role.
+
+Record provenance should identify sources, creator or agent, creation and modification dates, imported versus locally supplied statements, automated transformations, review status, and uncertainty. Batch-generated or AI-suggested metadata should be marked and sampled for error.
+
+Maintenance is essential. URLs break, organizations change names, rights expire, vocabularies revise terms, and users identify errors. A correction mechanism should allow evidence-based revision without silently erasing record history.
+
+> **Reflective prompt.** Find a catalogue or repository record that helped or hindered you. Which element, value, relationship, or missing context produced that experience?
+
+## Philippine and Southeast Asian examples
+
+### University theses: names, departments, and advisers
+
+A Philippine university repository receives theses from many colleges. Department names change over time, students enter advisers in free text, and Filipino names appear in inconsistent order. The repository creates authority identifiers for people and organizations, retains historical department names with dates, and records adviser roles separately from authorship. This improves browse lists and prevents organizational history from being overwritten.
+
+### Municipal photographs: supplied titles and local knowledge
+
+A city library digitizes photographs with captions written decades after the events. Staff distinguish transcribed captions from supplied titles and community-contributed identifications. Each statement records source and date. Community corrections are reviewed rather than inserted anonymously, preserving both improved access and provenance.
+
+### Indigenous cultural heritage: negotiated access metadata
+
+A cultural institution holds recordings connected to an Indigenous community. Generic "open" or "closed" fields cannot express community protocols. Representatives participate in terminology, sensitivity review, access categories, and correction procedures. Public discovery metadata may remain visible while files have culturally governed conditions. Local values are documented and mapped only where appropriate.
+
+### Government records: office names across reorganizations
+
+A government information service describes reports issued by agencies that have merged or changed names. Authority records connect earlier and later corporate bodies without pretending they are identical. Issuing body, current custodian, and subject are recorded separately. Users can search the historical name while navigating to related bodies.
+
+### Southeast Asian multilingual collections
+
+A regional portal aggregates records in Filipino, Bahasa Indonesia, Malay, Thai, Vietnamese, and English. It preserves original scripts, adds language tags, stores transliterations as variant access points, and avoids treating English as the authoritative original. Shared type and rights vocabularies support regional filtering while local descriptions retain their source and context.
+
+## Hands-on activity: Describe and review a local heritage item
+
+### Purpose
+
+Create a beginner Dublin Core record, document the rules behind its values, and improve it through peer quality review.
+
+### Tools
+
+* One instructor-provided digitized photograph, poster, letter, oral-history excerpt, or pamphlet
+* A spreadsheet or CSV template with metadata fields
+* DCMI Metadata Terms [@dcmi2020terms]
+* RightsStatements.org statements [@rightsstatements2026]
+* Appropriate name, geographic, language, type, and subject vocabularies
+* A shared class data dictionary
+
+### Steps
+
+1. Examine the object and distinguish visible evidence from supplied contextual information.
+2. State the entity being described: original object, digital surrogate, or both through separate records.
+3. Complete title, creator, contributor, date, type, format, identifier, source, language, subject, spatial coverage, description, and rights fields.
+4. Mark a supplied title according to class policy.
+5. Use at least one controlled name or subject value and record its source.
+6. Use a stable identifier for the item and a URI for the rights statement where applicable.
+7. Record unknown, uncertain, approximate, and not-applicable values according to the profile; do not invent information.
+8. Add record provenance: metadata creator, date created, sources consulted, and review status.
+9. Exchange the record with a peer. The reviewer checks the object, profile, vocabularies, and quality dimensions.
+10. Revise the record and maintain a short change log explaining accepted and rejected suggestions.
+
+### Expected output
+
+Submit:
+
+* one completed metadata record;
+* a data dictionary excerpt for five selected elements;
+* authority or vocabulary evidence for at least three values;
+* a peer-review checklist;
+* a change log;
+* a short rights and sensitivity note; and
+* a 200-word reflection.
+
+> **Reflection question.** Which metadata decision required transcription, which required a standard, which required community or contextual knowledge, and which remained uncertain?
+
+### Activity checklist
+
+@tbl-ch4-lab-checklist should be completed before submission. It makes uncertainty and provenance visible rather than rewarding unsupported completeness.
+
+```{r}
+#| label: tbl-ch4-lab-checklist
+#| results: asis
+ch4_checklist <- data.frame(
+  Check = c("Described entity and relationship to digital surrogate are clear",
+            "Required elements follow the class application profile",
+            "Supplied and transcribed information are distinguishable",
+            "Names, subjects, types, languages, and places cite value sources",
+            "Identifier and rights value have appropriate scope",
+            "Unknown and uncertain facts are not invented",
+            "Record provenance and sources are documented",
+            "Peer review addresses at least five quality dimensions",
+            "Change log explains revisions and retained decisions"),
+  Complete = rep("[ ]", 9)
+)
+ict_table(ch4_checklist, "Chapter 4 metadata lab submission checklist",
+          "ch4-lab-checklist", c(3, .5))
+```
+
+### Metadata assignment rubric
+
+@tbl-ch4-lab-rubric allocates 30 points and corresponds to the course metadata and cataloguing assessment.
+
+```{r}
+#| label: tbl-ch4-lab-rubric
+#| results: asis
+ch4_rubric <- data.frame(
+  Criterion = c("Entity analysis and transcription", "Elements and content rules",
+                "Authorities, vocabularies, and identifiers", "Rights, ethics, and provenance",
+                "Quality review, revision, and reflection"),
+  Points = c(6, 7, 6, 5, 6),
+  Full_credit = c(
+    "Record clearly distinguishes evidence, supplied context, resource, and surrogate",
+    "Values follow definitions, obligations, repeatability, syntax, and uncertainty rules",
+    "Controlled values and identifiers are appropriate, sourced, and consistently applied",
+    "Rights and sensitivity are addressed; record origin and decisions are traceable",
+    "Peer evidence leads to justified revisions and a specific professional reflection"
+  )
+)
+ict_table(ch4_rubric, "Rubric for the Chapter 4 metadata and cataloguing assignment",
+          "ch4-lab-rubric", c(1.2, .4, 2.8))
+```
+
+## Ethical and professional issue: description, power, and accountable revision
+
+Description is an exercise of power. Cataloguers decide which names become prominent, which relationships are recorded, which terms group resources, and which histories remain invisible. Legacy records may contain colonial language, racial or ethnic slurs, medicalized terminology, imposed names, gender assumptions, or descriptions centered on collectors rather than represented communities.
+
+Removing harmful language immediately may improve access for current users, but silently replacing every historical statement can erase evidence about institutional practice. A responsible strategy may preserve the original statement in restricted administrative provenance while presenting a revised public value and an explanatory note. The appropriate choice depends on purpose, harm, law, community expectations, and archival integrity.
+
+Community participation should be more than asking people to approve a nearly finished record. Communities may help define entities, preferred names, protocols, access categories, and correction processes. Participation requires time, compensation where appropriate, consent, and clarity about who has final authority.
+
+Rights metadata also has ethical consequences. "Copyright unknown" does not mean "free to use," while "copyrighted" does not automatically mean inaccessible. Standardized rights statements can communicate known conditions consistently [@rightsstatements2026], but staff must document the evidence and jurisdiction behind the choice.
+
+AI systems can suggest captions, subjects, names, translations, or summaries. They can also hallucinate identities, repeat bias, flatten cultural distinctions, and expose restricted content to external services. AI-generated metadata should never be treated as authoritative merely because it is fluent. Projects need approved tools, data-protection review, provenance, confidence thresholds, representative sampling, human validation, and a path for correction.
+
+Professional neutrality does not mean avoiding responsibility. It means applying transparent principles, evidence, community knowledge, intellectual freedom, privacy, and accountable revision rather than personal preference or vendor defaults.
+
+> **Ethical checkpoint.** A legacy photograph caption uses a derogatory term but is the only evidence of how the institution described the community in 1950. What should remain, what should display publicly, who should be consulted, and how should the revision be documented?
+
+## Review questions
+
+1. **Identification:** Define metadata element, value, schema, and application profile.
+2. **Identification:** Distinguish descriptive, structural, technical, rights, provenance, and preservation metadata.
+3. **Short answer:** Why are MARC 21 and RDA not the same kind of standard?
+4. **Short answer:** Explain the difference among Work, Expression, Manifestation, and Item.
+5. **Short answer:** What are the purposes of authorized and variant access points?
+6. **Applied analysis:** A repository uses one field called date for creation, publication, upload, and copyright. Diagnose the semantic problem and propose a profile revision.
+7. **Applied analysis:** A project maps detailed MARC records to simple Dublin Core. What information loss should be tested and documented?
+8. **Scenario:** A community member disputes a subject heading applied to sacred material. Outline an evidence-based and participatory response.
+9. **Scenario:** An AI tool identifies people in historical photographs. What technical, ethical, privacy, and provenance controls are required before any value is published?
+10. **Synthesis:** Explain how database design, metadata standards, authority work, and interface display jointly affect discovery.
+
+## Mini case: The island heritage collection
+
+A university library receives 2,000 digitized photographs, field notebooks, and audio recordings documenting an island community from 1948 to 1985. The donor spreadsheet has columns called Name, Date, Place, Tribe, Notes, and Copyright. Some rows mix photographers and depicted persons. Dates range from exact days to guesses. Place names use colonial and current forms. The term in Tribe is rejected by community representatives. Several recordings contain ceremonies not intended for unrestricted circulation. The repository platform offers simple Dublin Core and an automatic image-captioning plugin. The grant requires public launch in four months.
+
+**Guide questions**
+
+1. Design an application profile identifying entities, required elements, repeatability, vocabularies, uncertainty, provenance, and access conditions.
+2. Propose a workflow for community participation, rights review, automated suggestions, quality control, correction, and phased release.
+3. Identify what should not be mapped into one public field, and explain how original donor data can be preserved without controlling public description.
+
+## Further reading and tools
+
+### Standards and models
+
+* **NISO, _Understanding Metadata_.** A concise introduction to metadata functions and components [@niso2004understanding].
+* **DCMI Metadata Terms.** Definitions and usage for Dublin Core properties, classes, and vocabularies [@dcmi2020terms].
+* **MARC 21 Format for Bibliographic Data.** Tags, indicators, subfields, and coded structures [@locmarc21].
+* **IFLA Library Reference Model.** Entities, relationships, and bibliographic user tasks [@ifla2017lrm].
+* **RDA Registry.** Open machine-readable RDA elements and vocabularies [@rdaregistry2026].
+* **BIBFRAME 2.0 Model.** Library of Congress linked-data model for bibliographic description [@loc2024bibframe].
+* **RightsStatements.org.** Standardized rights statements for cultural heritage institutions [@rightsstatements2026].
+
+### Open and widely accessible tools
+
+* **OpenRefine:** clean, cluster, reconcile, and transform metadata with an operation history.
+* **MarcEdit:** validate, transform, and edit MARC and related metadata formats.
+* **Zotero:** inspect bibliographic metadata and identifiers from common sources.
+* **Library of Congress Linked Data Service:** browse and retrieve authority and vocabulary data.
+* **Getty Vocabularies:** reference resources for art, architecture, people, and places.
+* **Wikidata:** a multilingual linked-data source that requires normal source evaluation.
+* **CSVLint and XML validators:** check structural conformance of exchange files.
+
+### Chapter 4 bridge
+
+Metadata becomes operational inside content systems. Chapter 5 examines digital libraries, repositories, digital archives, exhibits, and content platforms: how objects and records move through selection, ingest, review, storage, publication, rights management, access, and preservation workflows.

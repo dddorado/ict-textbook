@@ -1,0 +1,566 @@
+---
+title: "Databases for Library Data"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+latex_escape <- function(x) {
+  x <- gsub("\\", "<<<BACKSLASH>>>", as.character(x), fixed = TRUE)
+  x <- gsub("([#$%&_{}])", "\\\\\\1", x, perl = TRUE)
+  x <- gsub("~", "\\textasciitilde{}", x, fixed = TRUE)
+  gsub("<<<BACKSLASH>>>", "\\textbackslash{}", x, fixed = TRUE)
+}
+
+ict_table <- function(data, caption, label = NULL, widths = NULL) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  names(data) <- gsub("_", " ", names(data), fixed = TRUE)
+  anchor <- if (!is.null(label)) paste0("{#tbl-", label, "}") else ""
+  if (knitr::is_latex_output()) {
+    align <- paste(rep("Y", ncol(data)), collapse = "")
+    header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
+    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
+    out <- c(
+      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
+      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+      "\\toprule", paste0(header, " \\\\"), "\\midrule",
+      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
+    )
+  } else if (knitr::is_html_output()) {
+    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+  } else {
+    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+  }
+  knitr::asis_output(paste(out, collapse = "\n"))
+}
+```
+
+## Chapter overview
+
+A student returns a book, but the circulation system still shows it as overdue. A local-history spreadsheet lists the same author under four spellings. A report counts titles when the director asked for physical copies. A staff member deletes a borrower row and unexpectedly removes the only record of several transactions. Each incident looks different, but all point to one central problem: **how can an information organization structure data so that facts remain consistent, connected, retrievable, and appropriately protected?**
+
+Libraries, archives, records centers, museums, and repositories depend on databases. An integrated library system stores bibliographic descriptions, item copies, patrons, acquisitions, vendors, loans, holds, fines, and staff actions. A repository stores submissions, files, creators, departments, review states, rights, and identifiers. An archive may maintain accessions, agents, descriptions, locations, restrictions, and preservation events. Even when staff see only a form or dashboard, structured data and rules operate underneath.
+
+This chapter introduces relational databases without assuming prior programming. You will distinguish a database from a spreadsheet, identify entities and attributes, assign keys, model relationships, use constraints, reduce duplication through normalization, and read basic SQL. Metadata remains central: a database can store values efficiently, but LIS standards and policies determine what those values mean, how they are controlled, and whether they support discovery and accountability.
+
+## Learning objectives
+
+After completing this chapter, you should be able to:
+
+1. **Distinguish** flat files, spreadsheets, relational databases, and database management systems.
+2. **Identify** entities, attributes, records, tables, primary keys, foreign keys, and relationships in an LIS scenario.
+3. **Construct** a simple entity-relationship model for collections, creators, copies, users, or transactions.
+4. **Apply** data types, required fields, unique values, and referential constraints to improve data quality.
+5. **Write and interpret** basic SQL queries using SELECT, FROM, WHERE, ORDER BY, JOIN, and aggregate functions.
+6. **Evaluate** the collection, access, retention, security, and reporting risks of patron and transaction data.
+
+## Key concepts
+
+@tbl-database-key-concepts defines the chapter's working vocabulary. A crucial distinction is between a **database**, which is organized data, and a **DBMS**, which is the software used to define, store, query, control, and recover that data.
+
+```{r}
+#| label: tbl-database-key-concepts
+#| results: asis
+database_key_concepts <- data.frame(
+  Term = c("Database", "DBMS", "Relational database", "Table", "Row or record",
+           "Column or field", "Entity", "Attribute", "Schema", "Primary key",
+           "Foreign key", "Relationship", "Cardinality", "Constraint",
+           "Referential integrity", "Normalization", "SQL", "Query", "Index",
+           "Transaction", "Backup", "Data dictionary"),
+  Working_definition = c(
+    "An organized collection of data designed for reliable storage, retrieval, and management.",
+    "Software that defines, stores, queries, secures, and administers databases.",
+    "A database representing data in related tables of rows and columns.",
+    "A named structure containing rows about one kind of entity or event.",
+    "One stored occurrence, such as one item copy or one loan.",
+    "A defined property recorded for every applicable row.",
+    "A distinguishable thing or event about which data are maintained.",
+    "A property of an entity, such as title, date, or status.",
+    "The formal design of tables, fields, keys, relationships, and rules.",
+    "A field or combination of fields that uniquely identifies a row.",
+    "A field whose value refers to a key in another table.",
+    "An association between entities or tables.",
+    "The permitted number of related occurrences, such as one-to-many.",
+    "A rule limiting stored values or operations.",
+    "Consistency of references between related rows.",
+    "Organizing tables to reduce harmful duplication and dependency.",
+    "Structured Query Language, used to define, retrieve, and modify relational data.",
+    "A request for selected data or an operation on data.",
+    "An additional structure that can speed retrieval for selected fields.",
+    "A group of operations treated as one logical unit of work.",
+    "A separate recoverable copy used after loss, corruption, or failure.",
+    "Documentation of elements, definitions, types, values, rules, and stewardship."
+  )
+)
+ict_table(database_key_concepts, "Key concepts for relational databases",
+          "database-key-concepts", c(1, 3))
+```
+
+## Core discussion
+
+### From lists to managed data
+
+People often begin with a list. A small reading room may record title, author, shelf, borrower, and due date in one spreadsheet. This is understandable: spreadsheets are familiar, flexible, and effective for modest analysis. The problem appears when the same sheet tries to represent several different kinds of things.
+
+Imagine one row for every loan. The title and author are repeated whenever the same copy is borrowed. The borrower's name and contact details are repeated for every transaction. Correcting an author's name requires finding every occurrence. Deleting the last loan may also delete the only stored copy of a borrower's registration information. These are not simply typing errors; they are consequences of the structure.
+
+A database management system adds capabilities that a basic file or spreadsheet does not reliably provide: defined schemas, simultaneous access, constraints, relationships, transactions, permissions, indexes, queries, and recovery mechanisms. @tbl-data-tools compares three common arrangements. The table does not declare one tool universally superior; it shows that fitness depends on purpose, scale, relationships, risk, and workflow.
+
+```{r}
+#| label: tbl-data-tools
+#| results: asis
+data_tools <- data.frame(
+  Arrangement = c("Flat file or CSV", "Spreadsheet", "Relational database"),
+  Strength = c("Portable, simple, transparent exchange format",
+               "Flexible entry, formulas, sorting, and small analyses",
+               "Explicit relationships, constraints, queries, transactions, and controlled multi-table storage"),
+  Limitation = c("No built-in relationships, types, permissions, or transaction control",
+                 "Easy to mix meanings, formulas, display, and data; weak relationship enforcement",
+                 "Requires schema design, administration, documentation, and suitable tools"),
+  Appropriate_example = c("Export of selected repository records",
+                          "Temporary inventory or one-time metadata review",
+                          "Circulation, acquisitions, accessions, or repository workflow")
+)
+ict_table(data_tools, "Comparing common structures for LIS data",
+          "data-tools", c(1, 1.5, 1.7, 1.4))
+```
+
+As @tbl-data-tools suggests, CSV is valuable for exchange and spreadsheets remain useful. The professional question is not "database or spreadsheet?" in the abstract. It is whether the chosen structure can enforce necessary meaning, preserve relationships, protect sensitive data, and support the intended work.
+
+### Relational thinking
+
+The relational model represents data through relations that can be manipulated without making users follow physical storage paths. Codd's foundational paper argued for this independence between data relationships and storage representation [@codd1970relational]. In practical introductory work, relations are usually presented as tables.
+
+Each table should describe one kind of entity or event. Examples include:
+
+* **Work**: an intellectual creation;
+* **Item**: one physical or digital copy;
+* **Creator**: a person or organization associated with a work;
+* **Patron**: an authorized service user;
+* **Loan**: an event connecting an item and patron over time;
+* **Accession**: an event through which materials enter an archive; and
+* **Preservation event**: an action performed on a digital object.
+
+This way of thinking connects directly to metadata. Before creating a field, ask what entity it describes. A publication date belongs to a publication or manifestation context, not necessarily to the physical copy. A barcode identifies an item copy, not the abstract title. A due date describes a loan event. Many reporting errors begin when these distinctions are blurred.
+
+### Tables, rows, and columns
+
+A **table** has a name and defined columns. Each **row** represents one occurrence. Each **column** represents one defined attribute. Good column definitions are consistent: one field should not mean "publication year" for some rows and "acquisition year" for others.
+
+Column names should be concise but accompanied by a data dictionary. A field named date is ambiguous. A field named date_acquired is better, but documentation should still specify format, timezone if relevant, source, whether an unknown value is allowed, and who is responsible for correction.
+
+Data types communicate expected form and support validation. Common types include:
+
+* integer for whole numbers and surrogate identifiers;
+* text for names, titles, codes, and notes;
+* real or decimal forms for measured or monetary values where supported;
+* date or date-time representations;
+* Boolean values for true/false conditions; and
+* binary data for bytes, though many content systems store files outside the database and keep paths plus technical metadata inside it.
+
+SQLite uses a flexible type system, so application rules and constraints remain important. A field's declared type is not a substitute for testing actual data.
+
+### Keys and identity
+
+A **primary key** uniquely identifies a row. Good primary keys are unique, stable, present, and not reused. A system-generated integer may serve as an internal key. A barcode, accession number, ISBN, ORCID, URI, or local identifier may carry professional meaning, but each identifies a different entity and follows different rules.
+
+Identifiers should not be treated as interchangeable merely because all look like codes. An ISBN generally identifies a publication rather than one copy. A shelf mark supports location and arrangement but may change. A person's name is not a stable identifier because names can be shared, changed, transliterated, or entered differently.
+
+A **foreign key** stores a reference to a key in another table. If a loan row contains item_id 42, that value should point to an existing row in the Item table. Foreign-key enforcement helps prevent orphan records. SQLite documents both the syntax and required enabling conditions for foreign-key constraints [@sqlite2026foreignkeys].
+
+### Relationships and cardinality
+
+@fig-reading-room-er models a small reading-room service. One creator may be connected to many resources, one resource may have many items, one patron may have many loans, and one item may appear in many loans over time. Each loan refers to exactly one item and one patron.
+
+```{mermaid}
+%%| label: fig-reading-room-er
+%%| fig-cap: "Entity-relationship model for a small reading-room database"
+erDiagram
+    CREATOR ||--o{ RESOURCE : creates
+    RESOURCE ||--o{ ITEM : has
+    PATRON ||--o{ LOAN : makes
+    ITEM ||--o{ LOAN : appears_in
+    CREATOR {
+      integer creator_id PK
+      text authorized_name
+    }
+    RESOURCE {
+      integer resource_id PK
+      integer creator_id FK
+      text title
+      integer publication_year
+    }
+    ITEM {
+      integer item_id PK
+      integer resource_id FK
+      text barcode
+      text status
+    }
+    PATRON {
+      integer patron_id PK
+      text patron_code
+      text category
+    }
+    LOAN {
+      integer loan_id PK
+      integer item_id FK
+      integer patron_id FK
+      text checkout_date
+      text due_date
+      text return_date
+    }
+```
+
+The notation in @fig-reading-room-er shows **cardinality**. One-to-many relationships are common. Many-to-many relationships require an intermediate table. If a resource can have many creators and a creator can be associated with many resources, a ResourceCreator table would hold pairs of identifiers and possibly a role such as author, editor, translator, or photographer.
+
+An entity-relationship diagram is a model, not reality itself. The simple design in @fig-reading-room-er allows one main creator directly on Resource for beginner practice. A production catalogue would require richer bibliographic entities, roles, authorities, and many-to-many relationships.
+
+### Constraints and validation
+
+A **constraint** is a rule enforced by the database. Useful constraints include:
+
+* PRIMARY KEY: each row has a unique identifier;
+* FOREIGN KEY: a reference must point to an allowable related row;
+* NOT NULL: a value is required;
+* UNIQUE: duplicate values are prohibited;
+* CHECK: a value must satisfy a condition; and
+* DEFAULT: a defined value is supplied when none is entered.
+
+Constraints should reflect justified business and metadata rules. Marking a birth date NOT NULL because a form designer prefers complete rows may force staff to invent dates or exclude users. Conversely, leaving barcode unrestricted may permit duplicates that make circulation unsafe. Requirements should be negotiated with service owners and documented.
+
+Validation occurs at several levels. Syntactic validation asks whether a value has the right form. Semantic validation asks whether it means the right thing. Workflow validation asks whether the value was supplied by an authorized process. A four-digit year can be syntactically valid while still describing the wrong event.
+
+Controlled vocabularies can improve consistent values for fields such as item status, patron category, material type, language, and rights. Database constraints may enforce a short list, while authority tables support richer identifiers, labels, variants, provenance, and change over time.
+
+### Normalization and anomalies
+
+**Normalization** organizes data to reduce harmful redundancy and dependency. At an introductory level, use three questions:
+
+1. Does each cell contain one value appropriate to its field?
+2. Does each row describe one identifiable thing or event?
+3. Does every non-key field describe that row's entity rather than some other entity?
+
+Consider one table containing LoanID, ItemBarcode, Title, PatronName, PatronEmail, CheckoutDate, and DueDate. Title repeats for every loan of an item; patron data repeat for every loan by that person. @tbl-data-anomalies explains the resulting anomalies and the normalized response.
+
+```{r}
+#| label: tbl-data-anomalies
+#| results: asis
+data_anomalies <- data.frame(
+  Anomaly = c("Update", "Insertion", "Deletion"),
+  Problem = c("A changed email must be corrected in many loan rows",
+              "A resource cannot be recorded until it has a loan",
+              "Deleting the last loan can remove the only stored patron or title facts"),
+  Structural_response = c("Store patron contact once and reference patron_id",
+                          "Store Resource and Item independently of Loan",
+                          "Keep entity records separate and apply explicit retention rules")
+)
+ict_table(data_anomalies, "Common data anomalies and structural responses",
+          "data-anomalies", c(.8, 2, 2))
+```
+
+@tbl-data-anomalies shows that normalization is not merely tidiness. It reduces inconsistent correction, supports independent lifecycle events, and prevents accidental information loss. However, normalization does not decide retention. A separated patron table can still be retained too long; governance must define when records are archived, anonymized, or deleted.
+
+### SQL as a language for questions
+
+Structured Query Language is used to define structures, retrieve rows, and modify data. SQLite provides an accessible implementation and documents supported statements and expressions [@sqlite2026language]. SQL keywords are conventionally written in uppercase for readability, though they are generally case-insensitive.
+
+A basic query selects named columns from a table:
+
+```sql
+SELECT title, publication_year
+FROM Resource;
+```
+
+WHERE filters rows:
+
+```sql
+SELECT title, publication_year
+FROM Resource
+WHERE publication_year >= 2020
+ORDER BY publication_year DESC, title;
+```
+
+Never use SELECT star merely because it is short when a report needs only selected fields. Naming columns documents purpose, reduces unnecessary data exposure, and makes changes easier to detect.
+
+JOIN combines related tables:
+
+```sql
+SELECT Resource.title, Item.barcode, Item.status
+FROM Resource
+JOIN Item ON Resource.resource_id = Item.resource_id
+ORDER BY Resource.title;
+```
+
+An aggregate summarizes rows:
+
+```sql
+SELECT status, COUNT(*) AS item_count
+FROM Item
+GROUP BY status
+ORDER BY item_count DESC;
+```
+
+@tbl-sql-clauses connects common clauses to LIS questions.
+
+```{r}
+#| label: tbl-sql-clauses
+#| results: asis
+sql_clauses <- data.frame(
+  Clause = c("SELECT", "FROM", "JOIN ... ON", "WHERE", "GROUP BY", "HAVING", "ORDER BY", "LIMIT"),
+  Purpose = c("Choose fields or expressions", "Name the source table",
+              "Connect related rows", "Filter individual rows",
+              "Form groups for summaries", "Filter summarized groups",
+              "Sort results", "Restrict the number returned"),
+  LIS_question = c("Which columns belong in this report?", "Which entity is the starting point?",
+                   "How are copies connected to titles?", "Which loans remain unreturned?",
+                   "How many items have each status?", "Which subjects have more than 50 items?",
+                   "Which due dates come first?", "What are the ten most recent accessions?")
+)
+ict_table(sql_clauses, "SQL clauses as parts of an information question",
+          "sql-clauses", c(.8, 1.4, 2))
+```
+
+As @tbl-sql-clauses emphasizes, a good query begins with a precise information need. "Show usage" is vague. "Count completed in-library loans by material type for January, excluding test records and without patron identifiers" is testable and privacy-aware.
+
+### Transactions and concurrent work
+
+A database **transaction** groups operations into one logical unit. Imagine checking out an item: the system creates a loan, changes the item's availability, and records an audit event. If only one operation succeeds, the database becomes inconsistent.
+
+@fig-transaction-flow shows the decision. COMMIT makes the complete set durable; ROLLBACK reverses the pending set after error. SQLite is transactional and documents all-or-nothing behavior across crashes within its stated guarantees [@sqlite2026transactions].
+
+```{mermaid}
+%%| label: fig-transaction-flow
+%%| fig-cap: "A simplified database transaction for checking out an item"
+flowchart LR
+    B["BEGIN transaction"] --> V["Validate patron and item"]
+    V --> L["Create loan row"]
+    L --> S["Change item status"]
+    S --> A["Record audit event"]
+    A --> Q{"All operations valid?"}
+    Q -- Yes --> C["COMMIT"]
+    Q -- No --> R["ROLLBACK"]
+    C --> O["Consistent checkout"]
+    R --> E["No partial checkout; report error"]
+```
+
+@fig-transaction-flow simplifies a real circulation system, which may include locks, holds, loan rules, notifications, and external services. Its lesson is that multi-step changes need defined boundaries and recovery.
+
+### Indexes, performance, and reporting
+
+An **index** is an additional structure that can speed searches and joins on selected fields. A book index helps readers find topics without scanning every page; a database index serves a related purpose. Indexes consume storage and must be updated when data change, so more is not always better.
+
+Common candidates include identifiers, foreign keys, frequently filtered dates, and fields used for sorting. Performance should be measured with representative data and queries. A design that works with 50 rows may behave differently with millions of transactions.
+
+Reports also require definitions. Does "collection size" mean bibliographic records, physical items, digital files, linear meters, or licensed titles? Does "active patron" mean registered, currently eligible, or recently transacting? The database cannot resolve an undefined metric. A data dictionary should connect report labels to entities, fields, filters, date rules, and exclusions.
+
+### Backup, export, and recovery
+
+A database file is not a backup of itself. A useful backup is a separate recoverable copy, protected from the same failure, created on a schedule, retained appropriately, and tested through restoration. Copying an actively changing database without supported procedures can produce an inconsistent copy.
+
+Backup planning should identify recovery point and recovery time needs. How much recent work could be re-entered? How long can circulation or reference services operate offline? What records must be retained for accountability, and which sensitive records should not persist indefinitely in backups?
+
+Exports serve exchange and migration, but exporting rows does not automatically preserve schema, relationships, controlled vocabularies, permissions, documentation, or audit history. Vendor evaluation should therefore test both data export and meaningful reconstruction.
+
+> **Reflective prompt.** Find a spreadsheet you know well. Which columns describe different entities? What repeats, and what could be lost if one row were deleted?
+
+## Philippine and Southeast Asian examples
+
+### Barangay reading center: one copy is not one title
+
+A barangay reading center records donated books in a spreadsheet. Three copies of the same title occupy three rows, but each row also repeats title, author, and publisher. Staff cannot tell whether a report should count titles or copies. A small relational design separates Resource from Item. One resource description can link to three barcoded copies, each with its own condition and location.
+
+### State university: authority work across campuses
+
+A university system merges holdings from several campus libraries. Creator names include "Jose Rizal," "Rizal, Jose P.," and forms with different punctuation. A database can relate resource records to one creator identifier, but staff must still choose an authorized form, retain variants, document sources, and support Filipino naming contexts. Database structure makes authority control possible; cataloguing policy gives the structure meaning.
+
+### Provincial archive: accessions and locations
+
+A provincial archive tracks accessions, donors, boxes, shelves, restrictions, and digitization status. One spreadsheet cell contains several box numbers separated by commas. Staff redesign the data so each container has its own identifier and location relationship. This allows movement history and inventory checks without overwriting the description of the archival unit.
+
+### Public library consortium: shared system, local policy
+
+Several city libraries share a hosted circulation platform. They use common item-status codes so consortium reports can be combined, but borrowing periods differ by city and material type. The database schema supports shared entities and local policy tables. Governance identifies which fields are consortium-wide, which are locally controlled, and who approves changes.
+
+### Community heritage project: consent is not one checkbox
+
+A community heritage project records narrators, interviews, consent conditions, access restrictions, and review dates. A single yes/no consent field is inadequate. The database separates the interview from consent events and access conditions, allowing permissions to be documented, reviewed, and changed without rewriting historical facts.
+
+## Hands-on activity: Build a small reading-room database
+
+### Purpose
+
+Create and query a beginner relational database for resources, items, and loans while documenting data quality and privacy decisions.
+
+### Tools
+
+* DB Browser for SQLite, an open-source graphical tool [@sqlitebrowser2026]
+* A diagram tool or paper for the entity-relationship model
+* The provided fictional data, or ten invented resource records
+* A secure working folder containing no real patron data
+
+### Schema
+
+Create four tables:
+
+1. **Resource**: resource_id, title, creator_name, publication_year
+2. **Item**: item_id, resource_id, barcode, status
+3. **Patron**: patron_id, patron_code, category
+4. **Loan**: loan_id, item_id, patron_id, checkout_date, due_date, return_date
+
+For this introductory lab, creator_name remains in Resource. In your reflection, explain why a future version may require Creator and ResourceCreator tables.
+
+### Steps
+
+1. Draw the four entities, their primary keys, and their relationships.
+2. Create a new database named **reading-room.sqlite**.
+3. Enable foreign-key support and create the tables with suitable data types.
+4. Make every primary key an integer. Make barcode and patron_code unique.
+5. Require Resource.title, Item.status, Loan.checkout_date, and Loan.due_date.
+6. Add foreign keys from Item to Resource and from Loan to Item and Patron.
+7. Enter at least five resources, eight items, four fictional patrons, and six loans. Leave return_date empty for two active loans.
+8. Attempt to enter a duplicate barcode and record the result.
+9. Attempt to create a loan for an item_id that does not exist and record the result.
+10. Run the five required queries below.
+11. Export one non-sensitive report to CSV.
+12. Close the program, copy the database to a separate backup folder, reopen the copy, and run one query to test it.
+
+### Required queries
+
+1. List resources alphabetically by title.
+2. List each item with its title, barcode, and status using JOIN.
+3. List active loans where return_date is NULL.
+4. Count items by status using GROUP BY.
+5. Count loans by patron category without showing patron codes.
+
+### Expected output
+
+Submit:
+
+* an entity-relationship diagram;
+* **reading-room.sqlite**;
+* a one-page data dictionary;
+* the five SQL queries and result screenshots or exports;
+* a constraint-test log;
+* one CSV report containing no patron identifiers;
+* backup restoration evidence; and
+* a 200-word reflection.
+
+> **Reflection question.** Which rule belongs in the schema, which belongs in metadata or service policy, and which requires human judgment?
+
+### Activity checklist
+
+@tbl-ch3-lab-checklist should be completed before submission. The checklist treats documentation, constraint testing, privacy, and recovery as part of database work rather than optional extras.
+
+```{r}
+#| label: tbl-ch3-lab-checklist
+#| results: asis
+ch3_checklist <- data.frame(
+  Check = c("Diagram shows four entities, keys, and correct relationships",
+            "Primary and foreign keys are implemented",
+            "Barcode and patron code are unique",
+            "Required fields reject missing values where appropriate",
+            "Fictional sample data preserve referential integrity",
+            "Five required queries run and answer the stated question",
+            "CSV report excludes direct patron identifiers",
+            "Data dictionary defines fields and controlled values",
+            "Backup copy opens and returns a verified query result"),
+  Complete = rep("[ ]", 9)
+)
+ict_table(ch3_checklist, "Chapter 3 database lab submission checklist",
+          "ch3-lab-checklist", c(3, .5))
+```
+
+### Mini-project rubric
+
+@tbl-ch3-lab-rubric allocates 30 points. This lab can serve as the foundation for the database or API mini-project in the course assessment.
+
+```{r}
+#| label: tbl-ch3-lab-rubric
+#| results: asis
+ch3_rubric <- data.frame(
+  Criterion = c("Model and schema", "Constraints and sample data", "Queries and interpretation",
+                "Documentation and privacy", "Backup test and reflection"),
+  Points = c(8, 6, 7, 5, 4),
+  Full_credit = c(
+    "Entities, keys, cardinalities, fields, and relationships fit the service problem",
+    "Rules prevent tested duplicates and broken references; data are plausible and fictional",
+    "All queries are correct, readable, and interpreted in relation to the question",
+    "Dictionary is clear; report minimizes personal data and records assumptions",
+    "Recovery is demonstrated and reflection distinguishes schema, policy, and judgment"
+  )
+)
+ict_table(ch3_rubric, "Rubric for the Chapter 3 database lab",
+          "ch3-lab-rubric", c(1, .4, 2.8))
+```
+
+## Ethical and professional issue: patron data and purpose limitation
+
+Circulation data can reveal what a person reads, researches, questions, or fears. A technically useful database can therefore create professional and legal risk. The question is not merely whether staff can store a field, but whether the institution needs it for a legitimate, explained purpose.
+
+The Philippine Data Privacy Act establishes principles including transparency, legitimate purpose, and proportionality [@philippines2012dpa; @npc2023dpa]. In database design, these principles become concrete:
+
+* collect only fields necessary for a defined service;
+* separate identity data from analysis data where possible;
+* restrict access by role and review privileges;
+* protect exports, temporary files, backups, and test databases;
+* define retention and disposal for accounts, loans, logs, and audit trails;
+* use fictional or properly de-identified data for teaching and testing;
+* document data sharing with vendors and institutional offices; and
+* provide processes for appropriate access and correction.
+
+De-identification is not simply deleting names. A combination of course, rare patron category, branch, date, and title may still identify someone. Aggregation can reduce risk, but very small counts may remain revealing.
+
+The IFLA ethics framework connects privacy and confidentiality with equitable access and intellectual freedom [@ifla2012ethics]. Retaining every borrowing history "in case it becomes useful" can chill inquiry and increase breach harm. At the same time, deleting data without records policy can weaken accountability. The responsible approach defines purpose, minimum data, authorized access, retention, secure disposal, and documented exceptions.
+
+Database administrators and vendors require enough access to maintain systems, but technical capability does not create unlimited professional permission. Audit logs should support accountability without becoming a second, poorly governed surveillance dataset.
+
+> **Ethical checkpoint.** A dean requests a list of students who borrowed materials on a controversial topic. What questions should the library ask about authority, purpose, necessity, intellectual freedom, privacy, and less intrusive alternatives?
+
+## Review questions
+
+1. **Identification:** Distinguish a database from a DBMS.
+2. **Identification:** Define primary key, foreign key, and referential integrity.
+3. **Short answer:** Why is a person's name usually a poor primary key?
+4. **Short answer:** What is cardinality? Give one LIS one-to-many example.
+5. **Short answer:** Explain update, insertion, and deletion anomalies.
+6. **Applied analysis:** A table stores title, barcode, borrower email, and due date in every row. Identify the entities and propose a normalized design.
+7. **Applied analysis:** Why might a syntactically valid four-digit year still be semantically wrong?
+8. **Scenario:** A report says the library has 20,000 books. What definitions and database evidence must be checked before using the number?
+9. **Scenario:** A staff member exports all loan records to a personal device to create statistics. Identify the risks and propose a safer workflow.
+10. **Synthesis:** Explain how database design, metadata policy, and professional ethics jointly affect a user's library experience.
+
+## Mini case: The regional mobile library database
+
+A provincial library operates two bookmobiles serving coastal and upland municipalities. Each vehicle keeps a separate spreadsheet because connectivity is intermittent. Patron names, schools, telephone numbers, titles, barcodes, checkout dates, and notes appear in one sheet. Barcode duplicates exist across vehicles. Staff sometimes replace an old borrower's row with a new transaction to save space. At month end, files are emailed to headquarters, where one employee manually combines them. Management wants branch-level use statistics, while community partners ask the library not to expose children's reading histories.
+
+**Guide questions**
+
+1. Identify the entities, keys, relationships, controlled values, and offline synchronization problems in the current workflow.
+2. Propose a phased database design and data-governance plan suitable for intermittent connectivity.
+3. Define three useful management reports that minimize personal data, including the fields, filters, grouping, and retention assumptions for each.
+
+## Further reading and tools
+
+### Readings and documentation
+
+* **Codd, "A Relational Model of Data for Large Shared Data Banks."** The foundational relational-model paper [@codd1970relational].
+* **SQLite SQL Language documentation.** Primary syntax reference for supported statements and expressions [@sqlite2026language].
+* **SQLite Foreign Key Support.** Practical explanation of referential constraints [@sqlite2026foreignkeys].
+* **SQLite Is Transactional.** A concise description of transaction guarantees [@sqlite2026transactions].
+* **NISO, _Understanding Metadata_.** A reminder that field structure must be paired with documented meaning [@niso2004understanding].
+* **Philippine Data Privacy Act and NPC guidance.** Primary sources for personal-data obligations [@philippines2012dpa; @npc2023dpa].
+
+### Open and widely accessible tools
+
+* **DB Browser for SQLite:** graphical creation, entry, browsing, and SQL querying [@sqlitebrowser2026].
+* **SQLite command-line shell:** direct database creation, querying, import, and export.
+* **diagrams.net:** entity-relationship and workflow diagrams.
+* **LibreOffice Base:** graphical work with small relational databases.
+* **OpenRefine:** preparation and reconciliation of messy tabular values before controlled import.
+* **R packages DBI and RSQLite:** reproducible access to SQLite from R in later programming work.
+
+### Chapter 3 bridge
+
+A database schema defines where values can be stored and how records connect. It does not decide the descriptive rules for titles, names, subjects, identifiers, rights, or provenance. Chapter 4 turns to metadata and cataloguing: the standards, vocabularies, authorities, and quality practices that make structured fields meaningful across systems and communities.

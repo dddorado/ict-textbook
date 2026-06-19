@@ -1,0 +1,652 @@
+---
+title: "Cybersecurity, Law, Ethics, and Project Planning"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+latex_escape <- function(x) {
+  x <- gsub("\\", "<<<BACKSLASH>>>", as.character(x), fixed = TRUE)
+  x <- gsub("([#$%&_{}])", "\\\\\\1", x, perl = TRUE)
+  x <- gsub("~", "\\textasciitilde{}", x, fixed = TRUE)
+  gsub("<<<BACKSLASH>>>", "\\textbackslash{}", x, fixed = TRUE)
+}
+
+ict_table <- function(data, caption, label = NULL, widths = NULL) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  names(data) <- gsub("_", " ", names(data), fixed = TRUE)
+  anchor <- if (!is.null(label)) paste0("{#tbl-", label, "}") else ""
+  if (knitr::is_latex_output()) {
+    align <- paste(rep("Y", ncol(data)), collapse = "")
+    header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
+    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
+    out <- c(
+      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
+      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+      "\\toprule", paste0(header, " \\\\"), "\\midrule",
+      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
+    )
+  } else if (knitr::is_html_output()) {
+    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+  } else {
+    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+  }
+  knitr::asis_output(paste(out, collapse = "\n"))
+}
+```
+
+## Chapter overview
+
+A university plans a small institutional repository. The project team focuses on the homepage, upload form, and launch date. Late in testing, staff discover that one shared administrator password controls the platform; student assistants can download embargoed theses; analytics retain identifiable search histories; donor agreements do not clearly authorize online publication; and no one is responsible for incident response after office hours. The repository may function technically, but the project is not ready to provide a trustworthy service.
+
+The central problem of this chapter is **how to introduce or change an information service while managing security, legal, ethical, operational, and project risks together**. Cybersecurity protects services and information from unauthorized access, alteration, disruption, destruction, or misuse. Law establishes enforceable duties and permissions. Professional ethics guides choices when law is silent, broad, conflicting, or only a minimum. Project planning coordinates scope, people, time, money, decisions, evidence, and change.
+
+These domains cannot be separated cleanly. A security log may help investigate attacks but invade reader privacy if it retains queries indefinitely. A copyright takedown workflow may protect rights holders but chill lawful access if every complaint triggers immediate permanent removal. A strict identity-verification system may reduce account misuse while excluding people without accepted credentials. A project that launches on time but lacks maintenance ownership is not successful.
+
+This chapter introduces confidentiality, integrity, availability, assets, threats, vulnerabilities, likelihood, impact, controls, authentication, authorization, least privilege, encryption, social engineering, malware, incident response, privacy impact assessment, copyright, licensing, intellectual freedom, procurement, project charters, stakeholders, scope, deliverables, milestones, budgets, change control, and risk registers. It supports professional issue-spotting and collaboration; it is not legal advice or a substitute for authorized legal, privacy, cybersecurity, records, accessibility, or community expertise.
+
+## Learning objectives
+
+After completing this chapter, you should be able to:
+
+1. **Conduct** a basic asset-threat-vulnerability-consequence-control analysis for an LIS service.
+2. **Recommend** proportionate administrative, technical, and physical controls using defense in depth and least privilege.
+3. **Recognize and report** common phishing, credential, malware, and data-handling warning signs without conducting unsafe investigation.
+4. **Apply** privacy, copyright, intellectual-freedom, accessibility, records, and community-authority questions to a proposed ICT service.
+5. **Draft** a project charter defining problem, users, scope, exclusions, deliverables, roles, milestones, budget assumptions, success criteria, and change control.
+6. **Build and maintain** a risk register that names owners, controls, evidence, residual risk, triggers, and escalation paths.
+
+## Key concepts
+
+@tbl-risk-project-key-concepts defines the working vocabulary. Security terms describe conditions and controls; project terms describe how work and decisions are governed.
+
+```{r}
+#| label: tbl-risk-project-key-concepts
+#| results: asis
+risk_project_key_concepts <- data.frame(
+  Term = c("Cybersecurity", "Confidentiality", "Integrity", "Availability", "Asset", "Threat",
+           "Threat actor", "Vulnerability", "Exposure", "Likelihood", "Impact", "Risk", "Control",
+           "Safeguard", "Defense in depth", "Authentication", "Authorization", "Least privilege",
+           "Multifactor authentication", "Encryption", "Key management", "Logging", "Incident",
+           "Phishing", "Social engineering", "Malware", "Ransomware", "Privacy impact assessment",
+           "Personal information", "Data minimization", "Copyright", "License", "Public domain",
+           "Fair use", "Intellectual freedom", "Censorship", "Project charter", "Scope", "Deliverable",
+           "Milestone", "Dependency", "Stakeholder", "Sponsor", "Risk register", "Residual risk", "Change control"),
+  Working_definition = c(
+    "Protection of information, systems, and services against unauthorized access, change, disruption, destruction, or misuse.",
+    "Protection against unauthorized disclosure.", "Protection against unauthorized or accidental alteration and loss of completeness.",
+    "Reliable and timely access to information and services for authorized users.",
+    "Anything valuable to the organization or its communities, including data, services, trust, staff time, and legal authority.",
+    "A circumstance or event capable of causing harm.", "A person, group, process, or organization that may cause or exploit harm.",
+    "A weakness that can be exploited or activated by a threat.", "A condition that places an asset within reach of a threat.",
+    "A reasoned estimate of how plausibly or frequently a risk may occur.",
+    "The consequence to people, services, rights, operations, finances, evidence, or trust.",
+    "The effect of uncertainty on objectives, often considered through likelihood and impact.",
+    "A measure that modifies risk.", "An administrative, technical, physical, contractual, or social protection.",
+    "Multiple independent or complementary controls so one failure is not decisive.",
+    "Verification of a claimed identity or device.", "Decision about what an authenticated identity may access or do.",
+    "Granting only the access needed for an approved task and period.",
+    "Authentication using evidence from more than one factor category.",
+    "Transformation using cryptography to protect information from unauthorized reading or alteration.",
+    "Generation, storage, access, rotation, recovery, and destruction of cryptographic keys.",
+    "Recording selected events for operations, accountability, detection, and investigation.",
+    "An occurrence that actually or potentially jeopardizes information or services or violates policy.",
+    "Deceptive communication designed to obtain credentials, money, data, access, or unsafe action.",
+    "Manipulation of people into bypassing controls or disclosing information.",
+    "Software or code intended to disrupt, damage, spy, steal, or gain unauthorized control.",
+    "Malware that blocks or threatens systems or data, often demanding payment.",
+    "A structured assessment of personal-data purpose, flow, necessity, risks, controls, and accountability.",
+    "Information from which a person is identified or reasonably identifiable, alone or in combination.",
+    "Collecting, using, retaining, and sharing only data necessary for a defined lawful purpose.",
+    "A body of rights protecting qualifying original works and regulating specified uses.",
+    "Permission defining allowed uses, conditions, limits, and responsibilities.",
+    "Legal status in which copyright restrictions do not apply to a work, subject to jurisdiction and other rights.",
+    "A context-dependent limitation or exception assessed under applicable law; not a blanket educational permission.",
+    "The right and professional principle supporting seeking, receiving, creating, and communicating ideas and information.",
+    "Suppression or restriction of access or expression, especially through viewpoint-based or unjustified control.",
+    "A document authorizing a project and defining its purpose, boundaries, governance, and success.",
+    "The work and outcomes included in a project, together with explicit exclusions.",
+    "A verifiable product, service, decision, document, or result the project must produce.",
+    "A meaningful checkpoint or decision point, not merely a date on a calendar.",
+    "Something another task, decision, resource, or outcome relies on.",
+    "A person or group affected by, participating in, funding, governing, or able to influence the project.",
+    "The accountable authority providing direction, resources, and decisions beyond the project manager's mandate.",
+    "A maintained record of risks, causes, consequences, controls, owners, status, triggers, and responses.",
+    "Risk remaining after controls are considered.",
+    "A defined process for proposing, assessing, approving, documenting, and communicating changes."
+  )
+)
+ict_table(risk_project_key_concepts, "Key concepts in cybersecurity, law, ethics, and project planning",
+          "risk-project-key-concepts", c(1, 3))
+```
+
+## Core discussion
+
+### Trustworthy service is the objective
+
+Security is not the objective by itself. The objective is a trustworthy information service that advances institutional mission and professional values while resisting and recovering from harm. Controls should be proportionate to assets, users, threats, and consequences.
+
+Libraries hold more than files. Assets include patron identities, reading interests, circulation history, research plans, donor restrictions, unpublished records, staff credentials, preservation copies, domain names, vendor contracts, service availability, public trust, and intellectual freedom. Some assets require confidentiality; others require public availability. Applying one secrecy rule to everything can undermine access, while treating all data as public can cause serious harm.
+
+The NIST Cybersecurity Framework 2.0 organizes outcomes around **Govern, Identify, Protect, Detect, Respond, and Recover** [@nist2024csf]. It is a framework for communicating and managing cybersecurity risk, not a product checklist.
+
+```{mermaid}
+%%| label: fig-csf-lis-cycle
+%%| fig-cap: "Cybersecurity risk management across an LIS service lifecycle"
+flowchart LR
+    G["Govern: mission, policy, roles, suppliers, risk"] --> I["Identify: assets, data, threats, dependencies"]
+    I --> P["Protect: access, training, configuration, backups"]
+    P --> D["Detect: logs, alerts, reports, anomalies"]
+    D --> R["Respond: triage, contain, communicate, preserve evidence"]
+    R --> C["Recover: restore, verify, support users, improve"]
+    C --> G
+```
+
+As @fig-csf-lis-cycle shows, governance surrounds technical action. Recovery lessons return to policy, contracts, architecture, training, and project planning.
+
+### Confidentiality, integrity, and availability
+
+The CIA triad provides a basic model:
+
+* **Confidentiality:** only authorized people and systems receive information.
+* **Integrity:** information and systems remain complete and are changed only through authorized, traceable processes.
+* **Availability:** authorized users can access necessary information and services at appropriate times.
+
+An embargoed thesis requires confidentiality until release, integrity throughout custody, and availability to authorized staff. A public disaster-information page emphasizes availability and integrity, while still protecting administrative credentials. A preservation master may require high integrity and restricted access, while an access derivative is broadly available.
+
+Security decisions involve tradeoffs, but the triad should not be used to justify avoidable exclusion. Strong authentication that cannot be completed with assistive technology damages availability. Excessive logging can improve detection while damaging confidentiality and intellectual freedom.
+
+### From asset to control
+
+A risk statement should identify cause, event, and consequence. “Ransomware” is a threat, not a complete risk statement. A stronger version is: “Because repository staff use shared administrator credentials and backups are mounted continuously, a compromised account could encrypt production and recovery copies, causing prolonged loss of access and uncertain integrity.”
+
+@tbl-risk-analysis shows the basic chain.
+
+```{r}
+#| label: tbl-risk-analysis
+#| results: asis
+risk_analysis <- data.frame(
+  Element = c("Asset", "Threat", "Vulnerability or exposure", "Consequence", "Existing control", "Treatment", "Evidence"),
+  Repository_example = c("Embargoed theses and repository trust", "Credential theft through phishing",
+                         "Shared admin account; no MFA; broad permissions", "Unauthorized disclosure, alteration, or deletion",
+                         "Password and nightly backup", "Named accounts, MFA, least privilege, immutable off-system copy, alerts, exercises",
+                         "Access review, MFA report, restore test, incident drill, log sampling"),
+  Question = c("What has value and to whom?", "What could cause harm?", "Which weakness or condition enables it?",
+               "Who or what would be affected and how?", "What already reduces risk?", "Avoid, reduce, transfer, accept, or stop?",
+               "How will the institution know the control exists and works?")
+)
+ict_table(risk_analysis, "Asset-threat-vulnerability-control analysis for a repository",
+          "risk-analysis", c(1.1, 2.5, 2.2))
+```
+
+As @tbl-risk-analysis shows, a control without evidence is an intention. A written backup policy requires successful job logs and restoration tests.
+
+### Likelihood, impact, and uncertainty
+
+Risk matrices help prioritize discussion but can create false precision. A score of 12 does not mean one risk is exactly twice a score of 6. Define categories, record assumptions, and examine consequences to different groups.
+
+Impact can include:
+
+* physical or psychological harm to people;
+* exposure of identity, reading interests, or confidential records;
+* censorship or chilling of inquiry;
+* loss of evidential value or cultural authority;
+* service interruption and inaccessible alternatives;
+* financial loss, contractual liability, and recovery cost;
+* regulatory or legal action;
+* damage to community trust.
+
+Low-frequency, catastrophic risks may require controls even when the arithmetic score is moderate. Risks should be reassessed when scope, technology, vendors, law, staffing, or threats change.
+
+### Controls and defense in depth
+
+Controls can be administrative, technical, physical, contractual, or social.
+
+* **Administrative:** policy, roles, training, retention, approval, incident plans, vendor review.
+* **Technical:** MFA, encryption, patches, backups, network segmentation, logging, secure configuration.
+* **Physical:** locks, environmental controls, visitor procedures, secure media storage.
+* **Contractual:** breach notice, audit rights, deletion, accessibility, data location, export, subcontractor limits.
+* **Social:** supportive reporting culture, peer checks, community consultation, clear escalation.
+
+Defense in depth avoids reliance on one control. MFA reduces stolen-password risk but does not correct excessive privileges, malicious consent to an application, session theft, or unsafe recovery procedures.
+
+@tbl-control-examples connects controls to LIS practice.
+
+```{r}
+#| label: tbl-control-examples
+#| results: asis
+control_examples <- data.frame(
+  Goal = c("Prevent unauthorized access", "Limit harm after compromise", "Protect data in transit and storage",
+           "Detect abnormal activity", "Recover trusted service", "Reduce social engineering", "Protect reader privacy"),
+  Controls = c("Named accounts, MFA, secure recovery, device controls", "Least privilege, segmentation, separate admin roles, short-lived access",
+               "HTTPS, managed encryption, key governance, secure disposal", "Proportionate logs, alerts, time synchronization, protected audit records",
+               "Offline or immutable backups, restore tests, clean rebuild procedures", "Training, verification channels, easy reporting, no-blame escalation",
+               "Data minimization, short retention, aggregate analytics, restricted log access"),
+  Validation = c("Attempt unauthorized paths; review accounts", "Quarterly access review and privilege test",
+                 "Configuration review and key-recovery exercise", "Simulated event and alert review",
+                 "Timed restoration with integrity checks", "Phishing exercise focused on reporting and process improvement",
+                 "Data-flow review, deletion check, and privacy impact assessment")
+)
+ict_table(control_examples, "Layered controls for selected LIS security goals", "control-examples", c(1.3, 2.8, 2))
+```
+
+As @tbl-control-examples indicates, security training should not blame individuals for sophisticated deception. Systems should make verification and reporting easier than unsafe compliance.
+
+### Authentication, authorization, and least privilege
+
+Authentication asks, “Who or what is making this request?” Authorization asks, “What may that identity do?” A staff member may authenticate successfully but should not automatically receive access to every patron record or preservation master.
+
+Least privilege requires enough access for a defined task and no more, reviewed over time. Good practice includes named accounts, role-based access, approval, expiration for temporary roles, rapid offboarding, periodic recertification, and separate administrative accounts.
+
+Zero trust architecture rejects automatic trust based only on network location and emphasizes explicit, contextual access decisions [@nist2020zerotrust]. It does not mean distrusting people morally; it means continuously evaluating access rather than assuming everything inside one network is safe.
+
+### Passwords, MFA, and recovery
+
+Users should use unique credentials and approved password managers where policy permits. Systems should support strong, accessible authentication and protect against automated attempts. MFA adds another factor, but methods differ in phishing resistance and accessibility.
+
+Account recovery is part of security. If recovery relies on one former employee's phone or easily guessed questions, strong login controls are undermined. Emergency access should be documented, protected, monitored, and tested.
+
+Never request a user's password by email, chat, or support ticket. Staff troubleshooting should use approved identity-verification procedures and should not ask users to reveal secrets.
+
+### Phishing and social engineering
+
+Phishing can arrive through email, text, messaging, phone, QR codes, shared documents, social platforms, or fake login pages. Warning signs include unexpected urgency, credential requests, unusual payment or file-sharing changes, mismatched destinations, and requests to bypass procedure. Sophisticated messages may contain correct names and context, so grammar alone is not a reliable test.
+
+A safe response is:
+
+1. pause and do not open attachments, enable macros, submit credentials, approve prompts, or call supplied numbers;
+2. verify through a separate trusted channel;
+3. report using the institution's approved mechanism;
+4. preserve the message as instructed rather than forwarding dangerously;
+5. if interaction occurred, contact incident response promptly and describe exactly what happened.
+
+CISA emphasizes recognition and prompt reporting as central defenses [@cisa2026phishing]. Students should not conduct forensic investigation on institutional devices without authority.
+
+### Malware, ransomware, and safe operations
+
+Malware may steal data, monitor activity, corrupt files, create remote access, or disrupt services. Ransomware response is not only a backup problem: attackers may steal data before encryption, compromise identity systems, destroy recovery paths, or pressure organizations through public disclosure.
+
+Controls include timely patching, secure configuration, application control, endpoint protection, restricted privileges, network segmentation, protected backups, asset inventory, monitoring, and exercises. Recovery copies must be isolated enough that one compromised account cannot destroy them all.
+
+### Logging with purpose
+
+Logs help operate services, detect attacks, investigate incidents, demonstrate actions, and meet records obligations. They also create privacy risk. A discovery log can reveal a person's research interests; an archives request can reveal political or family history.
+
+Define each log's purpose, fields, access, integrity, retention, deletion, and permitted uses. Avoid full query strings, tokens, passwords, or sensitive form contents unless strictly necessary and authorized. Protect logs from tampering and excessive access. IFLA privacy guidance treats confidentiality of information-seeking behavior as a core library concern [@ifla2015internet].
+
+### Incident response
+
+An incident-response plan prepares the institution to recognize, analyze, contain, eradicate, recover, communicate, preserve evidence, meet notification duties, and improve. NIST integrates incident response into cybersecurity risk management rather than treating it as an isolated emergency document [@nist2025incident].
+
+```{mermaid}
+%%| label: fig-incident-workflow
+%%| fig-cap: "A simplified incident response and learning workflow"
+flowchart LR
+    P["Prepare: roles, contacts, tools, backups, exercises"] --> D["Detect and report"]
+    D --> T["Triage: scope, severity, safety, authority"]
+    T --> C["Contain while preserving evidence"]
+    C --> E["Eradicate cause and verify systems"]
+    E --> R["Recover trusted service and support users"]
+    R --> L["Notify as required, review, and improve"]
+    L --> P
+```
+
+As @fig-incident-workflow shows, communication and evidence are managed throughout. Staff should know whom to contact, which actions they are authorized to take, and what not to do. Disconnecting a device may be appropriate in one incident and harmful to evidence or safety in another; follow the plan and authorized direction.
+
+### Privacy and data protection
+
+Privacy is not secrecy alone. It includes appropriate collection, use, disclosure, retention, access, correction, security, and participation. A privacy impact assessment maps personal-data flow before launch:
+
+1. purpose and lawful basis;
+2. people and data categories;
+3. sources, collection points, and notices;
+4. systems, vendors, locations, transfers, and recipients;
+5. access roles and security;
+6. retention, archival value, and deletion;
+7. rights, complaints, and incident response;
+8. necessity, proportionality, alternatives, and residual risk.
+
+The Philippine Data Privacy Act establishes principles and obligations for personal information processing [@philippines2012dpa; @npc2023dpa]. Consult the institutional Data Protection Officer and qualified counsel for specific processing. De-identification reduces some risk but may not prevent re-identification when datasets are combined.
+
+### Copyright, licensing, and access
+
+Copyright affects digitization, repository deposit, exhibits, preservation copying, course materials, and text or data reuse. The Intellectual Property Code of the Philippines provides the national legal framework, including rights, limitations, and exceptions [@philippines1997ipcode]. Legal analysis depends on the work, use, amount, source, status, agreements, and jurisdiction.
+
+Do not assume that:
+
+* owning a physical copy includes online publication rights;
+* educational purpose makes every use fair;
+* no copyright notice means public domain;
+* an item found online may be copied freely;
+* attribution alone cures infringement;
+* a Creative Commons label applies to third-party content within a work.
+
+A rights workflow records work, rights holder when known, status, evidence, proposed use, permissions, license terms, restrictions, risk decision, review date, and takedown contact. Creative Commons licenses provide standardized permissions under stated conditions, but the exact license and scope must be verified [@creativecommons2026licenses]. RightsStatements.org supports standardized rights communication for cultural heritage objects [@rightsstatements2026].
+
+### Intellectual freedom and content governance
+
+Intellectual freedom supports people's ability to seek, receive, create, and communicate information. Libraries should resist viewpoint discrimination, protect confidentiality of inquiry, and provide transparent collection and reconsideration processes [@ifla2019intellectualfreedom; @ifla2012ethics].
+
+Content governance still addresses unlawful material, privacy, donor restrictions, community protocols, security, and platform rules. The crucial distinction is between principled, evidence-based restriction and suppression based on disagreement or pressure.
+
+A responsible challenge or takedown process should:
+
+* accept a documented complaint through an accessible channel;
+* preserve the contested record and decision evidence;
+* distinguish urgent safety or privacy measures from final decisions;
+* apply a written policy consistently;
+* involve appropriate legal, professional, and community expertise;
+* communicate reasons, scope, duration, and appeal;
+* avoid deleting metadata or history without authority.
+
+### Ethics beyond compliance
+
+Law may permit a practice that remains professionally harmful. A vendor contract may allow extensive analytics, yet a library can decide that profiling reader behavior violates trust. Conversely, ethics cannot be used to ignore legal duties.
+
+Professional analysis asks:
+
+* Who benefits, who carries risk, and who was not consulted?
+* Which values conflict: access, privacy, preservation, safety, accountability, intellectual freedom?
+* Are burdens and alternatives distributed fairly?
+* Can affected people understand, contest, and correct decisions?
+* Is the intervention necessary and proportionate?
+* What evidence would cause the institution to stop or change course?
+
+AI features require the same analysis. Automated description, chat, recommendation, moderation, and identity matching can expose data, invent facts, amplify bias, obscure sources, and create dependency. Require purpose, data controls, validation, accessible alternatives, human accountability, and monitoring.
+
+### Project planning begins with the service problem
+
+A project is temporary work undertaken to create a defined result. Operations sustain the result afterward. A repository implementation is a project; repository stewardship is an ongoing service.
+
+A project should begin with a problem statement, not a product. “Install Platform X” assumes the answer. “Provide durable, accessible, rights-aware discovery and deposit for university theses” states a service objective that can be evaluated.
+
+The project charter authorizes work and aligns stakeholders. @tbl-charter-fields identifies core fields.
+
+```{r}
+#| label: tbl-charter-fields
+#| results: asis
+charter_fields <- data.frame(
+  Field = c("Problem and opportunity", "Users and stakeholders", "Objectives and success", "In scope", "Out of scope",
+            "Deliverables", "Requirements and constraints", "Roles and decisions", "Milestones and dependencies",
+            "Budget assumptions", "Risks and safeguards", "Operations and exit"),
+  Question = c("What evidence shows a service problem worth addressing?", "Who uses, is affected by, governs, funds, maintains, or may be excluded?",
+               "What measurable outcome will improve, without harmful side effects?", "Which collections, workflows, integrations, and users are included?",
+               "What will deliberately not be attempted in this phase?", "Which verifiable products, approvals, tests, training, and documentation will exist?",
+               "Which legal, ethical, security, accessibility, metadata, schedule, and procurement conditions apply?",
+               "Who sponsors, manages, owns data, approves changes, accepts risk, and operates the service?",
+               "Which decision gates and predecessor tasks control progress?", "Which staffing, procurement, recurring, contingency, and exit costs are assumed?",
+               "Which risks could prevent outcomes or harm communities, and how are they treated?", "Who maintains, measures, funds, migrates, and retires the result?")
+)
+ict_table(charter_fields, "Core fields in an LIS ICT project charter", "charter-fields", c(1.2, 4))
+```
+
+As @tbl-charter-fields shows, security, law, ethics, accessibility, metadata, and sustainability are requirements, not separate appendices.
+
+### Scope, deliverables, milestones, and acceptance
+
+Scope defines boundaries. Out-of-scope statements prevent stakeholders from assuming that a pilot includes every collection, integration, or migration. Scope may change, but only through visible assessment and approval.
+
+A deliverable must be verifiable: “configured repository with approved metadata profile, role matrix, tested backup, accessibility findings, deposit agreement, and staff guide.” “Repository work” is not a deliverable.
+
+Milestones should represent decision readiness: requirements approved, privacy assessment accepted, pilot ingest passed, security test closed, user acceptance completed, launch approved. A date without acceptance criteria is only a calendar entry.
+
+### Stakeholders, roles, and governance
+
+Projects fail when participation is symbolic or decisions have no owner. Stakeholders may include users, disabled users, metadata staff, systems staff, archives, records management, IT security, legal counsel, the Data Protection Officer, accessibility specialists, procurement, finance, vendors, donors, rights holders, and communities represented in collections.
+
+A responsibility matrix can identify who is responsible for work, accountable for the outcome, consulted for expertise, and informed. There should be one clear accountable owner per decision, while consultation remains meaningful.
+
+### Work breakdown and dependencies
+
+Break deliverables into manageable work packages. A repository pilot may include governance, collection selection, metadata profile, rights, privacy, infrastructure, configuration, migration, testing, training, communication, operations, and evaluation.
+
+Dependencies determine sequence. Public launch depends on acceptance testing; migration depends on mapping and validation rules; procurement depends on approved requirements; privacy notice depends on a known data flow. Parallel work is useful only when dependencies are understood.
+
+### Budget and total cost
+
+Project budgets include staff time, training, accessibility review, security testing, hardware, software, cloud services, migration, metadata remediation, legal review, procurement, contingency, documentation, and communication. Operating costs continue after launch: hosting, storage growth, support, upgrades, preservation, incident response, assessment, and eventual exit.
+
+A free and open-source license can reduce software license cost but does not remove implementation, hosting, maintenance, security, training, or contribution costs. A subscription can simplify operations but introduce price escalation and lock-in.
+
+### Risk registers as living governance tools
+
+A risk register should be reviewed at milestones and after changes. @tbl-risk-register-fields defines useful fields.
+
+```{r}
+#| label: tbl-risk-register-fields
+#| results: asis
+risk_register_fields <- data.frame(
+  Field = c("Risk statement", "Category", "Cause and vulnerability", "Consequence and affected parties",
+            "Likelihood", "Impact", "Existing controls", "Treatment and tasks", "Owner", "Trigger",
+            "Evidence", "Residual risk", "Status and review date"),
+  Purpose = c("Describe uncertain cause-event-effect, not a one-word topic", "Group without losing specifics",
+              "Identify conditions that can be changed", "Make human, service, rights, and operational effects visible",
+              "Use defined categories and state assumptions", "Consider different kinds of harm",
+              "Avoid pretending no controls exist", "Specify avoid, reduce, transfer, accept, or stop actions",
+              "Name the person accountable for monitoring and response", "Define evidence that activates action",
+              "Show that controls are implemented and tested", "Record what remains and who accepts it",
+              "Keep the register current and connected to decisions")
+)
+ict_table(risk_register_fields, "Fields for a project risk register", "risk-register-fields", c(1.3, 4))
+```
+
+The following R example demonstrates a transparent ordinal score. It is a discussion aid, not a probability model.
+
+```{r}
+#| label: lst-risk-register
+#| code-summary: "Create and sort a small illustrative risk register"
+risks <- data.frame(
+  risk_id = c("R-01", "R-02", "R-03"),
+  risk = c("Embargoed files exposed by incorrect role mapping",
+           "Vendor export omits relationships and restrictions",
+           "Launch delayed by metadata remediation"),
+  likelihood = c(3, 2, 4),
+  impact = c(5, 5, 2),
+  owner = c("Repository manager", "Systems librarian", "Metadata lead"),
+  stringsAsFactors = FALSE
+)
+
+risks$discussion_score <- risks$likelihood * risks$impact
+risks <- risks[order(-risks$discussion_score), ]
+risks
+```
+
+The highest numeric score is not automatically the first action. An urgent privacy or safety trigger may override ranking. Record residual risk and who has authority to accept it.
+
+### Change control and decision records
+
+Changes are normal. Uncontrolled changes damage schedule, security, testing, accessibility, and trust. A change request should state proposed change, reason, benefits, affected scope, schedule, cost, data, security, rights, accessibility, dependencies, testing, rollback, and approver.
+
+Decision records preserve alternatives, evidence, participants, conflicts, decision, date, conditions, and review trigger. They prevent teams from repeating debates and help future staff understand why a control or compromise exists.
+
+### Procurement as policy implementation
+
+Vendor requirements should cover functionality and values:
+
+* data ownership, permitted use, and prohibition on secondary profiling;
+* security controls, audit evidence, breach notice, and vulnerability handling;
+* accessibility conformance evidence and remediation timelines;
+* metadata standards, APIs, bulk export, checksums, logs, and deletion;
+* data location, subcontractors, cross-border transfer, and jurisdiction;
+* uptime, support, backup, restoration, preservation, and disaster recovery;
+* price changes, egress, transition support, termination, and exit tests;
+* intellectual freedom, content moderation, challenge, and appeal;
+* AI features, training-data use, human review, and opt-out.
+
+The institution cannot outsource accountability through procurement. Contract terms need operational owners and verification.
+
+## Philippine and Southeast Asian examples
+
+### Academic library: repository access roles
+
+A Philippine university maps repository roles before launch. Student assistants can prepare metadata drafts but cannot publish, change rights, or view restricted files. Depositors see only their submissions. The Data Protection Officer reviews personal-data flow; legal counsel reviews deposit agreements; disabled students test deposit and access. Access is reviewed each semester and removed when appointments end.
+
+### Public library: reader privacy and analytics
+
+A city library wants to improve search. Instead of retaining identifiable queries indefinitely, it uses aggregate measures, short retention, restricted access, and redaction of sensitive fields. The library publishes a clear notice and maintains a nonpersonalized experience. Incident procedures cover accidental exposure of logs.
+
+### School library: phishing and payment change
+
+A school librarian receives an urgent message appearing to come from a database vendor requesting payment to a new bank account. Staff do not reply or call the number in the message. They verify through the vendor contact in the contract, report the message, and preserve it according to procedure. The exercise leads to a two-person payment-change approval.
+
+### Government archive: access, restriction, and accountability
+
+A government archive digitizes records containing personal information and historical public-interest evidence. The team does not classify the entire collection as either open or closed. It applies series- and item-level review, documents legal and archival authority, provides redacted access copies where appropriate, records decisions, and sets reconsideration dates.
+
+### Regional cultural platform: community governance
+
+A Southeast Asian consortium proposes automated tagging and public facial recognition across historical photographs. Security and technical feasibility are not treated as sufficient approval. Participating communities, privacy experts, archivists, legal counsel, and affected families assess consent, misidentification, surveillance, colonial description, benefit, alternatives, and the right to refuse linkage. The pilot excludes facial recognition unless and until governance requirements can be met.
+
+> **Reflect:** Think of one security control that could undermine access, privacy, or intellectual freedom if implemented without context. How would you redesign it?
+
+## Hands-on activity: Prepare a security, ethics, and project-start brief
+
+### Purpose
+
+Prepare an integrated start-up brief for a proposed small repository holding student publications and local-history materials. The activity combines Chapters 10 and 11 into the ethics and preservation brief worth 10% of the course assessment.
+
+### Tools
+
+* Quarto and R or a spreadsheet for the risk register;
+* the hypothetical service description supplied by the instructor;
+* institutional policies and publicly accessible laws, standards, and professional guidance;
+* templates based on @tbl-charter-fields and @tbl-risk-register-fields;
+* diagram software or Mermaid.
+
+### Steps
+
+1. State the service problem, intended users, collections, value, and evidence. Do not begin with a named product.
+2. Draft a one-page charter covering objectives, success criteria, in scope, out of scope, deliverables, roles, milestones, dependencies, budget assumptions, operations, and exit.
+3. Map data flow from submission through storage, metadata, access, analytics, backup, vendors, and deletion. Mark personal, restricted, copyrighted, and culturally sensitive information.
+4. Inventory at least eight assets, including data, services, credentials, legal authority, accessibility, trust, staff capacity, and recovery copies.
+5. Write at least eight cause-event-consequence risk statements. Include cybersecurity, privacy, copyright, intellectual freedom, accessibility, preservation, vendor, and project risks.
+6. Identify existing controls, proposed treatment, owner, trigger, evidence, residual risk, and escalation for each.
+7. Produce an access-control matrix for depositor, metadata assistant, librarian, administrator, public user, and vendor support. Apply least privilege.
+8. Complete a privacy checklist: purpose, lawful basis, fields, notices, vendors, locations, retention, rights, logs, incident response, and alternatives.
+9. Create a rights workflow from deposit evidence through permission, restriction, publication, challenge, takedown, appeal, and review.
+10. Draft a phishing or suspected-breach reporting card with safe actions and official contacts. Do not include real credentials or test actual users.
+11. Define four project decision gates: requirements, pilot ingest, security/privacy/accessibility acceptance, and launch readiness.
+12. Write a 500-word recommendation identifying whether to proceed, proceed with conditions, pause, or reject the proposed launch. Cite evidence and name unresolved decisions requiring specialists.
+
+### Expected output
+
+Submit:
+
+* one-page project charter;
+* system and data-flow diagram;
+* asset and access-control inventories;
+* risk register with at least eight risks;
+* privacy-impact checklist;
+* rights, challenge, and takedown workflow;
+* incident-reporting card;
+* decision-gate checklist; and
+* 500-word recommendation with specialist referrals and residual-risk statement.
+
+### Brief checklist
+
+- [ ] The charter begins with a service problem and measurable outcome.
+- [ ] Scope and exclusions are explicit.
+- [ ] Data flow includes vendors, analytics, backup, and deletion.
+- [ ] Risks state cause, event, consequence, and affected parties.
+- [ ] Controls have owners and validation evidence.
+- [ ] Least privilege is visible in the role matrix.
+- [ ] Privacy analysis covers necessity and retention, not only consent.
+- [ ] Rights analysis distinguishes ownership, permission, license, exception, and access.
+- [ ] Intellectual freedom and challenge procedures are addressed.
+- [ ] Launch depends on decision gates and operational ownership.
+
+### Assessment rubric
+
+@tbl-ethics-project-rubric rewards integrated professional judgment rather than the number of controls listed.
+
+```{r}
+#| label: tbl-ethics-project-rubric
+#| results: asis
+ethics_project_rubric <- data.frame(
+  Criterion = c("Service case and charter", "Security and incident readiness", "Law, privacy, ethics, and access",
+                "Risk and project governance", "Evidence, feasibility, and communication"),
+  Weight = c("20%", "20%", "25%", "20%", "15%"),
+  Strong_performance = c("Problem, users, scope, outcomes, deliverables, roles, milestones, operations, and exit align",
+                         "Assets, threats, vulnerabilities, least privilege, layered controls, reporting, and recovery are coherent",
+                         "Data protection, rights, intellectual freedom, accessibility, community authority, and appeal are applied specifically",
+                         "Risks have owners, evidence, residual decisions, triggers, gates, and change control",
+                         "Recommendation is proportionate, sourced, maintainable, candid about limits, and routes specialist questions correctly")
+)
+ict_table(ethics_project_rubric, "Rubric for the security, ethics, and project-start brief",
+          "ethics-project-rubric", c(1.2, .6, 3))
+```
+
+## Ethical and professional issue: protecting services without chilling inquiry
+
+Security tools can conflict with library values when surveillance becomes the default. Detailed search logs, persistent device fingerprints, identity-linked database use, camera analytics, content scanning, and behavioral risk scores may help detect misuse, but they can also expose readers and discourage inquiry.
+
+The ethical question is not whether security matters. It is whether a particular collection and control is necessary, proportionate, transparent, accurate, contestable, and limited in time and access.
+
+Before deploying monitoring, ask:
+
+* Which specific threat and asset justify the data?
+* Can the objective be met through less identifying information?
+* Which false positives will occur, and who bears the burden?
+* Who can access the records, for which purposes, and for how long?
+* Can users understand the practice and seek correction?
+* Does the control discriminate by disability, language, location, identity, or research topic?
+* Could the data later be demanded or reused beyond the original purpose?
+* What event will cause the institution to reduce or stop collection?
+
+Reader confidentiality, intellectual freedom, and cybersecurity can reinforce one another. Collecting less sensitive data reduces breach impact. Short retention reduces both surveillance and incident scope. Strong access controls protect private inquiry. Transparent challenge procedures resist arbitrary restriction.
+
+Professional courage may require saying that a technically available feature should not be enabled. It may also require explaining that complete anonymity is impossible for a particular licensed or account-based service. Trust grows from candid limits, defensible choices, and accountability rather than absolute promises.
+
+> **Professional judgment prompt:** A vendor claims that storing every search query with account identity for five years will improve security and personalization. Design the questions, evidence, alternatives, retention limits, and approval process required before accepting or rejecting the feature.
+
+## Review questions
+
+1. **Identification:** Distinguish asset, threat, vulnerability, exposure, risk, and control.
+2. **Identification:** Explain confidentiality, integrity, and availability using one repository object.
+3. **Short answer:** Why does MFA not eliminate the need for least privilege, secure recovery, and monitoring?
+4. **Short answer:** What makes a risk register useful rather than merely a compliance document?
+5. **Applied security:** Write a cause-event-consequence risk statement for a shared administrator account.
+6. **Applied privacy:** A discovery vendor requests identifiable queries for analytics. What purpose, necessity, retention, access, and alternative questions should be asked?
+7. **Scenario:** Staff receive a plausible urgent request to change vendor payment details. Describe the safe verification and reporting process.
+8. **Scenario:** A donor owns physical photographs but cannot establish online publication rights. What rights and access workflow should the project use?
+9. **Scenario:** A requested project change adds facial recognition two weeks before launch. Apply change control, ethics, privacy, security, accessibility, budget, and approval analysis.
+10. **Critical analysis:** When can a security restriction protect intellectual freedom, and when can it become censorship or surveillance?
+
+## Mini case: Launch before the anniversary
+
+Mapayapa City Library plans a local-history repository for the city's centennial in twelve weeks. A vendor offers rapid setup and AI-generated descriptions. Community organizations contribute photographs, oral histories, school records, and newsletters. The mayor's office wants public facial search. The vendor retains prompts and files to improve its models, hosts data overseas, and allows export only as CSV plus files. One staff account will manage everything. No accessibility test, privacy assessment, donor agreement, rights review, backup restore, content challenge policy, or recurring budget exists. The sponsor insists that missing the anniversary would be embarrassing.
+
+### Guide questions
+
+1. Identify the cybersecurity, privacy, copyright, intellectual-freedom, accessibility, community, preservation, vendor, and project risks. Which are launch blockers?
+2. Draft a minimum viable scope that could responsibly deliver public value in twelve weeks, with explicit exclusions and decision gates.
+3. Which decisions require the Data Protection Officer, legal counsel, IT security, accessibility expertise, records or archives staff, procurement, and community representatives?
+
+## Further reading and tools
+
+### Readings and standards
+
+* **NIST Cybersecurity Framework 2.0.** Outcome-based guidance across Govern, Identify, Protect, Detect, Respond, and Recover [@nist2024csf].
+* **NIST incident-response guidance.** Integration of incident response into organizational risk management [@nist2025incident].
+* **NIST Zero Trust Architecture.** Principles for explicit, resource-focused access decisions [@nist2020zerotrust].
+* **CISA phishing guidance.** Practical recognition and reporting guidance [@cisa2026phishing].
+* **Philippine Data Privacy Act and NPC guidance.** Primary legal and regulatory starting points for personal-data processing [@philippines2012dpa; @npc2023dpa].
+* **Intellectual Property Code of the Philippines.** Primary national statutory framework for intellectual property [@philippines1997ipcode].
+* **IFLA ethics, privacy, and intellectual-freedom statements.** Professional principles for access, confidentiality, and responsible service [@ifla2012ethics; @ifla2015internet; @ifla2019intellectualfreedom].
+
+### Open or widely accessible tools
+
+* **Risk register and project charter templates:** useful only when adapted to the service and reviewed regularly.
+* **Password managers and institution-approved MFA:** controls that require secure recovery and accessibility planning.
+* **Data-flow and threat-model diagrams:** Mermaid, diagrams.net, or paper can clarify boundaries, actors, assets, and trust relationships.
+* **Accessibility, dependency, and vulnerability scanners:** useful evidence sources that require human validation, prioritization, and authorized use.
+* **Tabletop exercises:** low-cost rehearsals for phishing, breach, outage, takedown, restore, or vendor-exit scenarios.
+* **Decision records and change logs:** simple documents that preserve why consequential project choices were made.
+
+### Closing synthesis
+
+Cybersecurity, law, ethics, and project planning are not barriers added to technology. They are the means by which institutions make responsible commitments. Security protects confidentiality, integrity, availability, and recovery. Legal analysis identifies duties and permissions. Ethics examines necessity, fairness, intellectual freedom, privacy, community authority, and accountability. Project governance turns these requirements into scope, ownership, evidence, decisions, and sustainable operations.
+
+The most important question is not “Can the system launch?” It is: **Can the institution explain what it is protecting and enabling, who may be harmed or excluded, which authority supports each action, how controls are verified, who accepts residual risk, and who will sustain or stop the service?** Chapter 12 brings the course together through data literacy and capstone integration, where students must use evidence without overstating what it can support.

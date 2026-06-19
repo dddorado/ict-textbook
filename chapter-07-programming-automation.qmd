@@ -1,0 +1,764 @@
+---
+title: "Programming for LIS and Automation"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+latex_escape <- function(x) {
+  x <- gsub("\\", "<<<BACKSLASH>>>", as.character(x), fixed = TRUE)
+  x <- gsub("([#$%&_{}])", "\\\\\\1", x, perl = TRUE)
+  x <- gsub("~", "\\textasciitilde{}", x, fixed = TRUE)
+  gsub("<<<BACKSLASH>>>", "\\textbackslash{}", x, fixed = TRUE)
+}
+
+ict_table <- function(data, caption, label = NULL, widths = NULL) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  names(data) <- gsub("_", " ", names(data), fixed = TRUE)
+  anchor <- if (!is.null(label)) paste0("{#tbl-", label, "}") else ""
+  if (knitr::is_latex_output()) {
+    align <- paste(rep("Y", ncol(data)), collapse = "")
+    header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
+    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
+    out <- c(
+      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
+      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+      "\\toprule", paste0(header, " \\\\"), "\\midrule",
+      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
+    )
+  } else if (knitr::is_html_output()) {
+    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+  } else {
+    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+  }
+  knitr::asis_output(paste(out, collapse = "\n"))
+}
+```
+
+## Chapter overview
+
+A repository assistant receives 4,200 records exported from several departments. Dates appear as `2025-03-14`, `14 March 2025`, `03/14/25`, and `n.d.`. Creator names contain extra spaces. Some titles are blank. File names mix spaces, punctuation, and inconsistent identifiers. Correcting every cell by hand would take days and would be difficult to audit. A global search-and-replace might be faster, but it could silently damage valid values.
+
+The central problem of this chapter is **how to express a repeatable information-processing procedure clearly enough that a computer can carry it out while people remain responsible for the rules, exceptions, and consequences**. Programming is not magic and is not limited to professional software developers. In LIS work, a short, well-documented script can import a metadata export, preserve the original, standardize predictable values, flag uncertain cases, summarize changes, and produce a new file for review.
+
+Programming should not be confused with indiscriminate automation. A program implements instructions. An **automation** connects instructions to a recurring workflow, often with inputs, schedules, outputs, logs, permissions, and failure handling. A human task may include contextual judgment that cannot safely be reduced to rules. The goal is therefore not “automate everything.” It is to decide what can be made consistent and reproducible, what evidence must be retained, and where professional review must remain.
+
+This chapter introduces algorithms, scripts, variables, data types, vectors, data frames, conditions, functions, packages, input and output, errors, debugging, testing, and reproducibility through R. R is used because it is open source, works well with rectangular data, and integrates with Quarto documents [@r2026; @quarto2026docs]. The concepts transfer to Python, JavaScript, shell scripting, spreadsheet formulas, and workflow tools.
+
+## Learning objectives
+
+After completing this chapter, you should be able to:
+
+1. **Explain** algorithms, programs, scripts, data types, variables, functions, packages, and automation in LIS terms.
+2. **Read and modify** a short R script containing objects, vectors, data frames, conditions, and functions.
+3. **Import, inspect, clean, validate, and export** a small metadata CSV without overwriting the source file.
+4. **Apply** conditional and vectorized operations to flag missing, inconsistent, or invalid values.
+5. **Test and debug** a script using small known examples, assertions, logs, and exception reports.
+6. **Evaluate** an automation proposal for risk, privacy, bias, maintainability, and appropriate human review.
+
+## Key concepts
+
+@tbl-programming-key-concepts defines the chapter's working vocabulary. The definitions emphasize actions and responsibilities rather than particular R syntax.
+
+```{r}
+#| label: tbl-programming-key-concepts
+#| results: asis
+programming_key_concepts <- data.frame(
+  Term = c("Algorithm", "Program", "Script", "Source code", "Variable", "Object",
+           "Data type", "Vector", "Data frame", "Expression", "Assignment", "Condition",
+           "Iteration", "Vectorization", "Function", "Argument", "Return value", "Package",
+           "Dependency", "Input", "Output", "Exception", "Error", "Warning", "Debugging",
+           "Test", "Assertion", "Log", "Reproducibility", "Automation", "Idempotence"),
+  Working_definition = c(
+    "A finite, ordered procedure for accomplishing a task or solving a defined problem.",
+    "Instructions and related components that a computer can execute.",
+    "A usually small source-code file used to perform a focused or sequential task.",
+    "Human-readable instructions written in a programming language.",
+    "A named reference whose associated value may be used or changed.",
+    "A value stored and manipulated in R, including vectors, tables, functions, and models.",
+    "A category that determines how a value is represented and what operations are valid.",
+    "An ordered collection of values that normally share one data type.",
+    "A rectangular table in which columns are vectors and rows are observations.",
+    "Code that produces or transforms a value.",
+    "Binding a name to a value, commonly with the R operator <-.",
+    "A logical test used to choose an action or classify a value.",
+    "Repeated execution over values, records, files, or another collection.",
+    "Applying an operation to a whole vector rather than explicitly processing one item at a time.",
+    "A named, reusable block of instructions with defined inputs and output.",
+    "A value supplied to a function.",
+    "The value produced by a function after it finishes.",
+    "A documented collection of R functions, data, and supporting materials.",
+    "Software or data required for another program to run correctly.",
+    "Data, files, parameters, or signals received by a program.",
+    "Data, files, messages, or actions produced by a program.",
+    "A case requiring separate handling because it does not fit the normal rule.",
+    "A condition that prevents code from completing as intended.",
+    "A message that indicates a possible problem while execution may continue.",
+    "The systematic process of locating, understanding, and correcting defects.",
+    "A controlled check comparing actual behavior with an expected result.",
+    "A statement that stops or flags execution when a required condition is false.",
+    "A time-stamped record of actions, results, decisions, or failures.",
+    "The ability to obtain consistent results from documented data, code, software, and steps.",
+    "The scheduled or triggered execution of a defined process with limited manual intervention.",
+    "The property that rerunning a process has no unintended additional effect."
+  )
+)
+ict_table(programming_key_concepts, "Key concepts in programming and automation",
+          "programming-key-concepts", c(1, 3))
+```
+
+## Core discussion
+
+### Programming as explicit procedural knowledge
+
+LIS professionals already design procedures. A cataloguing manual states how to choose a preferred source of information. A digitization workflow specifies file naming, quality checks, and derivative creation. A reference interview uses questions to clarify a need. Programming makes one part of procedural knowledge explicit in a form a computer can execute.
+
+Consider a rule: “Remove spaces at the beginning and end of every title; if nothing remains, flag the record for review.” The rule has an input, a transformation, a condition, and an output. Before coding it, the author must answer professional questions. Does whitespace inside the title remain? Is a title containing only punctuation missing? Should an absent supplied title be created automatically? Where will the original value be retained? The code cannot responsibly answer questions that its author has not resolved.
+
+An **algorithm** is the procedure; **source code** expresses it in a language; a **program** is the executable arrangement; and a **script** is commonly a focused code file that coordinates a task. The same algorithm can be implemented in several languages. Syntax changes, but decomposition, validation, testing, and documentation remain.
+
+### A safe automation workflow
+
+@fig-automation-workflow shows a beginner workflow for metadata processing. It separates source data, transformations, exceptions, validation, and approved delivery.
+
+```{mermaid}
+%%| label: fig-automation-workflow
+%%| fig-cap: "A reviewable workflow for LIS data automation"
+flowchart LR
+    S["Read-only source export"] --> I["Import and inspect"]
+    I --> R["Declare rules and assumptions"]
+    R --> T["Transform a working copy"]
+    T --> E["Separate exceptions"]
+    T --> V["Validate expected results"]
+    E --> H["Human review"]
+    V --> H
+    H --> O["Approved output"]
+    T --> L["Change log and summary"]
+    H --> L
+    O --> A["Archive code, parameters, and report"]
+```
+
+As @fig-automation-workflow indicates, the source export is not overwritten. Predictable cases can move through transformations, while uncertain records enter an exception queue. Validation checks the output against stated rules. Human review is not evidence that automation failed; it is a designed control for cases requiring context.
+
+This workflow also supports rollback. If a date rule is later found to be wrong, the team can correct the script and regenerate the output from the preserved source. Manual editing of the only copy would make the history harder to reconstruct.
+
+### Meeting R: objects, assignment, and expressions
+
+R evaluates expressions and stores results as objects. The assignment operator `<-` binds a name to a value.
+
+```{r}
+#| label: lst-r-objects
+#| code-summary: "Create and inspect simple R objects"
+collection_name <- "Barangay Reading Center Collection"
+record_count <- 1250
+review_complete <- FALSE
+
+collection_name
+record_count + 50
+class(review_complete)
+```
+
+In this example, text is placed in quotation marks, the number is numeric, and `FALSE` is a logical value. Names such as `record_count` communicate more than names such as `x`. R is case-sensitive: `Title`, `title`, and `TITLE` are different names.
+
+Comments begin with `#` and explain decisions that code alone cannot make clear:
+
+```r
+# Keep the source wording; only remove surrounding whitespace.
+clean_title <- trimws(source_title)
+```
+
+A comment should explain **why** a rule exists, its source, or a non-obvious limitation. Comments that merely translate syntax, such as `# add one` above `x <- x + 1`, create noise.
+
+### Data types and missing values
+
+Common R data types include character, numeric, integer, logical, and date-time classes. Data types affect valid operations. The text `"2025"` cannot automatically be treated as a publication year in every context, and identifiers with leading zeros should often remain character values.
+
+R represents a missing value with `NA`. It is not the same as an empty string `""`, the text `"N/A"`, the number `0`, or the word `"unknown"`. These may express different states:
+
+* no value was supplied;
+* the value is not applicable;
+* the value is unknown;
+* the value is intentionally withheld;
+* the field contains an invalid placeholder.
+
+Collapsing these states without a policy can damage meaning. Use `is.na(x)` to test missingness rather than `x == NA`.
+
+@tbl-r-types gives LIS examples and common mistakes.
+
+```{r}
+#| label: tbl-r-types
+#| results: asis
+r_types <- data.frame(
+  Type = c("Character", "Numeric", "Integer", "Logical", "Date", "Missing value"),
+  LIS_example = c("Title, identifier, language code", "File size in megabytes", "Page or item count",
+                  "Rights reviewed: TRUE/FALSE", "Embargo end or accession date", "Unknown creator represented as NA"),
+  Caution = c("Do not convert identifiers merely because they contain digits",
+              "Floating-point values may require tolerance in comparisons", "Counts should not contain decimal fractions",
+              "Unknown is not always equivalent to FALSE", "Ambiguous day/month order requires a declared rule",
+              "NA, blank, not applicable, and withheld may have different meanings")
+)
+ict_table(r_types, "Common R data types in LIS work", "r-types", c(1, 2, 2))
+```
+
+As @tbl-r-types shows, choosing a type is also a description decision. A barcode is an identifier, not a quantity: adding two barcodes is meaningless even when both contain only digits.
+
+### Vectors: working with a column of values
+
+A **vector** holds an ordered set of values of a common type. The function `c()` combines values.
+
+```{r}
+#| label: lst-vectors
+#| code-summary: "Create, subset, and test vectors"
+formats <- c("Book", "Thesis", "Map", "Book")
+years <- c(2018, 2021, NA, 2024)
+
+formats == "Book"
+years >= 2020
+is.na(years)
+formats[formats == "Book"]
+```
+
+The comparison `formats == "Book"` returns a logical vector. This is important because many R operations are **vectorized**: one expression applies to a whole column. The expression `years >= 2020` produces `TRUE`, `TRUE`, `NA`, and `TRUE` for the example. The missing year remains unknown rather than becoming false.
+
+Useful vector operations include:
+
+```r
+length(formats)             # number of values
+unique(formats)             # distinct values
+table(formats)              # frequency counts
+sum(is.na(years))           # count missing years
+sort(unique(formats))       # distinct values in order
+```
+
+Before changing metadata, frequency tables often reveal variants such as `Book`, `book`, `Books`, and `BK`. Inspection should precede normalization.
+
+### Data frames and tidy rectangular data
+
+A **data frame** is a rectangular table whose columns are vectors. In a tidy arrangement, each variable is a column, each observation is a row, and each type of observational unit forms a table [@wickham2014tidy]. This structure is not the only possible data model, but it supports consistent analysis and transformation.
+
+```{r}
+#| label: lst-data-frame
+#| code-summary: "Create and inspect a small metadata data frame"
+records <- data.frame(
+  record_id = c("R001", "R002", "R003"),
+  title = c("  Coastal livelihoods ", "", "Mga Kuwentong Bayan"),
+  year = c("2021", "n.d.", "2019"),
+  language = c("eng", "eng", "fil"),
+  stringsAsFactors = FALSE
+)
+
+str(records)
+head(records)
+```
+
+Each row needs a stable identifier. Row numbers are weak identifiers because sorting or filtering changes their position. A `record_id` allows an exception report to point back to the source record.
+
+Real bibliographic and archival data are not always naturally flat. One work can have multiple creators, subjects, files, or related works. Repeating these values in a single cell may be acceptable for a temporary exchange file, but a relational database or structured format may be more appropriate for long-term management. Chapter 3's data-modeling principles still apply.
+
+### Import before transformation
+
+Programs receive **input** and produce **output**. CSV is common for metadata exchange, but it has hazards: character encoding, embedded commas, line breaks, date interpretation, and automatic type guessing. The `readr` package provides functions for rectangular text data and reports parsing problems [@readr2026].
+
+```{r}
+#| label: lst-import
+#| eval: false
+#| code-summary: "Import a CSV with explicit column types"
+library(readr)
+
+records_raw <- read_csv(
+  "data/metadata_source.csv",
+  col_types = cols(
+    record_id = col_character(),
+    title = col_character(),
+    creator = col_character(),
+    date_issued = col_character(),
+    language = col_character(),
+    rights_uri = col_character()
+  ),
+  na = c("", "NA")
+)
+
+problems(records_raw)
+```
+
+The explicit import types prevent identifiers from being converted to numbers and preserve date strings until their patterns are understood. The `na` argument should reflect a documented local policy. Do not casually treat `unknown`, `withheld`, and `not applicable` as identical missing values.
+
+Initial inspection can ask:
+
+```r
+names(records_raw)
+dim(records_raw)
+summary(records_raw)
+head(records_raw, 10)
+sort(table(records_raw$language, useNA = "ifany"), decreasing = TRUE)
+```
+
+Never begin by writing changes back to the integrated library system or repository. Work with an export or test environment, confirm that the export is complete, and record when and how it was created.
+
+### Conditions: rules with consequences
+
+A condition produces `TRUE`, `FALSE`, or sometimes `NA`. An `if` statement chooses one path for a single condition.
+
+```{r}
+#| label: lst-if-condition
+#| code-summary: "Classify one title for review"
+title_status <- function(title) {
+  cleaned <- trimws(title)
+  if (is.na(cleaned) || cleaned == "") {
+    "REVIEW_MISSING_TITLE"
+  } else {
+    "OK"
+  }
+}
+
+title_status("  ")
+title_status("Local Government Records")
+```
+
+For whole columns, vectorized functions are usually clearer. Base R's `ifelse()` or dplyr's `case_when()` can classify records. The following rule preserves the source column and creates new columns:
+
+```{r}
+#| label: lst-vectorized-cleaning
+#| code-summary: "Clean titles while preserving source values"
+records$title_clean <- trimws(records$title)
+records$title_status <- ifelse(
+  is.na(records$title_clean) | records$title_clean == "",
+  "REVIEW_MISSING_TITLE",
+  "OK"
+)
+
+records[c("record_id", "title", "title_clean", "title_status")]
+```
+
+This design is preferable to silently filling every missing title with `[Untitled]`. Whether a supplied title may be constructed depends on the descriptive standard, source evidence, and institutional policy.
+
+### Functions: packaging one rule
+
+A **function** gives a procedure a name, accepts arguments, and returns a result. Functions reduce duplication and provide units that can be tested.
+
+```{r}
+#| label: lst-normalize-language
+#| code-summary: "Normalize selected language labels with an explicit mapping"
+normalize_language <- function(value) {
+  value <- tolower(trimws(value))
+  mapping <- c(
+    "english" = "eng",
+    "eng" = "eng",
+    "filipino" = "fil",
+    "tagalog" = "tgl",
+    "cebuano" = "ceb"
+  )
+
+  matched <- unname(mapping[value])
+  ifelse(is.na(matched), NA_character_, matched)
+}
+
+normalize_language(c(" English ", "Filipino", "Cebuano", "Hiligaynon"))
+```
+
+The unmatched `Hiligaynon` becomes `NA`, which is useful for teaching but insufficient for production: the script should preserve the original value and flag the row. The example also keeps `fil` and `tgl` distinct. A mapping table should cite the vocabulary and document local decisions rather than encode casual assumptions about language identity.
+
+Good functions are focused. A function named `clean_everything()` that changes titles, dates, names, subjects, and rights is hard to test. Separate functions such as `trim_title()`, `parse_date()`, and `validate_rights_uri()` make failures easier to locate.
+
+### Iteration and vectorization
+
+**Iteration** repeats an operation. A `for` loop is appropriate when the sequence itself matters or when processing files one at a time.
+
+```{r}
+#| label: lst-for-loop
+#| code-summary: "Report missing values by field"
+required_fields <- c("record_id", "title", "year", "language")
+
+for (field in required_fields) {
+  missing_count <- sum(is.na(records[[field]]) | trimws(records[[field]]) == "")
+  message(field, ": ", missing_count, " missing")
+}
+```
+
+Vectorized operations are often shorter for column transformations, but loops are not inherently wrong. Clarity and correctness matter more than avoiding a particular construct. For many files, iteration must also handle failures: one corrupt CSV should be logged and isolated rather than causing silent loss or an incomplete batch presented as complete.
+
+### Packages and dependencies
+
+Base R includes many data-processing functions. Packages extend R with documented functions. The **tidyverse** is a collection of packages with related conventions [@tidyverse2026]. Three useful packages for this chapter are:
+
+* `readr` for rectangular text import and export;
+* `dplyr` for selecting, filtering, creating, and summarizing columns [@dplyr2026];
+* `stringr` for consistent text operations [@stringr2026].
+
+Packages must be installed once and loaded in a session. In a shared script, installation is normally kept separate from analysis:
+
+```r
+# Run deliberately at setup time, not every time the script executes.
+install.packages(c("readr", "dplyr", "stringr"))
+
+# Run at the start of the analysis session.
+library(readr)
+library(dplyr)
+library(stringr)
+```
+
+Every dependency adds maintenance and supply-chain considerations. Record package versions, prefer well-maintained packages from trusted repositories, review major updates, and avoid installing unknown code merely because it solves a small problem. A short base R solution may be more sustainable than a dependency-heavy one; an established package may be safer than a custom parser. The choice depends on risk and maintenance capacity.
+
+### A readable metadata-cleaning pipeline
+
+The pipe operator passes a result to the next operation. The following non-executed example shows a tidyverse workflow while preserving source columns:
+
+```{r}
+#| label: lst-metadata-pipeline
+#| eval: false
+#| code-summary: "Clean and flag metadata with dplyr and stringr"
+library(dplyr)
+library(stringr)
+
+records_clean <- records_raw |>
+  mutate(
+    title_source = title,
+    creator_source = creator,
+    date_source = date_issued,
+    title = str_squish(title),
+    creator = str_squish(creator),
+    date_issued = na_if(str_squish(date_issued), "n.d."),
+    title_status = case_when(
+      is.na(title) | title == "" ~ "REVIEW_MISSING_TITLE",
+      str_length(title) < 2 ~ "REVIEW_SHORT_TITLE",
+      TRUE ~ "OK"
+    ),
+    date_status = case_when(
+      is.na(date_issued) ~ "REVIEW_MISSING_DATE",
+      str_detect(date_issued, "^[0-9]{4}$") ~ "OK_YEAR",
+      str_detect(date_issued, "^[0-9]{4}-[0-9]{2}-[0-9]{2}$") ~ "OK_DATE",
+      TRUE ~ "REVIEW_DATE_PATTERN"
+    )
+  )
+```
+
+The regular expressions in the pipeline recognize shapes, not truth. The string `2025-99-99` matches the date shape but is not a valid calendar date. Pattern checks should be followed by semantic validation. Similarly, a nonblank title is not necessarily accurate.
+
+### Validation, assertions, and exception reports
+
+Cleaning and validation are different. **Cleaning** applies a declared transformation; **validation** asks whether data satisfy requirements. A script should fail clearly when essential assumptions are false.
+
+```{r}
+#| label: lst-assertions
+#| code-summary: "Assert structural requirements before export"
+required_columns <- c("record_id", "title", "year", "language")
+
+stopifnot(all(required_columns %in% names(records)))
+stopifnot(!anyDuplicated(records$record_id))
+stopifnot(nrow(records) == 3)
+```
+
+`stopifnot()` is a simple assertion. In production, more informative error messages and a testing framework may be appropriate. The key idea is that the script should not quietly continue when identifiers are duplicated or required columns disappear.
+
+An **exception report** converts uncertainty into work that can be assigned and reviewed:
+
+```r
+exceptions <- records_clean |>
+  filter(title_status != "OK" | !date_status %in% c("OK_YEAR", "OK_DATE")) |>
+  select(record_id, title_source, title, title_status,
+         date_source, date_issued, date_status)
+```
+
+Include the record identifier, source value, proposed value, rule, reason, and review decision. Do not export sensitive fields that reviewers do not need.
+
+### Errors, warnings, and debugging
+
+An **error** stops an operation; a **warning** signals a possible problem while execution may continue; a **message** reports progress or information. Suppressing all warnings makes a report look clean while hiding evidence.
+
+A useful debugging process is:
+
+1. reproduce the failure with the smallest relevant input;
+2. read the complete error and identify the first failing line under your control;
+3. inspect object names, types, dimensions, and representative values;
+4. state what you expected and what actually happened;
+5. test one hypothesis at a time;
+6. correct the cause, not merely the displayed symptom;
+7. add a test that would catch the defect if it returned.
+
+Common beginner problems are listed in @tbl-debugging-guide.
+
+```{r}
+#| label: tbl-debugging-guide
+#| results: asis
+debugging_guide <- data.frame(
+  Symptom = c("Object not found", "Unexpected NA values", "Numbers imported from identifiers",
+              "Condition has length greater than one", "Replacement has wrong number of rows",
+              "Output differs on another computer"),
+  Likely_question = c("Was the object created, and is spelling/capitalization exact?",
+                      "Did conversion, unmatched mapping, or missing input produce NA?",
+                      "Did type guessing treat a character identifier as numeric?",
+                      "Was scalar if used where a vectorized operation was needed?",
+                      "Do the source and replacement vectors have compatible lengths?",
+                      "Are R, package versions, locale, encoding, paths, and inputs documented?"),
+  First_check = c("ls(), names(), and the preceding line", "is.na(), source values, and warnings",
+                  "str() and import column specifications", "length() and the condition expression",
+                  "nrow() and length()", "sessionInfo(), file hashes, locale, and relative paths")
+)
+ict_table(debugging_guide, "A first-response guide for common R problems", "debugging-guide", c(1.4, 2.4, 1.6))
+```
+
+@tbl-debugging-guide frames errors as evidence. Guessing random syntax changes can create a second defect while leaving the first unexplained.
+
+### Testing transformation rules
+
+Tests should include typical values, boundaries, missing values, multilingual text, punctuation, and known exceptions. For the `normalize_language()` function:
+
+```{r}
+#| label: lst-simple-tests
+#| code-summary: "Test expected and exceptional language values"
+stopifnot(normalize_language(" English ") == "eng")
+stopifnot(normalize_language("Filipino") == "fil")
+stopifnot(normalize_language("Tagalog") == "tgl")
+stopifnot(is.na(normalize_language("Hiligaynon")))
+stopifnot(is.na(normalize_language(NA_character_)))
+```
+
+The fourth test does not claim Hiligaynon lacks a valid code. It confirms that the current mapping is incomplete and must flag rather than invent a value. Once the authorized mapping is expanded, the expected result and documentation should change together.
+
+Best-practice guidance for computational work emphasizes small steps, version control, testing, and automated repetition [@wilson2014best]. Reproducibility guidance likewise recommends recording how each result was produced and preserving intermediate reasoning [@sandve2013reproducible].
+
+### Output, logs, and reproducible reports
+
+Output should be deliberately named and never confused with source data:
+
+```{r}
+#| label: lst-export
+#| eval: false
+#| code-summary: "Write cleaned records, exceptions, and a run summary"
+library(readr)
+
+write_csv(records_clean, "output/metadata_cleaned_2026-06-18.csv", na = "")
+write_csv(exceptions, "output/metadata_exceptions_2026-06-18.csv", na = "")
+
+run_summary <- data.frame(
+  metric = c("source_rows", "output_rows", "exception_rows"),
+  value = c(nrow(records_raw), nrow(records_clean), nrow(exceptions))
+)
+write_csv(run_summary, "output/run_summary_2026-06-18.csv")
+```
+
+A run record should identify source file, source checksum when appropriate, run date, script version, parameters, row counts, exceptions, software versions, operator, and approval status. Quarto can combine narrative, code, results, tables, and citations in one reproducible document [@quarto2026docs]. R for Data Science provides a freely accessible introduction to importing, transforming, and communicating data with R [@wickham2023r4ds].
+
+Avoid absolute paths tied to one person's computer. A project structure such as `data/`, `R/`, `output/`, and `reports/` supports relative paths. Source data containing personal information should not be committed to public version control.
+
+### Deciding what to automate
+
+Tasks are good initial candidates when they are frequent, rule-based, reversible, testable, and performed on consistent inputs. Tasks require caution when they involve ambiguous description, rights, identity, appraisal, deletion, access restriction, or direct changes to production systems.
+
+@tbl-automation-decisions provides a decision framework.
+
+```{r}
+#| label: tbl-automation-decisions
+#| results: asis
+automation_decisions <- data.frame(
+  Dimension = c("Rule clarity", "Input consistency", "Consequence of error", "Reversibility",
+                "Testability", "Exception rate", "Privacy and security", "Maintenance ownership"),
+  Lower_risk_signal = c("Rule has authoritative, testable criteria", "Schema and values are stable",
+                        "Error affects a review copy", "Source and rollback are preserved",
+                        "Expected outputs can be checked", "Exceptions are rare and visible",
+                        "Only necessary nonsensitive data are processed", "Named staff can understand and maintain it"),
+  Higher_risk_signal = c("Rule depends on context or contested judgment", "Inputs vary without notice",
+                         "Error changes rights, identity, deletion, or public access", "Action is destructive or difficult to undo",
+                         "Correctness cannot be observed", "Exceptions are common or silently coerced",
+                         "Personal or restricted data move across systems", "Only the original author understands the workflow")
+)
+ict_table(automation_decisions, "Factors for deciding whether and how to automate",
+          "automation-decisions", c(1, 2, 2))
+```
+
+As @tbl-automation-decisions shows, automation is a governance decision. A high-risk task may still use code, but with a dry run, smaller batches, peer review, stronger testing, approvals, access controls, and an explicit rollback plan.
+
+## Philippine and Southeast Asian examples
+
+### Academic library: thesis deposit quality checks
+
+A university library receives thesis metadata from several colleges. A script checks that each submission has a stable identifier, nonblank title, department code, adviser field, date pattern, rights statement, and file reference. It normalizes whitespace and approved codes but does not invent missing titles or change names. Exceptions return to depositing units with record identifiers and clear reasons. The workflow reduces repetitive checking while preserving academic and cataloguing responsibility.
+
+### Public library: multilingual program statistics
+
+A city library combines monthly CSV files from branch reading programs. Branch names and activity labels vary. A mapping table standardizes approved organizational codes, while unmatched labels appear in an exception report. Participant totals are aggregated only after duplicates and missing branch identifiers are checked. Public reporting uses grouped counts to reduce privacy risk, especially for small communities.
+
+### School library: accession and label preparation
+
+A school library script produces draft spine-label data from an accession export. It checks required call-number components, detects duplicate accession numbers, and flags unusually long labels. Staff review every label before printing. The script is helpful because formatting rules are repeatable; classification and subject analysis remain professional judgments.
+
+### Government records center: file inventory validation
+
+A records center validates transfer-list spreadsheets from offices. The script checks series codes, inclusive dates, retention-rule references, box-number sequences, and required security classifications. It never disposes of a record. Destruction requires authorized appraisal, approval, and documented action outside the validation script.
+
+### Regional digital heritage project: filename and manifest checks
+
+Partner institutions in Southeast Asia contribute image files and metadata manifests. A script checks that every manifest identifier has a file, every file has a manifest row, checksums are present, and filenames conform to an agreed pattern. Unicode text in titles and names is preserved. Transliteration and culturally sensitive description are reviewed by contributing institutions rather than imposed automatically by the aggregator.
+
+> **Reflect:** Identify one repetitive task in an information organization. Which part is mechanical, which part requires contextual judgment, and what evidence would a reviewer need before accepting the output?
+
+## Hands-on activity: Build a metadata quality and cleanup report
+
+### Purpose
+
+Use R and Quarto to clean predictable formatting issues, flag uncertain records, validate assumptions, and export reviewable outputs. The lab contributes to short labs and can form the data-processing component of the database or API mini-project.
+
+### Tools
+
+* R 4.x and Quarto;
+* an editor such as RStudio, Positron, or VS Code with R support;
+* packages `readr`, `dplyr`, and `stringr`;
+* a teacher-provided CSV with the fields in @tbl-lab-fields;
+* a project folder containing `data/`, `output/`, and the `.qmd` report.
+
+```{r}
+#| label: tbl-lab-fields
+#| results: asis
+lab_fields <- data.frame(
+  Field = c("record_id", "title", "creator", "date_issued", "language", "rights_uri", "file_name"),
+  Intended_rule = c("Required, character, unique", "Required; surrounding/repeated whitespace may be normalized",
+                    "Preserve source form; normalize only whitespace", "Accept YYYY or valid YYYY-MM-DD; flag other patterns",
+                    "Map only approved labels or codes", "Flag missing or non-HTTP(S) values for review",
+                    "Required; compare stem with record identifier under the local convention"),
+  Do_not_automate = c("Do not renumber silently", "Do not invent a title", "Do not invert or merge names without authority rules",
+                      "Do not guess ambiguous dates", "Do not infer language from title alone", "Do not assign a license without evidence",
+                      "Do not rename source files before review and backup")
+)
+ict_table(lab_fields, "Fields and boundaries for the metadata-cleaning lab", "lab-fields", c(1, 2.3, 2.3))
+```
+
+@tbl-lab-fields defines both transformation rules and boundaries. The “do not automate” column is part of the specification, not an optional caution.
+
+### Steps
+
+1. Create a project folder with `data/` and `output/`. Place the original CSV in `data/` and treat it as read-only.
+2. Create `metadata_cleanup.qmd` with title, purpose, date, author, and a short data-handling note.
+3. Load `readr`, `dplyr`, and `stringr`. Import all identifier, date, language, rights, and filename fields as character values.
+4. Record the source filename, row count, column names, duplicate identifiers, parsing problems, and missing counts.
+5. Preserve original title, creator, date, language, rights, and filename values in `_source` columns.
+6. Normalize leading, trailing, and repeated whitespace in title and creator. Do not alter internal punctuation or name order.
+7. Create `title_status`, `date_status`, `language_status`, `rights_status`, and `filename_status` fields. Use explicit labels such as `OK`, `REVIEW_MISSING`, and `REVIEW_PATTERN`.
+8. Build an exception table containing the stable identifier, source value, proposed value, status, and review note.
+9. Add assertions: required columns exist, source and output row counts match, identifiers are nonmissing and unique, and no source columns were removed.
+10. Export `metadata_cleaned.csv`, `metadata_exceptions.csv`, and `run_summary.csv` to `output/`. Never overwrite the source.
+11. Render the Quarto report. Discuss the number and type of changes, unresolved exceptions, limitations, and required human decisions.
+12. Exchange reports with a partner. The partner selects five records, traces source-to-output changes, and records whether each rule behaved as documented.
+
+### Expected output
+
+Submit:
+
+* `metadata_cleanup.qmd` and its rendered HTML or DOCX;
+* `metadata_cleaned.csv`;
+* `metadata_exceptions.csv`;
+* `run_summary.csv`;
+* a data dictionary and rule table;
+* at least five documented tests;
+* a peer-verification checklist; and
+* a 200-word reflection: **Which decisions became clearer when you had to express them as code, and which decisions resisted automation?**
+
+### Lab checklist
+
+- [ ] The source file remains unchanged.
+- [ ] Identifier-like fields were imported as character data.
+- [ ] Original values are retained beside transformed values.
+- [ ] Rules and non-rules are documented.
+- [ ] Uncertain values are flagged instead of guessed.
+- [ ] Assertions protect required structure and row identity.
+- [ ] Outputs have clear names and separate locations.
+- [ ] At least five cases were traced from source to output.
+- [ ] No unnecessary personal or confidential data appear in the report.
+- [ ] Another student can rerun the workflow from the instructions.
+
+### Assessment rubric
+
+@tbl-programming-lab-rubric rewards correctness, evidence, and maintainability rather than code length.
+
+```{r}
+#| label: tbl-programming-lab-rubric
+#| results: asis
+programming_lab_rubric <- data.frame(
+  Criterion = c("Problem and rules", "Code and data handling", "Validation and tests",
+                "Outputs and audit trail", "Professional judgment and reflection"),
+  Weight = c("20%", "25%", "20%", "20%", "15%"),
+  Strong_performance = c("Rules, boundaries, inputs, and expected outputs are explicit",
+                         "Code is readable and reproducible; source and original values are protected",
+                         "Assertions and representative tests detect structural and value problems",
+                         "Cleaned data, exceptions, and summary agree and can be traced by identifier",
+                         "Uncertainty, privacy, limitations, maintenance, and human review are addressed")
+)
+ict_table(programming_lab_rubric, "Rubric for the metadata quality and cleanup lab",
+          "programming-lab-rubric", c(1.2, .6, 3))
+```
+
+## Ethical and professional issue: automation bias and accountable intervention
+
+Automation changes authority. A value produced by a script may look consistent and therefore trustworthy even when the rule is incomplete. **Automation bias** occurs when people give undue weight to automated output or fail to investigate contradictory evidence. In metadata work, this can turn a convenient mapping into widespread representational harm.
+
+Consider a script that infers creator nationality from names, assigns gender from honorifics, translates Indigenous terms without community review, or labels rights based only on publication year. Each operation may be technically possible. None is professionally justified without reliable evidence, a legitimate purpose, documented uncertainty, and appropriate authority.
+
+AI-assisted coding introduces a second layer. A generative system can suggest R syntax, explanations, mappings, or regular expressions, but plausible code may call nonexistent functions, mishandle missing values, expose data to an external service, or encode a policy the user did not intend. AI-generated code must be treated as untrusted draft code: review it line by line, test it on known cases, inspect dependencies, and never supply restricted records to a service without authorization and data-protection review.
+
+Accountable automation includes:
+
+* a stated service problem and responsible owner;
+* documented source, scope, rule authority, assumptions, and exclusions;
+* minimum necessary data and controlled access;
+* preserved source values and reversible outputs;
+* tests covering multilingual, missing, boundary, and adversarial cases;
+* visible exception handling rather than forced conformity;
+* logs proportionate to the task and protected by retention rules;
+* peer review for high-impact transformations;
+* a way for affected users or communities to challenge results;
+* monitoring after deployment and a defined stop condition.
+
+Privacy obligations apply to scripts as much as to databases. A temporary CSV copied to a personal cloud folder can create a breach even if the code is correct. Under the Philippine Data Privacy Act, processing must have a legitimate purpose and use proportionate safeguards [@philippines2012dpa; @npc2023dpa]. Test with synthetic or de-identified data when possible, and do not place secrets, passwords, or API keys inside source code.
+
+> **Professional judgment prompt:** A script can assign subject headings to 80% of new records with 92% agreement against a past dataset. What does this statistic fail to tell you? Which records require review, who can contest a heading, and what evidence would justify moving from suggestion to automatic assignment?
+
+## Review questions
+
+1. **Identification:** Distinguish an algorithm, program, script, and automation.
+2. **Identification:** What is the difference among `NA`, an empty string, `0`, and the text `unknown`?
+3. **Short answer:** Why should identifiers such as barcodes and record numbers often be imported as character data?
+4. **Short answer:** Explain why preserving source columns improves rollback, auditing, and professional review.
+5. **Code reading:** What values does `is.na(c(2020, NA, 2024))` return, and how could the result be used in a quality report?
+6. **Applied analysis:** Write pseudocode that trims title whitespace, flags blank titles, and leaves nonblank wording unchanged.
+7. **Scenario:** A date-cleaning script converts `03/04/2025` to 3 April 2025. What assumption was made, and how should ambiguous dates be handled?
+8. **Scenario:** A batch process completes 97 of 100 files but reports only “success.” What logging and failure-handling changes are needed?
+9. **Scenario:** A colleague proposes automatically replacing all unmatched language values with `eng`. Identify the technical, metadata, and ethical problems.
+10. **Critical analysis:** Choose one LIS task that should use automation only for recommendation or flagging. Explain the human decision that must remain and design one safeguard.
+
+## Mini case: The authority cleanup that changed identities
+
+Maharlika University Library exports 18,000 repository creator strings. A student assistant writes a script that trims spaces, changes all names to title case, splits values at commas, and merges creators sharing the same surname and first initial. The script reduces the apparent number of creators by 22%. It also changes capitalization in several Indigenous and international names, separates a compound family name incorrectly, and merges distinct researchers. Because the cleaned file looks consistent, the repository manager is ready to import it directly. No source-value columns, exception report, or rollback test exist.
+
+### Guide questions
+
+1. Which assumptions in the script are unsafe, and what kinds of identity or discovery harm could follow?
+2. How would you redesign the workflow to preserve evidence, generate candidate matches, and route uncertain cases for authority review?
+3. What tests, approval steps, and rollback evidence must be completed before any production import?
+
+## Further reading and tools
+
+### Readings and documentation
+
+* **R manuals and documentation.** The authoritative starting point for the R language, functions, packages, and data structures [@r2026].
+* **R for Data Science, second edition.** A free book on importing, transforming, visualizing, and communicating data [@wickham2023r4ds].
+* **Tidy Data.** A concise explanation of how consistent tabular structure supports analysis [@wickham2014tidy].
+* **Best Practices for Scientific Computing.** Practical guidance on readable code, testing, version control, and automation [@wilson2014best].
+* **Ten Simple Rules for Reproducible Computational Research.** Principles for connecting results to recorded inputs and steps [@sandve2013reproducible].
+* **Library Carpentry lessons.** Open, library-oriented introductions to data, software, regular expressions, OpenRefine, Git, R, Python, and related tools [@librarycarpentry2026].
+* **Quarto documentation.** Guidance for combining prose, executable code, citations, figures, and multi-format publishing [@quarto2026docs].
+
+### Open or widely accessible tools
+
+* **R:** open-source environment for data processing, analysis, and visualization [@r2026].
+* **RStudio, Positron, or VS Code:** editors that support R projects and source files.
+* **readr, dplyr, and stringr:** packages for import/export, data transformation, and text processing [@readr2026; @dplyr2026; @stringr2026].
+* **OpenRefine:** interactive tool for profiling and reconciling messy metadata; useful for comparing scripted and visual workflows.
+* **Git:** version-control system for source code and documentation. Sensitive data should remain outside public repositories.
+* **renv:** R package for recording and restoring project package dependencies.
+
+### Closing synthesis
+
+Programming gives LIS professionals a way to make procedural choices inspectable, repeatable, and testable. Its value is not measured by how many lines of code are written or how many staff actions disappear. A strong script protects source data, states its assumptions, handles missingness, separates predictable transformations from uncertain cases, validates outputs, and leaves evidence another person can review.
+
+Automation is therefore both technical and institutional. It redistributes labor, attention, risk, and authority. The LIS professional must ask not only “Can this be automated?” but **“Which rule is being enacted, whose evidence supports it, what happens to exceptions, how will errors be detected and reversed, and who remains accountable?”** Chapter 8 extends these foundations from local files to networked data exchange through APIs, JSON, identifiers, linked data, and semantic relationships.

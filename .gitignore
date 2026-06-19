@@ -1,0 +1,10 @@
+/.quarto/
+/_book/
+/_freeze/
+/tmp/
+/rsconnect/
+/*_files/
+.Rhistory
+*.log
+*.pid
+gh-auth.*
