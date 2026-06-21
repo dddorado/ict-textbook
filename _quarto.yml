@@ -11,7 +11,6 @@ book:
   output-file: ict-textbook
   search: true
   repo-url: https://github.com/dddorado/ict-textbook
-  repo-actions: [edit]
   downloads: [pdf, epub]
   sharing: [twitter, facebook]
   page-footer:
