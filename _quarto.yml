@@ -2,13 +2,26 @@ project:
   type: book
 
 book:
-  title: "Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services"
-  author: "Dan Anthony D. Dorado"
+  title: "[Information and Communication Technologies for Library and Information Science: Foundations, Systems, and Services](https://dddorado.github.io/ict-textbook/)"
+  author: "Dan Anthony Dorado"
   date: "2026-06-18"
   date-format: long
   cover-image: Cover.png
   license: "CC BY-NC-SA 4.0"
-  downloads: [pdf]
+  output-file: ict-textbook
+  search: true
+  repo-url: https://github.com/dddorado/ict-textbook
+  repo-actions: [edit]
+  downloads: [pdf, epub]
+  sharing: [twitter, facebook]
+  page-footer:
+    left: "Except where otherwise noted, this work is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)."
+    right:
+      - icon: github
+        href: https://github.com/dddorado/ict-textbook
+        aria-label: GitHub repository
+      - text: DanDorado.net
+        href: http://dandorado.net
   chapters:
     - index.qmd
     - disclaimer.qmd
@@ -41,6 +54,7 @@ format:
     theme: cosmo
     filters:
       - clean-unnumbered-title.lua
+  epub: default
   pdf:
     documentclass: scrreprt
     toc: true
@@ -51,6 +65,7 @@ format:
     include-in-header:
       text: |
         \usepackage{tabularx}
+        \usepackage{longtable}
         \usepackage{booktabs}
         \usepackage{makeidx}
         \usepackage{eso-pic}

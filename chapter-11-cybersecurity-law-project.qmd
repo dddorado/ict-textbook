@@ -20,18 +20,50 @@ ict_table <- function(data, caption, label = NULL, widths = NULL) {
   if (knitr::is_latex_output()) {
     align <- paste(rep("Y", ncol(data)), collapse = "")
     header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
-    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
-    out <- c(
-      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
-      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
-      "\\toprule", paste0(header, " \\\\"), "\\midrule",
-      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
-    )
+    rows <- apply(data, 1, function(row) {
+      paste(vapply(row, latex_escape, character(1)), collapse = " & ")
+    })
+    if (grepl("^Key concepts", caption)) {
+      column_weights <- if (is.null(widths) || length(widths) != ncol(data)) {
+        rep(1, ncol(data))
+      } else {
+        widths
+      }
+      column_widths <- 0.94 * column_weights / sum(column_weights)
+      long_align <- paste(
+        sprintf(">{\\raggedright\\arraybackslash}p{%.3f\\textwidth}", column_widths),
+        collapse = ""
+      )
+      out <- c(
+        sprintf("\\begin{longtable}{%s}", long_align),
+        sprintf("\\caption{%s}\\label{tbl-%s}\\\\", latex_escape(caption), label),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule", "\\endfirsthead",
+        sprintf("\\multicolumn{%d}{c}{\\tablename\\ \\thetable{} -- continued} \\\\" , ncol(data)),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule", "\\endhead",
+        sprintf("\\midrule \\multicolumn{%d}{r}{Continued on next page} \\\\" , ncol(data)),
+        "\\endfoot", "\\bottomrule", "\\endlastfoot",
+        paste0(rows, " \\\\"), "\\end{longtable}"
+      )
+    } else {
+      out <- c(
+        sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule",
+        paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}"
+      )
+    }
   } else if (knitr::is_html_output()) {
-    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
-                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+    if (grepl("^Key concepts", caption)) {
+      out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                          table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+    } else {
+      out <- knitr::kable(data, format = "html", escape = TRUE)
+    }
   } else {
-    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+    if (grepl("^Key concepts", caption)) {
+      out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+    } else {
+      out <- knitr::kable(data, format = "pipe")
+    }
   }
   knitr::asis_output(paste(out, collapse = "\n"))
 }
@@ -64,6 +96,7 @@ After completing this chapter, you should be able to:
 
 ```{r}
 #| label: tbl-risk-project-key-concepts
+#| tbl-cap: "Key concepts in cybersecurity, law, ethics, and project planning"
 #| results: asis
 risk_project_key_concepts <- data.frame(
   Term = c("Cybersecurity", "Confidentiality", "Integrity", "Availability", "Asset", "Threat",
@@ -166,6 +199,7 @@ A risk statement should identify cause, event, and consequence. “Ransomware”
 
 ```{r}
 #| label: tbl-risk-analysis
+#| tbl-cap: "Asset-threat-vulnerability-control analysis for a repository"
 #| results: asis
 risk_analysis <- data.frame(
   Element = c("Asset", "Threat", "Vulnerability or exposure", "Consequence", "Existing control", "Treatment", "Evidence"),
@@ -216,6 +250,7 @@ Defense in depth avoids reliance on one control. MFA reduces stolen-password ris
 
 ```{r}
 #| label: tbl-control-examples
+#| tbl-cap: "Layered controls for selected LIS security goals"
 #| results: asis
 control_examples <- data.frame(
   Goal = c("Prevent unauthorized access", "Limit harm after compromise", "Protect data in transit and storage",
@@ -366,6 +401,7 @@ The project charter authorizes work and aligns stakeholders. @tbl-charter-fields
 
 ```{r}
 #| label: tbl-charter-fields
+#| tbl-cap: "Core fields in an LIS ICT project charter"
 #| results: asis
 charter_fields <- data.frame(
   Field = c("Problem and opportunity", "Users and stakeholders", "Objectives and success", "In scope", "Out of scope",
@@ -416,6 +452,7 @@ A risk register should be reviewed at milestones and after changes. @tbl-risk-re
 
 ```{r}
 #| label: tbl-risk-register-fields
+#| tbl-cap: "Fields for a project risk register"
 #| results: asis
 risk_register_fields <- data.frame(
   Field = c("Risk statement", "Category", "Cause and vulnerability", "Consequence and affected parties",
@@ -563,6 +600,7 @@ Submit:
 
 ```{r}
 #| label: tbl-ethics-project-rubric
+#| tbl-cap: "Rubric for the security, ethics, and project-start brief"
 #| results: asis
 ethics_project_rubric <- data.frame(
   Criterion = c("Service case and charter", "Security and incident readiness", "Law, privacy, ethics, and access",

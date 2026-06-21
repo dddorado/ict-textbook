@@ -20,18 +20,50 @@ ict_table <- function(data, caption, label = NULL, widths = NULL) {
   if (knitr::is_latex_output()) {
     align <- paste(rep("Y", ncol(data)), collapse = "")
     header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
-    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
-    out <- c(
-      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
-      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
-      "\\toprule", paste0(header, " \\\\"), "\\midrule",
-      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
-    )
+    rows <- apply(data, 1, function(row) {
+      paste(vapply(row, latex_escape, character(1)), collapse = " & ")
+    })
+    if (grepl("^Key concepts", caption)) {
+      column_weights <- if (is.null(widths) || length(widths) != ncol(data)) {
+        rep(1, ncol(data))
+      } else {
+        widths
+      }
+      column_widths <- 0.94 * column_weights / sum(column_weights)
+      long_align <- paste(
+        sprintf(">{\\raggedright\\arraybackslash}p{%.3f\\textwidth}", column_widths),
+        collapse = ""
+      )
+      out <- c(
+        sprintf("\\begin{longtable}{%s}", long_align),
+        sprintf("\\caption{%s}\\label{tbl-%s}\\\\", latex_escape(caption), label),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule", "\\endfirsthead",
+        sprintf("\\multicolumn{%d}{c}{\\tablename\\ \\thetable{} -- continued} \\\\" , ncol(data)),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule", "\\endhead",
+        sprintf("\\midrule \\multicolumn{%d}{r}{Continued on next page} \\\\" , ncol(data)),
+        "\\endfoot", "\\bottomrule", "\\endlastfoot",
+        paste0(rows, " \\\\"), "\\end{longtable}"
+      )
+    } else {
+      out <- c(
+        sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule",
+        paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}"
+      )
+    }
   } else if (knitr::is_html_output()) {
-    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
-                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+    if (grepl("^Key concepts", caption)) {
+      out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                          table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+    } else {
+      out <- knitr::kable(data, format = "html", escape = TRUE)
+    }
   } else {
-    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+    if (grepl("^Key concepts", caption)) {
+      out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+    } else {
+      out <- knitr::kable(data, format = "pipe")
+    }
   }
   knitr::asis_output(paste(out, collapse = "\n"))
 }
@@ -66,6 +98,7 @@ After completing this chapter, you should be able to:
 
 ```{r}
 #| label: tbl-preservation-key-concepts
+#| tbl-cap: "Key concepts in digital preservation and cloud services"
 #| results: asis
 preservation_key_concepts <- data.frame(
   Term = c("Digital preservation", "Digital object", "Bitstream", "File", "Storage", "Backup",
@@ -134,6 +167,7 @@ The OAIS reference model describes an archive as an organization of people and s
 
 ```{r}
 #| label: tbl-continuity-functions
+#| tbl-cap: "Distinguishing digital continuity functions"
 #| results: asis
 continuity_functions <- data.frame(
   Function = c("Digitization", "Storage", "Synchronization", "Backup", "Disaster recovery", "Digital preservation"),
@@ -281,6 +315,7 @@ The Library of Congress sustainability guidance evaluates formats through factor
 
 ```{r}
 #| label: tbl-format-strategies
+#| tbl-cap: "Selected digital preservation format strategies"
 #| results: asis
 format_strategies <- data.frame(
   Strategy = c("Preserve as received", "Normalization", "Migration", "Emulation", "Encapsulation and documentation"),
@@ -316,6 +351,7 @@ Preservation metadata records what an object is, what happened to it, who or wha
 
 ```{r}
 #| label: tbl-premis-entities
+#| tbl-cap: "PREMIS-oriented entities in a preservation workflow"
 #| results: asis
 premis_entities <- data.frame(
   Entity = c("Object", "Event", "Agent", "Rights", "Relationship"),
@@ -383,6 +419,7 @@ Cloud object storage often offers hot, cool, and archival tiers. Lower storage p
 
 ```{r}
 #| label: tbl-cloud-evaluation
+#| tbl-cap: "Questions for evaluating cloud preservation services"
 #| results: asis
 cloud_evaluation <- data.frame(
   Dimension = c("Data and metadata", "Integrity", "Identity and access", "Security and privacy",
@@ -468,6 +505,7 @@ Create a preservation package for three to five non-sensitive files, record inve
 
 ```{r}
 #| label: tbl-package-manifest
+#| tbl-cap: "Minimum manifest fields for the preservation-package lab"
 #| results: asis
 package_manifest <- data.frame(
   Field = c("object_id", "relative_path", "original_name", "bytes", "format", "format_version",
@@ -533,6 +571,7 @@ Submit:
 
 ```{r}
 #| label: tbl-preservation-lab-rubric
+#| tbl-cap: "Rubric for the preservation package and recovery test"
 #| results: asis
 preservation_lab_rubric <- data.frame(
   Criterion = c("Scope and package", "Fixity and event evidence", "Redundancy and recovery",

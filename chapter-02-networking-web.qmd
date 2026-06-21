@@ -20,18 +20,50 @@ ict_table <- function(data, caption, label = NULL, widths = NULL) {
   if (knitr::is_latex_output()) {
     align <- paste(rep("Y", ncol(data)), collapse = "")
     header <- paste(vapply(names(data), latex_escape, character(1)), collapse = " & ")
-    rows <- apply(data, 1, function(row) paste(vapply(row, latex_escape, character(1)), collapse = " & "))
-    out <- c(
-      sprintf("\\begin{table}[htbp]\\centering\\caption{%s}\\label{tbl-%s}", latex_escape(caption), label),
-      sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
-      "\\toprule", paste0(header, " \\\\"), "\\midrule",
-      paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}", "\\end{table}"
-    )
+    rows <- apply(data, 1, function(row) {
+      paste(vapply(row, latex_escape, character(1)), collapse = " & ")
+    })
+    if (grepl("^Key concepts", caption)) {
+      column_weights <- if (is.null(widths) || length(widths) != ncol(data)) {
+        rep(1, ncol(data))
+      } else {
+        widths
+      }
+      column_widths <- 0.94 * column_weights / sum(column_weights)
+      long_align <- paste(
+        sprintf(">{\\raggedright\\arraybackslash}p{%.3f\\textwidth}", column_widths),
+        collapse = ""
+      )
+      out <- c(
+        sprintf("\\begin{longtable}{%s}", long_align),
+        sprintf("\\caption{%s}\\label{tbl-%s}\\\\", latex_escape(caption), label),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule", "\\endfirsthead",
+        sprintf("\\multicolumn{%d}{c}{\\tablename\\ \\thetable{} -- continued} \\\\" , ncol(data)),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule", "\\endhead",
+        sprintf("\\midrule \\multicolumn{%d}{r}{Continued on next page} \\\\" , ncol(data)),
+        "\\endfoot", "\\bottomrule", "\\endlastfoot",
+        paste0(rows, " \\\\"), "\\end{longtable}"
+      )
+    } else {
+      out <- c(
+        sprintf("\\begin{tabularx}{\\textwidth}{%s}", align),
+        "\\toprule", paste0(header, " \\\\"), "\\midrule",
+        paste0(rows, " \\\\"), "\\bottomrule", "\\end{tabularx}"
+      )
+    }
   } else if (knitr::is_html_output()) {
-    out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
-                        table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+    if (grepl("^Key concepts", caption)) {
+      out <- knitr::kable(data, format = "html", caption = caption, escape = TRUE,
+                          table.attr = if (is.null(label)) "" else sprintf("id='tbl-%s'", label))
+    } else {
+      out <- knitr::kable(data, format = "html", escape = TRUE)
+    }
   } else {
-    out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+    if (grepl("^Key concepts", caption)) {
+      out <- c(paste0(": ", caption, " ", anchor), "", knitr::kable(data, format = "pipe"))
+    } else {
+      out <- knitr::kable(data, format = "pipe")
+    }
   }
   knitr::asis_output(paste(out, collapse = "\n"))
 }
@@ -62,6 +94,7 @@ After completing this chapter, you should be able to:
 
 ```{r}
 #| label: tbl-networking-key-concepts
+#| tbl-cap: "Key concepts for networking and library websites"
 #| results: asis
 networking_key_concepts <- data.frame(
   Term = c("Network", "LAN", "WAN", "Internet", "World Wide Web", "Protocol",
@@ -184,6 +217,7 @@ Common methods include GET for retrieving a representation, HEAD for retrieving 
 
 ```{r}
 #| label: tbl-http-status
+#| tbl-cap: "Common HTTP status codes in information services"
 #| results: asis
 http_status <- data.frame(
   Code = c("200", "301", "302", "400", "401", "403", "404", "429", "500", "503"),
@@ -311,6 +345,7 @@ Library websites are published information resources and organizational records.
 
 ```{r}
 #| label: tbl-web-governance
+#| tbl-cap: "Website governance responsibilities and evidence"
 #| results: asis
 web_governance <- data.frame(
   Component = c("Domain and DNS", "Hosting and platform", "Page content",
@@ -400,6 +435,7 @@ Submit the annotated request record, three network and mobile observations, **ho
 
 ```{r}
 #| label: tbl-ch2-lab-checklist
+#| tbl-cap: "Chapter 2 web lab submission checklist"
 #| results: asis
 ch2_checklist <- data.frame(
   Check = c("URL parts, method, status, type, size, and domain are recorded",
@@ -423,6 +459,7 @@ ict_table(ch2_checklist, "Chapter 2 web lab submission checklist",
 
 ```{r}
 #| label: tbl-ch2-lab-rubric
+#| tbl-cap: "Rubric for the Chapter 2 web lab"
 #| results: asis
 ch2_rubric <- data.frame(
   Criterion = c("Request trace", "Semantic HTML", "Access and resilience",
