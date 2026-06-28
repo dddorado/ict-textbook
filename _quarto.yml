@@ -39,6 +39,7 @@ book:
     - chapter-11-cybersecurity-law-project.qmd
     - chapter-12-data-literacy-capstone.qmd
     - references.qmd
+    - about-author.qmd
 
 bibliography: references.bib
 link-citations: true
